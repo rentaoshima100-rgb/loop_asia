@@ -13,7 +13,7 @@ function IkuseiPage() {
 
       <section className="section">
         <div className="container">
-          <div className="data-grid" style={{gridTemplateColumns:"1fr 1.4fr", gap:80}}>
+          <div className="data-grid">
             <FadeUp>
               <div className="section-num">OVERVIEW</div>
               <h2 className="section-title" style={{marginTop:16, fontSize:"clamp(24px, 3vw, 36px)"}}>
@@ -102,7 +102,7 @@ function IkuseiPage() {
               <h2 className="section-title">入国後講習のご案内</h2>
             </div>
           </FadeUp>
-          <FadeUp className="data-grid" style={{gridTemplateColumns:"1fr 1.4fr", gap:80}}>
+          <FadeUp className="data-grid">
             <div>
               <h3 className="serif" style={{fontSize:"clamp(20px, 2.4vw, 26px)", lineHeight:1.7, marginBottom:24, letterSpacing:"0.08em"}}>
                 約 2 ヶ月／約 240 時間の<br/>体系的なプログラム
@@ -185,7 +185,7 @@ function TokuteiPage() {
 
       <section className="section">
         <div className="container">
-          <div className="data-grid" style={{gridTemplateColumns:"1fr 1.4fr", gap:80}}>
+          <div className="data-grid">
             <FadeUp>
               <div className="section-num">OVERVIEW</div>
               <h2 className="section-title" style={{marginTop:16, fontSize:"clamp(24px, 3vw, 36px)"}}>
@@ -294,10 +294,7 @@ function TokuteiPage() {
       {/* Link to case studies */}
       <section className="section tight">
         <div className="container">
-          <FadeUp style={{
-            display: "grid", gridTemplateColumns: "1fr auto", gap: 40, alignItems: "center",
-            background: "var(--bg-soft)", padding: "48px 56px", border: "1px solid var(--line)"
-          }}>
+          <FadeUp className="case-link-block">
             <div>
               <div className="section-num" style={{marginBottom:12}}>CASE STUDIES</div>
               <h3 className="serif" style={{fontSize:"clamp(22px, 2.8vw, 30px)", letterSpacing:"0.08em", lineHeight:1.6, marginBottom:14}}>

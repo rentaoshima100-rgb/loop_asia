@@ -124,7 +124,7 @@ function CaseDetailPage() {
 
       <section className="section">
         <div className="container">
-          <div style={{display:"grid", gridTemplateColumns:"1fr 1.6fr", gap:80, alignItems:"start"}}>
+          <div className="case-detail-grid">
             <FadeUp>
               <div className="section-num">PROFILE</div>
               <h2 className="section-title" style={{fontSize:"clamp(22px, 2.8vw, 30px)", marginTop:16, marginBottom:32, lineHeight:1.6}}>
@@ -302,11 +302,7 @@ function RegulationsPage() {
           <FadeUp>
             <div style={{borderTop:"1px solid var(--line)"}}>
               {docs.map((d, i) => (
-                <div key={i} style={{
-                  display:"grid", gridTemplateColumns:"60px 1fr auto", gap:32, alignItems:"center",
-                  padding:"28px 0", borderBottom:"1px solid var(--line)", cursor:"pointer",
-                  transition:"padding-left .3s",
-                }}
+                <div key={i} className="doc-row"
                 onMouseEnter={e => e.currentTarget.style.paddingLeft = "12px"}
                 onMouseLeave={e => e.currentTarget.style.paddingLeft = "0"}
                 >

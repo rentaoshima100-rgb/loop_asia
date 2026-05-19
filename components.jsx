@@ -60,10 +60,22 @@ function Icon({ name, size = 22 }) {
 /* Header */
 function Header() {
   const hash = useHash();
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [menuOpen]);
+
+  useEffect(() => { setMenuOpen(false); }, [hash]);
+
+  const go = (id) => { navigate(id); setMenuOpen(false); };
+
   return (
+    <>
     <header className="topbar">
       <div className="topbar-inner">
-        <div className="brand" onClick={() => navigate("home")}>
+        <div className="brand" onClick={() => go("home")}>
           <div className="brand-mark">亜</div>
           <div className="brand-name">
             亜細亜交流事業協同組合
@@ -75,13 +87,49 @@ function Header() {
             <a
               key={n.id}
               className={`nav-link ${hash === n.id ? "active" : ""}`}
-              onClick={() => navigate(n.id)}
+              onClick={() => go(n.id)}
             >{n.label}</a>
           ))}
-          <a className="nav-cta" onClick={() => navigate("contact")}>お問い合わせ</a>
+          <a className="nav-cta" onClick={() => go("contact")}>お問い合わせ</a>
         </nav>
+        <button
+          className={`menu-btn ${menuOpen ? "open" : ""}`}
+          aria-label="メニュー"
+          onClick={() => setMenuOpen(o => !o)}
+        >
+          <span></span><span></span><span></span>
+        </button>
       </div>
     </header>
+      <div className={`mobile-drawer ${menuOpen ? "open" : ""}`}>
+        <div className="mobile-drawer-inner">
+          <div className="mobile-nav">
+            {NAV.slice(0, 6).map((n, i) => (
+              <a
+                key={n.id}
+                className={`mobile-nav-link ${hash === n.id ? "active" : ""}`}
+                onClick={() => go(n.id)}
+                style={{transitionDelay: menuOpen ? `${i * 50 + 100}ms` : "0ms"}}
+              >
+                <span className="mn-en">{n.en}</span>
+                <span className="mn-jp">{n.label}</span>
+                <span className="mn-arrow"><Icon name="arrow" size={16}/></span>
+              </a>
+            ))}
+          </div>
+          <div className="mobile-cta">
+            <button className="btn btn-primary" onClick={() => go("contact")} style={{width:"100%", justifyContent:"center"}}>
+              お問い合わせフォーム <span className="arrow"><Icon name="arrow" size={16}/></span>
+            </button>
+          </div>
+          <div className="mobile-contact">
+            <div className="mc-label">TEL</div>
+            <div className="mc-value">06-6388-XXXX</div>
+            <div className="mc-hours">平日 9:00 – 18:00</div>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
 

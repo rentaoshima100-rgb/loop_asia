@@ -89,10 +89,7 @@ function AboutPage() {
               { year: "2022", label: "累計1,000名 達成", body: "受入累計 1,000名を達成。受入企業様の継続率 98%を維持。" },
               { year: "2026", label: "育成就労 準備", body: "2027年4月の新制度施行に向け、監理支援機関への移行準備および研修体制を整備。" },
             ].map((h, i) => (
-              <div key={i} style={{
-                display:"grid", gridTemplateColumns:"180px 200px 1fr", gap:24, alignItems:"baseline",
-                padding:"28px 0", borderBottom:"1px solid var(--line)",
-              }}>
+              <div key={i} className="history-row">
                 <div style={{fontFamily:"var(--font-display-en)", fontSize:28, color:"var(--primary)", letterSpacing:"0.06em"}}>{h.year}</div>
                 <div className="serif" style={{fontSize:17, letterSpacing:"0.08em", color:"var(--accent)"}}>{h.label}</div>
                 <div style={{fontSize:14.5, lineHeight:1.9, color:"var(--ink-soft)"}}>{h.body}</div>
@@ -374,7 +371,7 @@ function ContactPage() {
 
       <section className="section">
         <div className="container">
-          <div style={{display:"grid", gridTemplateColumns:"1fr 360px", gap:80, alignItems:"start"}}>
+          <div className="contact-grid">
             <FadeUp>
               {submitted ? (
                 <div style={{padding:"80px 40px", textAlign:"center", border:"1px solid var(--line)", background:"var(--bg-soft)"}}>
