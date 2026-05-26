@@ -2343,13 +2343,13 @@ p { margin: 0; }
 .timeline-phase.p3 { background: var(--gold); flex: 2; }
 .timeline-phase .ph-label {
   font-family: var(--font-serif);
-  font-size: 15px;
+  font-size: 19px;
   letter-spacing: 0.08em;
   line-height: 1.4;
 }
 .timeline-phase .ph-years {
   font-family: var(--font-display-en);
-  font-size: 11px;
+  font-size: 13px;
   letter-spacing: 0.2em;
   opacity: 0.85;
   margin-top: 4px;
@@ -2363,7 +2363,7 @@ p { margin: 0; }
 .timeline-year {
   text-align: center;
   font-family: var(--font-display-en);
-  font-size: 11px;
+  font-size: 13px;
   letter-spacing: 0.15em;
   color: var(--ink-mute);
   position: relative;
@@ -2392,7 +2392,7 @@ p { margin: 0; }
 }
 .timeline-cap-item .num {
   font-family: var(--font-display-en);
-  font-size: 30px;
+  font-size: 36px;
   letter-spacing: 0.04em;
   margin-bottom: 6px;
 }
@@ -2401,15 +2401,15 @@ p { margin: 0; }
 .timeline-cap-item.p3 .num { color: var(--gold); }
 .timeline-cap-item .lbl {
   font-family: var(--font-serif);
-  font-size: 13.5px;
+  font-size: 16.5px;
   letter-spacing: 0.08em;
   color: var(--ink);
   margin-bottom: 4px;
 }
 .timeline-cap-item .desc {
-  font-size: 12px;
+  font-size: 14.5px;
   color: var(--ink-soft);
-  line-height: 1.8;
+  line-height: 1.9;
 }
 .timeline-arrow {
   position: absolute;
@@ -3782,3 +3782,6 @@ p { margin: 0; }
 .home-main .usp-text h2     { font-size: clamp(28px, 4.1vw, 54px); }
 .home-main .usp-text p      { font-size: clamp(15.5px, 1.3vw, 18px); }
 .home-main .stat-label      { font-size: clamp(11.5px, 1.05vw, 14.5px); }
+/* timeline diagram (通算最大8年) — readable larger title/sub */
+.home-main .dgm-title       { font-size: clamp(24px, 2.9vw, 34px); }
+.home-main .dgm-sub         { font-size: 14.5px; letter-spacing: 0.16em; }

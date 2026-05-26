@@ -357,7 +357,7 @@ function TimelineDiagram() {
           </div>
         </div>
 
-        <div style={{marginTop:32, padding:"20px 28px", background:"var(--bg-soft)", borderRadius:6, fontSize:13.5, lineHeight:1.9, color:"var(--ink)", textAlign:"center", letterSpacing:"0.06em"}}>
+        <div style={{marginTop:32, padding:"22px 30px", background:"var(--bg-soft)", borderRadius:6, fontSize:16, lineHeight:1.95, color:"var(--ink)", textAlign:"center", letterSpacing:"0.06em"}}>
           <strong style={{color:"var(--primary)"}}>当組合のワンストップ支援だから、</strong>
           フェーズが変わっても <strong>同じ顔ぶれ・同じ窓口</strong> で伴走します。
         </div>
