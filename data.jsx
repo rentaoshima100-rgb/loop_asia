@@ -1,5 +1,6 @@
 /* Shared data — photos, content fragments, news, cases */
 
+// TODO(client): 写真はすべて仮のストック画像（Unsplash）です。実素材の到着後に差し替えてください。
 const PHOTOS = {
   hero:        "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=2000&q=85&auto=format&fit=crop",
   heroAlt:     "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=2000&q=85&auto=format&fit=crop",
@@ -60,50 +61,38 @@ const STRENGTHS = [
   },
 ];
 
-const INDUSTRY_DATA = [
-  { name: "建設業",   pct: 78, count: "約 90 万人" },
-  { name: "介護",     pct: 72, count: "約 38 万人" },
-  { name: "飲食料品", pct: 68, count: "約 22 万人" },
-  { name: "宿泊",     pct: 65, count: "約 14 万人" },
-  { name: "製造業",   pct: 60, count: "約 38 万人" },
-  { name: "農業",     pct: 55, count: "約 13 万人" },
-];
+// TODO(client): 業界別 人手不足データ。出典が確認できないため、数値はすべて削除しています。
+// 公的統計（例：厚生労働省・業界団体調査等）の出典を明記できる場合のみ、{ name, pct, count } 形式で追加してください。
+const INDUSTRY_DATA = [];
 
+// TODO(client): 4法人の資本・親子関係、各社の住所・事業内容の詳細は未確定です。確定後に desc を更新してください。
 const GROUP = [
-  { role: "PARENT",      name: "亜細亜交流事業協同組合", desc: "監理団体／組合本体。育成就労の受入監理を担う中核。" },
-  { role: "GROUP 02",    name: "亜細亜日本語学院",       desc: "入国後講習およびオンライン日本語教育を提供する認定校。" },
-  { role: "GROUP 03",    name: "アジアサポート（株）",   desc: "登録支援機関。特定技能外国人の生活・就労支援を提供。" },
-  { role: "GROUP 04",    name: "亜細亜人材紹介（株）",   desc: "送出機関ネットワークの構築と、現地での候補者選定を担当。" },
+  { role: "組合本体",  name: "亜細亜交流事業協同組合",       desc: "監理支援機関。育成就労制度における受入監理・支援を担う中核です。" },
+  { role: "グループ会社", name: "株式会社ループ",            desc: "{{TODO: 事業内容}}" },
+  { role: "グループ会社", name: "株式会社ループ管財",        desc: "{{TODO: 事業内容}}" },
+  { role: "グループ会社", name: "ループインターナショナル日本語学校", desc: "登録支援機関。特定技能外国人の法定10項目支援を担当します。" },
 ];
 
+// TODO(client): お知らせの実記事（3〜5件）は未確定です。下記はすべて仮の見本（ダミー）です。実記事の確定後に差し替えてください。
 const NEWS = [
-  { date: "2026.05.12", cat: "制度改正", catClass: "cat-system", title: "【重要】2027年4月施行 育成就労制度に関する政省令・告示の最新動向について" },
-  { date: "2026.04.28", cat: "セミナー", catClass: "cat-event",  title: "建設業向け｜育成就労・特定技能 合同オンライン説明会（6/14開催）受付開始" },
-  { date: "2026.04.10", cat: "組合より", catClass: "cat-org",    title: "ベトナム・フエ省の送出機関3社と新たに業務提携契約を締結いたしました" },
-  { date: "2026.03.22", cat: "グループ", catClass: "cat-group",  title: "亜細亜日本語学院、2026年度入学式を執り行いました（受入実習生 42名）" },
-  { date: "2026.03.05", cat: "制度改正", catClass: "cat-system", title: "特定技能2号、受入分野が拡大されました（11分野→16分野）" },
-  { date: "2026.02.18", cat: "受入実績", catClass: "cat-org",    title: "2025年度 受入実績のご報告：累計派遣 1,240名（前年比 +18%）" },
+  { date: "{{TODO: 日付}}", cat: "お知らせ", catClass: "cat-org",    title: "{{TODO: お知らせのタイトル①（これは仮の見本です）}}" },
+  { date: "{{TODO: 日付}}", cat: "お知らせ", catClass: "cat-system", title: "{{TODO: お知らせのタイトル②（これは仮の見本です）}}" },
 ];
 
 const NEWS_CATS = ["すべて", "制度改正", "組合より", "セミナー", "受入実績", "グループ", "その他"];
 
-const CASES = [
-  { country: "VIETNAM", industry: "建設業", title: "技能実習から特定技能2号へ。リーダーとして現場を牽引。", photo: PHOTOS.case1, company: "K建設工業株式会社" },
-  { country: "INDONESIA", industry: "介護", title: "N3を取得し、利用者ご家族からの信頼を得る存在に。", photo: PHOTOS.case3, company: "社会福祉法人 さくら会" },
-  { country: "PHILIPPINES", industry: "農業", title: "繁忙期を支える即戦力。3年目で作業班長を任される。", photo: PHOTOS.case2, company: "JA北信州 提携農家" },
-  { country: "MYANMAR", industry: "食品製造", title: "ラインの主力として、新人指導まで担うように。", photo: PHOTOS.case4, company: "山田食品工業株式会社" },
-  { country: "VIETNAM", industry: "宿泊", title: "多言語対応で外国人ゲストにも好評の若手スタッフ。", photo: PHOTOS.case5, company: "湯本温泉 老舗旅館" },
-  { country: "NEPAL", industry: "飲食料品", title: "勤勉さと丁寧な仕事ぶりが、社内表彰につながる。", photo: PHOTOS.case6, company: "東京デリカ株式会社" },
-];
+// TODO(client): 受入企業の実事例（3〜5件）・受入企業名の公開方法は未確定のため、事例は掲載していません。
+// 確定後、{ country（対応送出国9カ国のみ）, industry, title, photo, company } 形式で追加してください。
+const CASES = [];
 
 const IKUSEI_STEPS = [
-  { label: "①  事前ご相談・要件整理",    body: "受入分野・職種・人数・希望時期を伺い、最適な受入計画をご提案します。" },
-  { label: "②  送出機関とのマッチング",  body: "提携送出機関より候補者を選定。書類審査・オンライン面接を実施します。" },
-  { label: "③  雇用契約・在留資格申請",  body: "受入企業様と候補者で雇用契約を締結。在留資格認定証明書を申請します。" },
-  { label: "④  入国・入国後講習（2ヶ月）", body: "グループ内日本語学校にて、日本語・生活ルール・職種別講習を実施。", accent: true },
-  { label: "⑤  配属・実務開始",           body: "受入企業様への配属。組合担当が初期定着までフォローします。" },
-  { label: "⑥  監理・継続支援（3年間）",  body: "定期巡回・面談・キャリア相談・トラブル対応をワンストップで実施。" },
-  { label: "⑦  特定技能への移行 or 帰国", body: "本人の希望とスキルに応じて、グループ内登録支援機関がそのまま支援を継続。" },
+  { label: "①  ご加入・制度説明（〜1ヶ月）",        body: "受入分野・職種・人数・希望時期を伺い、最適な受入計画をご提案します。" },
+  { label: "②  募集・選抜（1〜3ヶ月）",            body: "提携送出機関より候補者を選定。書類審査・オンライン面接を実施します。" },
+  { label: "③  現地での事前教育（約6ヶ月）",       body: "入国前に、現地にて日本語・生活ルールの基礎教育を実施します。", accent: true },
+  { label: "④  入国・入国後講習（約1ヶ月）",       body: "入国後、日本語・生活ルール・職種別講習を集中的に実施します。" },
+  { label: "⑤  配属・育成就労開始（1年目〜）",     body: "受入企業様への配属。組合担当が初期定着まで継続的にフォローします。" },
+  { label: "⑥  技能検定・継続（3年目以降）",       body: "定期巡回・面談・キャリア相談・技能習得状況の確認を実施します。" },
+  { label: "⑦  帰国または特定技能1号への移行",     body: "本人の希望とスキルに応じて、登録支援機関がそのまま支援を継続します。" },
 ];
 
 Object.assign(window, {

@@ -20,7 +20,7 @@ function HomePage() {
         <div className="hero-photo" style={{backgroundImage:`url(${PHOTOS.hero})`}}></div>
         <div className="hero-inner">
           <div className="hero-content">
-            <div className="hero-kicker">ASIA EXCHANGE COOPERATIVE</div>
+            <div className="hero-kicker">Asia Interchange Cooperative Business Union</div>
             <h1 className="hero-title">
               高い技術と安全性、<br/>
               <span className="accent">やり遂げる</span>自信があります。
@@ -40,8 +40,8 @@ function HomePage() {
           </div>
         </div>
         <div className="hero-meta">
-          <span className="num">1,240<sup style={{fontSize:18, marginLeft:6}}>名</sup></span>
-          ACCEPTED SINCE 2008
+          <span className="num">9<sup style={{fontSize:18, marginLeft:6}}>カ国</sup></span>
+          ASIA 9 COUNTRIES
         </div>
       </section>
 
@@ -53,7 +53,7 @@ function HomePage() {
         <div className="container">
           <div className="intro">
             <div className="intro-side">
-              <div className="intro-vlabel">創立より十余年、未来へ。</div>
+              <div className="intro-vlabel">「人」を真ん中に、未来へ。</div>
               <div className="intro-en-big">
                 One<span className="accent">.</span><br/>
                 Stop<span className="accent">.</span>
@@ -62,7 +62,7 @@ function HomePage() {
             <FadeUp className="intro-body">
               <h2>「人」を真ん中に置いた、<br/>誠実なご縁づくりを。</h2>
               <p>
-                亜細亜交流事業協同組合は、2008年の設立以来、ベトナム・インドネシア・フィリピン・ミャンマー・ネパールなど、アジア各国の若く意欲ある人材を、日本の中小企業様にお繋ぎしてまいりました。
+                亜細亜交流事業協同組合は、ベトナム・カンボジア・タイ・インドネシア・中国・モンゴル・バングラデシュ・スリランカ・ラオスの9カ国から、若く意欲ある人材を、日本の中小企業様にお繋ぎしてまいりました。
               </p>
               <p>
                 単なる「人材紹介」ではなく、入国前の日本語教育から、入国後の生活立ち上げ、配属先での定着支援、そしてキャリア形成までを、グループ法人４社で一貫してご支援する「ワンストップ体制」が、私たちの強みです。
@@ -86,7 +86,7 @@ function HomePage() {
           <div className="entries">
             {[
               { num: "01", title: "初めて外国人材の\n受入をご検討の方", desc: "制度の違いから受入までの全体像を、わかりやすくご紹介いたします。", to: "ikusei" },
-              { num: "02", title: "技能実習から\n育成就労への切替", desc: "2027年施行の新制度への移行ポイントを、現行制度と比較してご説明します。", to: "ikusei" },
+              { num: "02", title: "新制度（育成就労）\nへの対応を相談したい", desc: "2027年施行の育成就労制度のポイントと、受入に向けた準備をご説明します。", to: "ikusei" },
               { num: "03", title: "特定技能で\n即戦力を採用したい", desc: "登録支援機関による法定10項目の支援内容と、受入の流れをご案内します。", to: "tokutei" },
               { num: "04", title: "活躍事例を\n見てみたい", desc: "業種別・国別の受入事例と、現場で働く外国人材ご本人の声をご紹介。", to: "cases" },
               { num: "05", title: "資料請求・\n無料相談を希望", desc: "業種・人数・希望時期を伺い、最適な受入プランをご提案いたします。", to: "contact" },
@@ -179,42 +179,52 @@ function HomePage() {
               </p>
             </FadeUp>
             <div ref={barsRef}>
-              <div className="bar-chart">
-                {INDUSTRY_DATA.map((d, i) => (
-                  <div className="bar-row" key={i}>
-                    <div className="bar-label">{d.name}</div>
-                    <div className="bar-track">
-                      <div
-                        className={`bar-fill ${i === 0 ? "accent" : ""}`}
-                        style={{ width: barsVisible ? `${d.pct}%` : "0%", transitionDelay: `${i * 120}ms` }}
-                      ></div>
-                    </div>
-                    <div className={`bar-value ${i === 0 ? "accent" : ""}`}>
-                      {d.pct}<span className="pct">%</span>
-                    </div>
+              {INDUSTRY_DATA.length === 0 ? (
+                /* TODO(client): 業界別データは出典確認後に掲載。出典を明記できる数値のみ INDUSTRY_DATA に追加してください。 */
+                <div className="data-todo">
+                  {`{{TODO: 業界別 人手不足データ（出典を明記できる公的統計のみ掲載）}}`}
+                </div>
+              ) : (
+                <>
+                  <div className="bar-chart">
+                    {INDUSTRY_DATA.map((d, i) => (
+                      <div className="bar-row" key={i}>
+                        <div className="bar-label">{d.name}</div>
+                        <div className="bar-track">
+                          <div
+                            className={`bar-fill ${i === 0 ? "accent" : ""}`}
+                            style={{ width: barsVisible ? `${d.pct}%` : "0%", transitionDelay: `${i * 120}ms` }}
+                          ></div>
+                        </div>
+                        <div className={`bar-value ${i === 0 ? "accent" : ""}`}>
+                          {d.pct}<span className="pct">%</span>
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-              <div style={{fontSize:11, color:"var(--ink-mute)", letterSpacing:"0.15em", marginTop:24}}>
-                ＊ 各業界 採用予定企業のうち「人手不足」と回答した割合
-              </div>
+                  <div style={{fontSize:11, color:"var(--ink-mute)", letterSpacing:"0.15em", marginTop:24}}>
+                    ＊ 各業界 採用予定企業のうち「人手不足」と回答した割合
+                  </div>
+                </>
+              )}
             </div>
           </div>
+          {/* TODO(client): 受入実績の累計人数・設立からの年数・受入企業継続率は未確定のため非表示。確定後に数値を反映してください。 */}
           <FadeUp className="stat-row">
             <div className="stat">
-              <div className="stat-num">1,240<span className="unit">名</span></div>
+              <div className="stat-num">9<span className="unit">カ国</span></div>
+              <div className="stat-label">対応送出国</div>
+            </div>
+            <div className="stat">
+              <div className="stat-num todo">{`{{TODO}}`}</div>
               <div className="stat-label">累計 受入実績</div>
             </div>
             <div className="stat">
-              <div className="stat-num">18<span className="unit">年</span></div>
+              <div className="stat-num todo">{`{{TODO}}`}</div>
               <div className="stat-label">設立からの実績</div>
             </div>
             <div className="stat">
-              <div className="stat-num">5<span className="unit">カ国</span></div>
-              <div className="stat-label">送出国ネットワーク</div>
-            </div>
-            <div className="stat">
-              <div className="stat-num">98<span className="unit">%</span></div>
+              <div className="stat-num todo">{`{{TODO}}`}</div>
               <div className="stat-label">受入企業 継続率</div>
             </div>
           </FadeUp>

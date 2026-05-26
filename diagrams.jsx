@@ -39,14 +39,14 @@ function AssuranceBar() {
           <div className="assurance-icon">
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
               <circle cx="12" cy="12" r="9"/>
-              <path d="M8 12l3 3 5-6"/>
+              <path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>
             </svg>
           </div>
           <div>
             <div className="assurance-label">ASSURANCE / 03</div>
             <div className="assurance-title">
-              <strong>受入企業 継続率 98%</strong><br/>
-              <span style={{fontSize:12, color:"var(--ink-soft)", letterSpacing:"0.06em"}}>18年・1,240名の受入実績に裏打ちされた安心</span>
+              <strong>対応送出国 9 カ国</strong><br/>
+              <span style={{fontSize:12, color:"var(--ink-soft)", letterSpacing:"0.06em"}}>ベトナム・カンボジア・タイなどアジア9カ国に対応</span>
             </div>
           </div>
         </div>
@@ -69,13 +69,13 @@ function PathwayDiagram() {
       <div className="pathway">
         <div className="pathway-route">
           <div className="pathway-badge">① 国内ルート</div>
-          <h3>育成就労 経験者</h3>
-          <div className="sub-cond">（旧・技能実習経験者を含む）</div>
+          <h3>育成就労 修了者</h3>
+          <div className="sub-cond">（国内からの移行ルート）</div>
           <div className="pathway-req">
             <span className="lbl">REQUIREMENT</span>
-            育成就労を 3 年間（または技能実習 2 号を）<br/>
-            <strong>良好に修了</strong> していること<br/>
-            <span style={{fontSize:11.5, color:"var(--ink-mute)"}}>※ 技能試験・日本語試験は免除</span>
+            育成就労を <strong>3 年間 良好に修了</strong> していること<br/>
+            <span style={{fontSize:11.5, color:"var(--ink-mute)"}}>※ 試験免除で特定技能1号へ移行可能</span><br/>
+            <span style={{fontSize:11.5, color:"var(--ink-mute)"}}>※ 技能実習修了者も当面の間、経過措置により移行が認められます</span>
           </div>
           <div className="pathway-arrow-down">
             <svg width="28" height="32" viewBox="0 0 28 32" fill="none">
@@ -343,7 +343,7 @@ function TimelineDiagram() {
           <div className="timeline-cap-item p1">
             <div className="num">3<span style={{fontSize:14, marginLeft:4, color:"var(--ink-mute)"}}>年</span></div>
             <div className="lbl">育成就労 期間</div>
-            <div className="desc">監理団体（当組合）による監理。N4・特定技能1号水準の技能習得を目標。</div>
+            <div className="desc">監理支援機関（当組合）による監理。N4・特定技能1号水準の技能習得を目標。</div>
           </div>
           <div className="timeline-cap-item p2">
             <div className="num">5<span style={{fontSize:14, marginLeft:4, color:"var(--ink-mute)"}}>年</span></div>
@@ -409,19 +409,19 @@ Object.assign(window, { FeaturesDiagram });
 function ProcessDiagram() {
   const props = { width: 24, height: 24, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 1.8, strokeLinecap: "round", strokeLinejoin: "round" };
   const steps = [
-    { h: "事前ご相談・要件整理", p: "業種・職種・人数・希望時期を伺い、最適な受入計画をご提案いたします。",
+    { h: "ご加入・制度説明（〜1ヶ月）", p: "受入分野・職種・人数・希望時期を伺い、最適な受入計画をご提案いたします。",
       icon: <svg {...props}><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8z"/></svg> },
-    { h: "送出機関とのマッチング", p: "提携している送出機関より候補者を選定。書類審査・オンライン面接を実施します。",
+    { h: "募集・選抜（1〜3ヶ月）", p: "提携している送出機関より候補者を選定。書類審査・オンライン面接を実施します。",
       icon: <svg {...props}><circle cx="8" cy="10" r="3"/><circle cx="16" cy="14" r="3"/><path d="M5 21v-2a3 3 0 0 1 3-3M16 17h.5A2.5 2.5 0 0 1 19 19.5V21"/></svg> },
-    { h: "雇用契約・在留資格申請", p: "受入企業様と候補者で雇用契約を締結。在留資格認定証明書を申請します。",
-      icon: <svg {...props}><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/></svg> },
-    { h: "入国・入国後講習（2ヶ月）", p: "グループ内日本語学校にて、日本語・生活ルール・職種別講習を集中的に実施します。", accent: true,
+    { h: "現地での事前教育（約6ヶ月）", p: "入国前に、現地にて日本語・生活ルール・労働安全の基礎教育を実施します。", accent: true,
+      icon: <svg {...props}><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg> },
+    { h: "入国・入国後講習（約1ヶ月）", p: "入国後、日本語・生活ルール・職種別講習を集中的に実施します。",
       icon: <svg {...props}><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.66 2.69 3 6 3s6-1.34 6-3v-5"/></svg> },
-    { h: "配属・実務開始", p: "受入企業様への配属。初期の定着まで組合担当者が継続的にフォローいたします。",
+    { h: "配属・育成就労開始（1年目〜）", p: "受入企業様への配属。初期の定着まで組合担当者が継続的にフォローいたします。",
       icon: <svg {...props}><path d="M2 20h20"/><path d="M5 20V8l5 4V8l5 4V8l4 4v8"/></svg> },
-    { h: "監理・継続支援（3年間）", p: "定期巡回・面談・キャリア相談・トラブル対応をワンストップで実施します。",
+    { h: "技能検定・継続（3年目以降）", p: "定期巡回・面談・キャリア相談・技能習得状況の確認をワンストップで実施します。",
       icon: <svg {...props}><path d="M12 3l8 3v5c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-3z"/><path d="M9 12l2 2 4-4"/></svg> },
-    { h: "特定技能への移行 or 帰国", p: "本人の希望とスキルに応じて、グループ内登録支援機関がそのまま支援を継続します。",
+    { h: "帰国または特定技能1号への移行", p: "本人の希望とスキルに応じて、登録支援機関がそのまま支援を継続します。",
       icon: <svg {...props}><path d="M5 12h14M13 6l6 6-6 6"/></svg> },
   ];
   return (
@@ -509,7 +509,7 @@ function FieldsDiagram() {
     {
       cls: "z1", en: "BUILD & MANUFACTURING", jp: "建設・製造業界",
       icon: <svg {...props}><path d="M2 20h20"/><path d="M5 20V8l5 4V8l5 4V8l4 4v8"/></svg>,
-      items: ["建設", "造船・舶用工業", "自動車整備", "素形材・産業機械・電気電子"]
+      items: ["建設", "造船・舶用工業", "自動車整備", "工業製品製造業"]
     },
     {
       cls: "z2", en: "CARE & SERVICE", jp: "介護・サービス業界",
@@ -547,6 +547,7 @@ function FieldsDiagram() {
           </div>
         </div>
       ))}
+      <div className="fz-note">※現時点で16分野。将来の制度改正により、分野の追加・名称変更の可能性があります。</div>
     </div>
   );
 }

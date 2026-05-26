@@ -6,7 +6,7 @@ function AboutPage() {
       <PageHero
         kicker="ABOUT"
         title="組合案内"
-        lead="2008年の設立以来、誠実なご縁づくりを大切にしてまいりました。私たちの想い、組織、グループ法人について、ご紹介いたします。"
+        lead="中小事業者が結束し、共同の力で経営の安定と経済的地位の向上を目指す。私たちの想い、組織、グループ法人について、ご紹介いたします。"
         photo={PHOTOS.aboutHero}
         crumbs="組合案内"
       />
@@ -20,24 +20,19 @@ function AboutPage() {
               <h2 className="section-title">代表ご挨拶</h2>
             </div>
           </FadeUp>
-          <div className="message-section">
-            <FadeUp>
-              <div className="message-portrait" style={{backgroundImage:`url(${PHOTOS.portrait})`}}></div>
-            </FadeUp>
+          {/* 顔写真の掲載は不可のため、ポートレート画像は掲載していません。 */}
+          <div className="message-section message-section-noimg">
             <FadeUp delay={120} className="message-body">
-              <h2>「人」と「人」をつなぐ仕事に、<br/>誇りと責任を。</h2>
+              <h2>共同の力で、経営の安定と<br/>経済的地位の向上を。</h2>
               <p>
-                外国人材の受入は、企業様にとって「人手不足の解決策」であると同時に、若く意欲ある方々にとって「人生の大きな決断」でもあります。私たちはその両方の重みを、決して忘れることなく、誠実に向き合ってまいりました。
+                我が国の経済はバブル経済崩壊以降、かつてない不況に見舞われ、景気も上昇の兆しが見えません。資本力・営業力の弱い我々中小企業事業者にとって、大手からの受注額の減少・工事単価の引き下げなど厳しい状況が続いており、個々の経営努力だけでは事業継続が限界となっています。
               </p>
               <p>
-                グループ内に日本語学校と登録支援機関を持つことの強みは、単に「ワンストップで便利だから」ではありません。本人の成長を、入国前から特定技能2号取得まで、同じ顔ぶれで見守れること。困ったときに、いつでも同じ窓口に相談できること。この「変わらない安心」こそが、私たちが提供できる最大の価値だと考えています。
-              </p>
-              <p>
-                2027年4月から始まる育成就労制度においても、私たちのスタンスは変わりません。「人」を真ん中に置いた誠実なご縁づくりで、企業様の事業発展と、外国人材ご本人のキャリア形成の、両方に貢献してまいります。
+                中小事業者が結束し、各事業者それぞれの得意とする分野に最大限の能力を発揮することで、共同の力で受注の拡大・工事原価の引き下げを目指し、資材の共同購買によるコスト削減などを行うことで各組合員の経営を安定・経済的地位の向上を目的として当組合を設立いたしました。
               </p>
               <div className="message-sign">
                 <div className="pos">代表理事</div>
-                <div className="nm">小久保 健一</div>
+                <div className="nm">貝塚 亜起良</div>
               </div>
             </FadeUp>
           </div>
@@ -54,17 +49,19 @@ function AboutPage() {
             </div>
           </FadeUp>
           <FadeUp>
+            {/* TODO(client): 設立年月日・出資金額・組合員企業数は未確定です。確定後に反映してください。 */}
             <table className="info-table">
               <tbody>
-                <tr><th>名称</th><td>亜細亜交流事業協同組合（Asia Exchange Cooperative）</td></tr>
-                <tr><th>所在地</th><td>〒564-XXXX 大阪府吹田市江坂町X丁目X番X号　江坂センタービル X階</td></tr>
-                <tr><th>代表理事</th><td>小久保 健一</td></tr>
-                <tr><th>設立</th><td>2008年4月</td></tr>
-                <tr><th>事業内容</th><td>育成就労制度における監理支援事業／組合員企業の共同事業（共同購買・教育研修等）／外国人材受入に関する各種コンサルティング</td></tr>
-                <tr><th>許可番号</th><td>許 第XXXXXXXXX号（出入国在留管理庁）</td></tr>
-                <tr><th>加盟組合員数</th><td>180 社（2026年4月現在）</td></tr>
-                <tr><th>主要送出国</th><td>ベトナム／インドネシア／フィリピン／ミャンマー／ネパール</td></tr>
-                <tr><th>対応分野</th><td>建設・製造・農業・介護・宿泊・飲食料品ほか</td></tr>
+                <tr><th>名称</th><td>亜細亜交流事業協同組合（Asia Interchange Cooperative Business Union）</td></tr>
+                <tr><th>代表者</th><td>代表理事　貝塚 亜起良</td></tr>
+                <tr><th>本部</th><td>〒532-0002 大阪府大阪市淀川区東三国2丁目32-17 ループ大阪<br/>TEL 06-6394-7770 ／ FAX 06-6394-7772</td></tr>
+                <tr><th>江坂事務所</th><td>〒564-0063 大阪府吹田市江坂町1丁目6-3 ループ江坂<br/>TEL 06-6879-1790 ／ FAX 06-6879-1791<br/><span style={{color:"var(--ink-mute)", fontSize:12}}>※ご来所は江坂事務所までお願いいたします</span></td></tr>
+                <tr><th>営業時間</th><td>9:00〜18:00（定休日：土曜・日曜・祝日）</td></tr>
+                <tr><th>設立</th><td>{`{{TODO: 設立年月日}}`}</td></tr>
+                <tr><th>許可番号</th><td>届出受理番号 27-特-000055（監理支援機関および職業紹介事業）</td></tr>
+                <tr><th>組合員企業数</th><td>{`{{TODO: 組合員企業数}}`}</td></tr>
+                <tr><th>事業内容</th><td>育成就労制度における監理支援事業／特定技能の登録支援事業／日本語教育／組合員企業の共同事業（資材共同購買等）／ETCコーポレートカード／海外ビジネス支援</td></tr>
+                <tr><th>対応送出国</th><td>ベトナム／カンボジア／タイ／インドネシア／中国／モンゴル／バングラデシュ／スリランカ／ラオス（9カ国）</td></tr>
               </tbody>
             </table>
           </FadeUp>
@@ -80,21 +77,11 @@ function AboutPage() {
               <h2 className="section-title">沿革</h2>
             </div>
           </FadeUp>
+          {/* TODO(client): 設立年・沿革（各年の出来事）は未確定です。確定後に { year, label, body } の配列で反映してください。 */}
           <FadeUp>
-            {[
-              { year: "2008", label: "設立", body: "亜細亜交流事業協同組合として大阪府吹田市にて設立。技能実習生の受入監理を開始。" },
-              { year: "2012", label: "送出国 拡大", body: "ベトナム・インドネシアに加え、フィリピン・ミャンマーの送出機関と提携契約を締結。" },
-              { year: "2015", label: "日本語学校 設立", body: "グループ会社「亜細亜日本語学院」を設立。入国後講習の自社運営体制を構築。" },
-              { year: "2019", label: "登録支援機関 設立", body: "特定技能制度の開始に伴い、グループ会社「アジアサポート（株）」を登録支援機関として設立。" },
-              { year: "2022", label: "累計1,000名 達成", body: "受入累計 1,000名を達成。受入企業様の継続率 98%を維持。" },
-              { year: "2026", label: "育成就労 準備", body: "2027年4月の新制度施行に向け、監理支援機関への移行準備および研修体制を整備。" },
-            ].map((h, i) => (
-              <div key={i} className="history-row">
-                <div style={{fontFamily:"var(--font-display-en)", fontSize:28, color:"var(--primary)", letterSpacing:"0.06em"}}>{h.year}</div>
-                <div className="serif" style={{fontSize:17, letterSpacing:"0.08em", color:"var(--accent)"}}>{h.label}</div>
-                <div style={{fontSize:14.5, lineHeight:1.9, color:"var(--ink-soft)"}}>{h.body}</div>
-              </div>
-            ))}
+            <div className="data-todo">
+              {`{{TODO: 沿革（設立年・主な出来事）は確定情報の確認後に掲載します}}`}
+            </div>
           </FadeUp>
         </div>
       </section>
@@ -110,12 +97,12 @@ function AboutPage() {
           </FadeUp>
           <FadeUp className="service-grid">
             {[
-              { num: "01", title: "育成就労 監理支援事業", body: "監理支援機関として、育成就労実習生の受入計画策定・在留資格申請・入国後監理・定期面談・行政対応までを一貫して担います。" },
-              { num: "02", title: "特定技能 登録支援事業", body: "グループ内登録支援機関（アジアサポート株式会社）にて、特定技能外国人の法定10項目の支援業務を実施いたします。" },
-              { num: "03", title: "日本語教育 提供事業", body: "グループ内日本語学校（亜細亜日本語学院）にて、入国後講習および継続的なオンライン日本語教育を提供しています。" },
-              { num: "04", title: "海外人材紹介・送出提携事業", body: "ベトナム・インドネシア・フィリピン・ミャンマー・ネパールの送出機関とのネットワークを構築し、現地で候補者の選定・面接を実施します。" },
-              { num: "05", title: "組合員 共同事業", body: "教育研修・共同購買・情報交換会の運営など、組合員企業様向けの相互扶助事業を運営しています。" },
-              { num: "06", title: "コンサルティング・セミナー", body: "受入制度に関するセミナー開催、企業様個別ご相談、行政動向の情報提供を継続的に実施しています。" },
+              { num: "01", title: "育成就労 監理支援事業", body: "監理支援機関として、育成就労外国人の受入計画策定・在留資格申請・入国後監理・定期面談・行政対応までを一貫して担います。" },
+              { num: "02", title: "特定技能 登録支援事業", body: "グループ内登録支援機関（ループインターナショナル日本語学校）にて、特定技能外国人の法定10項目の支援業務を実施いたします。" },
+              { num: "03", title: "日本語教育 提供事業", body: "グループ内日本語学校（ループインターナショナル日本語学校）にて、入国後講習および継続的な日本語教育を提供しています。" },
+              { num: "04", title: "海外人材紹介・送出提携事業", body: "ベトナム・カンボジア・タイ・インドネシア・中国・モンゴル・バングラデシュ・スリランカ・ラオスの9カ国の送出機関とのネットワークを構築し、現地で候補者の選定・面接を実施します。" },
+              { num: "05", title: "資材共同購買・ETCコーポレートカード", body: "資材の共同購買によるコスト削減や、ETCコーポレートカードの取り扱いなど、組合員企業様向けの相互扶助事業を運営しています。" },
+              { num: "06", title: "海外ビジネス支援", body: "組合員企業様の海外取引・海外展開に関する各種支援を行っています。" },
             ].map((s, i) => (
               <div key={i} className="service-card">
                 <div className="service-num">BIZ / {s.num}</div>
@@ -159,34 +146,29 @@ function AboutPage() {
           </FadeUp>
           <FadeUp className="access-grid">
             <div className="access-info">
-              <h3>所在地</h3>
+              <h3>本部</h3>
               <div className="addr">
-                〒564-XXXX<br/>
-                大阪府吹田市江坂町X丁目X番X号<br/>
-                江坂センタービル X階
+                〒532-0002<br/>
+                大阪府大阪市淀川区東三国2丁目32-17<br/>
+                ループ大阪
               </div>
-              <h3 style={{fontSize:14, letterSpacing:"0.12em", marginBottom:14, marginTop:8}}>アクセス</h3>
-              <ul className="access-list">
-                <li>
-                  <span className="badge">地下鉄</span>
-                  <span>大阪メトロ御堂筋線「江坂駅」5番出口より徒歩 3 分</span>
-                </li>
-                <li>
-                  <span className="badge">JR</span>
-                  <span>JR新大阪駅より地下鉄で約 5 分</span>
-                </li>
-                <li>
-                  <span className="badge">空港</span>
-                  <span>大阪国際空港よりタクシーで約 25 分</span>
-                </li>
-                <li>
-                  <span className="badge">車</span>
-                  <span>名神高速 吹田IC より約 10 分（提携駐車場あり）</span>
-                </li>
-              </ul>
-              <div style={{marginTop:32, paddingTop:24, borderTop:"1px solid var(--line)", fontSize:13, lineHeight:1.9, color:"var(--ink-soft)"}}>
-                TEL：06-6388-XXXX<br/>
-                受付時間：平日 9:00 – 18:00（土日祝休）
+              <div style={{fontSize:13, lineHeight:1.9, color:"var(--ink-soft)", marginBottom:24}}>
+                TEL 06-6394-7770 ／ FAX 06-6394-7772
+              </div>
+              <h3>江坂事務所</h3>
+              <div className="addr">
+                〒564-0063<br/>
+                大阪府吹田市江坂町1丁目6-3<br/>
+                ループ江坂
+              </div>
+              <div style={{fontSize:13, lineHeight:1.9, color:"var(--ink-soft)"}}>
+                TEL 06-6879-1790 ／ FAX 06-6879-1791
+              </div>
+              <div className="access-note">
+                ※ご来所は江坂事務所までお願いいたします。
+              </div>
+              <div style={{marginTop:24, paddingTop:24, borderTop:"1px solid var(--line)", fontSize:13, lineHeight:1.9, color:"var(--ink-soft)"}}>
+                営業時間：9:00 – 18:00（定休日：土曜・日曜・祝日）
               </div>
             </div>
             <div className="access-map">
@@ -211,17 +193,14 @@ function AboutPage() {
 function CasesPage() {
   const [filter, setFilter] = useState("すべて");
   const [country, setCountry] = useState("ALL");
-  const cats = ["すべて","建設業","製造業","農業","介護","宿泊","食品製造","飲食料品"];
-  const countries = ["ALL","VIETNAM","INDONESIA","PHILIPPINES","MYANMAR","NEPAL"];
+  const cats = ["すべて","建設","製造","農業","介護","宿泊","飲食料品製造業","外食業"];
+  const countries = ["ALL","VIETNAM","CAMBODIA","THAILAND","INDONESIA","CHINA","MONGOLIA","BANGLADESH","SRI LANKA","LAOS"];
   let filtered = filter === "すべて" ? CASES : CASES.filter(c => c.industry === filter);
   if (country !== "ALL") filtered = filtered.filter(c => c.country === country);
 
-  const VOICES = [
-    { name: "Tran Van H.", info: "VIETNAM ／ 建設業 ／ 在留3年目", avatar: PHOTOS.case1, body: "技能実習から始まり、今は特定技能で同じ会社で働いています。日本に来てすぐの2ヶ月、日本語学校で勉強できたのが今でも役立っています。" },
-    { name: "Putri A.",     info: "INDONESIA ／ 介護 ／ 在留2年目", avatar: PHOTOS.case3, body: "利用者さんの名前と顔をすぐに覚えるよう、先輩から教えていただきました。N3に合格できたのは、組合の先生のサポートのおかげです。" },
-    { name: "Maria S.",     info: "PHILIPPINES ／ 農業 ／ 在留3年目", avatar: PHOTOS.case2, body: "3年目から作業の段取りを任せてもらっています。日本の四季と作物について、こんなに学べるとは思いませんでした。" },
-    { name: "Aung K.",      info: "MYANMAR ／ 食品製造 ／ 在留1年目", avatar: PHOTOS.case4, body: "毎月の面談で組合の方が来てくれるので、困ったことを母国語で相談できて安心です。家族にも仕送りができ、家族みんなが喜んでいます。" },
-  ];
+  // TODO(client): 外国人材の実際の声（6〜10名）は未確定のため、掲載していません。
+  // 確定後、{ name, info, avatar, body } 形式で追加してください。国は対応送出国9カ国のみ。
+  const VOICES = [];
 
   return (
     <main>
@@ -235,56 +214,68 @@ function CasesPage() {
 
       <section className="section">
         <div className="container">
+          {/* TODO(client): 受入実績の累計人数・組合員企業数・受入対応業種数は未確定のため非表示。 */}
           <FadeUp className="stat-row" style={{marginTop:0, marginBottom:64}}>
             <div className="stat">
-              <div className="stat-num">1,240<span className="unit">名</span></div>
+              <div className="stat-num">9<span className="unit">カ国</span></div>
+              <div className="stat-label">対応送出国</div>
+            </div>
+            <div className="stat">
+              <div className="stat-num">16<span className="unit">分野</span></div>
+              <div className="stat-label">特定産業分野</div>
+            </div>
+            <div className="stat">
+              <div className="stat-num todo">{`{{TODO}}`}</div>
               <div className="stat-label">累計 受入実績</div>
             </div>
             <div className="stat">
-              <div className="stat-num">180<span className="unit">社</span></div>
-              <div className="stat-label">加盟組合員数</div>
-            </div>
-            <div className="stat">
-              <div className="stat-num">12<span className="unit">業種</span></div>
-              <div className="stat-label">受入対応業種</div>
-            </div>
-            <div className="stat">
-              <div className="stat-num">5<span className="unit">カ国</span></div>
-              <div className="stat-label">送出国ネットワーク</div>
+              <div className="stat-num todo">{`{{TODO}}`}</div>
+              <div className="stat-label">組合員企業数</div>
             </div>
           </FadeUp>
 
-          <FadeUp>
-            <div style={{fontSize:11, letterSpacing:"0.25em", color:"var(--ink-mute)", marginBottom:14}}>BY INDUSTRY</div>
-            <div className="news-filters" style={{marginBottom:24, paddingBottom:20}}>
-              {cats.map(c => (
-                <div key={c} className={`news-filter ${filter === c ? "active" : ""}`} onClick={() => setFilter(c)}>{c}</div>
-              ))}
-            </div>
-            <div style={{fontSize:11, letterSpacing:"0.25em", color:"var(--ink-mute)", marginBottom:14}}>BY COUNTRY</div>
-            <div className="news-filters">
-              {countries.map(c => (
-                <div key={c} className={`news-filter ${country === c ? "active" : ""}`} onClick={() => setCountry(c)} style={{fontFamily:"var(--font-display-en)", letterSpacing:"0.2em"}}>{c}</div>
-              ))}
-            </div>
-          </FadeUp>
-
-          <div className="case-grid">
-            {filtered.length === 0 ? (
-              <div style={{gridColumn:"1/-1", textAlign:"center", padding:"80px 0", color:"var(--ink-mute)", fontSize:14}}>
-                該当する事例がありません。フィルターを変更してご覧ください。
+          {CASES.length === 0 ? (
+            /* TODO(client): 実事例の確定後、フィルター（cats / countries）と CASES を有効化してください。 */
+            <FadeUp>
+              <div className="data-todo">
+                {`{{TODO: 受入企業の実事例（3〜5件）は確定情報の確認後に掲載します}}`}
               </div>
-            ) : filtered.map((c, i) => (
-              <FadeUp key={i} delay={i * 60} className="case-card" onClick={() => { window.location.hash = `case-detail=${CASES.indexOf(c)}`; window.scrollTo({top:0, behavior:"instant"}); }}>
-                <div className="case-photo" style={{backgroundImage:`url(${c.photo})`}}>
-                  <div className="tag">{c.industry}</div>
+            </FadeUp>
+          ) : (
+            <>
+              <FadeUp>
+                <div style={{fontSize:11, letterSpacing:"0.25em", color:"var(--ink-mute)", marginBottom:14}}>BY INDUSTRY</div>
+                <div className="news-filters" style={{marginBottom:24, paddingBottom:20}}>
+                  {cats.map(c => (
+                    <div key={c} className={`news-filter ${filter === c ? "active" : ""}`} onClick={() => setFilter(c)}>{c}</div>
+                  ))}
                 </div>
-                <div className="country">{c.country}</div>
-                <h3>{c.title}</h3>
-                <p style={{marginTop:8, fontSize:12, color:"var(--ink-mute)", letterSpacing:"0.1em"}}>{c.company}</p>
+                <div style={{fontSize:11, letterSpacing:"0.25em", color:"var(--ink-mute)", marginBottom:14}}>BY COUNTRY</div>
+                <div className="news-filters">
+                  {countries.map(c => (
+                    <div key={c} className={`news-filter ${country === c ? "active" : ""}`} onClick={() => setCountry(c)} style={{fontFamily:"var(--font-display-en)", letterSpacing:"0.2em"}}>{c}</div>
+                  ))}
+                </div>
               </FadeUp>
-            ))}
-          </div>
+
+              <div className="case-grid">
+                {filtered.length === 0 ? (
+                  <div style={{gridColumn:"1/-1", textAlign:"center", padding:"80px 0", color:"var(--ink-mute)", fontSize:14}}>
+                    該当する事例がありません。フィルターを変更してご覧ください。
+                  </div>
+                ) : filtered.map((c, i) => (
+                  <FadeUp key={i} delay={i * 60} className="case-card" onClick={() => { window.location.hash = `case-detail=${CASES.indexOf(c)}`; window.scrollTo({top:0, behavior:"instant"}); }}>
+                    <div className="case-photo" style={{backgroundImage:`url(${c.photo})`}}>
+                      <div className="tag">{c.industry}</div>
+                    </div>
+                    <div className="country">{c.country}</div>
+                    <h3>{c.title}</h3>
+                    <p style={{marginTop:8, fontSize:12, color:"var(--ink-mute)", letterSpacing:"0.1em"}}>{c.company}</p>
+                  </FadeUp>
+                ))}
+              </div>
+            </>
+          )}
         </div>
       </section>
 
@@ -297,20 +288,28 @@ function CasesPage() {
               <h2 className="section-title">外国人材のお声</h2>
             </div>
           </FadeUp>
-          <div className="voice-grid">
-            {VOICES.map((v, i) => (
-              <FadeUp key={i} delay={i * 80} className="voice-card">
-                <div className="voice-meta">
-                  <div className="voice-avatar" style={{backgroundImage:`url(${v.avatar})`}}></div>
-                  <div className="voice-who">
-                    <div className="nm">{v.name}</div>
-                    <div className="info">{v.info}</div>
+          {VOICES.length === 0 ? (
+            <FadeUp>
+              <div className="data-todo">
+                {`{{TODO: 外国人材の声（6〜10名）は確定情報の確認後に掲載します}}`}
+              </div>
+            </FadeUp>
+          ) : (
+            <div className="voice-grid">
+              {VOICES.map((v, i) => (
+                <FadeUp key={i} delay={i * 80} className="voice-card">
+                  <div className="voice-meta">
+                    <div className="voice-avatar" style={{backgroundImage:`url(${v.avatar})`}}></div>
+                    <div className="voice-who">
+                      <div className="nm">{v.name}</div>
+                      <div className="info">{v.info}</div>
+                    </div>
                   </div>
-                </div>
-                <div className="voice-body">{v.body}</div>
-              </FadeUp>
-            ))}
-          </div>
+                  <div className="voice-body">{v.body}</div>
+                </FadeUp>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
@@ -442,15 +441,20 @@ function ContactPage() {
             <FadeUp delay={120}>
               <div className="contact-side">
                 <h3>お電話でのお問い合わせ</h3>
-                <div className="ph">06-6388-XXXX</div>
-                <div className="hours">受付時間 平日 9:00 – 18:00（土日祝休）</div>
+                <div className="ph">06-6394-7770</div>
+                <div className="hours">本部／受付時間 9:00 – 18:00（土日祝休）</div>
 
-                <h3 style={{marginTop:8}}>本部・江坂事務所</h3>
+                <h3 style={{marginTop:8}}>本部</h3>
                 <div style={{fontSize:13.5, lineHeight:2, color:"var(--ink-soft)"}}>
-                  〒564-XXXX<br/>
-                  大阪府吹田市江坂町X-X-X<br/>
-                  江坂センタービル X階<br/><br/>
-                  ・地下鉄御堂筋線「江坂駅」徒歩3分
+                  〒532-0002 大阪府大阪市淀川区東三国2丁目32-17 ループ大阪<br/>
+                  TEL 06-6394-7770 ／ FAX 06-6394-7772
+                </div>
+
+                <h3 style={{marginTop:8}}>江坂事務所</h3>
+                <div style={{fontSize:13.5, lineHeight:2, color:"var(--ink-soft)"}}>
+                  〒564-0063 大阪府吹田市江坂町1丁目6-3 ループ江坂<br/>
+                  TEL 06-6879-1790 ／ FAX 06-6879-1791<br/>
+                  <span style={{color:"var(--ink-mute)"}}>※ご来所は江坂事務所までお願いいたします</span>
                 </div>
 
                 <div style={{marginTop:32, paddingTop:24, borderTop:"1px solid var(--line)"}}>

@@ -39,28 +39,11 @@ function NewsDetailPage() {
             <div style={{aspectRatio:"16/9", backgroundSize:"cover", backgroundPosition:"center", backgroundImage:`url(${PHOTOS.classroom})`, marginBottom:48}}></div>
           </FadeUp>
 
+          {/* TODO(client): お知らせの本文は未確定です。実記事の確定後に差し替えてください。 */}
           <FadeUp delay={120} className="prose">
-            <p>
-              いつも当組合の活動にご理解・ご協力を賜り、誠にありがとうございます。本日は、2027年4月施行を予定されております「育成就労制度」に関する政省令・告示の最新動向について、組合員企業の皆様にお知らせいたします。
-            </p>
-            <h2>主な改正のポイント</h2>
-            <p>
-              出入国在留管理庁および厚生労働省より、本制度の運用詳細に関する政省令案が公表され、現在パブリックコメント期間中となっております。当組合では、内容を精査のうえ、組合員企業の皆様への影響を整理しております。
-            </p>
-            <ul>
-              <li>監理支援機関の許可要件が、現行の監理団体より一段と厳格化される方向</li>
-              <li>受入企業（実習実施者）にも、新たに「育成就労計画」の認定取得が求められる見込み</li>
-              <li>本人意思による転籍について、業種ごとに「就労期間1〜2年経過後」を基本としつつ、地域ごとの調整余地を残す案</li>
-              <li>日本語要件は、入国時 N5相当・3年経過時 N4取得を「努力義務」から「目標」として明文化</li>
-            </ul>
-            <h2>当組合の対応方針</h2>
-            <p>
-              当組合では、新制度施行に先立ち、監理支援機関への移行準備を順次進めております。また、組合員企業の皆様に向けて、6月14日（土）にオンライン説明会を開催する予定です。お申込みについては、別途、組合員専用ページにてご案内いたします。
-            </p>
-            <h3>お問い合わせ</h3>
-            <p>
-              本件に関するご質問・ご相談は、組合担当者まで直接ご連絡いただくか、お問い合わせフォームよりご連絡ください。
-            </p>
+            <div className="data-todo">
+              {`{{TODO: お知らせ本文（実記事の確定後に掲載します）}}`}
+            </div>
             <div style={{marginTop:32}}>
               <button className="btn btn-ghost" onClick={() => navigate("news")}>
                 ← 一覧へ戻る
@@ -104,6 +87,22 @@ function CaseDetailPage() {
 
   const related = CASES.filter((_, i) => i !== idx).slice(0, 3);
 
+  // TODO(client): 実事例が未確定のため、事例詳細は準備中です。CASES の確定後に表示されます。
+  if (!item) {
+    return (
+      <main>
+        <section className="section" style={{paddingTop:140}}>
+          <div className="container" style={{textAlign:"center"}}>
+            <div className="data-todo">{`{{TODO: 受入企業の実事例は確定情報の確認後に掲載します}}`}</div>
+            <div style={{marginTop:32}}>
+              <button className="btn btn-ghost" onClick={() => navigate("cases")}>← 事例一覧へ戻る</button>
+            </div>
+          </div>
+        </section>
+      </main>
+    );
+  }
+
   return (
     <main>
       <section className="page-hero" style={{height:"60vh"}}>
@@ -134,36 +133,16 @@ function CaseDetailPage() {
                 <tbody>
                   <tr><th style={{width:120, fontSize:12}}>企業名</th><td style={{fontSize:13.5}}>{item.company}</td></tr>
                   <tr><th style={{width:120, fontSize:12}}>業種</th><td style={{fontSize:13.5}}>{item.industry}</td></tr>
-                  <tr><th style={{width:120, fontSize:12}}>所在地</th><td style={{fontSize:13.5}}>関西圏</td></tr>
-                  <tr><th style={{width:120, fontSize:12}}>受入人数</th><td style={{fontSize:13.5}}>累計 12名</td></tr>
-                  <tr><th style={{width:120, fontSize:12}}>受入開始</th><td style={{fontSize:13.5}}>2019年〜</td></tr>
+                  <tr><th style={{width:120, fontSize:12}}>所在地</th><td style={{fontSize:13.5}}>{`{{TODO}}`}</td></tr>
+                  <tr><th style={{width:120, fontSize:12}}>受入人数</th><td style={{fontSize:13.5}}>{`{{TODO}}`}</td></tr>
+                  <tr><th style={{width:120, fontSize:12}}>受入開始</th><td style={{fontSize:13.5}}>{`{{TODO}}`}</td></tr>
                 </tbody>
               </table>
             </FadeUp>
+            {/* TODO(client): 事例本文・受入企業様/本人のコメントは、実事例の確定後に掲載します。 */}
             <FadeUp delay={100} className="prose">
-              <h2>受入の背景</h2>
-              <p>
-                慢性的な人手不足の中で、若手の確保が経営上の最重要課題となっていました。日本人の採用が難しい状況が続く中、当組合より外国人材の受入をご提案させていただきました。
-              </p>
-              <h2>当組合のご支援内容</h2>
-              <ul>
-                <li>送出機関3社からの候補者選定および現地面接の運営</li>
-                <li>グループ内日本語学校による入国後2ヶ月講習</li>
-                <li>住居・口座開設・行政手続の同行支援</li>
-                <li>月1回の定期面談および現場巡回</li>
-                <li>3年経過後、特定技能1号への移行サポート</li>
-              </ul>
-              <h2>導入後の変化</h2>
-              <p>
-                受入当初は言葉の壁による戸惑いもありましたが、グループ日本語学校での継続的なフォローを通じて、半年程度で現場でのコミュニケーションが安定しました。3年目には作業班長を任せられる人材が育ち、現在では新人指導や安全管理の一翼も担っています。
-              </p>
-              <h3>受入企業様より</h3>
-              <div style={{padding:"24px 28px", background:"var(--bg-soft)", borderLeft:`3px solid var(--accent)`, fontSize:14.5, lineHeight:2, color:"var(--ink)", margin:"24px 0"}}>
-                「最初は不安もありましたが、組合さんが入国前から定着までずっと同じ顔ぶれで見てくれる安心感が大きい。日本語学校と支援機関が同じグループなので、相談窓口が一本化されていて、忙しい現場には本当に助かります。」
-              </div>
-              <h3>本人より</h3>
-              <div style={{padding:"24px 28px", background:"var(--bg-soft)", borderLeft:`3px solid var(--primary)`, fontSize:14.5, lineHeight:2, color:"var(--ink)", margin:"24px 0"}}>
-                「日本に来てすぐの2ヶ月、学校で日本語と仕事のルールを教えてもらえたのが大きかった。現場でも組合の人が定期的に話を聞きに来てくれるので、何かあっても安心して相談できます。これからも長く日本で頑張りたいです。」
+              <div className="data-todo">
+                {`{{TODO: 受入の背景・ご支援内容・導入後の変化・コメントは確定情報の確認後に掲載します}}`}
               </div>
               <div style={{marginTop:32}}>
                 <button className="btn btn-ghost" onClick={() => navigate("cases")}>
@@ -251,17 +230,17 @@ function PrivacyPage() {
             <h2>第7条　お問い合わせ窓口</h2>
             <p>
               個人情報の取り扱いに関するお問い合わせは、下記までお願いいたします。<br/><br/>
-              亜細亜交流事業協同組合　個人情報保護担当<br/>
-              〒564-XXXX 大阪府吹田市江坂町X-X-X 江坂センタービル X階<br/>
-              TEL：06-6388-XXXX ／ MAIL：info@asiakumiai.com
+              亜細亜交流事業協同組合　個人情報保護担当（江坂事務所）<br/>
+              〒564-0063 大阪府吹田市江坂町1丁目6-3 ループ江坂<br/>
+              TEL：06-6879-1790 ／ MAIL：{`{{TODO: メールアドレス}}`}
             </p>
 
             <h2>第8条　本ポリシーの改定</h2>
             <p>当組合は、必要に応じて本ポリシーの内容を改定することがあります。改定後の内容は、本サイトに掲載した時点から効力を生じるものとします。</p>
 
             <div style={{textAlign:"right", marginTop:48, color:"var(--ink-mute)", fontSize:12, letterSpacing:"0.1em"}}>
-              制定：2008年4月1日<br/>
-              最終改定：2026年4月1日
+              制定：{`{{TODO: 制定日}}`}<br/>
+              最終改定：{`{{TODO: 改定日}}`}
             </div>
           </FadeUp>
         </div>
@@ -273,63 +252,39 @@ function PrivacyPage() {
 }
 
 function RegulationsPage() {
-  const docs = [
-    { title: "組合定款", body: "当組合の組織・目的・運営に関する基本規則を定めたもの。" },
-    { title: "監理事業に関する規定", body: "外国人技能実習生・育成就労実習生の監理業務に関する内部規定。" },
-    { title: "個人情報保護規程", body: "個人情報の取得・利用・管理に関する社内規程。" },
-    { title: "ハラスメント防止規程", body: "受入企業・実習生・組合職員間のハラスメント防止に関する規程。" },
-    { title: "母国語相談対応規程", body: "実習生からの母国語による相談に関する対応手順と体制。" },
-    { title: "監査・内部統制規程", body: "監理団体としての監査体制および内部統制に関する規程。" },
-  ];
   return (
     <main>
       <PageHero
-        kicker="REGULATIONS & DISCLOSURE"
+        kicker="ABOUT OUR LICENSE"
         title="各種規定"
-        lead="監理団体として、外国人技能実習機構および出入国在留管理庁が定める情報公開事項に基づき、各種規定・関連情報を公開しております。"
+        lead="当組合は、出入国在留管理庁の許可を受けた監理支援機関です。監理に関する各種規定を整備し、適正な事業運営に努めております。"
         photo={PHOTOS.aboutHero}
         crumbs="各種規定"
       />
 
       <section className="section">
-        <div className="container">
+        <div className="container" style={{maxWidth:880}}>
           <FadeUp className="section-head">
             <div>
-              <div className="section-num">DOCUMENTS</div>
-              <h2 className="section-title">公開文書一覧</h2>
+              <div className="section-num">OUR POSITION</div>
+              <h2 className="section-title">監理支援機関として</h2>
             </div>
           </FadeUp>
-          <FadeUp>
-            <div style={{borderTop:"1px solid var(--line)"}}>
-              {docs.map((d, i) => (
-                <div key={i} className="doc-row"
-                onMouseEnter={e => e.currentTarget.style.paddingLeft = "12px"}
-                onMouseLeave={e => e.currentTarget.style.paddingLeft = "0"}
-                >
-                  <div style={{fontFamily:"var(--font-display-en)", fontSize:22, color:"var(--accent)", letterSpacing:"0.05em"}}>
-                    {String(i+1).padStart(2,"0")}
-                  </div>
-                  <div>
-                    <div className="serif" style={{fontSize:17, letterSpacing:"0.08em", marginBottom:6, color:"var(--ink)"}}>{d.title}</div>
-                    <div style={{fontSize:13, color:"var(--ink-soft)", lineHeight:1.8}}>{d.body}</div>
-                  </div>
-                  <div style={{
-                    padding:"10px 20px", border:"1px solid var(--primary)", color:"var(--primary)",
-                    fontSize:11, letterSpacing:"0.2em",
-                  }}>
-                    PDF ダウンロード
-                  </div>
-                </div>
-              ))}
-            </div>
-          </FadeUp>
-
-          <FadeUp delay={120} style={{marginTop:64, padding:"40px 48px", background:"var(--bg-soft)"}}>
-            <h3 className="serif" style={{fontSize:18, letterSpacing:"0.08em", color:"var(--primary)", marginBottom:16}}>
-              情報公開について
-            </h3>
-            <p style={{fontSize:13.5, lineHeight:2, color:"var(--ink-soft)", margin:0}}>
-              本ページに掲載していない事項につきましては、外国人技能実習法施行規則第53条に基づき、組合員企業様および関係行政機関より閲覧のご請求をいただいた際にご対応いたします。お問い合わせは「組合事務局」までお願いいたします。
+          <FadeUp className="prose">
+            <p>
+              亜細亜交流事業協同組合は、育成就労制度における監理支援機関として、関係法令および出入国在留管理庁の定める基準に基づき事業を運営しております。
+            </p>
+            <table className="info-table" style={{marginTop:24}}>
+              <tbody>
+                <tr><th style={{width:"40%"}}>許可番号</th><td>届出受理番号 27-特-000055</td></tr>
+                <tr><th>対象</th><td>監理支援機関および職業紹介事業</td></tr>
+              </tbody>
+            </table>
+            <p style={{marginTop:24}}>
+              監理費用一覧・役職員名簿・各種許可証・収支報告書・業務規程・監理事業計画書などの書類は、原則として非公開としております。閲覧をご希望の場合は、関係法令の定めに従い、組合員企業様および関係行政機関からのご請求に応じて個別に対応いたします。
+            </p>
+            <p>
+              ご不明な点は、お問い合わせフォームまたはお電話にて、組合事務局までお問い合わせください。
             </p>
           </FadeUp>
         </div>

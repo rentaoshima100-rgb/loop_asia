@@ -6,7 +6,7 @@ function IkuseiPage() {
       <PageHero
         kicker="TRAINING & EMPLOYMENT PROGRAM"
         title="育成就労制度"
-        lead="2027年4月から開始される新しい外国人材受入制度。「人材育成」と「人材確保」を目的に、技能実習に代わる仕組みとして再設計されました。"
+        lead="2027年4月から開始される新しい外国人材受入制度。「人材育成」と「人材確保」の2つを目的に再設計された制度です。"
         photo={PHOTOS.ikuseiHero}
         crumbs="育成就労制度"
       />
@@ -22,7 +22,7 @@ function IkuseiPage() {
             </FadeUp>
             <FadeUp delay={100} className="prose">
               <p>
-                育成就労制度は、2027年4月の施行に向けて準備が進められている、技能実習に代わる新しい外国人材受入制度です。本制度では、これまで明確に区別されてきた「育成」と「就労」を統合し、3年間の在留期間の中で、特定技能1号水準の技能習得を目指します。
+                育成就労制度は、2027年4月の施行に向けて準備が進められている、新しい外国人材受入制度です。本制度では、「人材育成」と「人材確保」の2軸を目的に掲げ、原則3年間の在留期間の中で、特定技能1号水準の技能習得を目指します。
               </p>
               <p>
                 当組合は、監理支援機関として、受入企業様および外国人材ご本人の双方を、入国前のマッチングから3年後のキャリア選択まで、ワンストップでご支援いたします。
@@ -47,31 +47,23 @@ function IkuseiPage() {
         </div>
       </section>
 
-      {/* Comparison */}
+      {/* 制度の要点 */}
       <section className="section section-soft">
         <div className="container">
           <FadeUp className="section-head">
             <div>
-              <div className="section-num">COMPARISON</div>
-              <h2 className="section-title">技能実習制度との比較</h2>
+              <div className="section-num">KEY POINTS</div>
+              <h2 className="section-title">制度の要点</h2>
             </div>
           </FadeUp>
           <FadeUp>
-            <table className="comp-table">
-              <thead>
-                <tr>
-                  <th style={{width:"22%"}}></th>
-                  <th>技能実習制度（現行）</th>
-                  <th>育成就労制度（2027.04〜）</th>
-                </tr>
-              </thead>
+            <table className="info-table">
               <tbody>
-                <tr><th>目的</th><td>国際貢献・技能移転</td><td className="highlight-cell">人材育成・人材確保（明確化）</td></tr>
-                <tr><th>在留期間</th><td>最長 5 年</td><td>原則 3 年</td></tr>
-                <tr><th>転籍</th><td>原則 不可</td><td className="highlight-cell">本人意思による転籍が可能（一定条件下）</td></tr>
-                <tr><th>日本語要件</th><td>明確な基準なし</td><td className="highlight-cell">入国時 N5相当、3年で N4 取得を目標</td></tr>
-                <tr><th>移行先</th><td>原則 帰国</td><td className="highlight-cell">特定技能 1号への接続を前提に設計</td></tr>
-                <tr><th>監理団体</th><td>監理団体（許可制）</td><td>監理支援機関（許可制・要件強化）</td></tr>
+                <tr><th style={{width:"28%"}}>目的</th><td>「人材確保」と「人材育成」の2軸</td></tr>
+                <tr><th>在留期間</th><td>原則3年。修了後、特定技能1号へ移行すれば通算最大8年の就労が可能</td></tr>
+                <tr><th>入国時の日本語要件</th><td>A1相当（日本語能力試験 N5レベル）を新たに要件化</td></tr>
+                <tr><th>転籍</th><td>一定条件下で、同一業種内・本人意向による転籍が可能</td></tr>
+                <tr><th>監理体制</th><td>監理支援機関（要件・監督が強化）</td></tr>
               </tbody>
             </table>
           </FadeUp>
@@ -105,29 +97,29 @@ function IkuseiPage() {
           <FadeUp className="data-grid">
             <div>
               <h3 className="serif" style={{fontSize:"clamp(20px, 2.4vw, 26px)", lineHeight:1.7, marginBottom:24, letterSpacing:"0.08em"}}>
-                約 2 ヶ月／約 240 時間の<br/>体系的なプログラム
+                約 1 ヶ月の<br/>体系的な入国後講習
               </h3>
               <p style={{fontSize:14, lineHeight:2, color:"var(--ink-soft)", marginBottom:20}}>
-                グループ内日本語学校「亜細亜日本語学院」にて、入国直後の2ヶ月間、外国人材を専属的にお預かりし、日本語・生活・職種別の集中講習を実施いたします。
+                グループ内日本語学校「ループインターナショナル日本語学校」にて、入国直後の約1ヶ月間、外国人材を専属的にお預かりし、日本語・生活・職種別の集中講習を実施いたします。
               </p>
               <p style={{fontSize:14, lineHeight:2, color:"var(--ink-soft)", marginBottom:0}}>
-                配属前にN5相当の日本語力と、日本の生活ルール・労働安全の基礎を身につけたうえで、企業様の現場へお引き渡しします。
+                配属前にN5（A1）相当の日本語力と、日本の生活ルール・労働安全の基礎を身につけたうえで、企業様の現場へお引き渡しします。
               </p>
+              {/* TODO(client): 学校の所在地・定員・講師数などの詳細は未確定です。 */}
               <div style={{marginTop:32, padding:"24px 28px", background:"#fff", border:"1px solid var(--line)"}}>
                 <div style={{fontSize:11, letterSpacing:"0.25em", color:"var(--accent)", marginBottom:8}}>OUR FACILITY</div>
-                <div className="serif" style={{fontSize:16, letterSpacing:"0.08em", color:"var(--primary)", marginBottom:6}}>亜細亜日本語学院</div>
+                <div className="serif" style={{fontSize:16, letterSpacing:"0.08em", color:"var(--primary)", marginBottom:6}}>ループインターナショナル日本語学校</div>
                 <div style={{fontSize:12.5, color:"var(--ink-soft)", lineHeight:1.9}}>
-                  〒564-XXXX 大阪府吹田市江坂町X-X-X<br/>
-                  定員 60 名／専任講師 8 名（うちN1 6名）
+                  {`{{TODO: 所在地・定員・講師数}}`}
                 </div>
               </div>
             </div>
             <div>
+              {/* TODO(client): 入国後講習（約1ヶ月）の各回の時間数・詳細カリキュラムは未確定です。下記は項目の見本です。 */}
               {[
-                { wk: "Week 1", ttl: "オリエンテーション・生活立ち上げ", body: "在留カード手続き、住居案内、銀行口座開設、生活ルール、緊急連絡先の確認。", hours: "40 時間" },
-                { wk: "Week 2–4", ttl: "日本語集中講習（基礎）", body: "ひらがな・カタカナ・基礎会話、N5相当の文法・語彙。生活シーンでのロールプレイ。", hours: "120 時間" },
-                { wk: "Week 5–6", ttl: "業種別 専門語彙・現場ルール", body: "受入分野（建設／製造／介護等）に応じた専門語彙、安全標識、現場での挨拶・敬語。", hours: "50 時間" },
-                { wk: "Week 7–8", ttl: "労働安全・コンプライアンス", body: "労働基準法、ハラスメント、相談窓口の使い方、人権・労務トラブル時の連絡経路。", hours: "30 時間" },
+                { wk: "1週目", ttl: "オリエンテーション・生活立ち上げ", body: "在留カード手続き、住居案内、銀行口座開設、生活ルール、緊急連絡先の確認。" },
+                { wk: "2〜3週目", ttl: "日本語講習（基礎）", body: "基礎会話、N5（A1）相当の文法・語彙。生活シーンでのロールプレイ。" },
+                { wk: "4週目", ttl: "業種別語彙・労働安全", body: "受入分野に応じた専門語彙・安全標識、労働基準・相談窓口・コンプライアンスの基礎。" },
               ].map((c, i) => (
                 <div key={i} className="curriculum">
                   <div className="wk">{c.wk}</div>
@@ -135,7 +127,7 @@ function IkuseiPage() {
                     <div className="ttl">{c.ttl}</div>
                     <div className="body">{c.body}</div>
                   </div>
-                  <div className="hours">{c.hours}</div>
+                  <div className="hours">{`{{TODO}}`}</div>
                 </div>
               ))}
             </div>
@@ -155,7 +147,7 @@ function IkuseiPage() {
           </FadeUp>
           <FadeUp delay={200}>
             <p>
-              新制度で重要視される「日本語能力」。当組合では、グループ内日本語学校「亜細亜日本語学院」が入国後講習を直接運営しているため、講習内容と現場のニーズを密に連動させることができます。
+              新制度で重要視される「日本語能力」。当組合では、グループ内日本語学校「ループインターナショナル日本語学校」が入国後講習を直接運営しているため、講習内容と現場のニーズを密に連動させることができます。
             </p>
             <p>
               N4取得を見据えた段階的なカリキュラム、業種別の専門語彙、そして生活適応支援まで、外部委託では実現できない一貫した教育品質をお届けします。
@@ -197,7 +189,7 @@ function TokuteiPage() {
                 特定技能制度は、2019年に新設された在留資格で、深刻な人手不足が認められた特定産業分野で、一定の専門性・技能を持つ外国人材の受入を可能にする制度です。
               </p>
               <p>
-                受入企業様には法定10項目の支援を実施する義務がありますが、これを「登録支援機関」に委託することが可能です。当組合のグループ会社「アジアサポート株式会社」が登録支援機関として、すべての支援業務を引き受けます。
+                受入企業様には法定10項目の支援を実施する義務がありますが、これを「登録支援機関」に委託することが可能です。当組合のグループ会社「ループインターナショナル日本語学校」が登録支援機関として、すべての支援業務を引き受けます。
               </p>
             </FadeUp>
           </div>

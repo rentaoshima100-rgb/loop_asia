@@ -79,7 +79,7 @@ function Header() {
           <div className="brand-mark">亜</div>
           <div className="brand-name">
             亜細亜交流事業協同組合
-            <span className="small">ASIA EXCHANGE COOPERATIVE</span>
+            <span className="small">Asia Interchange Cooperative Business Union</span>
           </div>
         </div>
         <nav className="nav">
@@ -123,9 +123,9 @@ function Header() {
             </button>
           </div>
           <div className="mobile-contact">
-            <div className="mc-label">TEL</div>
-            <div className="mc-value">06-6388-XXXX</div>
-            <div className="mc-hours">平日 9:00 – 18:00</div>
+            <div className="mc-label">TEL（本部）</div>
+            <div className="mc-value">06-6394-7770</div>
+            <div className="mc-hours">9:00 – 18:00（土日祝休）／ 来所は江坂事務所</div>
           </div>
         </div>
       </div>
@@ -153,14 +153,15 @@ function CTABand() {
         </FadeUp>
         <div className="cta-band-contact">
           <div className="cta-contact-item">
-            <div className="label">TEL</div>
-            <div className="value">06-6388-XXXX</div>
-            <div className="label" style={{marginTop:8, color:"rgba(255,255,255,0.45)"}}>平日 9:00 – 18:00</div>
+            <div className="label">TEL（本部）</div>
+            <div className="value">06-6394-7770</div>
+            <div className="label" style={{marginTop:8, color:"rgba(255,255,255,0.45)"}}>9:00 – 18:00（土日祝休）</div>
           </div>
           <div className="cta-contact-item">
+            {/* TODO(client): お問い合わせ通知メールの送信先アドレスは未確定です。 */}
             <div className="label">MAIL</div>
-            <div className="value">info@asiakumiai.com</div>
-            <div className="label" style={{marginTop:8, color:"rgba(255,255,255,0.45)"}}>24時間受付</div>
+            <div className="value">{`{{TODO: メールアドレス}}`}</div>
+            <div className="label" style={{marginTop:8, color:"rgba(255,255,255,0.45)"}}>来所は江坂事務所</div>
           </div>
         </div>
       </div>
@@ -179,13 +180,17 @@ function Footer() {
               <div className="brand-mark">亜</div>
               <div className="brand-name" style={{color:"#fff"}}>
                 亜細亜交流事業協同組合
-                <span className="small" style={{color:"rgba(255,255,255,0.5)"}}>ASIA EXCHANGE COOPERATIVE</span>
+                <span className="small" style={{color:"rgba(255,255,255,0.5)"}}>Asia Interchange Cooperative Business Union</span>
               </div>
             </div>
             <div className="footer-addr">
-              〒564-XXXX 大阪府吹田市江坂町X-X-X<br/>
-              江坂センタービル X階<br/>
-              TEL 06-6388-XXXX ／ FAX 06-6388-XXXX
+              <strong style={{color:"rgba(255,255,255,0.85)"}}>本部</strong><br/>
+              〒532-0002 大阪府大阪市淀川区東三国2丁目32-17 ループ大阪<br/>
+              TEL 06-6394-7770 ／ FAX 06-6394-7772<br/><br/>
+              <strong style={{color:"rgba(255,255,255,0.85)"}}>江坂事務所</strong><br/>
+              〒564-0063 大阪府吹田市江坂町1丁目6-3 ループ江坂<br/>
+              TEL 06-6879-1790 ／ FAX 06-6879-1791<br/>
+              <span style={{color:"rgba(255,255,255,0.55)"}}>※ご来所は江坂事務所までお願いいたします</span>
             </div>
           </div>
           <div>
@@ -215,7 +220,7 @@ function Footer() {
           </div>
         </div>
         <div className="footer-bottom">
-          <div>© 2026 ASIA EXCHANGE COOPERATIVE. ALL RIGHTS RESERVED.</div>
+          <div>© 2026 Asia Interchange Cooperative Business Union. ALL RIGHTS RESERVED.</div>
           <div>SITE BY NORTIQ LAB</div>
         </div>
       </div>
