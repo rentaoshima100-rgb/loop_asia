@@ -3936,3 +3936,32 @@ p { margin: 0; }
   .ind-sub-name { font-size:12.5px; }
   .ind-cat-num { font-size:84px; bottom:8px; right:12px; }
 }
+
+/* =========================================================
+   組合案内ページ(#about) — トップ等と同様にゴシック化＋拡大
+   PageHeroの見出しのみ明朝を維持
+   ========================================================= */
+[data-screen-label="page: about"] {
+  --font-serif: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
+  --font-display-en: "Inter", "Noto Sans JP", system-ui, sans-serif;
+}
+[data-screen-label="page: about"] .page-hero h1 {
+  font-family: "Shippori Mincho B1", "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+}
+[data-screen-label="page: about"] .page-hero .kicker { font-size: 14px; font-weight: 600; }
+[data-screen-label="page: about"] .page-hero .lead { font-size: clamp(15px, 1.4vw, 18px); }
+[data-screen-label="page: about"] .section-num { font-size: 17px; font-weight: 600; }
+[data-screen-label="page: about"] .section-en { font-size: 16px; font-weight: 600; }
+[data-screen-label="page: about"] .section-title { font-size: clamp(26px, 4vw, 50px); font-weight: 800; }
+[data-screen-label="page: about"] .message-body h2 { font-size: clamp(28px, 3.6vw, 42px); }
+[data-screen-label="page: about"] .message-body p { font-size: clamp(15.5px, 1.3vw, 17.5px); }
+[data-screen-label="page: about"] .message-sign .nm { font-size: 24px; }
+[data-screen-label="page: about"] .info-table th,
+[data-screen-label="page: about"] .info-table td { font-size: clamp(15px, 1.2vw, 16.5px); }
+[data-screen-label="page: about"] .service-num { font-size: 14px; }
+[data-screen-label="page: about"] .service-title { font-size: clamp(19px, 1.9vw, 23px); }
+[data-screen-label="page: about"] .service-body { font-size: clamp(14px, 1.15vw, 15.5px); }
+[data-screen-label="page: about"] .group-card .name { font-size: clamp(18px, 1.7vw, 22px); }
+[data-screen-label="page: about"] .group-card .desc { font-size: clamp(13px, 1.05vw, 15px); }
+[data-screen-label="page: about"] .access-loc-head .loc-name { font-size: 18px; }
+[data-screen-label="page: about"] .access-loc-addr { font-size: clamp(14.5px, 1.2vw, 16px); }
