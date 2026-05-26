@@ -1,13 +1,14 @@
 /* Main app — router + Tweaks panel */
 
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-  "palette": ["#0E8276", "#F25C3D", "#DDEFE9"],
+  "palette": ["#C8102E", "#8E0B20", "#FBECEE"],
   "headingFont": "mincho",
   "showTweaks": false
 }/*EDITMODE-END*/;
 
 const PALETTE_OPTIONS = [
-  ["#0E8276", "#F25C3D", "#DDEFE9"], // Pop: vivid teal + coral (default)
+  ["#C8102E", "#8E0B20", "#FBECEE"], // Red & white — Loop brand (default)
+  ["#0E8276", "#F25C3D", "#DDEFE9"], // Pop: vivid teal + coral
   ["#0B6B92", "#F5B221", "#DAEBF2"], // Pop: deep blue + gold
   ["#7A2D7D", "#FF8A65", "#F1E6F1"], // Pop: plum + peach
   ["#1F4438", "#C75D3E", "#F6F3EC"], // Editorial: forest & terracotta
@@ -21,9 +22,10 @@ function applyPalette(palette) {
   root.style.setProperty("--primary", primary);
   root.style.setProperty("--accent", accent);
   root.style.setProperty("--bg-soft", bgSoft);
-  /* derived: lighten primary for soft, mix accent */
-  root.style.setProperty("--primary-soft", primary);
-  root.style.setProperty("--accent-soft", accent);
+  /* derived: lighten toward white so soft tones stay legible on dark sections
+     (--accent-soft is used on dark hero / CTA / footer backgrounds). */
+  root.style.setProperty("--primary-soft", mixColors(primary, "#FFFFFF", 0.16));
+  root.style.setProperty("--accent-soft", mixColors(accent, "#FFFFFF", 0.5));
   /* deep bg slightly tinted toward primary */
   const tinted = mixColors(primary, "#0A0E0D", 0.55);
   root.style.setProperty("--bg-deep", tinted);

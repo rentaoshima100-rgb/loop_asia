@@ -3,23 +3,24 @@
    ========================================================= */
 
 :root {
-  /* Color — Default palette: POP (vivid teal + coral, friendly & bold) */
+  /* Color — Default palette: RED & WHITE (Loop brand red, bold & reassuring) */
+  /* NOTE: 初期値です。Loop International School の確定の赤に最終調整してください。 */
   --bg: #FFFFFF;
-  --bg-soft: #DDEFE9;          /* richer mint */
-  --bg-cream: #FFF6E8;         /* warm cream */
-  --bg-blush: #FDE7DE;         /* soft blush */
-  --bg-deep: #0A2722;
-  --ink: #14211F;
-  --ink-soft: #46524F;
-  --ink-mute: #7C8884;
-  --line: #C9E2DA;
-  --line-soft: #E6F1EC;
-  --primary: #0E8276;          /* deep vivid teal */
-  --primary-soft: #20A195;
-  --primary-deep: #074F47;
-  --accent: #F25C3D;           /* vivid coral */
-  --accent-soft: #FF8466;
-  --accent-deep: #C13C20;
+  --bg-soft: #FBECEE;          /* pale red-white tone */
+  --bg-cream: #FFF6F2;         /* warm off-white */
+  --bg-blush: #FDE7E7;         /* soft blush */
+  --bg-deep: #5E0F1B;          /* deep dark red */
+  --ink: #1E1416;
+  --ink-soft: #51464A;
+  --ink-mute: #8A7E81;
+  --line: #EAD3D7;
+  --line-soft: #F4E4E7;
+  --primary: #C8102E;          /* Loop red */
+  --primary-soft: #DA3850;
+  --primary-deep: #8E0B20;     /* deep red */
+  --accent: #8E0B20;           /* deep red accent (keeps red/white world) */
+  --accent-soft: #E68C97;      /* light red — used on dark backgrounds */
+  --accent-deep: #6E0818;
   --gold: #F5B221;             /* vivid gold */
   --sky: #2E8FCC;              /* deeper blue */
   --plum: #C04A82;             /* deeper plum */
@@ -69,13 +70,13 @@ img { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
 
 /* Typography defaults */
-.serif { font-family: var(--font-serif); font-weight: 500; letter-spacing: 0.05em; }
+.serif { font-family: var(--font-serif); font-weight: 600; letter-spacing: 0.05em; }
 .en { font-family: var(--font-display-en); letter-spacing: 0.06em; }
 .en-sans { font-family: var(--font-sans-en); letter-spacing: 0.08em; }
 
 h1, h2, h3, h4 {
   font-family: var(--font-serif);
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.06em;
   line-height: 1.45;
   margin: 0;
