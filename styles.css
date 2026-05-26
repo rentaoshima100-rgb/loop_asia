@@ -3743,8 +3743,9 @@ p { margin: 0; }
    Hero と共有CTAバンドは元の明朝のまま維持。サイズはclampで
    モバイルでも崩れないよう自動スケール。
    ========================================================= */
-/* Top page: 明朝(--font-serif)を使う全要素をゴシックへ。Top viewのタイトルのみ明朝を維持 */
-.home-main {
+/* Top page: 明朝(--font-serif)を使う全要素をゴシックへ。Top viewのタイトルのみ明朝を維持。
+   ヘッダー/フッターも含めるため、ホームページのラッパー全体にスコープ（他ページは従来の明朝のまま）。 */
+[data-screen-label="page: home"] {
   --font-serif: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
 }
 .home-main h1, .home-main h2, .home-main h3, .home-main h4,
