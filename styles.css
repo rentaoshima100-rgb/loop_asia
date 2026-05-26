@@ -1176,10 +1176,43 @@ p { margin: 0; }
   margin-bottom: 22px;
   letter-spacing: 0.05em;
 }
-/* message section without portrait (顔写真 非掲載) — single readable column */
-.message-section-noimg {
-  display: block;
-  max-width: 860px;
+/* message section with portrait on the RIGHT (本文=左 / 写真=右) */
+.message-section-right { grid-template-columns: 1.4fr 1fr; }
+.message-portrait-ph {
+  position: relative;
+  aspect-ratio: 3/4;
+  background: var(--bg-soft);
+  border: 1.5px dashed var(--line);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  text-align: center;
+  padding: 24px;
+}
+.message-portrait-ph::after {
+  content: "";
+  position: absolute;
+  right: -16px;
+  top: -16px;
+  left: 16px;
+  bottom: 16px;
+  border: 1px solid var(--accent);
+  z-index: -1;
+}
+.message-portrait-ph svg { width: 64px; height: 64px; color: var(--primary); opacity: 0.55; }
+.message-portrait-ph .mp-label {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.1em;
+  color: var(--ink-soft);
+}
+.message-portrait-ph .mp-todo { font-size: 12px; letter-spacing: 0.04em; color: var(--ink-mute); }
+@media (max-width: 900px) {
+  .message-section-right { grid-template-columns: 1fr; }
+  .message-portrait-ph { max-width: 340px; }
 }
 
 /* TODO placeholder block — signals content awaiting confirmation from client */

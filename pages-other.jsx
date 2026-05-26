@@ -20,8 +20,7 @@ function AboutPage() {
               <h2 className="section-title">代表ご挨拶</h2>
             </div>
           </FadeUp>
-          {/* 顔写真の掲載は不可のため、ポートレート画像は掲載していません。 */}
-          <div className="message-section message-section-noimg">
+          <div className="message-section message-section-right">
             <FadeUp delay={120} className="message-body">
               <h2>共同の力で、経営の安定と<br/>経済的地位の向上を。</h2>
               <p>
@@ -34,6 +33,16 @@ function AboutPage() {
                 <div className="pos">代表理事</div>
                 <div className="nm">貝塚 亜起良</div>
               </div>
+            </FadeUp>
+            {/* TODO(client): 代表写真は未支給のためプレースホルダです。画像が用意でき次第、
+                PHOTOS.portrait に設定し、下記を <div className="message-portrait" style={{backgroundImage:`url(${PHOTOS.portrait})`}}></div> へ差し替えてください。 */}
+            <FadeUp delay={60} className="message-portrait-ph">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <circle cx="12" cy="8" r="4"/>
+                <path d="M4 21v-1a7 7 0 0 1 16 0v1"/>
+              </svg>
+              <div className="mp-label">代表写真</div>
+              <div className="mp-todo">{`{{TODO: 代表の写真}}`}</div>
             </FadeUp>
           </div>
         </div>
