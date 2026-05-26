@@ -180,7 +180,7 @@ function TokuteiPage() {
           <div className="data-grid">
             <FadeUp>
               <div className="section-num">OVERVIEW</div>
-              <h2 className="section-title" style={{marginTop:16, fontSize:"clamp(24px, 3vw, 36px)"}}>
+              <h2 className="section-title" style={{marginTop:16, fontSize:"clamp(28px, 3.6vw, 44px)"}}>
                 即戦力人材を、<br/>支援機関ごと、ご一緒に。
               </h2>
             </FadeUp>

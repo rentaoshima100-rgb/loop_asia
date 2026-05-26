@@ -589,72 +589,75 @@ Object.assign(window, { SupportDiagram });
    FIELDS — 16 fields in 4 CATEGORY ZONES (特定技能)
    ============================================================ */
 function FieldsDiagram() {
-  const props = { width: 28, height: 28, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 1.7, strokeLinecap: "round", strokeLinejoin: "round" };
-  const ip = { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 1.7, strokeLinecap: "round", strokeLinejoin: "round" };
-  const zones = [
+  const sp = { fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round", strokeLinejoin: "round" };
+  const cats = [
     {
-      cls: "z1", en: "BUILD & MANUFACTURING", jp: "建設・製造業界",
-      icon: <svg {...props}><path d="M2 20h20"/><path d="M5 20V8l5 4V8l5 4V8l4 4v8"/></svg>,
+      cls: "c1", num: "01", eyebrow: "Build & Manufacturing", title: "建設・製造業界",
+      badge: (<svg viewBox="0 0 32 32" {...sp}><path d="M4 27V14l7 4V14l7 4V9l10 6v12H4Z"/><path d="M8 22h2M14 22h2M20 22h2M26 22h.01"/></svg>),
       items: [
-        { label: "建設", icon: <svg {...ip}><path d="M4 16a8 8 0 0 1 16 0"/><path d="M2.5 16h19v2.4h-19z"/><path d="M9.5 8.4V8a2.5 2.5 0 0 1 5 0v.4"/></svg> },
-        { label: "造船・舶用工業", icon: <svg {...ip}><path d="M3 15l1.5 4.3a1 1 0 0 0 .95.7h13.1a1 1 0 0 0 .95-.7L21 15z"/><path d="M5.5 15V9h5.5l4 6"/><path d="M9 9V5"/><path d="M5.5 9h5.5"/></svg> },
-        { label: "自動車整備", icon: <svg {...ip}><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4l-5.3 5.3 3 3 5.3-5.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.3-.6-.6-2.3z"/></svg> },
-        { label: "工業製品製造業", icon: <svg {...ip}><circle cx="12" cy="12" r="3.2"/><path d="M12 4.5V7M12 17v2.5M4.5 12H7M17 12h2.5M6.7 6.7l1.8 1.8M15.5 15.5l1.8 1.8M17.3 6.7l-1.8 1.8M8.5 15.5l-1.8 1.8"/></svg> },
+        { name: "建設", en: "Construction", icon: (<svg viewBox="0 0 40 40" {...sp}><path d="M8 34V12l24 6"/><path d="M8 12 32 12"/><path d="M14 34V20l8 2v12"/><path d="M22 34V25"/><path d="M8 18l6 0M8 24l6 0M8 30l6 0"/><circle cx="32" cy="13" r="1.4" fill="currentColor"/><path d="M32 14v6l-4 4"/></svg>) },
+        { name: "造船・舶用工業", en: "Shipbuilding", icon: (<svg viewBox="0 0 40 40" {...sp}><path d="M4 26h32l-3 6H7l-3-6Z" fill="currentColor" fillOpacity="0.15"/><path d="M8 26V18h22v8"/><path d="M14 18v-4h4M20 14h4v4"/><path d="M14 22h6M22 22h6"/><path d="M19 10v8"/><path d="M19 10l5 2"/><path d="M4 32c3 2 5 0 8 0s5 2 8 0 5-2 8 0 5 0 8 0"/></svg>) },
+        { name: "自動車整備", en: "Auto Repair", icon: (<svg viewBox="0 0 40 40" {...sp}><path d="M6 26v-4l3-1 3-6h16l3 6 3 1v4"/><path d="M6 26h28v3H6z"/><circle cx="12" cy="29" r="3" fill="#fff" stroke="currentColor"/><circle cx="28" cy="29" r="3" fill="#fff" stroke="currentColor"/><path d="M12 15h16"/><path d="M22 8l3 3-2 2 3 3-3 3-3-3-2 2-3-3 7-7Z" fill="currentColor" fillOpacity="0.25"/></svg>) },
+        { name: "工業製品製造業", en: "Industrial Mfg.", icon: (<svg viewBox="0 0 40 40" {...sp}><circle cx="15" cy="17" r="6"/><path d="M15 9v-3M15 28v-3M7 17H4M26 17h-3M9.3 11.3 7.2 9.2M22.8 22.8l-2.1-2.1M9.3 22.8l-2.1 2.1M22.8 11.3 24.9 9.2"/><circle cx="15" cy="17" r="2" fill="currentColor"/><circle cx="28" cy="28" r="4"/><path d="M28 22v-2M28 36v-2M22 28h-2M36 28h-2"/></svg>) },
       ]
     },
     {
-      cls: "z2", en: "CARE & SERVICE", jp: "介護・サービス業界",
-      icon: <svg {...props}><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>,
+      cls: "c2", num: "02", eyebrow: "Care & Service", title: "介護・サービス業界",
+      badge: (<svg viewBox="0 0 32 32" {...sp}><path d="M16 26S6 20 6 13a5 5 0 0 1 10-2 5 5 0 0 1 10 2c0 7-10 13-10 13Z" fill="currentColor" fillOpacity="0.2"/></svg>),
       items: [
-        { label: "介護", icon: <svg {...ip}><path d="M12 9.3C12 7.5 10.5 6 8.6 6 6.8 6 5.3 7.5 5.3 9.3c0 2.4 3.4 4.7 6.7 6.7 3.3-2 6.7-4.3 6.7-6.7C18.7 7.5 17.2 6 15.4 6 13.5 6 12 7.5 12 9.3z"/><path d="M3.5 20c2.4-1.8 14.6-1.8 17 0"/></svg> },
-        { label: "ビルクリーニング", icon: <svg {...ip}><path d="M9 9.5h4.5a1 1 0 0 1 1 1V19a2 2 0 0 1-2 2h-2.5a2 2 0 0 1-2-2v-8.5a1 1 0 0 1 1-1z"/><path d="M9 9.5V6.5h3v3"/><path d="M12 6.5h3.5"/><path d="M16 5.3l1.6-.6M16 7.7l1.6.6M17.5 6.5h1.6"/></svg> },
-        { label: "宿泊", icon: <svg {...ip}><path d="M3 18v-4.5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2V18"/><path d="M3 18v2M21 18v2"/><path d="M3 14.5h18"/><path d="M7 11.5v-2h5v2"/></svg> },
-        { label: "外食業", icon: <svg {...ip}><path d="M6 3v6a2 2 0 0 0 4 0V3"/><path d="M8 11v10"/><path d="M16.5 3c-1.6 0-2.6 2.4-2.6 5.5 0 2.5 1.1 3.5 2.6 3.5v9"/></svg> },
+        { name: "介護", en: "Caregiving", icon: (<svg viewBox="0 0 40 40" {...sp}><path d="M4 28c2-4 6-6 10-6h12c4 0 6 2 8 4" fill="currentColor" fillOpacity="0.18"/><circle cx="20" cy="11" r="4"/><path d="M14 22c0-3 3-5 6-5s6 2 6 5"/><path d="M30 14c1.5-1.5 4-1 4 1.2 0 2-4 4-4 4s-4-2-4-4c0-2.2 2.5-2.7 4-1.2Z" fill="currentColor"/></svg>) },
+        { name: "ビルクリーニング", en: "Building Cleaning", icon: (<svg viewBox="0 0 40 40" {...sp}><path d="M10 34V8h14v26"/><path d="M24 34V16h6v18"/><path d="M13 12h2M19 12h2M13 17h2M19 17h2M13 22h2M19 22h2M13 27h2M19 27h2M27 20h.01M27 25h.01M27 30h.01"/><path d="M32 8l1 2 2 1-2 1-1 2-1-2-2-1 2-1 1-2Z" fill="currentColor"/><path d="M6 16l.6 1.4L8 18l-1.4.6L6 20l-.6-1.4L4 18l1.4-.6L6 16Z" fill="currentColor"/></svg>) },
+        { name: "宿泊", en: "Lodging", icon: (<svg viewBox="0 0 40 40" {...sp}><path d="M5 34V14l15-7 15 7v20"/><path d="M5 34h30"/><path d="M12 28v-4h16v4" fill="currentColor" fillOpacity="0.25"/><path d="M10 28h20v3H10z"/><circle cx="15" cy="22" r="2"/><path d="M19 24h9v-3a2 2 0 0 0-2-2h-7"/><path d="M20 11l.9 1.9 2.1.3-1.5 1.5.4 2.1L20 16l-1.9 1 .4-2.1-1.5-1.5 2.1-.3L20 11Z" fill="currentColor"/></svg>) },
+        { name: "外食業", en: "Food Service", icon: (<svg viewBox="0 0 40 40" {...sp}><path d="M12 18c-3 0-5-2-5-5s3-5 6-4c1-3 5-4 7-4s6 1 7 4c3-1 6 1 6 4s-2 5-5 5v6H12v-6Z" fill="currentColor" fillOpacity="0.15"/><path d="M12 24h16v3H12z"/><path d="M9 30v4M9 30c-1 0-2-1-2-2v-3h4v3c0 1-1 2-2 2Z"/><path d="M31 30v4M31 25v5M29 25v3M33 25v3"/></svg>) },
       ]
     },
     {
-      cls: "z3", en: "FOOD & AGRICULTURE", jp: "農林水産・食品業界",
-      icon: <svg {...props}><path d="M12 2v8M12 14a4 4 0 0 1-4-4V6a4 4 0 0 1 8 0v4a4 4 0 0 1-4 4z"/><path d="M5 22h14M7 22V14M17 22V14"/></svg>,
+      cls: "c3", num: "03", eyebrow: "Food & Agriculture", title: "農林水産・食品業界",
+      badge: (<svg viewBox="0 0 32 32" {...sp}><path d="M16 28V8"/><path d="M16 12c-3 0-5-2-5-5 3 0 5 2 5 5ZM16 12c3 0 5-2 5-5-3 0-5 2-5 5Z"/><path d="M16 18c-3 0-5-2-5-5 3 0 5 2 5 5ZM16 18c3 0 5-2 5-5-3 0-5 2-5 5Z"/><path d="M16 24c-3 0-5-2-5-5 3 0 5 2 5 5ZM16 24c3 0 5-2 5-5-3 0-5 2-5 5Z"/></svg>),
       items: [
-        { label: "農業", icon: <svg {...ip}><path d="M12 21v-9"/><path d="M12 13c-4 0-6.5-2.5-6.5-6.5C9.5 6.5 12 9 12 13z"/><path d="M12 11c0-3.5 2.5-5.5 6-5.5C18 9 15.5 11 12 11z"/></svg> },
-        { label: "漁業", icon: <svg {...ip}><path d="M3.5 12c2.6-4.2 9.4-4.2 12 0-2.6 4.2-9.4 4.2-12 0z"/><path d="M15.5 12 21 8v8z"/><circle cx="7" cy="11" r="0.9"/></svg> },
-        { label: "飲食料品製造業", icon: <svg {...ip}><ellipse cx="12" cy="6" rx="5" ry="1.8"/><path d="M7 6v12c0 1 2.2 1.8 5 1.8s5-.8 5-1.8V6"/><path d="M7 10.5c0 1 2.2 1.8 5 1.8s5-.8 5-1.8"/></svg> },
-        { label: "木材産業", icon: <svg {...ip}><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.8"/></svg> },
+        { name: "農業", en: "Agriculture", icon: (<svg viewBox="0 0 40 40" {...sp}><path d="M6 28V18h10l2-5h6v8" fill="currentColor" fillOpacity="0.15"/><path d="M6 28V18h10l2-5h6v8h6v7"/><path d="M6 28h24"/><circle cx="13" cy="30" r="4" fill="#fff" stroke="currentColor"/><circle cx="13" cy="30" r="1.5" fill="currentColor"/><circle cx="28" cy="31" r="2.5" fill="#fff" stroke="currentColor"/><path d="M34 10c-2 0-3 2-3 3 2 0 3-1 3-3ZM34 10c2 0 3 2 3 3-2 0-3-1-3-3ZM34 13v3"/></svg>) },
+        { name: "漁業", en: "Fishery", icon: (<svg viewBox="0 0 40 40" {...sp}><path d="M6 20c4-6 10-6 14-3l4-2-1 5 1 5-4-2c-4 3-10 3-14-3Z" fill="currentColor" fillOpacity="0.2"/><circle cx="11" cy="19" r="1" fill="currentColor"/><path d="M16 20h2M19 17h-1M19 23h-1"/><path d="M4 30c2-2 4-2 6 0s4 2 6 0 4-2 6 0 4 2 6 0 4-2 6 0"/><path d="M30 6v6c0 2-2 3-3 1"/></svg>) },
+        { name: "飲食料品製造業", en: "Food & Beverage", icon: (<svg viewBox="0 0 40 40" {...sp}><path d="M12 6h6v4l2 3v19h-10V13l2-3V6Z" fill="currentColor" fillOpacity="0.18"/><path d="M11 16h8"/><path d="M13 6h4"/><ellipse cx="28" cy="14" rx="5" ry="2"/><path d="M23 14v16c0 1 2 2 5 2s5-1 5-2V14"/><path d="M23 20c0 1 2 2 5 2s5-1 5-2"/><path d="M23 26c0 1 2 2 5 2s5-1 5-2"/></svg>) },
+        { name: "木材産業", en: "Wood Industry", icon: (<svg viewBox="0 0 40 40" {...sp}><circle cx="16" cy="20" r="10" fill="currentColor" fillOpacity="0.12"/><circle cx="16" cy="20" r="10"/><circle cx="16" cy="20" r="6.5"/><circle cx="16" cy="20" r="3"/><path d="M28 14h6M28 20h6M28 26h6"/><path d="M33 9l3 2-2 3"/></svg>) },
       ]
     },
     {
-      cls: "z4", en: "TRANSPORT & MOVE", jp: "運輸・移動関連業界",
-      icon: <svg {...props}><rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="8" cy="18" r="2"/><circle cx="16" cy="18" r="2"/></svg>,
+      cls: "c4", num: "04", eyebrow: "Transport & Move", title: "運輸・移動関連業界",
+      badge: (<svg viewBox="0 0 32 32" {...sp}><path d="M4 22c4 0 4-12 8-12s4 12 8 12 4-12 8-12"/><circle cx="6" cy="22" r="2" fill="currentColor"/><circle cx="26" cy="10" r="2" fill="currentColor"/></svg>),
       items: [
-        { label: "自動車運送業", icon: <svg {...ip}><path d="M2 7h11v8.5H2z"/><path d="M13 10h4l3 3v2.5h-7z"/><circle cx="6" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg> },
-        { label: "鉄道", icon: <svg {...ip}><rect x="6" y="4" width="12" height="13" rx="2.5"/><path d="M6 11h12"/><path d="M9.5 7h5"/><path d="M8.5 21l2-3M15.5 21l-2-3"/><circle cx="9" cy="14" r="0.7"/><circle cx="15" cy="14" r="0.7"/></svg> },
-        { label: "航空", icon: <svg {...ip}><path d="M21 15.5v-1.8L13.5 9V4.3a1.5 1.5 0 0 0-3 0V9L3 13.7v1.8l7.5-2.2v4.2l-2 1.4v1.3l3.5-1 3.5 1v-1.3l-2-1.4v-4.2z"/></svg> },
-        { label: "林業", icon: <svg {...ip}><path d="M12 3l4 6h-2.5l3 5H14v4h-4v-4H7.5l3-5H8z"/><path d="M12 18v3"/></svg> },
+        { name: "自動車運送業", en: "Trucking", icon: (<svg viewBox="0 0 40 40" {...sp}><path d="M3 27V12h18v15" fill="currentColor" fillOpacity="0.15"/><path d="M21 17h7l4 5v5H21z"/><path d="M3 27h32"/><circle cx="11" cy="29" r="3" fill="#fff" stroke="currentColor"/><circle cx="27" cy="29" r="3" fill="#fff" stroke="currentColor"/><path d="M8 16h8M8 20h8"/></svg>) },
+        { name: "鉄道", en: "Railway", icon: (<svg viewBox="0 0 40 40" {...sp}><path d="M10 6h20a4 4 0 0 1 4 4v18a4 4 0 0 1-4 4H10a4 4 0 0 1-4-4V10a4 4 0 0 1 4-4Z" fill="currentColor" fillOpacity="0.15"/><path d="M10 12h20v8H10z"/><circle cx="13" cy="26" r="1.5" fill="currentColor"/><circle cx="27" cy="26" r="1.5" fill="currentColor"/><path d="M14 16h12"/><path d="M8 34l-2 4M32 34l2 4M14 36h12"/></svg>) },
+        { name: "航空", en: "Aviation", icon: (<svg viewBox="0 0 40 40" {...sp}><path d="M4 24l30-14-4 16-10-3-4 8-3-5-9-2Z" fill="currentColor" fillOpacity="0.22"/><path d="M4 24l30-14-4 16-10-3-4 8-3-5-9-2Z"/><path d="M20 23l5-10"/><path d="M6 32c4 0 6-2 10-2"/></svg>) },
+        { name: "林業", en: "Forestry", icon: (<svg viewBox="0 0 40 40" {...sp}><path d="M16 6l-7 10h4l-5 8h5l-5 8h16l-5-8h5l-5-8h4l-7-10Z" fill="currentColor" fillOpacity="0.22"/><path d="M16 6l-7 10h4l-5 8h5l-5 8h16l-5-8h5l-5-8h4l-7-10Z"/><path d="M16 32v4"/><path d="M30 10l4-2 2 4-4 2-2-4Z" fill="currentColor"/><path d="M30 10l-6 12"/></svg>) },
       ]
     }
   ];
   return (
-    <div className="fz-grid">
-      {zones.map((z, i) => (
-        <div key={i} className={`fz-zone ${z.cls}`}>
-          <div className="fz-head">
-            <div className="fz-icon">{z.icon}</div>
-            <div className="fz-title">
-              <span className="en">{z.en}</span>
-              <span className="jp">{z.jp}</span>
-            </div>
-          </div>
-          <div className="fz-items">
-            {z.items.map((it, j) => (
-              <div key={j} className="fz-item">
-                <div className="fz-item-icon">{it.icon}</div>
-                <div className="fz-item-label">{it.label}</div>
+    <div className="ind16">
+      <div className="ind16-grid">
+        {cats.map((c, i) => (
+          <section key={i} className={`ind-cat ${c.cls}`}>
+            <div className="ind-cat-num">{c.num}</div>
+            <div className="ind-cat-head">
+              <div className="ind-cat-badge">{c.badge}</div>
+              <div className="ind-cat-text">
+                <div className="ind-eyebrow">{c.eyebrow}</div>
+                <div className="ind-cat-title">{c.title}</div>
               </div>
-            ))}
-          </div>
-        </div>
-      ))}
-      <div className="fz-note">※現時点で16分野。将来の制度改正により、分野の追加・名称変更の可能性があります。</div>
+            </div>
+            <div className="ind-subs">
+              {c.items.map((it, j) => (
+                <div key={j} className="ind-sub">
+                  <div className="ind-sub-icon">{it.icon}</div>
+                  <span className="ind-sub-en">{it.en}</span>
+                  <span className="ind-sub-name">{it.name}</span>
+                </div>
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
+      <div className="ind16-note">※現時点で16分野。将来の制度改正により、分野の追加・名称変更の可能性があります。</div>
     </div>
   );
 }

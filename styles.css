@@ -3835,3 +3835,104 @@ p { margin: 0; }
   font-family: var(--font-sans-en);
   font-weight: 600;
 }
+
+/* =========================================================
+   特定技能ページ(#tokutei) — トップ/育成就労と同様にゴシック化＋拡大
+   ========================================================= */
+[data-screen-label="page: tokutei"] {
+  --font-serif: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
+  --font-display-en: "Inter", "Noto Sans JP", system-ui, sans-serif;
+}
+[data-screen-label="page: tokutei"] .page-hero h1 {
+  font-family: "Shippori Mincho B1", "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+}
+[data-screen-label="page: tokutei"] .page-hero .kicker { font-size: 14px; font-weight: 600; }
+[data-screen-label="page: tokutei"] .page-hero .lead { font-size: clamp(15px, 1.4vw, 18px); }
+[data-screen-label="page: tokutei"] .section-num { font-size: 17px; font-weight: 600; }
+[data-screen-label="page: tokutei"] .section-en { font-size: 16px; font-weight: 600; }
+[data-screen-label="page: tokutei"] .section-title { font-size: clamp(26px, 4vw, 50px); font-weight: 800; }
+[data-screen-label="page: tokutei"] .prose h2 { font-size: clamp(26px, 3.4vw, 40px); font-weight: 800; }
+[data-screen-label="page: tokutei"] .prose h3 { font-size: clamp(19px, 1.8vw, 23px); }
+[data-screen-label="page: tokutei"] .prose p,
+[data-screen-label="page: tokutei"] .prose li { font-size: clamp(15.5px, 1.3vw, 17.5px); }
+[data-screen-label="page: tokutei"] .hstep-label { font-size: clamp(15px, 1.4vw, 17px); }
+[data-screen-label="page: tokutei"] .hstep-body { font-size: clamp(13px, 1.1vw, 14.5px); }
+
+/* =========================================================
+   16業種ダイアグラム (特定技能) — 提供デザイン準拠 / 全クラス ind- で名前空間化
+   PC=2カラム / モバイル=1カラム（英字ラベルは非表示）
+   ========================================================= */
+.ind16-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.ind-cat {
+  --ic:#A41B30; --ic-soft:#FCEFF1; --ic-line:#E9C8CE;
+  background:#fff; border:1px solid var(--ic-line); border-radius:18px;
+  padding:26px 26px 28px; position:relative; overflow:hidden;
+  box-shadow: 0 20px 40px -28px rgba(0,0,0,.18);
+}
+.ind-cat.c1 { --ic:#A41B30; --ic-soft:#FCEFF1; --ic-line:#E9C8CE; }
+.ind-cat.c2 { --ic:#D63247; --ic-soft:#FDF1F3; --ic-line:#EFCDD3; }
+.ind-cat.c3 { --ic:#B33A2A; --ic-soft:#FBEEEA; --ic-line:#EAC9C0; }
+.ind-cat.c4 { --ic:#6E1226; --ic-soft:#F7EBEE; --ic-line:#DDBFC6; }
+.ind-cat-num {
+  position:absolute; bottom:12px; right:22px;
+  font-family:var(--font-sans-en); font-weight:800; font-size:108px; line-height:1;
+  color:var(--ic); opacity:.07; letter-spacing:-.03em; pointer-events:none;
+}
+.ind-cat-head { display:flex; gap:16px; align-items:center; margin-bottom:22px; }
+.ind-cat-badge {
+  width:56px; height:56px; border-radius:14px; background:var(--ic);
+  display:grid; place-items:center; color:#fff; flex:none;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.18);
+}
+.ind-cat-badge svg { width:28px; height:28px; }
+.ind-cat-text { min-width:0; }
+.ind-eyebrow {
+  font-family:var(--font-sans-en); letter-spacing:.14em; font-size:11px; font-weight:600;
+  color:var(--ic); text-transform:uppercase; margin-bottom:5px; white-space:nowrap;
+}
+.ind-cat-title {
+  font-family:var(--font-serif); font-weight:700; font-size:22px; letter-spacing:.04em; color:var(--ink);
+}
+.ind-subs { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.ind-sub {
+  background:linear-gradient(180deg,#fff 0%, var(--ic-soft) 100%);
+  border:1px solid var(--ic-line); border-radius:14px;
+  padding:18px 10px 14px; text-align:center;
+  display:flex; flex-direction:column; align-items:center; gap:10px;
+  min-width:0; transition:transform .25s ease, box-shadow .25s ease;
+}
+.ind-sub:hover { transform:translateY(-2px); box-shadow:0 14px 28px -16px rgba(110,18,38,.4); }
+.ind-sub-icon {
+  width:64px; height:64px; border-radius:50%; background:var(--ic);
+  display:grid; place-items:center; color:#fff; position:relative; flex:none;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.22);
+}
+.ind-sub-icon::after {
+  content:""; position:absolute; inset:-5px; border-radius:50%;
+  border:1px dashed var(--ic); opacity:.4;
+}
+.ind-sub-icon svg { width:34px; height:34px; }
+.ind-sub-en {
+  font-family:var(--font-sans-en); font-size:10px; letter-spacing:.12em; font-weight:600;
+  color:var(--ic); text-transform:uppercase; opacity:.9; white-space:nowrap;
+}
+.ind-sub-name {
+  font-family:var(--font-serif); font-weight:700; font-size:14.5px; letter-spacing:.02em;
+  color:var(--ink); white-space:nowrap; line-height:1.3;
+}
+.ind16-note { margin-top:24px; font-size:12px; color:var(--ink-mute); letter-spacing:.06em; line-height:1.8; }
+@media (max-width: 860px) {
+  .ind16-grid { grid-template-columns:1fr; gap:16px; }
+  .ind-cat { padding:18px 14px 16px; }
+  .ind-cat-head { gap:12px; margin-bottom:14px; }
+  .ind-cat-badge { width:44px; height:44px; border-radius:12px; }
+  .ind-cat-badge svg { width:22px; height:22px; }
+  .ind-cat-title { font-size:17px; }
+  .ind-subs { gap:10px; }
+  .ind-sub { padding:16px 6px 14px; }
+  .ind-sub-icon { width:52px; height:52px; }
+  .ind-sub-icon svg { width:28px; height:28px; }
+  .ind-sub-en { display:none; }
+  .ind-sub-name { font-size:12.5px; }
+  .ind-cat-num { font-size:84px; bottom:8px; right:12px; }
+}
