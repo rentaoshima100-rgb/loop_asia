@@ -505,26 +505,47 @@ Object.assign(window, { SupportDiagram });
    ============================================================ */
 function FieldsDiagram() {
   const props = { width: 28, height: 28, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 1.7, strokeLinecap: "round", strokeLinejoin: "round" };
+  const ip = { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 1.7, strokeLinecap: "round", strokeLinejoin: "round" };
   const zones = [
     {
       cls: "z1", en: "BUILD & MANUFACTURING", jp: "建設・製造業界",
       icon: <svg {...props}><path d="M2 20h20"/><path d="M5 20V8l5 4V8l5 4V8l4 4v8"/></svg>,
-      items: ["建設", "造船・舶用工業", "自動車整備", "工業製品製造業"]
+      items: [
+        { label: "建設", icon: <svg {...ip}><path d="M4 16a8 8 0 0 1 16 0"/><path d="M2.5 16h19v2.4h-19z"/><path d="M9.5 8.4V8a2.5 2.5 0 0 1 5 0v.4"/></svg> },
+        { label: "造船・舶用工業", icon: <svg {...ip}><path d="M3 15l1.5 4.3a1 1 0 0 0 .95.7h13.1a1 1 0 0 0 .95-.7L21 15z"/><path d="M5.5 15V9h5.5l4 6"/><path d="M9 9V5"/><path d="M5.5 9h5.5"/></svg> },
+        { label: "自動車整備", icon: <svg {...ip}><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4l-5.3 5.3 3 3 5.3-5.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.3-.6-.6-2.3z"/></svg> },
+        { label: "工業製品製造業", icon: <svg {...ip}><circle cx="12" cy="12" r="3.2"/><path d="M12 4.5V7M12 17v2.5M4.5 12H7M17 12h2.5M6.7 6.7l1.8 1.8M15.5 15.5l1.8 1.8M17.3 6.7l-1.8 1.8M8.5 15.5l-1.8 1.8"/></svg> },
+      ]
     },
     {
       cls: "z2", en: "CARE & SERVICE", jp: "介護・サービス業界",
       icon: <svg {...props}><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>,
-      items: ["介護", "ビルクリーニング", "宿泊", "外食業"]
+      items: [
+        { label: "介護", icon: <svg {...ip}><path d="M12 9.3C12 7.5 10.5 6 8.6 6 6.8 6 5.3 7.5 5.3 9.3c0 2.4 3.4 4.7 6.7 6.7 3.3-2 6.7-4.3 6.7-6.7C18.7 7.5 17.2 6 15.4 6 13.5 6 12 7.5 12 9.3z"/><path d="M3.5 20c2.4-1.8 14.6-1.8 17 0"/></svg> },
+        { label: "ビルクリーニング", icon: <svg {...ip}><path d="M9 9.5h4.5a1 1 0 0 1 1 1V19a2 2 0 0 1-2 2h-2.5a2 2 0 0 1-2-2v-8.5a1 1 0 0 1 1-1z"/><path d="M9 9.5V6.5h3v3"/><path d="M12 6.5h3.5"/><path d="M16 5.3l1.6-.6M16 7.7l1.6.6M17.5 6.5h1.6"/></svg> },
+        { label: "宿泊", icon: <svg {...ip}><path d="M3 18v-4.5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2V18"/><path d="M3 18v2M21 18v2"/><path d="M3 14.5h18"/><path d="M7 11.5v-2h5v2"/></svg> },
+        { label: "外食業", icon: <svg {...ip}><path d="M6 3v6a2 2 0 0 0 4 0V3"/><path d="M8 11v10"/><path d="M16.5 3c-1.6 0-2.6 2.4-2.6 5.5 0 2.5 1.1 3.5 2.6 3.5v9"/></svg> },
+      ]
     },
     {
       cls: "z3", en: "FOOD & AGRICULTURE", jp: "農林水産・食品業界",
       icon: <svg {...props}><path d="M12 2v8M12 14a4 4 0 0 1-4-4V6a4 4 0 0 1 8 0v4a4 4 0 0 1-4 4z"/><path d="M5 22h14M7 22V14M17 22V14"/></svg>,
-      items: ["農業", "漁業", "飲食料品製造業", "木材産業"]
+      items: [
+        { label: "農業", icon: <svg {...ip}><path d="M12 21v-9"/><path d="M12 13c-4 0-6.5-2.5-6.5-6.5C9.5 6.5 12 9 12 13z"/><path d="M12 11c0-3.5 2.5-5.5 6-5.5C18 9 15.5 11 12 11z"/></svg> },
+        { label: "漁業", icon: <svg {...ip}><path d="M3.5 12c2.6-4.2 9.4-4.2 12 0-2.6 4.2-9.4 4.2-12 0z"/><path d="M15.5 12 21 8v8z"/><circle cx="7" cy="11" r="0.9"/></svg> },
+        { label: "飲食料品製造業", icon: <svg {...ip}><ellipse cx="12" cy="6" rx="5" ry="1.8"/><path d="M7 6v12c0 1 2.2 1.8 5 1.8s5-.8 5-1.8V6"/><path d="M7 10.5c0 1 2.2 1.8 5 1.8s5-.8 5-1.8"/></svg> },
+        { label: "木材産業", icon: <svg {...ip}><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.8"/></svg> },
+      ]
     },
     {
       cls: "z4", en: "TRANSPORT & MOVE", jp: "運輸・移動関連業界",
       icon: <svg {...props}><rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="8" cy="18" r="2"/><circle cx="16" cy="18" r="2"/></svg>,
-      items: ["自動車運送業", "鉄道", "航空", "林業"]
+      items: [
+        { label: "自動車運送業", icon: <svg {...ip}><path d="M2 7h11v8.5H2z"/><path d="M13 10h4l3 3v2.5h-7z"/><circle cx="6" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg> },
+        { label: "鉄道", icon: <svg {...ip}><rect x="6" y="4" width="12" height="13" rx="2.5"/><path d="M6 11h12"/><path d="M9.5 7h5"/><path d="M8.5 21l2-3M15.5 21l-2-3"/><circle cx="9" cy="14" r="0.7"/><circle cx="15" cy="14" r="0.7"/></svg> },
+        { label: "航空", icon: <svg {...ip}><path d="M21 15.5v-1.8L13.5 9V4.3a1.5 1.5 0 0 0-3 0V9L3 13.7v1.8l7.5-2.2v4.2l-2 1.4v1.3l3.5-1 3.5 1v-1.3l-2-1.4v-4.2z"/></svg> },
+        { label: "林業", icon: <svg {...ip}><path d="M12 3l4 6h-2.5l3 5H14v4h-4v-4H7.5l3-5H8z"/><path d="M12 18v3"/></svg> },
+      ]
     }
   ];
   return (
@@ -538,10 +559,11 @@ function FieldsDiagram() {
               <span className="jp">{z.jp}</span>
             </div>
           </div>
-          <div className="fz-chips">
+          <div className="fz-items">
             {z.items.map((it, j) => (
-              <div key={j} className="fz-chip">
-                <span className="dot"></span>{it}
+              <div key={j} className="fz-item">
+                <div className="fz-item-icon">{it.icon}</div>
+                <div className="fz-item-label">{it.label}</div>
               </div>
             ))}
           </div>

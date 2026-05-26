@@ -2772,6 +2772,49 @@ p { margin: 0; }
 .fz-zone.z3 .fz-chip .dot { background: var(--gold); }
 .fz-zone.z4 .fz-chip .dot { background: var(--sky); }
 
+/* Industry tiles — 業種ごとに大きなロゴ＋名称で一目で分かる図解 */
+.fz-items {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.fz-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+  padding: 20px 8px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 1px 3px rgba(0,0,0,.05);
+  transition: transform .25s, box-shadow .25s;
+}
+.fz-item:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(0,0,0,.09); }
+.fz-item-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  flex-shrink: 0;
+}
+.fz-item-icon svg { width: 34px; height: 34px; }
+.fz-item-label {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 13.5px;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  line-height: 1.4;
+}
+.fz-zone.z1 .fz-item-icon { background: var(--primary); }
+.fz-zone.z2 .fz-item-icon { background: var(--accent); }
+.fz-zone.z3 .fz-item-icon { background: var(--gold); }
+.fz-zone.z4 .fz-item-icon { background: var(--sky); }
+
 @media (max-width: 960px) {
   .features-bold { grid-template-columns: 1fr; }
   .ptl-row { grid-template-columns: 72px 1fr; gap: 18px; }
