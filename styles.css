@@ -1705,6 +1705,86 @@ p { margin: 0; }
   display: block;
 }
 
+/* Paired access cards — 住所と地図を同一カードで対にして対応を明確化 */
+.access-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+.access-loc {
+  border: 1.5px solid var(--line);
+  border-radius: 20px;
+  overflow: hidden;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+}
+.access-loc-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 24px 26px 0;
+  flex-wrap: wrap;
+}
+.access-loc-head .loc-badge {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 19px;
+  letter-spacing: 0.08em;
+  color: #fff;
+  background: var(--primary);
+  padding: 8px 20px;
+  border-radius: 100px;
+}
+.access-loc-head .loc-badge.visit { background: var(--accent); }
+.access-loc-head .loc-name {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 17px;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+}
+.access-loc-head .loc-visit {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.04em;
+}
+.access-loc-addr {
+  padding: 16px 26px 20px;
+  font-size: 14.5px;
+  line-height: 1.95;
+  color: var(--ink);
+  letter-spacing: 0.03em;
+}
+.access-loc-addr .tel {
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+.access-loc .access-iframe {
+  width: 100%;
+  height: 300px;
+  border: 0;
+  border-top: 1px solid var(--line);
+  display: block;
+  flex: none;
+  min-height: 0;
+}
+.access-hours {
+  margin-top: 24px;
+  text-align: center;
+  font-size: 13.5px;
+  line-height: 1.9;
+  color: var(--ink-soft);
+  letter-spacing: 0.03em;
+}
+.access-hours strong { color: var(--accent); }
+@media (max-width: 880px) {
+  .access-pair { grid-template-columns: 1fr; gap: 20px; }
+  .access-loc .access-iframe { height: 260px; }
+}
+
 /* Industry icons — 農業・製造・建設 をイラスト表現 (home DATA section) */
 .ind-icons-row {
   display: grid;

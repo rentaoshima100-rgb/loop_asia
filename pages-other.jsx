@@ -144,57 +144,48 @@ function AboutPage() {
               <h2 className="section-title">本部・江坂事務所</h2>
             </div>
           </FadeUp>
-          <FadeUp className="access-grid">
-            <div className="access-info">
-              <h3>本部</h3>
-              <div className="addr">
-                〒532-0002<br/>
-                大阪府大阪市淀川区東三国2丁目32-17<br/>
-                ループ大阪
+          {/* 住所と地図を同じカードに対にして、どの住所がどの地図か一目で分かるように */}
+          <FadeUp className="access-pair">
+            <div className="access-loc">
+              <div className="access-loc-head">
+                <span className="loc-badge">本部</span>
+                <span className="loc-name">ループ大阪</span>
               </div>
-              <div style={{fontSize:13, lineHeight:1.9, color:"var(--ink-soft)", marginBottom:24}}>
-                TEL 06-6394-7770 ／ FAX 06-6394-7772
+              <div className="access-loc-addr">
+                〒532-0002 大阪府大阪市淀川区東三国2丁目32-17 ループ大阪
+                <div className="tel">TEL 06-6394-7770 ／ FAX 06-6394-7772</div>
               </div>
-              <h3>江坂事務所</h3>
-              <div className="addr">
-                〒564-0063<br/>
-                大阪府吹田市江坂町1丁目6-3<br/>
-                ループ江坂
-              </div>
-              <div style={{fontSize:13, lineHeight:1.9, color:"var(--ink-soft)"}}>
-                TEL 06-6879-1790 ／ FAX 06-6879-1791
-              </div>
-              <div className="access-note">
-                ※ご来所は江坂事務所までお願いいたします。
-              </div>
-              <div style={{marginTop:24, paddingTop:24, borderTop:"1px solid var(--line)", fontSize:13, lineHeight:1.9, color:"var(--ink-soft)"}}>
-                営業時間：9:00 – 18:00（定休日：土曜・日曜・祝日）
-              </div>
+              <iframe
+                className="access-iframe"
+                title="本部 ループ大阪の地図"
+                loading="lazy"
+                allowFullScreen
+                referrerPolicy="no-referrer-when-downgrade"
+                src="https://maps.google.com/maps?q=大阪府大阪市淀川区東三国2丁目32-17&z=16&output=embed"
+              ></iframe>
             </div>
-            <div className="access-maps">
-              <div className="access-map-item">
-                <div className="access-map-cap">本部（ループ大阪）</div>
-                <iframe
-                  className="access-iframe"
-                  title="本部 ループ大阪の地図"
-                  loading="lazy"
-                  allowFullScreen
-                  referrerPolicy="no-referrer-when-downgrade"
-                  src="https://maps.google.com/maps?q=大阪府大阪市淀川区東三国2丁目32-17&z=16&output=embed"
-                ></iframe>
+            <div className="access-loc">
+              <div className="access-loc-head">
+                <span className="loc-badge visit">江坂事務所</span>
+                <span className="loc-name">ループ江坂</span>
+                <span className="loc-visit">※ご来所はこちら</span>
               </div>
-              <div className="access-map-item">
-                <div className="access-map-cap">江坂事務所（ループ江坂）<span className="cap-note">※ご来所はこちら</span></div>
-                <iframe
-                  className="access-iframe"
-                  title="江坂事務所 ループ江坂の地図"
-                  loading="lazy"
-                  allowFullScreen
-                  referrerPolicy="no-referrer-when-downgrade"
-                  src="https://maps.google.com/maps?q=大阪府吹田市江坂町1丁目6-3&z=16&output=embed"
-                ></iframe>
+              <div className="access-loc-addr">
+                〒564-0063 大阪府吹田市江坂町1丁目6-3 ループ江坂
+                <div className="tel">TEL 06-6879-1790 ／ FAX 06-6879-1791</div>
               </div>
+              <iframe
+                className="access-iframe"
+                title="江坂事務所 ループ江坂の地図"
+                loading="lazy"
+                allowFullScreen
+                referrerPolicy="no-referrer-when-downgrade"
+                src="https://maps.google.com/maps?q=大阪府吹田市江坂町1丁目6-3&z=16&output=embed"
+              ></iframe>
             </div>
+          </FadeUp>
+          <FadeUp className="access-hours">
+            ※ご来所は<strong>江坂事務所</strong>までお願いいたします。　営業時間：9:00 – 18:00（定休日：土曜・日曜・祝日）
           </FadeUp>
         </div>
       </section>
