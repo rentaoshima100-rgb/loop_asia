@@ -3965,3 +3965,48 @@ p { margin: 0; }
 [data-screen-label="page: about"] .group-card .desc { font-size: clamp(13px, 1.05vw, 15px); }
 [data-screen-label="page: about"] .access-loc-head .loc-name { font-size: 18px; }
 [data-screen-label="page: about"] .access-loc-addr { font-size: clamp(14.5px, 1.2vw, 16px); }
+
+/* =========================================================
+   残りの下層ページ — 活躍事例/お知らせ/お問い合わせ/プライバシー/各種規定/詳細
+   トップ等と同様にゴシック化＋拡大。各PageHero見出しのみ明朝を維持。
+   ========================================================= */
+:is([data-screen-label="page: cases"],
+    [data-screen-label="page: news"],
+    [data-screen-label="page: contact"],
+    [data-screen-label="page: privacy"],
+    [data-screen-label="page: regulations"],
+    [data-screen-label="page: news-detail"],
+    [data-screen-label="page: case-detail"]) {
+  --font-serif: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
+  --font-display-en: "Inter", "Noto Sans JP", system-ui, sans-serif;
+}
+:is([data-screen-label="page: cases"],
+    [data-screen-label="page: news"],
+    [data-screen-label="page: contact"],
+    [data-screen-label="page: privacy"],
+    [data-screen-label="page: regulations"],
+    [data-screen-label="page: case-detail"]) .page-hero h1 {
+  font-family: "Shippori Mincho B1", "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+}
+
+/* shared size bumps (only for the pages above, via :is) */
+:is([data-screen-label="page: cases"],[data-screen-label="page: news"],[data-screen-label="page: contact"],[data-screen-label="page: privacy"],[data-screen-label="page: regulations"],[data-screen-label="page: case-detail"]) .section-title { font-size: clamp(26px, 4vw, 50px); font-weight: 800; }
+:is([data-screen-label="page: cases"],[data-screen-label="page: news"],[data-screen-label="page: contact"],[data-screen-label="page: privacy"],[data-screen-label="page: regulations"],[data-screen-label="page: news-detail"],[data-screen-label="page: case-detail"]) .section-num { font-size: 17px; font-weight: 600; }
+:is([data-screen-label="page: cases"],[data-screen-label="page: news"],[data-screen-label="page: contact"],[data-screen-label="page: privacy"],[data-screen-label="page: regulations"],[data-screen-label="page: case-detail"]) .section-en { font-size: 16px; font-weight: 600; }
+:is([data-screen-label="page: cases"],[data-screen-label="page: news"],[data-screen-label="page: contact"],[data-screen-label="page: privacy"],[data-screen-label="page: regulations"],[data-screen-label="page: case-detail"]) .page-hero .kicker { font-size: 14px; font-weight: 600; }
+:is([data-screen-label="page: cases"],[data-screen-label="page: news"],[data-screen-label="page: contact"],[data-screen-label="page: privacy"],[data-screen-label="page: regulations"],[data-screen-label="page: case-detail"]) .page-hero .lead { font-size: clamp(15px, 1.4vw, 18px); }
+:is([data-screen-label="page: privacy"],[data-screen-label="page: regulations"],[data-screen-label="page: news-detail"],[data-screen-label="page: case-detail"]) .prose h2 { font-size: clamp(24px, 3.2vw, 38px); font-weight: 800; }
+:is([data-screen-label="page: privacy"],[data-screen-label="page: regulations"],[data-screen-label="page: news-detail"],[data-screen-label="page: case-detail"]) .prose h3 { font-size: clamp(18px, 1.7vw, 22px); }
+:is([data-screen-label="page: privacy"],[data-screen-label="page: regulations"],[data-screen-label="page: news-detail"],[data-screen-label="page: case-detail"]) .prose p,
+:is([data-screen-label="page: privacy"],[data-screen-label="page: regulations"],[data-screen-label="page: news-detail"],[data-screen-label="page: case-detail"]) .prose li { font-size: clamp(15.5px, 1.3vw, 17.5px); }
+:is([data-screen-label="page: regulations"],[data-screen-label="page: case-detail"]) .info-table th,
+:is([data-screen-label="page: regulations"],[data-screen-label="page: case-detail"]) .info-table td { font-size: clamp(15px, 1.2vw, 16.5px); }
+:is([data-screen-label="page: news"],[data-screen-label="page: news-detail"]) .news-title { font-size: clamp(15px, 1.3vw, 17.5px); }
+:is([data-screen-label="page: news"],[data-screen-label="page: news-detail"]) .news-date { font-size: 13px; }
+[data-screen-label="page: cases"] .case-card h3 { font-size: clamp(16px, 1.5vw, 19px); }
+[data-screen-label="page: cases"] .voice-body { font-size: clamp(14px, 1.2vw, 16px); }
+[data-screen-label="page: contact"] .field label { font-size: 15px; }
+[data-screen-label="page: contact"] .field input,
+[data-screen-label="page: contact"] .field select,
+[data-screen-label="page: contact"] .field textarea { font-size: 15.5px; }
+[data-screen-label="page: contact"] .contact-side h3 { font-size: 17px; }
