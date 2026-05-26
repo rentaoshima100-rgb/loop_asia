@@ -404,44 +404,129 @@ function FeaturesDiagram() {
 Object.assign(window, { FeaturesDiagram });
 
 /* ============================================================
-   PROCESS — 7-step VERTICAL TIMELINE (育成就労)
+   PROCESS — 7-step JOURNEY (育成就労)
+   Desktop: arc journey (>960px) / Mobile: vertical snaking timeline (<=960px)
    ============================================================ */
+const JOURNEY_STEPS = [
+  { n: 1, phase: "p1", dur: "〜 1ヶ月",        h: "ご加入・制度説明",       p: "受入分野・職種・人数・希望時期を伺い、最適な受入計画をご提案いたします。", sx: 11, sy: 60, bx: 11, by: 83, delay: ".35s" },
+  { n: 2, phase: "p1", dur: "1 〜 3ヶ月",      h: "募集・選抜",             p: "提携している送出機関より候補者を選定。書類審査・オンライン面接を実施します。", sx: 24, sy: 25, bx: 24, by: 48, delay: ".5s" },
+  { n: 3, phase: "p1", dur: "約 6ヶ月",        h: "現地での事前教育",       p: "入国前に、現地にて日本語・生活ルール・労働安全の基礎教育を実施します。", sx: 37, sy: 65, bx: 37, by: 33, delay: ".65s" },
+  { n: 4, phase: "p2", dur: "約 1ヶ月",        h: "入国・入国後講習",       p: "入国後、日本語・生活ルール・職種別講習を集中的に実施します。", sx: 50, sy: 30, bx: 50, by: 15.5, delay: ".8s" },
+  { n: 5, phase: "p2", dur: "1 年目 〜",       h: "配属・育成就労開始",     p: "受入企業様への配属。初期の定着まで組合担当者が継続的にフォローいたします。", sx: 63, sy: 65, bx: 63, by: 38, delay: ".95s" },
+  { n: 6, phase: "p3", dur: "3 年目以降",      h: "技能検定・継続",         p: "定期巡回・面談・キャリア相談・技能習得状況の確認をワンストップで実施します。", sx: 76, sy: 25, bx: 76, by: 46, delay: "1.1s" },
+  { n: 7, phase: "p3", dur: "修了 — 帰国 / 移行", h: "帰国 または 特定技能 1号へ", p: "本人の希望とスキルに応じて、登録支援機関がそのまま支援を継続します。", sx: 89, sy: 60, bx: 89, by: 83, delay: "1.25s" },
+];
+
 function ProcessDiagram() {
-  const props = { width: 24, height: 24, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 1.8, strokeLinecap: "round", strokeLinejoin: "round" };
-  const steps = [
-    { h: "ご加入・制度説明（〜1ヶ月）", p: "受入分野・職種・人数・希望時期を伺い、最適な受入計画をご提案いたします。",
-      icon: <svg {...props}><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8z"/></svg> },
-    { h: "募集・選抜（1〜3ヶ月）", p: "提携している送出機関より候補者を選定。書類審査・オンライン面接を実施します。",
-      icon: <svg {...props}><circle cx="8" cy="10" r="3"/><circle cx="16" cy="14" r="3"/><path d="M5 21v-2a3 3 0 0 1 3-3M16 17h.5A2.5 2.5 0 0 1 19 19.5V21"/></svg> },
-    { h: "現地での事前教育（約6ヶ月）", p: "入国前に、現地にて日本語・生活ルール・労働安全の基礎教育を実施します。", accent: true,
-      icon: <svg {...props}><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg> },
-    { h: "入国・入国後講習（約1ヶ月）", p: "入国後、日本語・生活ルール・職種別講習を集中的に実施します。",
-      icon: <svg {...props}><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.66 2.69 3 6 3s6-1.34 6-3v-5"/></svg> },
-    { h: "配属・育成就労開始（1年目〜）", p: "受入企業様への配属。初期の定着まで組合担当者が継続的にフォローいたします。",
-      icon: <svg {...props}><path d="M2 20h20"/><path d="M5 20V8l5 4V8l5 4V8l4 4v8"/></svg> },
-    { h: "技能検定・継続（3年目以降）", p: "定期巡回・面談・キャリア相談・技能習得状況の確認をワンストップで実施します。",
-      icon: <svg {...props}><path d="M12 3l8 3v5c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-3z"/><path d="M9 12l2 2 4-4"/></svg> },
-    { h: "帰国または特定技能1号への移行", p: "本人の希望とスキルに応じて、登録支援機関がそのまま支援を継続します。",
-      icon: <svg {...props}><path d="M5 12h14M13 6l6 6-6 6"/></svg> },
-  ];
+  const arcRef = useRef(null);
+  useEffect(() => {
+    const arc = arcRef.current;
+    if (!arc || typeof arc.getTotalLength !== "function") return;
+    try {
+      const len = arc.getTotalLength();
+      arc.style.strokeDasharray = len;
+      arc.style.strokeDashoffset = len;
+      requestAnimationFrame(() => {
+        arc.style.transition = "stroke-dashoffset 2.2s cubic-bezier(.65,.05,.36,1)";
+        requestAnimationFrame(() => { arc.style.strokeDashoffset = 0; });
+      });
+    } catch (e) { /* getTotalLength unsupported (hidden/headless) — arc stays drawn */ }
+  }, []);
+
   return (
-    <div className="ptl">
-      {steps.map((s, i) => (
-        <div key={i} className={`ptl-row ${s.accent ? "accent" : ""}`}>
-          <div className="ptl-badge">{String(i+1).padStart(2,"0")}</div>
-          <div className="ptl-card">
-            <div className="ptl-card-text">
-              <h4>{s.h}</h4>
-              <p>{s.p}</p>
-            </div>
-            <div className="ptl-card-icon">{s.icon}</div>
-          </div>
+    <div className="journey7">
+      {/* ===== DESKTOP — arc journey ===== */}
+      <div className="j7-stage">
+        <svg className="j7-path" viewBox="0 0 1600 720" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="j7grad" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stopColor="#c8102e"/>
+              <stop offset="50%" stopColor="#e25a3a"/>
+              <stop offset="100%" stopColor="#7a0a1b"/>
+            </linearGradient>
+            <pattern id="j7dots" x="0" y="0" width="14" height="14" patternUnits="userSpaceOnUse">
+              <circle cx="2" cy="2" r="1.4" fill="#c8102e" opacity=".25"/>
+            </pattern>
+            <marker id="j7arrow" viewBox="0 0 12 12" refX="6" refY="6" markerWidth="5" markerHeight="5" orient="auto-start-reverse" markerUnits="strokeWidth">
+              <path d="M 0 0 L 12 6 L 0 12 L 3 6 Z" fill="#7a0a1b"/>
+            </marker>
+          </defs>
+          <line x1="0" y1="640" x2="1600" y2="640" stroke="#1a0a0a" strokeWidth="2"/>
+          <line x1="0" y1="648" x2="1600" y2="648" stroke="#c8102e" strokeWidth="1" strokeDasharray="3 6"/>
+          <path d="M 80 600 Q 400 -120 800 120 Q 1200 360 1520 600" fill="url(#j7dots)" stroke="none" opacity=".45" transform="translate(0,-20)"/>
+          <path ref={arcRef} id="j7arc"
+            d="M 80 600 C 260 600, 280 250, 470 240 C 640 232, 660 110, 800 110 C 940 110, 980 250, 1130 280 C 1290 312, 1320 540, 1520 600"
+            fill="none" stroke="url(#j7grad)" strokeWidth="6" strokeLinecap="round" markerEnd="url(#j7arrow)"/>
+          <path d="M 80 612 C 260 612, 280 262, 470 252 C 640 244, 660 122, 800 122 C 940 122, 980 262, 1130 292 C 1290 324, 1310 540, 1490 595"
+            fill="none" stroke="#c8102e" strokeWidth="2" opacity=".18"/>
+        </svg>
+
+        <div className="j7-ground left">
+          <div className="ico">出</div>
+          <div><small>Origin Country</small>現地（送出国）</div>
         </div>
-      ))}
+        <div className="j7-ground right">
+          <div><small>Return / Transition</small>帰国 ・ 特定技能 1 号</div>
+          <div className="ico">帰</div>
+        </div>
+
+        {JOURNEY_STEPS.map((s) => (
+          <React.Fragment key={s.n}>
+            <div className={`j7-step ${s.phase}`} style={{ left: `${s.sx}%`, top: `${s.sy}%`, "--delay": s.delay }}>
+              <div className="j7-card">
+                <span className="j7-duration">{s.dur}</span>
+                <h3>{s.h}</h3>
+                <p>{s.p}</p>
+              </div>
+            </div>
+            <div className={`j7-badge ${s.phase}`} style={{ left: `${s.bx}%`, top: `${s.by}%`, "--delay": s.delay }}>
+              <span className="n">{s.n}</span><span className="dot"></span>
+            </div>
+          </React.Fragment>
+        ))}
+      </div>
+
+      {/* ===== MOBILE — vertical snaking timeline ===== */}
+      <div className="j7-stage-m">
+        <div className="j7-chip">
+          <div className="ico">出</div>
+          <div><small>Origin Country</small>現地（送出国）</div>
+        </div>
+        <ol className="j7-journey">
+          <svg className="j7-spine" viewBox="0 0 56 980" preserveAspectRatio="none" aria-hidden="true">
+            <defs>
+              <linearGradient id="j7gradM" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#c8102e"/>
+                <stop offset="55%" stopColor="#e25a3a"/>
+                <stop offset="100%" stopColor="#7a0a1b"/>
+              </linearGradient>
+              <marker id="j7arrowM" viewBox="0 0 12 12" refX="6" refY="6" markerWidth="5" markerHeight="5" orient="auto-start-reverse" markerUnits="strokeWidth">
+                <path d="M 0 0 L 12 6 L 0 12 L 3 6 Z" fill="#7a0a1b"/>
+              </marker>
+            </defs>
+            <path d="M 28 10 C 50 80, 6 140, 28 210 C 50 280, 6 340, 28 410 C 50 480, 6 540, 28 610 C 50 680, 6 740, 28 810 C 50 880, 28 940, 28 970"
+              fill="none" stroke="url(#j7gradM)" strokeWidth="4" strokeLinecap="round" markerEnd="url(#j7arrowM)"/>
+          </svg>
+          {JOURNEY_STEPS.map((s) => (
+            <li key={s.n} className={`j7-step-m ${s.phase}`}>
+              <div className="j7-badge-m"><span className="n">{s.n}</span><span className="dot"></span></div>
+              <div className="j7-card-m">
+                <span className="j7-duration">{s.dur}</span>
+                <h3>{s.h}</h3>
+                <p>{s.p}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+        <div className="j7-chip">
+          <div className="ico">帰</div>
+          <div><small>Return / Transition</small>帰国 ・ 特定技能 1 号</div>
+        </div>
+      </div>
     </div>
   );
 }
-Object.assign(window, { ProcessDiagram });
+Object.assign(window, { ProcessDiagram, JOURNEY_STEPS });
 
 /* ============================================================
    SUPPORT — 10項目 in 2 PHASE COLUMNS (特定技能)
