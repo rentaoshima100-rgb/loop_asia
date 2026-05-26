@@ -12,7 +12,7 @@
   --bg-deep: #5E0F1B;          /* deep dark red */
   --ink: #1E1416;
   --ink-soft: #51464A;
-  --ink-mute: #8A7E81;
+  --ink-mute: #8C8C8C;          /* clean neutral gray (旧: くすんだ藤色 #8A7E81) */
   --line: #EAD3D7;
   --line-soft: #F4E4E7;
   --primary: #C8102E;          /* Loop red */
@@ -3756,25 +3756,25 @@ p { margin: 0; }
   font-family: var(--font-serif);
 }
 
-/* larger text across the top-page sections */
-.home-main .section-title   { font-size: clamp(28px, 4.2vw, 52px); font-weight: 800; }
-.home-main .section-num     { font-size: 15px; }
-.home-main .section-en      { font-size: 14px; }
-.home-main .intro-vlabel    { font-size: 16px; }
-.home-main .intro-body h2   { font-size: clamp(25px, 3.4vw, 42px); font-weight: 800; }
-.home-main .intro-body p    { font-size: clamp(15px, 1.2vw, 17.5px); }
-.home-main .entry-title     { font-size: clamp(18px, 1.6vw, 22px); }
-.home-main .entry-desc      { font-size: clamp(13.5px, 1.05vw, 15.5px); }
-.home-main .strength-title  { font-size: clamp(19px, 1.9vw, 26px); }
-.home-main .strength-body   { font-size: clamp(14.5px, 1.1vw, 16.5px); }
-.home-main .data-intro h3   { font-size: clamp(25px, 3.2vw, 40px); font-weight: 800; }
-.home-main .data-intro p    { font-size: clamp(15px, 1.2vw, 17px); }
-.home-main .sys-body h3     { font-size: clamp(22px, 2.6vw, 30px); }
-.home-main .sys-body p      { font-size: clamp(14.5px, 1.1vw, 16.5px); }
-.home-main .sys-meta-item .k { font-size: 12px; }
-.home-main .sys-meta-item .v { font-size: 15px; }
-.home-main .group-card .name { font-size: clamp(17px, 1.6vw, 21px); }
-.home-main .group-card .desc { font-size: clamp(13px, 1vw, 15px); }
-.home-main .usp-text h2     { font-size: clamp(26px, 3.8vw, 48px); }
-.home-main .usp-text p      { font-size: clamp(14.5px, 1.15vw, 16.5px); }
-.home-main .stat-label      { font-size: clamp(11px, 0.95vw, 13px); }
+/* larger text across the top-page sections (2nd pass — もっと大きく) */
+.home-main .section-title   { font-size: clamp(32px, 4.8vw, 60px); font-weight: 800; line-height: 1.35; }
+.home-main .section-num     { font-size: 17px; }
+.home-main .section-en      { font-size: 16px; }
+.home-main .intro-vlabel    { font-size: 19px; }
+.home-main .intro-body h2   { font-size: clamp(28px, 3.9vw, 48px); font-weight: 800; }
+.home-main .intro-body p    { font-size: clamp(16px, 1.35vw, 19px); }
+.home-main .entry-title     { font-size: clamp(20px, 1.8vw, 25px); }
+.home-main .entry-desc      { font-size: clamp(15px, 1.2vw, 17px); }
+.home-main .strength-title  { font-size: clamp(21px, 2.1vw, 29px); }
+.home-main .strength-body   { font-size: clamp(15.5px, 1.25vw, 18px); }
+.home-main .data-intro h3   { font-size: clamp(27px, 3.6vw, 46px); font-weight: 800; }
+.home-main .data-intro p    { font-size: clamp(16px, 1.3vw, 18.5px); }
+.home-main .sys-body h3     { font-size: clamp(24px, 2.9vw, 34px); }
+.home-main .sys-body p      { font-size: clamp(15.5px, 1.25vw, 18px); }
+.home-main .sys-meta-item .k { font-size: 13px; }
+.home-main .sys-meta-item .v { font-size: 16px; }
+.home-main .group-card .name { font-size: clamp(19px, 1.8vw, 24px); }
+.home-main .group-card .desc { font-size: clamp(14px, 1.1vw, 16.5px); }
+.home-main .usp-text h2     { font-size: clamp(28px, 4.1vw, 54px); }
+.home-main .usp-text p      { font-size: clamp(15.5px, 1.3vw, 18px); }
+.home-main .stat-label      { font-size: clamp(11.5px, 1.05vw, 14.5px); }
