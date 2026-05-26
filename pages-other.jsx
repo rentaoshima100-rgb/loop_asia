@@ -171,15 +171,29 @@ function AboutPage() {
                 営業時間：9:00 – 18:00（定休日：土曜・日曜・祝日）
               </div>
             </div>
-            <div className="access-map">
-              <div className="access-map-grid"></div>
-              <div className="access-map-road h"></div>
-              <div className="access-map-road v"></div>
-              <div className="access-map-road d"></div>
-              <div className="access-map-name" style={{top:"36%", left:"6%"}}>SUITA STATION</div>
-              <div className="access-map-name" style={{top:"60%", right:"6%"}}>ESAKA AVENUE</div>
-              <div className="access-map-label">亜細亜交流事業協同組合</div>
-              <div className="access-map-pin"></div>
+            <div className="access-maps">
+              <div className="access-map-item">
+                <div className="access-map-cap">本部（ループ大阪）</div>
+                <iframe
+                  className="access-iframe"
+                  title="本部 ループ大阪の地図"
+                  loading="lazy"
+                  allowFullScreen
+                  referrerPolicy="no-referrer-when-downgrade"
+                  src="https://maps.google.com/maps?q=大阪府大阪市淀川区東三国2丁目32-17&z=16&output=embed"
+                ></iframe>
+              </div>
+              <div className="access-map-item">
+                <div className="access-map-cap">江坂事務所（ループ江坂）<span className="cap-note">※ご来所はこちら</span></div>
+                <iframe
+                  className="access-iframe"
+                  title="江坂事務所 ループ江坂の地図"
+                  loading="lazy"
+                  allowFullScreen
+                  referrerPolicy="no-referrer-when-downgrade"
+                  src="https://maps.google.com/maps?q=大阪府吹田市江坂町1丁目6-3&z=16&output=embed"
+                ></iframe>
+              </div>
             </div>
           </FadeUp>
         </div>
@@ -403,11 +417,11 @@ function ContactPage() {
                     <input type="tel" placeholder="000-0000-0000" />
                   </div>
                   <div className="field">
-                    <label>業種 <span className="req">必須</span></label>
-                    <select required defaultValue="">
-                      <option value="" disabled>選択してください</option>
-                      <option>建設業</option><option>製造業</option><option>農業</option>
-                      <option>介護</option><option>宿泊</option><option>飲食料品製造</option>
+                    <label>業種 <span className="opt">任意</span></label>
+                    <select defaultValue="">
+                      <option value="">選択してください</option>
+                      <option>建設</option><option>製造</option><option>農業</option>
+                      <option>介護</option><option>宿泊</option><option>飲食料品製造業</option>
                       <option>外食業</option><option>その他</option>
                     </select>
                   </div>

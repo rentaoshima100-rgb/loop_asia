@@ -552,3 +552,63 @@ function FieldsDiagram() {
   );
 }
 Object.assign(window, { FieldsDiagram });
+
+/* ============================================================
+   INDUSTRY ICONS — 主な受入分野（農業・製造・建設）をイラストで表現
+   ============================================================ */
+function IndustryIcons() {
+  const s = { viewBox: "0 0 64 64", fill: "none", stroke: "currentColor", strokeWidth: 2.4, strokeLinecap: "round", strokeLinejoin: "round" };
+  const items = [
+    {
+      cls: "ind-build", label: "建設", en: "CONSTRUCTION",
+      svg: (
+        <svg {...s}>
+          <path d="M6 58h52"/>
+          <rect x="37" y="30" width="18" height="28"/>
+          <path d="M41 36h3M49 36h3M41 44h3M49 44h3M41 52h3M49 52h3"/>
+          <path d="M14 58V14"/>
+          <path d="M10 18h26"/>
+          <path d="M14 14l8 4-8 4z"/>
+          <path d="M29 18v7"/>
+          <path d="M26 25h6"/>
+        </svg>
+      )
+    },
+    {
+      cls: "ind-factory", label: "製造", en: "MANUFACTURING",
+      svg: (
+        <svg {...s}>
+          <circle cx="32" cy="32" r="10"/>
+          <circle cx="32" cy="32" r="3"/>
+          <path d="M32 14v6M32 44v6M14 32h6M44 32h6M19.5 19.5l4 4M40.5 40.5l4 4M44.5 19.5l-4 4M23.5 40.5l-4 4"/>
+        </svg>
+      )
+    },
+    {
+      cls: "ind-agri", label: "農業", en: "AGRICULTURE",
+      svg: (
+        <svg {...s}>
+          <path d="M32 56V28"/>
+          <path d="M32 38c-9 0-15-5-15-15 9 0 15 5 15 15z"/>
+          <path d="M32 30c9 0 15-5 15-15-9 0-15 5-15 15z"/>
+          <path d="M14 56h36"/>
+        </svg>
+      )
+    },
+  ];
+  return (
+    <div className="ind-icons">
+      <div className="ind-icons-row">
+        {items.map((it, i) => (
+          <div key={i} className={`ind-card ${it.cls}`}>
+            <div className="ind-card-icon">{it.svg}</div>
+            <div className="ind-card-label">{it.label}</div>
+            <div className="ind-card-en">{it.en}</div>
+          </div>
+        ))}
+      </div>
+      <div className="ind-icons-note">建設・製造・農業をはじめ、特定産業16分野に対応しています。<br/>※具体的な数値データは出典確認後に掲載します。</div>
+    </div>
+  );
+}
+Object.assign(window, { IndustryIcons });

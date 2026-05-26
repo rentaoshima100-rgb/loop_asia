@@ -62,7 +62,9 @@ html, body {
   letter-spacing: 0.02em;
   -webkit-font-smoothing: antialiased;
   font-feature-settings: "palt";
-  overflow-x: hidden;
+  /* clip (not hidden) so the body does not become a scroll container,
+     which would break the sticky header (.topbar position:sticky). */
+  overflow-x: clip;
   max-width: 100vw;
 }
 
@@ -1402,6 +1404,16 @@ p { margin: 0; }
   border-radius: 100px;
   font-weight: 600;
 }
+.field .opt {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--ink-mute);
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  padding: 2px 8px;
+  border-radius: 100px;
+  font-weight: 600;
+}
 .field input, .field select, .field textarea {
   padding: 14px 18px;
   border: 1.5px solid var(--line);
@@ -1657,6 +1669,69 @@ p { margin: 0; }
   letter-spacing: 0.25em;
   color: var(--ink-mute);
 }
+
+/* Real maps: 本部 + 江坂事務所 stacked in the access grid's right cell */
+.access-maps {
+  display: flex;
+  flex-direction: column;
+  min-height: 420px;
+  background: var(--bg-soft);
+}
+.access-map-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 200px;
+}
+.access-map-item + .access-map-item { border-top: 1.5px solid var(--line); }
+.access-map-cap {
+  font-family: var(--font-serif);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  color: var(--primary);
+  padding: 12px 18px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.access-map-cap .cap-note { font-size: 11px; color: var(--accent); letter-spacing: 0.04em; }
+.access-iframe {
+  width: 100%;
+  flex: 1;
+  min-height: 168px;
+  border: 0;
+  display: block;
+}
+
+/* Industry icons — 農業・製造・建設 をイラスト表現 (home DATA section) */
+.ind-icons-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.ind-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 28px 12px;
+  border: 1.5px solid var(--line);
+  border-radius: 16px;
+  background: #fff;
+  transition: transform .3s, border-color .3s, box-shadow .3s;
+}
+.ind-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--primary);
+  box-shadow: 0 10px 28px rgba(0,0,0,.06);
+}
+.ind-card-icon { width: 54px; height: 54px; color: var(--primary); margin-bottom: 14px; }
+.ind-card-icon svg { width: 100%; height: 100%; }
+.ind-card-label { font-family: var(--font-serif); font-weight: 700; font-size: 18px; letter-spacing: 0.1em; color: var(--ink); }
+.ind-card-en { font-family: var(--font-display-en); font-size: 11px; letter-spacing: 0.2em; color: var(--ink-mute); margin-top: 4px; }
+.ind-icons-note { margin-top: 20px; font-size: 12px; line-height: 1.9; color: var(--ink-mute); letter-spacing: 0.04em; }
 
 /* =========================================================
    Voice cards (cases page)

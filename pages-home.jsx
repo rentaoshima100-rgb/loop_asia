@@ -75,6 +75,31 @@ function HomePage() {
         </div>
       </section>
 
+      {/* NEWS — moved to upper area (お知らせ上部 / ワンストップ下部) */}
+      <section className="section section-soft tight">
+        <div className="container">
+          <FadeUp className="section-head" style={{justifyContent:"space-between", display:"flex", alignItems:"baseline"}}>
+            <div>
+              <div className="section-num">INFORMATION</div>
+              <h2 className="section-title">お知らせ</h2>
+            </div>
+            <a onClick={() => navigate("news")} className="btn btn-ghost" style={{padding:"14px 24px"}}>
+              一覧を見る <span className="arrow"><Icon name="arrow" size={14}/></span>
+            </a>
+          </FadeUp>
+          <div className="news-list">
+            {NEWS.slice(0,3).map((n, i) => (
+              <FadeUp key={i} className="news-row" delay={i * 60} onClick={() => { window.location.hash = `news-detail=${i}`; window.scrollTo({top:0, behavior:"instant"}); }}>
+                <div className="news-date">{n.date}</div>
+                <div className={`news-tag ${n.catClass}`}>{n.cat}</div>
+                <div className="news-title">{n.title}</div>
+                <div className="arrow"><Icon name="arrow" size={14}/></div>
+              </FadeUp>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* SITUATION ENTRIES — 6 cards */}
       <section className="section tight">
         <div className="container">
@@ -126,39 +151,6 @@ function HomePage() {
         </div>
       </section>
 
-      {/* USP: One-stop flow */}
-      <section className="usp-block">
-        <div className="usp-text">
-          <FadeUp>
-            <div className="section-num">ONE-STOP SUPPORT</div>
-          </FadeUp>
-          <FadeUp delay={100}>
-            <h2>通算 最大 8 年。<br/>育成就労から特定技能まで、<br/>切れ目のないご支援を。</h2>
-          </FadeUp>
-          <FadeUp delay={200}>
-            <p>
-              育成就労制度（3年）と特定技能1号（5年）を組み合わせれば、通算で最長8年間、同じ人材に活躍いただくことが可能です。
-            </p>
-            <p>
-              当組合では、両制度の橋渡しを「同一グループ内」で完結できるため、本人にとっては心理的な負担が少なく、企業様にとっては引き継ぎロスのない、安定した人材活用が実現します。
-            </p>
-            <button className="btn btn-outline" style={{marginTop:24}} onClick={() => navigate("ikusei")}>
-              制度の詳細を見る <span className="arrow"><Icon name="arrow" size={14}/></span>
-            </button>
-          </FadeUp>
-        </div>
-        <div className="usp-image" style={{backgroundImage:`url(${PHOTOS.oneStop})`}}></div>
-      </section>
-
-      {/* TIMELINE DIAGRAM — 8 years */}
-      <section className="section tight">
-        <div className="container">
-          <FadeUp>
-            <TimelineDiagram />
-          </FadeUp>
-        </div>
-      </section>
-
       {/* DATA section */}
       <section className="section">
         <div className="container">
@@ -179,14 +171,11 @@ function HomePage() {
               </p>
             </FadeUp>
             <div ref={barsRef}>
-              {INDUSTRY_DATA.length === 0 ? (
-                /* TODO(client): 業界別データは出典確認後に掲載。出典を明記できる数値のみ INDUSTRY_DATA に追加してください。 */
-                <div className="data-todo">
-                  {`{{TODO: 業界別 人手不足データ（出典を明記できる公的統計のみ掲載）}}`}
-                </div>
-              ) : (
+              {/* 農業・製造・建設をアイコンで表現。出典付きの数値が用意でき次第、下の棒グラフが表示されます。 */}
+              <IndustryIcons />
+              {INDUSTRY_DATA.length > 0 && (
                 <>
-                  <div className="bar-chart">
+                  <div className="bar-chart" style={{marginTop:40}}>
                     {INDUSTRY_DATA.map((d, i) => (
                       <div className="bar-row" key={i}>
                         <div className="bar-label">{d.name}</div>
@@ -294,28 +283,36 @@ function HomePage() {
         </div>
       </section>
 
-      {/* NEWS */}
-      <section className="section section-soft tight">
-        <div className="container">
-          <FadeUp className="section-head" style={{justifyContent:"space-between", display:"flex", alignItems:"baseline"}}>
-            <div>
-              <div className="section-num">INFORMATION</div>
-              <h2 className="section-title">お知らせ</h2>
-            </div>
-            <a onClick={() => navigate("news")} className="btn btn-ghost" style={{padding:"14px 24px"}}>
-              一覧を見る <span className="arrow"><Icon name="arrow" size={14}/></span>
-            </a>
+      {/* USP: One-stop flow — moved to lower area (お知らせ上部 / ワンストップ下部) */}
+      <section className="usp-block">
+        <div className="usp-text">
+          <FadeUp>
+            <div className="section-num">ONE-STOP SUPPORT</div>
           </FadeUp>
-          <div className="news-list">
-            {NEWS.slice(0,3).map((n, i) => (
-              <FadeUp key={i} className="news-row" delay={i * 60} onClick={() => { window.location.hash = `news-detail=${i}`; window.scrollTo({top:0, behavior:"instant"}); }}>
-                <div className="news-date">{n.date}</div>
-                <div className={`news-tag ${n.catClass}`}>{n.cat}</div>
-                <div className="news-title">{n.title}</div>
-                <div className="arrow"><Icon name="arrow" size={14}/></div>
-              </FadeUp>
-            ))}
-          </div>
+          <FadeUp delay={100}>
+            <h2>通算 最大 8 年。<br/>育成就労から特定技能まで、<br/>切れ目のないご支援を。</h2>
+          </FadeUp>
+          <FadeUp delay={200}>
+            <p>
+              育成就労制度（3年）と特定技能1号（5年）を組み合わせれば、通算で最長8年間、同じ人材に活躍いただくことが可能です。
+            </p>
+            <p>
+              当組合では、両制度の橋渡しを「同一グループ内」で完結できるため、本人にとっては心理的な負担が少なく、企業様にとっては引き継ぎロスのない、安定した人材活用が実現します。
+            </p>
+            <button className="btn btn-outline" style={{marginTop:24}} onClick={() => navigate("ikusei")}>
+              制度の詳細を見る <span className="arrow"><Icon name="arrow" size={14}/></span>
+            </button>
+          </FadeUp>
+        </div>
+        <div className="usp-image" style={{backgroundImage:`url(${PHOTOS.oneStop})`}}></div>
+      </section>
+
+      {/* TIMELINE DIAGRAM — 8 years */}
+      <section className="section tight">
+        <div className="container">
+          <FadeUp>
+            <TimelineDiagram />
+          </FadeUp>
         </div>
       </section>
 
