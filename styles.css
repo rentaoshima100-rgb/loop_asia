@@ -3743,18 +3743,20 @@ p { margin: 0; }
    Hero と共有CTAバンドは元の明朝のまま維持。サイズはclampで
    モバイルでも崩れないよう自動スケール。
    ========================================================= */
+/* Top page: 明朝(--font-serif)を使う全要素をゴシックへ。Top viewのタイトルのみ明朝を維持 */
+.home-main {
+  --font-serif: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
+}
 .home-main h1, .home-main h2, .home-main h3, .home-main h4,
 .home-main .serif,
 .home-main .section-title, .home-main .entry-title,
 .home-main .intro-vlabel, .home-main .group-card .name,
 .home-main .dgm-title {
-  font-family: var(--font-sans);
   font-weight: 700;
 }
-/* keep hero focal title & shared CTA band in the original mincho */
-.home-main .hero-title, .home-main .hero-title .accent,
-.home-main .cta-band h2, .home-main .cta-band .serif {
-  font-family: var(--font-serif);
+/* keep ONLY the hero (Top view) title in the original mincho */
+.home-main .hero-title, .home-main .hero-title .accent {
+  font-family: "Shippori Mincho B1", "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
 }
 
 /* larger text across the top-page sections (2nd pass — もっと大きく) */
