@@ -196,7 +196,7 @@ p { margin: 0; }
 .hero {
   position: relative;
   height: 92vh;
-  min-height: 640px;
+  min-height: 540px;
   max-height: 920px;
   overflow: hidden;
   background: var(--bg-deep);
@@ -222,7 +222,7 @@ p { margin: 0; }
   padding: 0 var(--pad-x);
   display: flex;
   align-items: flex-end;
-  padding-bottom: 96px;
+  padding-bottom: 64px;
 }
 .hero-content { max-width: 880px; color: #fff; width: 100%; min-width: 0; word-break: break-word; overflow-wrap: anywhere; }
 .hero-kicker {
@@ -335,8 +335,8 @@ p { margin: 0; }
 /* =========================================================
    Section primitives
    ========================================================= */
-.section { padding: clamp(64px, 10vw, 140px) 0; position: relative; }
-.section.tight { padding: clamp(48px, 7vw, 96px) 0; }
+.section { padding: clamp(44px, 6vw, 92px) 0; position: relative; }
+.section.tight { padding: clamp(32px, 4.5vw, 64px) 0; }
 .section-soft { background: var(--bg-soft); }
 .section-dark { background: var(--bg-deep); color: #F0EDE4; }
 
@@ -485,7 +485,7 @@ p { margin: 0; }
   background: var(--bg-deep);
   color: #F0EDE4;
 }
-.usp-text { padding: clamp(48px, 7vw, 96px); }
+.usp-text { padding: clamp(36px, 5vw, 72px); }
 .usp-text .section-num { color: var(--accent-soft); }
 .usp-text h2 {
   font-size: clamp(28px, 3.5vw, 44px);
@@ -503,7 +503,7 @@ p { margin: 0; }
 .usp-image {
   background-size: cover;
   background-position: center;
-  min-height: 520px;
+  min-height: 440px;
 }
 
 /* one-stop flow diagram */
@@ -846,7 +846,7 @@ p { margin: 0; }
    ========================================================= */
 .cta-band {
   position: relative;
-  padding: clamp(80px, 12vw, 160px) 0;
+  padding: clamp(56px, 8vw, 108px) 0;
   background: var(--bg-deep);
   color: #fff;
   overflow: hidden;
@@ -874,11 +874,11 @@ p { margin: 0; }
 }
 .cta-band .btn-primary { padding: 22px 40px; font-size: 14px; }
 .cta-band-contact {
-  margin-top: 56px;
+  margin-top: 40px;
   display: flex;
   justify-content: center;
-  gap: 64px;
-  padding-top: 48px;
+  gap: 48px;
+  padding-top: 32px;
   border-top: 1px solid rgba(255,255,255,0.15);
 }
 .cta-contact-item {
@@ -904,13 +904,13 @@ p { margin: 0; }
 .footer {
   background: #131A18;
   color: rgba(255,255,255,0.7);
-  padding: 80px 0 32px;
+  padding: 56px 0 28px;
 }
 .footer-grid {
   display: grid;
   grid-template-columns: 1.4fr 1fr 1fr 1fr;
   gap: 56px;
-  padding-bottom: 56px;
+  padding-bottom: 40px;
   border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 .footer h4 {
@@ -951,7 +951,7 @@ p { margin: 0; }
 .page-hero {
   position: relative;
   height: 52vh;
-  min-height: 380px;
+  min-height: 300px;
   max-height: 520px;
   background: var(--bg-deep);
   overflow: hidden;
@@ -976,7 +976,7 @@ p { margin: 0; }
   width: 100%;
   max-width: 1440px;
   margin: 0 auto;
-  padding: 0 var(--pad-x) 72px;
+  padding: 0 var(--pad-x) 52px;
   color: #fff;
 }
 .page-hero .kicker {
@@ -2824,8 +2824,8 @@ p { margin: 0; }
   .brand-name .small { font-size: 9px; letter-spacing: 0.15em; }
 
   /* Hero */
-  .hero { height: 80vh; min-height: 540px; }
-  .hero-inner { padding-bottom: 56px; }
+  .hero { height: 76vh; min-height: 460px; }
+  .hero-inner { padding-bottom: 40px; }
   .hero-title { font-size: clamp(28px, 8vw, 44px); line-height: 1.4; margin-bottom: 20px; }
   .hero-sub { font-size: 14px; line-height: 1.9; margin-bottom: 28px; letter-spacing: 0.04em; }
   .hero-actions { flex-direction: column; align-items: stretch; gap: 12px; }
@@ -2840,8 +2840,8 @@ p { margin: 0; }
   .assurance-title strong { font-size: 15px; }
 
   /* Section spacing */
-  .section { padding: 56px 0; }
-  .section.tight { padding: 40px 0; }
+  .section { padding: 40px 0; }
+  .section.tight { padding: 28px 0; }
   .section-head {
     flex-direction: column;
     align-items: flex-start;
@@ -2859,8 +2859,8 @@ p { margin: 0; }
   .intro-body p { font-size: 14px; line-height: 2; }
 
   /* Page hero */
-  .page-hero { height: 44vh; min-height: 320px; }
-  .page-hero-inner { padding: 0 var(--pad-x) 40px; }
+  .page-hero { height: 40vh; min-height: 260px; }
+  .page-hero-inner { padding: 0 var(--pad-x) 32px; }
   .page-hero h1 { font-size: clamp(28px, 8vw, 40px); margin-bottom: 14px; }
   .page-hero .lead { font-size: 14px; line-height: 1.85; }
   .crumbs { font-size: 10px; margin-bottom: 18px; }
@@ -2882,10 +2882,10 @@ p { margin: 0; }
   .sys-body h3 { font-size: 22px; }
 
   /* CTA band */
-  .cta-band { padding: 64px 0; }
+  .cta-band { padding: 44px 0; }
   .cta-band h2 { font-size: clamp(24px, 6.5vw, 32px); margin-bottom: 20px; }
   .cta-band p { font-size: 14px; margin-bottom: 32px; }
-  .cta-band-contact { padding-top: 32px; gap: 28px; }
+  .cta-band-contact { padding-top: 24px; gap: 24px; }
   .cta-contact-item .value { font-size: 22px; }
 
   /* Footer */
@@ -3087,7 +3087,7 @@ p { margin: 0; }
   .menu-btn.open span:nth-child(3) { top: 19px; }
 
   /* Hero — extra-tight */
-  .hero { min-height: 480px; height: 86vh; }
+  .hero { min-height: 400px; height: 80vh; }
   .hero-inner { padding-bottom: 36px; }
   .hero-title { font-size: clamp(22px, 7vw, 30px); margin-bottom: 16px; letter-spacing: 0.04em; line-height: 1.45; }
   .hero-sub { font-size: 12.5px; line-height: 1.85; margin-bottom: 22px; }
@@ -3095,13 +3095,13 @@ p { margin: 0; }
   .btn { padding: 12px 18px; font-size: 11.5px; }
 
   /* Page hero */
-  .page-hero { min-height: 280px; height: 38vh; }
+  .page-hero { min-height: 220px; height: 34vh; }
   .page-hero h1 { font-size: clamp(22px, 7vw, 28px); }
   .page-hero .lead { font-size: 12.5px; }
 
   /* Sections */
-  .section { padding: 44px 0; }
-  .section.tight { padding: 32px 0; }
+  .section { padding: 32px 0; }
+  .section.tight { padding: 24px 0; }
   .section-title { font-size: clamp(20px, 6vw, 24px); }
   .section-num { font-size: 12px; letter-spacing: 0.2em; }
   .section-en { font-size: 10px; }
@@ -3151,7 +3151,7 @@ p { margin: 0; }
   .news-title { font-size: 13px; line-height: 1.7; }
 
   /* CTA band */
-  .cta-band { padding: 52px 0; }
+  .cta-band { padding: 36px 0; }
   .cta-band h2 { font-size: clamp(20px, 6.5vw, 26px); margin-bottom: 16px; line-height: 1.55; }
   .cta-band p { font-size: 13px; margin-bottom: 24px; }
   .cta-contact-item .value { font-size: 18px; }
@@ -3325,7 +3325,7 @@ p { margin: 0; }
   .menu-btn { width: 42px; height: 42px; }
 
   /* Hero */
-  .hero { min-height: 520px; height: 84vh; }
+  .hero { min-height: 440px; height: 78vh; }
   .hero-title { font-size: clamp(23px, 7.2vw, 32px); letter-spacing: 0.04em; }
   .hero-sub { font-size: 13px; line-height: 1.85; margin-bottom: 24px; }
   .hero-kicker { font-size: 10px; margin-bottom: 18px; }
@@ -3333,14 +3333,14 @@ p { margin: 0; }
   .hero-actions .btn { padding: 15px 20px; font-size: 12px; }
 
   /* Page hero */
-  .page-hero { min-height: 300px; height: 42vh; }
+  .page-hero { min-height: 240px; height: 38vh; }
   .page-hero h1 { font-size: clamp(24px, 7.2vw, 32px); }
   .page-hero .lead { font-size: 13px; }
   .crumbs { font-size: 10px; }
 
   /* Sections */
-  .section { padding: 48px 0; }
-  .section.tight { padding: 36px 0; }
+  .section { padding: 36px 0; }
+  .section.tight { padding: 28px 0; }
   .section-title { font-size: clamp(21px, 6.2vw, 26px); }
   .section-head { margin-bottom: 28px; }
 
@@ -3364,7 +3364,7 @@ p { margin: 0; }
   .usp-text h2 { font-size: 24px; line-height: 1.6; }
 
   /* CTA band */
-  .cta-band { padding: 56px 0; }
+  .cta-band { padding: 40px 0; }
   .cta-band h2 { font-size: clamp(22px, 6.5vw, 28px); }
   .cta-band p { font-size: 13.5px; }
   .cta-contact-item .value { font-size: 20px; }
