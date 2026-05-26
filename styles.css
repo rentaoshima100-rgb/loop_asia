@@ -3758,10 +3758,7 @@ p { margin: 0; }
 .home-main .dgm-title {
   font-weight: 700;
 }
-/* keep ONLY the hero (Top view) title in the original mincho */
-.home-main .hero-title, .home-main .hero-title .accent {
-  font-family: "Shippori Mincho B1", "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
-}
+/* ヒーロー見出しもゴシックに（明朝例外は撤廃。--font-serif=ゴシックにフォールバック） */
 /* keep ONLY "One. Stop." in the decorative Cormorant display */
 .home-main .intro-en-big, .home-main .intro-en-big .accent {
   font-family: "Cormorant Garamond", "Shippori Mincho B1", serif;
@@ -3778,9 +3775,6 @@ p { margin: 0; }
 [data-screen-label="page: ikusei"] {
   --font-serif: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
   --font-display-en: "Inter", "Noto Sans JP", system-ui, sans-serif;
-}
-[data-screen-label="page: ikusei"] .page-hero h1 {
-  font-family: "Shippori Mincho B1", "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
 }
 /* larger text */
 [data-screen-label="page: ikusei"] .page-hero .kicker { font-size: 14px; font-weight: 600; }
@@ -3842,9 +3836,6 @@ p { margin: 0; }
 [data-screen-label="page: tokutei"] {
   --font-serif: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
   --font-display-en: "Inter", "Noto Sans JP", system-ui, sans-serif;
-}
-[data-screen-label="page: tokutei"] .page-hero h1 {
-  font-family: "Shippori Mincho B1", "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
 }
 [data-screen-label="page: tokutei"] .page-hero .kicker { font-size: 14px; font-weight: 600; }
 [data-screen-label="page: tokutei"] .page-hero .lead { font-size: clamp(15px, 1.4vw, 18px); }
@@ -3945,9 +3936,6 @@ p { margin: 0; }
   --font-serif: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
   --font-display-en: "Inter", "Noto Sans JP", system-ui, sans-serif;
 }
-[data-screen-label="page: about"] .page-hero h1 {
-  font-family: "Shippori Mincho B1", "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
-}
 [data-screen-label="page: about"] .page-hero .kicker { font-size: 14px; font-weight: 600; }
 [data-screen-label="page: about"] .page-hero .lead { font-size: clamp(15px, 1.4vw, 18px); }
 [data-screen-label="page: about"] .section-num { font-size: 17px; font-weight: 600; }
@@ -3980,15 +3968,6 @@ p { margin: 0; }
   --font-serif: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
   --font-display-en: "Inter", "Noto Sans JP", system-ui, sans-serif;
 }
-:is([data-screen-label="page: cases"],
-    [data-screen-label="page: news"],
-    [data-screen-label="page: contact"],
-    [data-screen-label="page: privacy"],
-    [data-screen-label="page: regulations"],
-    [data-screen-label="page: case-detail"]) .page-hero h1 {
-  font-family: "Shippori Mincho B1", "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
-}
-
 /* shared size bumps (only for the pages above, via :is) */
 :is([data-screen-label="page: cases"],[data-screen-label="page: news"],[data-screen-label="page: contact"],[data-screen-label="page: privacy"],[data-screen-label="page: regulations"],[data-screen-label="page: case-detail"]) .section-title { font-size: clamp(26px, 4vw, 50px); font-weight: 800; }
 :is([data-screen-label="page: cases"],[data-screen-label="page: news"],[data-screen-label="page: contact"],[data-screen-label="page: privacy"],[data-screen-label="page: regulations"],[data-screen-label="page: news-detail"],[data-screen-label="page: case-detail"]) .section-num { font-size: 17px; font-weight: 600; }
