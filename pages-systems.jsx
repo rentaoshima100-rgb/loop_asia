@@ -16,7 +16,7 @@ function IkuseiPage() {
           <div className="data-grid">
             <FadeUp>
               <div className="section-num">OVERVIEW</div>
-              <h2 className="section-title" style={{marginTop:16, fontSize:"clamp(24px, 3vw, 36px)"}}>
+              <h2 className="section-title" style={{marginTop:16, fontSize:"clamp(28px, 3.6vw, 44px)"}}>
                 「育成」と「就労」を、<br/>同じ場所で両立する制度。
               </h2>
             </FadeUp>
@@ -96,13 +96,13 @@ function IkuseiPage() {
           </FadeUp>
           <FadeUp className="data-grid">
             <div>
-              <h3 className="serif" style={{fontSize:"clamp(20px, 2.4vw, 26px)", lineHeight:1.7, marginBottom:24, letterSpacing:"0.08em"}}>
+              <h3 className="serif" style={{fontSize:"clamp(22px, 2.8vw, 30px)", lineHeight:1.7, marginBottom:24, letterSpacing:"0.08em"}}>
                 約 1 ヶ月の<br/>体系的な入国後講習
               </h3>
-              <p style={{fontSize:14, lineHeight:2, color:"var(--ink-soft)", marginBottom:20}}>
+              <p style={{fontSize:16, lineHeight:2.05, color:"var(--ink-soft)", marginBottom:20}}>
                 グループ内日本語学校「ループインターナショナル日本語学校」にて、入国直後の約1ヶ月間、外国人材を専属的にお預かりし、日本語・生活・職種別の集中講習を実施いたします。
               </p>
-              <p style={{fontSize:14, lineHeight:2, color:"var(--ink-soft)", marginBottom:0}}>
+              <p style={{fontSize:16, lineHeight:2.05, color:"var(--ink-soft)", marginBottom:0}}>
                 配属前にN5（A1）相当の日本語力と、日本の生活ルール・労働安全の基礎を身につけたうえで、企業様の現場へお引き渡しします。
               </p>
               {/* TODO(client): 学校の所在地・定員・講師数などの詳細は未確定です。 */}

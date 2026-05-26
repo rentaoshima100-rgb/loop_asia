@@ -3770,6 +3770,36 @@ p { margin: 0; }
 /* larger text across the top-page sections (2nd pass — もっと大きく) */
 .home-main .section-title   { font-size: clamp(24px, 4.4vw, 54px); font-weight: 800; line-height: 1.35; white-space: nowrap; }
 @media (max-width: 768px) { .home-main .section-title { white-space: normal; } }
+
+/* =========================================================
+   育成就労ページ(#ikusei) — トップと同様にゴシック化＋文字拡大
+   PageHeroの見出し(ページのトップ見出し)のみ明朝を維持
+   ========================================================= */
+[data-screen-label="page: ikusei"] {
+  --font-serif: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
+  --font-display-en: "Inter", "Noto Sans JP", system-ui, sans-serif;
+}
+[data-screen-label="page: ikusei"] .page-hero h1 {
+  font-family: "Shippori Mincho B1", "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+}
+/* larger text */
+[data-screen-label="page: ikusei"] .page-hero .kicker { font-size: 14px; font-weight: 600; }
+[data-screen-label="page: ikusei"] .page-hero .lead { font-size: clamp(15px, 1.4vw, 18px); }
+[data-screen-label="page: ikusei"] .section-num { font-size: 17px; font-weight: 600; }
+[data-screen-label="page: ikusei"] .section-en { font-size: 16px; font-weight: 600; }
+[data-screen-label="page: ikusei"] .section-title { font-size: clamp(26px, 4vw, 50px); font-weight: 800; }
+[data-screen-label="page: ikusei"] .prose h2 { font-size: clamp(26px, 3.4vw, 40px); font-weight: 800; }
+[data-screen-label="page: ikusei"] .prose h3 { font-size: clamp(19px, 1.8vw, 23px); }
+[data-screen-label="page: ikusei"] .prose p,
+[data-screen-label="page: ikusei"] .prose li { font-size: clamp(15.5px, 1.3vw, 17.5px); }
+[data-screen-label="page: ikusei"] .info-table th,
+[data-screen-label="page: ikusei"] .info-table td { font-size: clamp(15px, 1.2vw, 16.5px); }
+[data-screen-label="page: ikusei"] .curriculum .ttl { font-size: 17.5px; }
+[data-screen-label="page: ikusei"] .curriculum .body { font-size: 14.5px; }
+[data-screen-label="page: ikusei"] .feat-h { font-size: clamp(20px, 2.2vw, 25px); }
+[data-screen-label="page: ikusei"] .feat-p { font-size: clamp(14px, 1.2vw, 16px); }
+[data-screen-label="page: ikusei"] .usp-text h2 { font-size: clamp(26px, 3.4vw, 42px); }
+[data-screen-label="page: ikusei"] .usp-text p { font-size: clamp(15px, 1.25vw, 17px); }
 .home-main .section-num     { font-size: 17px; }
 .home-main .section-en      { font-size: 16px; }
 .home-main .intro-vlabel    { font-size: 19px; }
