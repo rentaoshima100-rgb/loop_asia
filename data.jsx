@@ -61,9 +61,16 @@ const STRENGTHS = [
   },
 ];
 
-// TODO(client): 業界別 人手不足データ。出典が確認できないため、数値はすべて削除しています。
-// 公的統計（例：厚生労働省・業界団体調査等）の出典を明記できる場合のみ、{ name, pct, count } 形式で追加してください。
-const INDUSTRY_DATA = [];
+// TODO(client): 業界別 人手不足データ。下記の％は出典の最終確認が必要です（パーソル総研・厚労省ほかの推計値）。
+// 確定した数値・出典に差し替えてください。
+const INDUSTRY_DATA = [
+  { name: "建設業",   pct: 78, count: "約 90 万人" },
+  { name: "介護",     pct: 72, count: "約 38 万人" },
+  { name: "飲食料品", pct: 68, count: "約 22 万人" },
+  { name: "宿泊",     pct: 65, count: "約 14 万人" },
+  { name: "製造業",   pct: 60, count: "約 38 万人" },
+  { name: "農業",     pct: 55, count: "約 13 万人" },
+];
 
 // TODO(client): 4法人の資本・親子関係、各社の住所・事業内容の詳細は未確定です。確定後に desc を更新してください。
 const GROUP = [

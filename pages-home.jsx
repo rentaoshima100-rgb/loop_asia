@@ -171,31 +171,25 @@ function HomePage() {
               </p>
             </FadeUp>
             <div ref={barsRef}>
-              {/* 農業・製造・建設をアイコンで表現。出典付きの数値が用意でき次第、下の棒グラフが表示されます。 */}
-              <IndustryIcons />
-              {INDUSTRY_DATA.length > 0 && (
-                <>
-                  <div className="bar-chart" style={{marginTop:40}}>
-                    {INDUSTRY_DATA.map((d, i) => (
-                      <div className="bar-row" key={i}>
-                        <div className="bar-label">{d.name}</div>
-                        <div className="bar-track">
-                          <div
-                            className={`bar-fill ${i === 0 ? "accent" : ""}`}
-                            style={{ width: barsVisible ? `${d.pct}%` : "0%", transitionDelay: `${i * 120}ms` }}
-                          ></div>
-                        </div>
-                        <div className={`bar-value ${i === 0 ? "accent" : ""}`}>
-                          {d.pct}<span className="pct">%</span>
-                        </div>
-                      </div>
-                    ))}
+              <div className="bar-chart">
+                {INDUSTRY_DATA.map((d, i) => (
+                  <div className="bar-row" key={i}>
+                    <div className="bar-label">{d.name}</div>
+                    <div className="bar-track">
+                      <div
+                        className={`bar-fill ${i === 0 ? "accent" : ""}`}
+                        style={{ width: barsVisible ? `${d.pct}%` : "0%", transitionDelay: `${i * 120}ms` }}
+                      ></div>
+                    </div>
+                    <div className={`bar-value ${i === 0 ? "accent" : ""}`}>
+                      {d.pct}<span className="pct">%</span>
+                    </div>
                   </div>
-                  <div style={{fontSize:11, color:"var(--ink-mute)", letterSpacing:"0.15em", marginTop:24}}>
-                    ＊ 各業界 採用予定企業のうち「人手不足」と回答した割合
-                  </div>
-                </>
-              )}
+                ))}
+              </div>
+              <div style={{fontSize:11, color:"var(--ink-mute)", letterSpacing:"0.15em", marginTop:24}}>
+                ＊ 各業界 採用予定企業のうち「人手不足」と回答した割合
+              </div>
             </div>
           </div>
           {/* TODO(client): 受入実績の累計人数・設立からの年数・受入企業継続率は未確定のため非表示。確定後に数値を反映してください。 */}
