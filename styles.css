@@ -3747,6 +3747,8 @@ p { margin: 0; }
    ヘッダー/フッターも含めるため、ホームページのラッパー全体にスコープ（他ページは従来の明朝のまま）。 */
 [data-screen-label="page: home"] {
   --font-serif: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
+  /* 英字の装飾フォントもゴシック(Inter)へ。One. Stop. のみ下で Cormorant に戻す */
+  --font-display-en: "Inter", "Noto Sans JP", system-ui, sans-serif;
 }
 .home-main h1, .home-main h2, .home-main h3, .home-main h4,
 .home-main .serif,
@@ -3758,6 +3760,10 @@ p { margin: 0; }
 /* keep ONLY the hero (Top view) title in the original mincho */
 .home-main .hero-title, .home-main .hero-title .accent {
   font-family: "Shippori Mincho B1", "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+}
+/* keep ONLY "One. Stop." in the decorative Cormorant display */
+.home-main .intro-en-big, .home-main .intro-en-big .accent {
+  font-family: "Cormorant Garamond", "Shippori Mincho B1", serif;
 }
 
 /* larger text across the top-page sections (2nd pass — もっと大きく) */
