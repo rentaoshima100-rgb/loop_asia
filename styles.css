@@ -3785,3 +3785,15 @@ p { margin: 0; }
 /* timeline diagram (通算最大8年) — readable larger title/sub */
 .home-main .dgm-title       { font-size: clamp(24px, 2.9vw, 34px); }
 .home-main .dgm-sub         { font-size: 14.5px; letter-spacing: 0.16em; }
+
+/* 英語のサブラベル（GROUP STRUCTURE / 4 COMPANIES — ONE MISSION 等）も
+   セリフ(Cormorant)からゴシック(Inter)へ */
+.home-main .section-num,
+.home-main .section-en,
+.home-main .entry-num,
+.home-main .strength-num,
+.home-main .en-sub,
+.home-main .dgm-sub {
+  font-family: var(--font-sans-en);
+  font-weight: 600;
+}
