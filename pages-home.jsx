@@ -48,6 +48,31 @@ function HomePage() {
       {/* 3 ASSURANCES — overlapping below hero */}
       <AssuranceBar />
 
+      {/* NEWS — お知らせを最上部（One.Stop. 導入＝ワンストップ訴求より上）に配置 */}
+      <section className="section section-soft tight">
+        <div className="container">
+          <FadeUp className="section-head" style={{justifyContent:"space-between", display:"flex", alignItems:"baseline"}}>
+            <div>
+              <div className="section-num">INFORMATION</div>
+              <h2 className="section-title">お知らせ</h2>
+            </div>
+            <a onClick={() => navigate("news")} className="btn btn-ghost" style={{padding:"14px 24px"}}>
+              一覧を見る <span className="arrow"><Icon name="arrow" size={14}/></span>
+            </a>
+          </FadeUp>
+          <div className="news-list">
+            {NEWS.slice(0,3).map((n, i) => (
+              <FadeUp key={i} className="news-row" delay={i * 60} onClick={() => { window.location.hash = `news-detail=${i}`; window.scrollTo({top:0, behavior:"instant"}); }}>
+                <div className="news-date">{n.date}</div>
+                <div className={`news-tag ${n.catClass}`}>{n.cat}</div>
+                <div className="news-title">{n.title}</div>
+                <div className="arrow"><Icon name="arrow" size={14}/></div>
+              </FadeUp>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* INTRO */}
       <section className="section">
         <div className="container">
@@ -71,31 +96,6 @@ function HomePage() {
                 2027年4月施行の新しい育成就労制度においても、監理支援機関として、企業様と外国人材ご本人の双方が安心して取り組める環境を、これまでと変わらぬ丁寧さでお届けしてまいります。
               </p>
             </FadeUp>
-          </div>
-        </div>
-      </section>
-
-      {/* NEWS — moved to upper area (お知らせ上部 / ワンストップ下部) */}
-      <section className="section section-soft tight">
-        <div className="container">
-          <FadeUp className="section-head" style={{justifyContent:"space-between", display:"flex", alignItems:"baseline"}}>
-            <div>
-              <div className="section-num">INFORMATION</div>
-              <h2 className="section-title">お知らせ</h2>
-            </div>
-            <a onClick={() => navigate("news")} className="btn btn-ghost" style={{padding:"14px 24px"}}>
-              一覧を見る <span className="arrow"><Icon name="arrow" size={14}/></span>
-            </a>
-          </FadeUp>
-          <div className="news-list">
-            {NEWS.slice(0,3).map((n, i) => (
-              <FadeUp key={i} className="news-row" delay={i * 60} onClick={() => { window.location.hash = `news-detail=${i}`; window.scrollTo({top:0, behavior:"instant"}); }}>
-                <div className="news-date">{n.date}</div>
-                <div className={`news-tag ${n.catClass}`}>{n.cat}</div>
-                <div className="news-title">{n.title}</div>
-                <div className="arrow"><Icon name="arrow" size={14}/></div>
-              </FadeUp>
-            ))}
           </div>
         </div>
       </section>
