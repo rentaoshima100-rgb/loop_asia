@@ -2857,14 +2857,14 @@ p { margin: 0; }
 }
 .journey7 .j7-card::before { content:""; position:absolute; left:-1.5px; top:-1.5px; right:-1.5px; height:5px; background:var(--j-red); }
 .journey7 .j7-duration {
-  display:inline-block; font-size:10px; letter-spacing:.18em; font-weight:700;
-  color:var(--j-red-deep); background:var(--j-red-tint); padding:3px 8px; margin-bottom:8px;
+  display:inline-block; font-size:11.5px; letter-spacing:.16em; font-weight:700;
+  color:var(--j-red-deep); background:var(--j-red-tint); padding:4px 9px; margin-bottom:9px;
 }
 .journey7 .j7-card h3, .journey7 .j7-card-m h3 {
-  font-family:"Noto Serif JP", serif; font-weight:900; font-size:16px; line-height:1.35;
-  margin:0 0 8px; color:var(--j-ink); letter-spacing:0;
+  font-family:"Noto Sans JP", sans-serif; font-weight:900; font-size:18.5px; line-height:1.4;
+  margin:0 0 8px; color:var(--j-ink); letter-spacing:0.02em;
 }
-.journey7 .j7-card p, .journey7 .j7-card-m p { font-size:11.5px; line-height:1.65; margin:0; color:#3b1d18; }
+.journey7 .j7-card p, .journey7 .j7-card-m p { font-size:13.5px; line-height:1.7; margin:0; color:#3b1d18; }
 .journey7 .j7-step:hover .j7-card { box-shadow: 0 26px 50px -22px rgba(122,10,27,.6); }
 
 .journey7 .j7-badge {
@@ -2874,7 +2874,7 @@ p { margin: 0; }
   opacity:1; animation: j7fade .6s ease both; animation-delay: var(--delay,0s);
 }
 .journey7 .j7-badge::after { content:""; position:absolute; inset:5px; border-radius:50%; background: radial-gradient(circle at 30% 30%, #fff, #fbe7e3 70%); z-index:-1; }
-.journey7 .j7-badge .n { font-family:"DM Serif Display", serif; font-style:italic; font-size:38px; color:var(--j-red); line-height:1; transform: translateY(-2px); }
+.journey7 .j7-badge .n { font-family:"Noto Sans JP", sans-serif; font-weight:900; font-size:34px; color:var(--j-red); line-height:1; transform: translateY(-1px); }
 .journey7 .j7-badge .dot, .journey7 .j7-badge-m .dot {
   position:absolute; bottom:-6px; left:50%; transform:translateX(-50%);
   width:14px; height:14px; border-radius:50%; background:var(--j-red); border:2.5px solid #fff; box-shadow:0 0 0 1.5px var(--j-ink);
@@ -2889,28 +2889,28 @@ p { margin: 0; }
 
 .journey7 .j7-ground {
   position:absolute; bottom:14px; display:flex; align-items:center; gap:10px;
-  font-family:"Noto Serif JP"; font-weight:900; font-size:14px; color:#3b1d18;
+  font-family:"Noto Sans JP"; font-weight:700; font-size:15px; color:#3b1d18;
 }
 .journey7 .j7-ground.left { left:0; }
 .journey7 .j7-ground.right { right:0; text-align:right; }
 .journey7 .j7-ground .ico {
   width:40px; height:40px; border-radius:50%; background:#fff; border:2px solid var(--j-ink);
-  display:grid; place-items:center; font-family:"Noto Serif JP", serif; font-weight:900; color:var(--j-red-deep); font-size:18px; line-height:1; flex:none;
+  display:grid; place-items:center; font-family:"Noto Sans JP", sans-serif; font-weight:700; color:var(--j-red-deep); font-size:18px; line-height:1; flex:none;
 }
-.journey7 .j7-ground small { display:block; font-family:"Noto Sans JP"; font-weight:500; font-size:10px; letter-spacing:.26em; color:#8a4a3c; text-transform:uppercase; }
+.journey7 .j7-ground small { display:block; font-family:"Noto Sans JP"; font-weight:600; font-size:11px; letter-spacing:.22em; color:#8a4a3c; text-transform:uppercase; }
 
 @keyframes j7fade { from { opacity:0; } to { opacity:1; } }
 
 /* ---- Mobile vertical timeline ---- */
 .journey7 .j7-chip {
   display:flex; align-items:center; gap:12px;
-  font-family:"Noto Serif JP"; font-weight:900; font-size:14px; color:#3b1d18; padding:8px 0;
+  font-family:"Noto Sans JP"; font-weight:700; font-size:15px; color:#3b1d18; padding:8px 0;
 }
 .journey7 .j7-chip .ico {
   width:36px; height:36px; border-radius:50%; background:#fff; border:2px solid var(--j-ink);
-  display:grid; place-items:center; flex:none; font-family:"Noto Serif JP", serif; font-weight:900; color:var(--j-red-deep); font-size:16px; line-height:1;
+  display:grid; place-items:center; flex:none; font-family:"Noto Sans JP", sans-serif; font-weight:700; color:var(--j-red-deep); font-size:16px; line-height:1;
 }
-.journey7 .j7-chip small { display:block; font-family:"Noto Sans JP"; font-weight:500; font-size:9px; letter-spacing:.26em; color:#8a4a3c; text-transform:uppercase; margin-bottom:1px; }
+.journey7 .j7-chip small { display:block; font-family:"Noto Sans JP"; font-weight:600; font-size:10.5px; letter-spacing:.22em; color:#8a4a3c; text-transform:uppercase; margin-bottom:1px; }
 .journey7 .j7-journey { position:relative; margin:6px 0; padding:0; list-style:none; }
 .journey7 .j7-spine { position:absolute; left:0; top:0; width:56px; height:100%; pointer-events:none; }
 .journey7 .j7-step-m { position:relative; padding:10px 0 22px 76px; min-height:84px; }
@@ -2920,7 +2920,7 @@ p { margin: 0; }
   border:2.5px solid var(--j-ink); box-shadow:0 8px 18px -8px rgba(0,0,0,.35); display:grid; place-items:center; z-index:5;
 }
 .journey7 .j7-badge-m::after { content:""; position:absolute; inset:4px; border-radius:50%; background: radial-gradient(circle at 30% 30%, #fff, #fbe7e3 70%); z-index:-1; }
-.journey7 .j7-badge-m .n { font-family:"DM Serif Display", serif; font-style:italic; font-size:28px; color:var(--j-red); line-height:1; transform: translateY(-1px); }
+.journey7 .j7-badge-m .n { font-family:"Noto Sans JP", sans-serif; font-weight:900; font-size:26px; color:var(--j-red); line-height:1; transform: translateY(0); }
 .journey7 .j7-card-m {
   background:#fff; border:1.5px solid var(--j-ink); box-shadow:0 14px 26px -18px rgba(122,10,27,.45);
   padding:12px 14px 14px; position:relative;
