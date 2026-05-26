@@ -14,7 +14,7 @@ function HomePage() {
   }, []);
 
   return (
-    <main>
+    <main className="home-main">
       {/* HERO */}
       <section className="hero">
         <div className="hero-photo" style={{backgroundImage:`url(${PHOTOS.hero})`}}></div>

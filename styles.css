@@ -3736,3 +3736,45 @@ p { margin: 0; }
   .mobile-contact { padding: 20px 20px; }
   .mobile-contact .mc-value { font-size: 24px; }
 }
+
+/* =========================================================
+   TOP PAGE — bold gothic typeface + larger text (client request)
+   Hero と共有CTAバンドは元の明朝のまま維持。サイズはclampで
+   モバイルでも崩れないよう自動スケール。
+   ========================================================= */
+.home-main h1, .home-main h2, .home-main h3, .home-main h4,
+.home-main .serif,
+.home-main .section-title, .home-main .entry-title,
+.home-main .intro-vlabel, .home-main .group-card .name,
+.home-main .dgm-title {
+  font-family: var(--font-sans);
+  font-weight: 700;
+}
+/* keep hero focal title & shared CTA band in the original mincho */
+.home-main .hero-title, .home-main .hero-title .accent,
+.home-main .cta-band h2, .home-main .cta-band .serif {
+  font-family: var(--font-serif);
+}
+
+/* larger text across the top-page sections */
+.home-main .section-title   { font-size: clamp(28px, 4.2vw, 52px); font-weight: 800; }
+.home-main .section-num     { font-size: 15px; }
+.home-main .section-en      { font-size: 14px; }
+.home-main .intro-vlabel    { font-size: 16px; }
+.home-main .intro-body h2   { font-size: clamp(25px, 3.4vw, 42px); font-weight: 800; }
+.home-main .intro-body p    { font-size: clamp(15px, 1.2vw, 17.5px); }
+.home-main .entry-title     { font-size: clamp(18px, 1.6vw, 22px); }
+.home-main .entry-desc      { font-size: clamp(13.5px, 1.05vw, 15.5px); }
+.home-main .strength-title  { font-size: clamp(19px, 1.9vw, 26px); }
+.home-main .strength-body   { font-size: clamp(14.5px, 1.1vw, 16.5px); }
+.home-main .data-intro h3   { font-size: clamp(25px, 3.2vw, 40px); font-weight: 800; }
+.home-main .data-intro p    { font-size: clamp(15px, 1.2vw, 17px); }
+.home-main .sys-body h3     { font-size: clamp(22px, 2.6vw, 30px); }
+.home-main .sys-body p      { font-size: clamp(14.5px, 1.1vw, 16.5px); }
+.home-main .sys-meta-item .k { font-size: 12px; }
+.home-main .sys-meta-item .v { font-size: 15px; }
+.home-main .group-card .name { font-size: clamp(17px, 1.6vw, 21px); }
+.home-main .group-card .desc { font-size: clamp(13px, 1vw, 15px); }
+.home-main .usp-text h2     { font-size: clamp(26px, 3.8vw, 48px); }
+.home-main .usp-text p      { font-size: clamp(14.5px, 1.15vw, 16.5px); }
+.home-main .stat-label      { font-size: clamp(11px, 0.95vw, 13px); }
