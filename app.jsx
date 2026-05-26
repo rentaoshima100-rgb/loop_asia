@@ -3,7 +3,7 @@
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "palette": ["#0E8276", "#F25C3D", "#DDEFE9"],
   "headingFont": "mincho",
-  "showTweaks": true
+  "showTweaks": false
 }/*EDITMODE-END*/;
 
 const PALETTE_OPTIONS = [
@@ -78,26 +78,29 @@ function App() {
       <Header />
       <PageComp key={hash} />
       <Footer />
-      <TweaksPanel title="Tweaks">
-        <TweakSection label="カラーパレット" />
-        <TweakColor
-          label="Palette (Primary / Accent / Soft)"
-          value={t.palette}
-          options={PALETTE_OPTIONS}
-          onChange={(v) => setTweak("palette", v)}
-        />
-        <TweakSection label="見出しフォント" />
-        <TweakSelect
-          label="Heading font"
-          value={t.headingFont}
-          options={[
-            { value: "mincho",    label: "Shippori Mincho B1（明朝・推奨）" },
-            { value: "notoserif", label: "Noto Serif JP（明朝・標準的）" },
-            { value: "gothic",    label: "Noto Sans JP（ゴシック）" },
-          ]}
-          onChange={(v) => setTweak("headingFont", v)}
-        />
-      </TweaksPanel>
+      {/* 開発用のカラー/フォント切替パネル。公開時は TWEAK_DEFAULTS.showTweaks=false で非表示。 */}
+      {t.showTweaks && (
+        <TweaksPanel title="Tweaks">
+          <TweakSection label="カラーパレット" />
+          <TweakColor
+            label="Palette (Primary / Accent / Soft)"
+            value={t.palette}
+            options={PALETTE_OPTIONS}
+            onChange={(v) => setTweak("palette", v)}
+          />
+          <TweakSection label="見出しフォント" />
+          <TweakSelect
+            label="Heading font"
+            value={t.headingFont}
+            options={[
+              { value: "mincho",    label: "Shippori Mincho B1（明朝・推奨）" },
+              { value: "notoserif", label: "Noto Serif JP（明朝・標準的）" },
+              { value: "gothic",    label: "Noto Sans JP（ゴシック）" },
+            ]}
+            onChange={(v) => setTweak("headingFont", v)}
+          />
+        </TweaksPanel>
+      )}
     </div>
   );
 }
