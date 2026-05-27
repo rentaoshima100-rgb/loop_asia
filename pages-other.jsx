@@ -377,7 +377,7 @@ function ContactPage() {
       <PageHero
         kicker="CONTACT US"
         title="お問い合わせ"
-        lead="受入のご検討、制度に関するご相談、資料請求まで、お気軽にお問い合わせください。専任担当者より3営業日以内にご返信いたします。"
+        lead="お電話・FAX、またはお問い合わせフォームよりお気軽にご連絡ください。"
         photo={PHOTOS.contactHero}
         crumbs="お問い合わせ"
       />
@@ -392,7 +392,7 @@ function ContactPage() {
                   <h2 className="section-title" style={{marginTop:24, marginBottom:24}}>送信が完了いたしました。</h2>
                   <p style={{color:"var(--ink-soft)", lineHeight:2, marginBottom:32}}>
                     お問い合わせいただき、誠にありがとうございます。<br/>
-                    3営業日以内に、ご担当者よりご連絡いたします。
+                    担当者より追ってご連絡いたします。
                   </p>
                   <button className="btn btn-ghost" onClick={() => { setSubmitted(false); navigate("home"); }}>
                     トップへ戻る <span className="arrow"><Icon name="arrow" size={14}/></span>
@@ -400,48 +400,36 @@ function ContactPage() {
                 </div>
               ) : (
                 <form className="contact-form" onSubmit={(e) => { e.preventDefault(); setSubmitted(true); window.scrollTo({top:0, behavior:"smooth"}); }}>
-                  <div className="field">
-                    <label>御社名 <span className="req">必須</span></label>
-                    <input type="text" required placeholder="例：株式会社 山田製作所" />
+                  <div className="field full" style={{marginBottom:8}}>
+                    <h3 style={{margin:"0 0 6px", letterSpacing:"0.08em"}}>お問い合わせフォーム</h3>
+                    <p style={{fontSize:14, color:"var(--ink-soft)", lineHeight:1.9, margin:0}}>
+                      弊社製品についてのお問い合わせは、下記にて承っております。<br/>
+                      <span style={{color:"var(--accent)", fontWeight:700}}>*</span> は必須項目です。
+                    </p>
+                  </div>
+                  <div className="field full">
+                    <label>お問い合わせ内容 <span style={{color:"var(--accent)", fontWeight:700}}>*</span></label>
+                    <textarea required placeholder="お問い合わせ内容をご記入ください。"></textarea>
                   </div>
                   <div className="field">
-                    <label>ご担当者名 <span className="req">必須</span></label>
+                    <label>お名前（漢字） <span style={{color:"var(--accent)", fontWeight:700}}>*</span></label>
                     <input type="text" required placeholder="例：山田 太郎" />
                   </div>
                   <div className="field">
-                    <label>メールアドレス <span className="req">必須</span></label>
+                    <label>お名前（フリガナ） <span style={{color:"var(--accent)", fontWeight:700}}>*</span></label>
+                    <input type="text" required placeholder="例：ヤマダ タロウ" />
+                  </div>
+                  <div className="field">
+                    <label>E-Mail <span style={{color:"var(--accent)", fontWeight:700}}>*</span></label>
                     <input type="email" required placeholder="example@company.co.jp" />
                   </div>
                   <div className="field">
-                    <label>お電話番号</label>
-                    <input type="tel" placeholder="000-0000-0000" />
+                    <label>電話番号（半角） <span style={{color:"var(--accent)", fontWeight:700}}>*</span></label>
+                    <input type="tel" required inputMode="tel" placeholder="0600000000" />
                   </div>
                   <div className="field">
-                    <label>業種 <span className="opt">任意</span></label>
-                    <select defaultValue="">
-                      <option value="">選択してください</option>
-                      <option>建設</option><option>製造</option><option>農業</option>
-                      <option>介護</option><option>宿泊</option><option>飲食料品製造業</option>
-                      <option>外食業</option><option>その他</option>
-                    </select>
-                  </div>
-                  <div className="field">
-                    <label>ご希望の受入人数</label>
-                    <select defaultValue="">
-                      <option value="" disabled>選択してください</option>
-                      <option>1〜3名</option><option>4〜10名</option><option>11〜20名</option><option>21名以上</option><option>未定</option>
-                    </select>
-                  </div>
-                  <div className="field full">
-                    <label>ご希望の受入時期</label>
-                    <select defaultValue="">
-                      <option value="" disabled>選択してください</option>
-                      <option>3ヶ月以内</option><option>半年以内</option><option>1年以内</option><option>1年以上先</option><option>未定／情報収集中</option>
-                    </select>
-                  </div>
-                  <div className="field full">
-                    <label>お問い合わせ内容 <span className="req">必須</span></label>
-                    <textarea required placeholder="ご質問・ご相談内容をご記入ください。"></textarea>
+                    <label>FAX番号（半角）</label>
+                    <input type="tel" inputMode="tel" placeholder="0600000000" />
                   </div>
                   <div className="contact-actions">
                     <button type="submit" className="btn btn-dark">
@@ -454,31 +442,14 @@ function ContactPage() {
 
             <FadeUp delay={120}>
               <div className="contact-side">
-                <h3>お電話でのお問い合わせ</h3>
-                <div className="ph">06-6394-7770</div>
-                <div className="hours">本部／受付時間 9:00 – 18:00（土日祝休）</div>
-
-                <h3 style={{marginTop:8}}>本部</h3>
-                <div style={{fontSize:13.5, lineHeight:2, color:"var(--ink-soft)"}}>
-                  〒532-0002 大阪府大阪市淀川区東三国2丁目32-17 ループ大阪<br/>
-                  TEL 06-6394-7770 ／ FAX 06-6394-7772
-                </div>
-
-                <h3 style={{marginTop:8}}>江坂事務所</h3>
-                <div style={{fontSize:13.5, lineHeight:2, color:"var(--ink-soft)"}}>
-                  〒564-0063 大阪府吹田市江坂町1丁目6-3 ループ江坂<br/>
-                  TEL 06-6879-1790 ／ FAX 06-6879-1791<br/>
-                  <span style={{color:"var(--ink-mute)"}}>※ご来所は江坂事務所までお願いいたします</span>
-                </div>
-
-                <div style={{marginTop:32, paddingTop:24, borderTop:"1px solid var(--line)"}}>
-                  <h3 style={{marginTop:0}}>主なお問い合わせ内容</h3>
-                  <ul style={{listStyle:"none", padding:0, margin:0, fontSize:13.5, lineHeight:2.1, color:"var(--ink-soft)"}}>
-                    <li>・ 育成就労制度のご相談</li>
-                    <li>・ 特定技能の受入相談</li>
-                    <li>・ 資料請求・無料説明</li>
-                    <li>・ セミナーへのお申込み</li>
-                  </ul>
+                <h3>電話・FAX</h3>
+                <p style={{fontSize:14, color:"var(--ink-soft)", lineHeight:1.9, margin:"0 0 20px"}}>
+                  建設施工についてのお問い合わせは、こちらで受付しております。
+                </p>
+                <div className="ph">06-6394-7778</div>
+                <div className="hours">TEL ／ 平日 09:00 – 18:00</div>
+                <div style={{marginTop:16, fontSize:14, lineHeight:1.9, color:"var(--ink-soft)"}}>
+                  FAX：06-6394-7779
                 </div>
               </div>
             </FadeUp>
