@@ -424,8 +424,8 @@ function ContactPage() {
                     <input type="email" required placeholder="example@company.co.jp" />
                   </div>
                   <div className="field">
-                    <label>電話番号（半角） <span style={{color:"var(--accent)", fontWeight:700}}>*</span></label>
-                    <input type="tel" required inputMode="tel" placeholder="0600000000" />
+                    <label>電話番号（半角）</label>
+                    <input type="tel" inputMode="tel" placeholder="0600000000" />
                   </div>
                   <div className="field">
                     <label>FAX番号（半角）</label>
