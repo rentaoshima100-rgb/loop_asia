@@ -4,10 +4,11 @@ function NewsDetailPage() {
   /* sample: pick a featured news item; pass via hash like #news-detail=0 if needed */
   const idxMatch = window.location.hash.match(/news-detail=(\d+)/);
   const idx = idxMatch ? parseInt(idxMatch[1], 10) : 0;
-  const item = NEWS[idx] || NEWS[0];
+  const news = useNews();
+  const item = news[idx] || news[0];
 
   /* Related: 3 most recent excl. current */
-  const related = NEWS.filter((_, i) => i !== idx).slice(0, 3);
+  const related = news.filter((_, i) => i !== idx).slice(0, 3);
 
   return (
     <main>
@@ -39,11 +40,12 @@ function NewsDetailPage() {
             <div style={{aspectRatio:"16/9", backgroundSize:"cover", backgroundPosition:"center", backgroundImage:`url(${PHOTOS.classroom})`, marginBottom:48}}></div>
           </FadeUp>
 
-          {/* TODO(client): お知らせの本文は未確定です。実記事の確定後に差し替えてください。 */}
+          {/* Article body: rendered from the AI-published post (Supabase), or the
+              placeholder while no real article exists yet. */}
           <FadeUp delay={120} className="prose">
-            <div className="data-todo">
-              {`{{TODO: お知らせ本文（実記事の確定後に掲載します）}}`}
-            </div>
+            {item.body
+              ? <div dangerouslySetInnerHTML={{ __html: renderNewsHTML(item.body) }} />
+              : <div className="data-todo">{`{{TODO: お知らせ本文（実記事の確定後に掲載します）}}`}</div>}
             <div style={{marginTop:32}}>
               <button className="btn btn-ghost" onClick={() => navigate("news")}>
                 ← 一覧へ戻る

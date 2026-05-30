@@ -4,6 +4,7 @@ function HomePage() {
   /* animate bars when in view */
   const barsRef = useRef(null);
   const [barsVisible, setBarsVisible] = useState(false);
+  const news = useNews();
   useEffect(() => {
     if (!barsRef.current) return;
     const obs = new IntersectionObserver(([e]) => {
@@ -61,7 +62,7 @@ function HomePage() {
             </a>
           </FadeUp>
           <div className="news-list">
-            {NEWS.slice(0,3).map((n, i) => (
+            {news.slice(0,3).map((n, i) => (
               <FadeUp key={i} className="news-row" delay={i * 60} onClick={() => { window.location.hash = `news-detail=${i}`; window.scrollTo({top:0, behavior:"instant"}); }}>
                 <div className="news-date">{n.date}</div>
                 <div className={`news-tag ${n.catClass}`}>{n.cat}</div>

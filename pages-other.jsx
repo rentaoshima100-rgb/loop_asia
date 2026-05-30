@@ -334,7 +334,8 @@ function CasesPage() {
 
 function NewsPage() {
   const [filter, setFilter] = useState("すべて");
-  const filtered = filter === "すべて" ? NEWS : NEWS.filter(n => n.cat === filter);
+  const news = useNews();
+  const filtered = filter === "すべて" ? news : news.filter(n => n.cat === filter);
   return (
     <main>
       <PageHero
@@ -354,7 +355,7 @@ function NewsPage() {
           </FadeUp>
           <div className="news-list">
             {filtered.map((n, i) => (
-              <FadeUp key={i} className="news-row" delay={i * 40} onClick={() => { window.location.hash = `news-detail=${NEWS.indexOf(n)}`; window.scrollTo({top:0, behavior:"instant"}); }}>
+              <FadeUp key={i} className="news-row" delay={i * 40} onClick={() => { window.location.hash = `news-detail=${news.indexOf(n)}`; window.scrollTo({top:0, behavior:"instant"}); }}>
                 <div className="news-date">{n.date}</div>
                 <div className={`news-tag ${n.catClass}`}>{n.cat}</div>
                 <div className="news-title">{n.title}</div>

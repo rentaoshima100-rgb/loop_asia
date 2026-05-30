@@ -102,6 +102,86 @@ const IKUSEI_STEPS = [
   { label: "⑦  帰国または特定技能1号への移行",     body: "本人の希望とスキルに応じて、登録支援機関がそのまま支援を継続します。" },
 ];
 
+/* ── Live news from Supabase (AI-published posts) ──────────────────────────
+   Published blog posts are written by the WP_AI chat assistant into Supabase.
+   loop_asia reads them read-only via the public anon (publishable) key — RLS
+   allows SELECT on `blogs` only (see WP_AI supabase/004_rls.sql). If Supabase is
+   unreachable, the static NEWS above is used as a fallback. */
+const SUPABASE_URL = "https://bqgcaqyorknixsjakyet.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_zk7s0gLx_2PQv8IISZAT-Q_4mwneiEU";
+const _supa = (window.supabase && window.supabase.createClient)
+  ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+  : null;
+
+function fmtNewsDate(iso) {
+  const d = new Date(iso);
+  if (isNaN(d.getTime())) return "";
+  const p = (n) => String(n).padStart(2, "0");
+  return d.getFullYear() + "." + p(d.getMonth() + 1) + "." + p(d.getDate());
+}
+function blogToNews(b) {
+  return {
+    id: b.id,
+    slug: b.slug,
+    date: fmtNewsDate(b.created_at),
+    cat: b.category || "お知らせ",
+    catClass: "cat-org",
+    title: b.title,
+    excerpt: b.excerpt || "",
+    body: b.content || "",
+  };
+}
+async function loadNewsFromSupabase() {
+  if (!_supa) return [];
+  try {
+    const { data, error } = await _supa
+      .from("blogs")
+      .select("id,slug,title,excerpt,content,category,created_at")
+      .order("created_at", { ascending: false });
+    if (error || !data) return [];
+    return data.map(blogToNews);
+  } catch (e) {
+    return [];
+  }
+}
+
+// Hook: published posts (cached on window), falling back to the static NEWS above.
+function useNews() {
+  const [news, setNews] = React.useState(window.__LOOP_NEWS || NEWS);
+  React.useEffect(() => {
+    if (window.__LOOP_NEWS) return;
+    loadNewsFromSupabase().then((items) => {
+      if (items && items.length) { window.__LOOP_NEWS = items; setNews(items); }
+    });
+  }, []);
+  return news;
+}
+
+// Minimal, XSS-safe Markdown → HTML for news article bodies (escape first).
+function renderNewsHTML(md) {
+  const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  const inline = (s) => esc(s)
+    .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+    .replace(/\*(.+?)\*/g, "<em>$1</em>")
+    .replace(/`(.+?)`/g, "<code>$1</code>");
+  let html = "", inList = false;
+  const close = () => { if (inList) { html += "</ul>"; inList = false; } };
+  for (const raw of String(md || "").split(/\r?\n/)) {
+    const line = raw.trim();
+    let m;
+    if (!line) { close(); }
+    else if ((m = line.match(/^###\s+(.*)/))) { close(); html += "<h3>" + inline(m[1]) + "</h3>"; }
+    else if ((m = line.match(/^##\s+(.*)/)))  { close(); html += "<h2>" + inline(m[1]) + "</h2>"; }
+    else if ((m = line.match(/^#\s+(.*)/)))   { close(); html += "<h2>" + inline(m[1]) + "</h2>"; }
+    else if ((m = line.match(/^[-*]\s+(.*)/))){ if (!inList) { html += "<ul>"; inList = true; } html += "<li>" + inline(m[1]) + "</li>"; }
+    else if ((m = line.match(/^>\s+(.*)/)))   { close(); html += "<blockquote>" + inline(m[1]) + "</blockquote>"; }
+    else { close(); html += "<p>" + inline(line) + "</p>"; }
+  }
+  close();
+  return html;
+}
+
 Object.assign(window, {
-  PHOTOS, NAV, STRENGTHS, INDUSTRY_DATA, GROUP, NEWS, NEWS_CATS, CASES, IKUSEI_STEPS
+  PHOTOS, NAV, STRENGTHS, INDUSTRY_DATA, GROUP, NEWS, NEWS_CATS, CASES, IKUSEI_STEPS,
+  useNews, renderNewsHTML
 });
