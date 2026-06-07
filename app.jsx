@@ -69,6 +69,7 @@ function App() {
   else if (page === "about") PageComp = AboutPage;
   else if (page === "cases") PageComp = CasesPage;
   else if (page === "news") PageComp = NewsPage;
+  else if (page === "faq") PageComp = FaqPage;
   else if (page === "contact") PageComp = ContactPage;
   else if (page === "news-detail") PageComp = NewsDetailPage;
   else if (page === "case-detail") PageComp = CaseDetailPage;
