@@ -4070,3 +4070,74 @@ body { font-weight: 600; }
 /* FAQ ページの見出し等を他ページと同等の拡大トーンに合わせる */
 [data-screen-label="page: faq"] .section-title { font-size: clamp(26px, 4vw, 50px); font-weight: 800; }
 [data-screen-label="page: faq"] .page-hero .kicker { font-size: 14px; font-weight: 600; }
+
+/* =========================================================
+   NORTIQ Stats Section v2 — 実績と対応分野（ホームDATA下部）
+   全クラスを sv- でスコープし既存スタイルと衝突回避。赤はブランド色に統一。
+   ========================================================= */
+.statsv2 {
+  --sv-red: var(--primary);
+  --sv-ink: var(--ink);
+  --sv-ink-soft: var(--ink-soft);
+  --sv-ink-faint: var(--ink-mute);
+  --sv-rule: var(--line);
+  --sv-font-num: "Barlow Condensed", var(--font-sans-en), sans-serif;
+  --sv-font-en: "Barlow", var(--font-sans-en), sans-serif;
+  margin-top: clamp(40px, 5vw, 64px);
+  font-family: var(--font-sans);
+  color: var(--sv-ink);
+}
+
+/* header */
+.sv-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; padding-bottom: 26px; border-bottom: 2px solid var(--sv-ink); }
+.sv-head-left { display: flex; align-items: center; gap: 18px; }
+.sv-accent { width: 6px; height: 40px; background: var(--sv-red); border-radius: 3px; flex: none; }
+.sv-jp { font-size: clamp(22px, 2.6vw, 30px); font-weight: 900; letter-spacing: 0.05em; color: var(--sv-ink); }
+.sv-meta { font-family: var(--sv-font-en); font-size: 12px; letter-spacing: 0.16em; color: var(--sv-ink-faint); text-transform: uppercase; padding-bottom: 4px; white-space: nowrap; }
+
+/* stats */
+.sv-stats { display: grid; grid-template-columns: repeat(3, 1fr); }
+.sv-stat { position: relative; padding: 38px 30px 34px; }
+.sv-stat + .sv-stat::before { content: ""; position: absolute; left: 0; top: 32px; bottom: 28px; width: 1px; background: var(--sv-rule); }
+.sv-tick { font-family: var(--sv-font-en); font-size: 11px; font-weight: 700; letter-spacing: 0.18em; color: var(--sv-ink-faint); margin-bottom: 18px; display: flex; align-items: center; gap: 8px; }
+.sv-tick::before { content: ""; width: 14px; height: 2px; background: var(--sv-red); }
+.sv-num { font-family: var(--sv-font-num); font-weight: 700; line-height: 0.84; color: var(--sv-red); display: flex; align-items: baseline; gap: 7px; white-space: nowrap; }
+.sv-num .sv-big { font-size: clamp(48px, 5vw, 78px); }
+.sv-pre { font-family: var(--font-sans); font-weight: 900; font-size: clamp(20px, 2.2vw, 32px); align-self: center; color: var(--sv-ink); }
+.sv-unit { font-family: var(--font-sans); font-weight: 700; font-size: 18px; color: var(--sv-ink-soft); }
+.sv-label { margin-top: 18px; font-size: 16px; font-weight: 700; letter-spacing: 0.06em; color: var(--sv-ink); white-space: nowrap; }
+
+/* red sector band */
+.sv-band { margin-top: 28px; background: var(--sv-red); border-radius: 4px; display: grid; grid-template-columns: 200px repeat(3, 1fr); overflow: hidden; box-shadow: 0 26px 50px -28px rgba(200, 16, 46, 0.55); }
+.sv-intro { padding: 40px 32px; color: #fff; display: flex; flex-direction: column; justify-content: center; gap: 14px; background: rgba(0, 0, 0, 0.06); }
+.sv-kicker { font-family: var(--sv-font-en); font-size: 12px; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(255, 255, 255, 0.82); }
+.sv-intro-big { font-size: clamp(20px, 2.2vw, 26px); font-weight: 900; line-height: 1.35; letter-spacing: 0.02em; color: #fff; }
+.sv-chip { align-self: flex-start; font-family: var(--sv-font-num); font-weight: 700; font-size: 14px; letter-spacing: 0.06em; color: var(--sv-red); background: #fff; border-radius: 999px; padding: 4px 14px; }
+.sv-sector { position: relative; padding: 40px 24px 36px; text-align: center; color: #fff; transition: background 0.35s ease; }
+.sv-sector + .sv-sector, .sv-intro + .sv-sector { border-left: 1px solid rgba(255, 255, 255, 0.22); }
+.sv-sector:hover { background: rgba(255, 255, 255, 0.08); }
+.sv-idx { position: absolute; top: 18px; right: 20px; font-family: var(--sv-font-num); font-size: 13px; font-weight: 600; letter-spacing: 0.1em; color: rgba(255, 255, 255, 0.55); }
+.sv-icon { width: 58px; height: 58px; margin: 0 auto 20px; display: grid; place-items: center; border-radius: 50%; border: 1.5px solid rgba(255, 255, 255, 0.45); }
+.sv-icon svg { width: 30px; height: 30px; stroke: #fff; }
+.sv-name { font-size: 22px; font-weight: 900; letter-spacing: 0.16em; color: #fff; }
+.sv-en { margin-top: 9px; font-family: var(--sv-font-en); font-size: 11px; font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(255, 255, 255, 0.7); }
+
+/* footer note */
+.sv-note { margin-top: 22px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.sv-note-main { font-size: 14px; font-weight: 500; color: var(--sv-ink-soft); letter-spacing: 0.03em; }
+.sv-note-main b { color: var(--sv-ink); font-weight: 700; }
+.sv-note-sub { font-size: 12px; color: var(--sv-ink-faint); letter-spacing: 0.03em; }
+
+@media (max-width: 900px) {
+  .sv-stats { grid-template-columns: repeat(2, 1fr); row-gap: 8px; }
+  .sv-band { grid-template-columns: 1fr; }
+  .sv-intro { flex-direction: row; align-items: center; flex-wrap: wrap; }
+  .sv-intro + .sv-sector, .sv-sector + .sv-sector { border-left: none; border-top: 1px solid rgba(255, 255, 255, 0.22); }
+}
+@media (max-width: 560px) {
+  .sv-stats { grid-template-columns: 1fr; }
+  .sv-stat + .sv-stat::before { display: none; }
+  .sv-stat { border-top: 1px solid var(--sv-rule); }
+  .sv-stat:first-child { border-top: none; }
+  .sv-head { flex-direction: column; align-items: flex-start; gap: 16px; }
+}

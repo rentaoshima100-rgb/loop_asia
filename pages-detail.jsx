@@ -290,23 +290,38 @@ function RegulationsPage() {
             <p>
               監理団体（現行制度では監理支援機関）の業務の運営に関する規程は、関係法令に基づき、インターネットを通じて公表することとされています。当組合は、法令の定めに従い、本規程を以下のとおり公開いたします。
             </p>
-            <div style={{marginTop:16, padding:"24px 28px", background:"var(--bg-soft)", border:"1px dashed var(--line)"}}>
+            {/* PDF（組合提供：docs/gyomu-no-unei-kitei.pdf）を掲載。
+                ※提供PDFはスキャン画像のため本文テキスト抽出不可。文書種別が「業務の運営に関する規程」で
+                  間違いないか組合に確認（要確認）。別文書（利用規約等）の場合は配置先を調整。 */}
+            <div style={{marginTop:16, padding:"24px 28px", background:"var(--bg-soft)", border:"1px solid var(--line)"}}>
               <div style={{fontSize:11, letterSpacing:"0.2em", color:"var(--accent)", marginBottom:10}}>業務の運営に関する規程</div>
-              <div style={{fontSize:13.5, color:"var(--ink-soft)", lineHeight:1.9}}>
-                {`{{TODO: 掲載方法確定待ち（PDF埋め込み or 別サイトリンク。組合回答待ち）}}`}
+              <div style={{display:"flex", alignItems:"center", gap:16, flexWrap:"wrap", marginBottom:18}}>
+                <span style={{fontSize:14, color:"var(--ink-soft)", lineHeight:1.8}}>
+                  本規程を以下のPDFにて公開しています。
+                </span>
+                <a href="docs/gyomu-no-unei-kitei.pdf" target="_blank" rel="noopener noreferrer" className="btn btn-ghost" style={{padding:"12px 22px"}}>
+                  PDFを開く <span className="arrow"><Icon name="arrow" size={14}/></span>
+                </a>
               </div>
+              <iframe
+                title="業務の運営に関する規程（PDF）"
+                src="docs/gyomu-no-unei-kitei.pdf"
+                loading="lazy"
+                style={{width:"100%", height:"70vh", minHeight:480, border:"1px solid var(--line)", background:"#fff"}}
+              ></iframe>
             </div>
             {/* 要確認: 2027年4月以降の監理支援機関制度下における公表義務の範囲・様式は別途確認。 */}
 
             {/* B-2: 許可番号＋日付の公開枠（番号と日付のみ）。許可が下り次第、組合から共有。 */}
             <h2 id="kyoka-sho" style={{marginTop:48}}>許可証（番号・日付）</h2>
             <p>
-              監理支援機関 許可証および登録支援機関 許可証（登録支援機関：グループ会社・株式会社ループ管財）について、許可番号と許可日を以下に掲載いたします。
+              {/* 要確認: 登録支援機関の帰属法人は資料間で矛盾のため法人名を断定しない（凍結） */}
+              監理支援機関 許可証および登録支援機関 許可証について、許可番号と許可日を以下に掲載いたします。
             </p>
             <table className="info-table" style={{marginTop:16}}>
               <tbody>
                 <tr><th style={{width:"40%"}}>監理支援機関 許可番号／許可日</th><td>{`{{TODO: 許可が下り次第、組合から共有}}`}</td></tr>
-                <tr><th>登録支援機関 許可番号／許可日<br/><span style={{color:"var(--ink-mute)", fontSize:12}}>（株式会社ループ管財）</span></th><td>{`{{TODO: 許可が下り次第、組合から共有}}`}</td></tr>
+                <tr><th>登録支援機関 許可番号／許可日<br/><span style={{color:"var(--ink-mute)", fontSize:12}}>（グループ内登録支援機関｜帰属法人は要確認）</span></th><td>{`{{TODO: 許可が下り次第、組合から共有}}`}</td></tr>
               </tbody>
             </table>
 

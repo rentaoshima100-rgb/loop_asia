@@ -1,5 +1,104 @@
 /* Home page */
 
+/* 実績と対応分野（NORTIQ Stats Section v2）— スクロール表示時に数値をカウントアップ */
+function CountUp({ to, run, format }) {
+  const [val, setVal] = useState(0);
+  useEffect(() => {
+    if (!run) { setVal(0); return; }
+    let raf;
+    const dur = 1100;
+    const start = performance.now();
+    const step = (now) => {
+      const t = Math.min(1, (now - start) / dur);
+      const eased = 1 - Math.pow(1 - t, 3);
+      setVal(Math.round(to * eased));
+      if (t < 1) raf = requestAnimationFrame(step);
+    };
+    raf = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(raf);
+  }, [run, to]);
+  return <span className="sv-big">{format ? val.toLocaleString("en-US") : val}</span>;
+}
+
+function StatsSection() {
+  const ref = useRef(null);
+  const [run, setRun] = useState(false);
+  useEffect(() => {
+    if (!ref.current) return;
+    const obs = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) { setRun(true); obs.disconnect(); }
+    }, { threshold: 0.3 });
+    obs.observe(ref.current);
+    return () => obs.disconnect();
+  }, []);
+
+  const sectors = [
+    { idx: "01", name: "建設", en: "Construction", icon: (
+      <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M4 21h16"/><path d="M6 21V6l11 -2"/><path d="M6 6l13 4"/><path d="M17 8v2"/><rect x="9" y="13" width="6" height="8"/>
+      </svg>) },
+    { idx: "02", name: "製造", en: "Manufacturing", icon: (
+      <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="3.2"/><path d="M12 3v2.4M12 18.6V21M3 12h2.4M18.6 12H21M5.3 5.3l1.7 1.7M17 17l1.7 1.7M18.7 5.3 17 7M7 17l-1.7 1.7"/>
+      </svg>) },
+    { idx: "03", name: "農業", en: "Agriculture", icon: (
+      <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 21v-9"/><path d="M12 12c0 -3.3 2.7 -6 6 -6 0 3.3 -2.7 6 -6 6Z"/><path d="M12 13c0 -2.8 -2.2 -5 -5 -5 0 2.8 2.2 5 5 5Z"/>
+      </svg>) },
+  ];
+
+  return (
+    <div className="statsv2" ref={ref}>
+      <div className="sv-head">
+        <div className="sv-head-left">
+          <span className="sv-accent"></span>
+          <div className="sv-jp">実績と対応分野</div>
+        </div>
+        <div className="sv-meta">亜細亜交流事業協同組合 — Since 2009</div>
+      </div>
+
+      <div className="sv-stats">
+        <div className="sv-stat">
+          <div className="sv-tick">COUNTRIES</div>
+          <div className="sv-num"><CountUp to={9} run={run}/><span className="sv-unit">ヵ国</span></div>
+          <div className="sv-label">対応送出国</div>
+        </div>
+        <div className="sv-stat">
+          <div className="sv-tick">PLACEMENTS</div>
+          <div className="sv-num"><CountUp to={1821} run={run} format/><span className="sv-unit">人</span></div>
+          <div className="sv-label">累計 受入実績</div>
+        </div>
+        <div className="sv-stat">
+          <div className="sv-tick">EXPERIENCE</div>
+          <div className="sv-num"><span className="sv-pre">創業</span><CountUp to={17} run={run}/><span className="sv-unit">年</span></div>
+          <div className="sv-label">2009年 設立</div>
+        </div>
+      </div>
+
+      <div className="sv-band">
+        <div className="sv-intro">
+          <div className="sv-kicker">Industries</div>
+          <div className="sv-intro-big">特定産業<br/>16分野に対応</div>
+          <span className="sv-chip">16 FIELDS</span>
+        </div>
+        {sectors.map((s, i) => (
+          <div key={i} className="sv-sector">
+            <div className="sv-idx">{s.idx}</div>
+            <div className="sv-icon">{s.icon}</div>
+            <div className="sv-name">{s.name}</div>
+            <div className="sv-en">{s.en}</div>
+          </div>
+        ))}
+      </div>
+
+      <div className="sv-note">
+        <div className="sv-note-main"><b>建設・製造・農業</b>をはじめ、特定産業16分野に対応しています。</div>
+        <div className="sv-note-sub">※具体的な数値データは出典確認後に掲載します。</div>
+      </div>
+    </div>
+  );
+}
+
 function HomePage() {
   /* animate bars when in view */
   const barsRef = useRef(null);
@@ -94,7 +193,8 @@ function HomePage() {
                 単なる「人材紹介」ではなく、入国前の日本語教育から、入国後の生活立ち上げ、配属先での定着支援、そしてキャリア形成までを、グループ法人４社で一貫してご支援する「ワンストップ体制」が、私たちの強みです。
               </p>
               <p>
-                2027年4月施行の新しい育成就労制度においても、監理支援機関として、企業様と外国人材ご本人の双方が安心して取り組める環境を、これまでと変わらぬ丁寧さでお届けしてまいります。
+                {/* 「実習生」はA-4の用語ルールに従い「育成就労外国人」に正規化。送出し機関は§4-1の要確認→「運営」で確定 */}
+                当組合は、グループ内で日本語学校（認定日本語教育機関）、送出し機関（ベトナム、インドネシア）を運営。育成就労外国人・特定技能制度のプロフェッショナルとして、企業様と育成就労外国人の双方に寄り添ったサポートを提供しています。長年の実績と専門知識をもとに、受入から帰国まで一貫してお支えします。
               </p>
             </FadeUp>
           </div>
@@ -193,30 +293,11 @@ function HomePage() {
               </div>
             </div>
           </div>
-          <FadeUp className="stat-row">
-            <div className="stat">
-              <div className="stat-num">9<span className="unit">カ国</span></div>
-              <div className="stat-label">対応送出国</div>
-            </div>
-            <div className="stat">
-              <div className="stat-num">1,821<span className="unit">人</span></div>
-              <div className="stat-label">累計 受入実績</div>
-            </div>
-            {/* 要確認: このタイルは「創業年数」を指す前提。別の数値を意図する場合は差し替え。 */}
-            <div className="stat">
-              <div className="stat-num">創業 17<span className="unit">年</span></div>
-              <div className="stat-label">2009年 設立</div>
-            </div>
-            {/* TODO(client): 受入企業 継続率は数値未提供のため保留。組合から数値提供があり次第反映。
-                提供が無ければタイルごと削除を別途判断。 */}
-            <div className="stat">
-              <div className="stat-num todo">{`{{TODO}}`}</div>
-              <div className="stat-label">受入企業 継続率</div>
-            </div>
-          </FadeUp>
-          {/* 主な受入分野（農業・製造・建設）をアイコン／イラストで表現 */}
+          {/* 実績と対応分野（NORTIQ Stats Section v2 デザイン）。
+              ※「受入企業 継続率」タイルは本デザインでは非掲載（数値未提供＝保留のため割愛）。
+                数値が確定したら sv-stats に4枠目として復活可能。 */}
           <FadeUp>
-            <IndustryIcons />
+            <StatsSection />
           </FadeUp>
         </div>
       </section>
