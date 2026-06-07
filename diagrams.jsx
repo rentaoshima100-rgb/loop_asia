@@ -75,7 +75,7 @@ function PathwayDiagram() {
             <span className="lbl">REQUIREMENT</span>
             育成就労を <strong>3 年間 良好に修了</strong> していること<br/>
             <span style={{fontSize:11.5, color:"var(--ink-mute)"}}>※ 試験免除で特定技能1号へ移行可能</span><br/>
-            <span style={{fontSize:11.5, color:"var(--ink-mute)"}}>※ 技能実習修了者も当面の間、経過措置により移行が認められます</span>
+            <span style={{fontSize:11.5, color:"var(--ink-mute)"}}>※ 旧制度（技能実習）の修了者も、当面の間は経過措置により移行が認められます</span>
           </div>
           <div className="pathway-arrow-down">
             <svg width="28" height="32" viewBox="0 0 28 32" fill="none">
