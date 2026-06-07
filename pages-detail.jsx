@@ -315,12 +315,13 @@ function RegulationsPage() {
             {/* B-2: 許可番号＋日付の公開枠（番号と日付のみ）。許可が下り次第、組合から共有。 */}
             <h2 id="kyoka-sho" style={{marginTop:48}}>許可証（番号・日付）</h2>
             <p>
-              監理支援機関 許可証および登録支援機関 許可証（登録支援機関：グループ会社・株式会社ループ管財）について、許可番号と許可日を以下に掲載いたします。
+              {/* 要確認: 登録支援機関の帰属法人は資料間で矛盾のため法人名を断定しない（凍結） */}
+              監理支援機関 許可証および登録支援機関 許可証について、許可番号と許可日を以下に掲載いたします。
             </p>
             <table className="info-table" style={{marginTop:16}}>
               <tbody>
                 <tr><th style={{width:"40%"}}>監理支援機関 許可番号／許可日</th><td>{`{{TODO: 許可が下り次第、組合から共有}}`}</td></tr>
-                <tr><th>登録支援機関 許可番号／許可日<br/><span style={{color:"var(--ink-mute)", fontSize:12}}>（株式会社ループ管財）</span></th><td>{`{{TODO: 許可が下り次第、組合から共有}}`}</td></tr>
+                <tr><th>登録支援機関 許可番号／許可日<br/><span style={{color:"var(--ink-mute)", fontSize:12}}>（グループ内登録支援機関｜帰属法人は要確認）</span></th><td>{`{{TODO: 許可が下り次第、組合から共有}}`}</td></tr>
               </tbody>
             </table>
 
