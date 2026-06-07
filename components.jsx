@@ -83,7 +83,7 @@ function Header() {
           </div>
         </div>
         <nav className="nav">
-          {NAV.slice(0, 6).map(n => (
+          {NAV.slice(0, NAV.length - 1).map(n => (
             <a
               key={n.id}
               className={`nav-link ${hash === n.id ? "active" : ""}`}
@@ -104,7 +104,7 @@ function Header() {
       <div className={`mobile-drawer ${menuOpen ? "open" : ""}`}>
         <div className="mobile-drawer-inner">
           <div className="mobile-nav">
-            {NAV.slice(0, 6).map((n, i) => (
+            {NAV.slice(0, NAV.length - 1).map((n, i) => (
               <a
                 key={n.id}
                 className={`mobile-nav-link ${hash === n.id ? "active" : ""}`}
@@ -158,9 +158,9 @@ function CTABand() {
             <div className="label" style={{marginTop:8, color:"rgba(255,255,255,0.45)"}}>9:00 – 18:00（土日祝休）</div>
           </div>
           <div className="cta-contact-item">
-            {/* TODO(client): お問い合わせ通知メールの送信先アドレスは未確定です。 */}
+            {/* 要確認: kanri@asiakumiai.jp は管理用アドレス。公開問い合わせ先がこれでよいか組合に確認。 */}
             <div className="label">MAIL</div>
-            <div className="value">{`{{TODO: メールアドレス}}`}</div>
+            <div className="value">kanri@asiakumiai.jp</div>
             <div className="label" style={{marginTop:8, color:"rgba(255,255,255,0.45)"}}>来所は江坂事務所</div>
           </div>
         </div>
@@ -214,8 +214,18 @@ function Footer() {
             <h4>お問い合わせ</h4>
             <div className="footer-links">
               <a onClick={() => navigate("contact")}>お問い合わせフォーム</a>
+              <a onClick={() => navigate("faq")}>よくあるご質問</a>
               <a onClick={() => { window.location.hash = "privacy"; window.scrollTo({top:0, behavior:"instant"}); }}>プライバシーポリシー</a>
               <a onClick={() => { window.location.hash = "regulations"; window.scrollTo({top:0, behavior:"instant"}); }}>各種規定</a>
+            </div>
+            {/* 公開SNS（A-9）。X・その他は未提供のため設置しない。 */}
+            <div className="footer-sns">
+              <a href="https://www.facebook.com/asiakumiai/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="sns-link">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.9h2.54V9.85c0-2.51 1.49-3.9 3.78-3.9 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.44 2.9h-2.34V22c4.78-.76 8.44-4.92 8.44-9.94z"/></svg>
+              </a>
+              <a href="http://www.youtube.com/@asiakumiai5495" target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="sns-link">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.5v-7l6.3 3.5-6.3 3.5z"/></svg>
+              </a>
             </div>
           </div>
         </div>

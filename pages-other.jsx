@@ -58,7 +58,7 @@ function AboutPage() {
             </div>
           </FadeUp>
           <FadeUp>
-            {/* TODO(client): 設立年月日・出資金額・組合員企業数は未確定です。確定後に反映してください。 */}
+            {/* TODO(client): 出資金額は未確定（保留）のため未掲載。確定後に行を追加してください。 */}
             <table className="info-table">
               <tbody>
                 <tr><th>名称</th><td>亜細亜交流事業協同組合（Asia Interchange Cooperative Business Union）</td></tr>
@@ -66,10 +66,11 @@ function AboutPage() {
                 <tr><th>本部</th><td>〒532-0002 大阪府大阪市淀川区東三国2丁目32-17 ループ大阪<br/>TEL 06-6394-7770 ／ FAX 06-6394-7772</td></tr>
                 <tr><th>江坂事務所</th><td>〒564-0063 大阪府吹田市江坂町1丁目6-3 ループ江坂<br/>TEL 06-6879-1790 ／ FAX 06-6879-1791<br/><span style={{color:"var(--ink-mute)", fontSize:12}}>※ご来所は江坂事務所までお願いいたします</span></td></tr>
                 <tr><th>営業時間</th><td>9:00〜18:00（定休日：土曜・日曜・祝日）</td></tr>
-                <tr><th>設立</th><td>{`{{TODO: 設立年月日}}`}</td></tr>
+                <tr><th>設立</th><td>2009年（平成21年）10月20日</td></tr>
                 <tr><th>許可番号</th><td>届出受理番号 27-特-000055（監理支援機関および職業紹介事業）</td></tr>
-                <tr><th>組合員企業数</th><td>{`{{TODO: 組合員企業数}}`}</td></tr>
-                <tr><th>事業内容</th><td>育成就労制度における監理支援事業／特定技能の登録支援事業／日本語教育／組合員企業の共同事業（資材共同購買等）／ETCコーポレートカード／海外ビジネス支援</td></tr>
+                <tr><th>組合員企業数</th><td>184社（2026年6月時点）</td></tr>
+                {/* §1補足: 担当主体が伝わるよう、組合の共同事業とグループ各社が担う事業を区別して表記 */}
+                <tr><th>事業内容</th><td>育成就労 監理支援事業（組合本体）／特定技能 登録支援事業（グループ会社・株式会社ループ管財）／日本語教育（グループ会社・ループインターナショナル日本語学校）／海外人材紹介・送出提携／組合員企業の共同事業（資材共同購買・ETCコーポレートカード等）／海外ビジネス支援</td></tr>
                 <tr><th>対応送出国</th><td>ベトナム／カンボジア／タイ／インドネシア／中国／モンゴル／バングラデシュ／スリランカ／ラオス（9カ国）</td></tr>
               </tbody>
             </table>
@@ -107,7 +108,7 @@ function AboutPage() {
           <FadeUp className="service-grid">
             {[
               { num: "01", title: "育成就労 監理支援事業", body: "監理支援機関として、育成就労外国人の受入計画策定・在留資格申請・入国後監理・定期面談・行政対応までを一貫して担います。" },
-              { num: "02", title: "特定技能 登録支援事業", body: "グループ内登録支援機関（ループインターナショナル日本語学校）にて、特定技能外国人の法定10項目の支援業務を実施いたします。" },
+              { num: "02", title: "特定技能 登録支援事業", body: "グループ内登録支援機関（株式会社ループ管財）にて、特定技能外国人の法定10項目の支援業務を実施いたします。" },
               { num: "03", title: "日本語教育 提供事業", body: "グループ内日本語学校（ループインターナショナル日本語学校）にて、入国後講習および継続的な日本語教育を提供しています。" },
               { num: "04", title: "海外人材紹介・送出提携事業", body: "ベトナム・カンボジア・タイ・インドネシア・中国・モンゴル・バングラデシュ・スリランカ・ラオスの9カ国の送出機関とのネットワークを構築し、現地で候補者の選定・面接を実施します。" },
               { num: "05", title: "資材共同購買・ETCコーポレートカード", body: "資材の共同購買によるコスト削減や、ETCコーポレートカードの取り扱いなど、組合員企業様向けの相互扶助事業を運営しています。" },
@@ -120,6 +121,27 @@ function AboutPage() {
               </div>
             ))}
           </FadeUp>
+        </div>
+      </section>
+
+      {/* 組合によるサポート（Support）— 6項目。番号・タイトルは将来変更の可能性あり。 */}
+      <section className="section">
+        <div className="container">
+          <FadeUp className="section-head center">
+            <div className="section-num">SUPPORT</div>
+            <h2 className="section-title">組合によるサポート</h2>
+            <div className="section-en">SIX WAYS WE SUPPORT YOU</div>
+          </FadeUp>
+          <div className="strengths support-grid">
+            {SUPPORT.map((s, i) => (
+              <FadeUp key={i} className="strength" delay={(i % 3) * 80}>
+                <div className="strength-num">SUPPORT / {s.num}</div>
+                <div className="strength-icon"><Icon name={s.icon} size={26}/></div>
+                <h3 className="strength-title">{s.title}</h3>
+                <p className="strength-body">{s.body}</p>
+              </FadeUp>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -228,7 +250,6 @@ function CasesPage() {
 
       <section className="section">
         <div className="container">
-          {/* TODO(client): 受入実績の累計人数・組合員企業数・受入対応業種数は未確定のため非表示。 */}
           <FadeUp className="stat-row" style={{marginTop:0, marginBottom:64}}>
             <div className="stat">
               <div className="stat-num">9<span className="unit">カ国</span></div>
@@ -239,12 +260,12 @@ function CasesPage() {
               <div className="stat-label">特定産業分野</div>
             </div>
             <div className="stat">
-              <div className="stat-num todo">{`{{TODO}}`}</div>
+              <div className="stat-num">1,821<span className="unit">人</span></div>
               <div className="stat-label">累計 受入実績</div>
             </div>
             <div className="stat">
-              <div className="stat-num todo">{`{{TODO}}`}</div>
-              <div className="stat-label">組合員企業数</div>
+              <div className="stat-num">184<span className="unit">社</span></div>
+              <div className="stat-label">組合員企業数（2026年6月時点）</div>
             </div>
           </FadeUp>
 
@@ -400,6 +421,8 @@ function ContactPage() {
                   </button>
                 </div>
               ) : (
+                /* 要確認(§7): 「業種欄を任意項目に」との指示。現フォームに業種フィールドは無いため、
+                   任意項目として新規追加するのか別要素を指すのか、実装前に組合へ確認。確定後フォーム内に <select> 等を追加。 */
                 <form className="contact-form" onSubmit={(e) => { e.preventDefault(); setSubmitted(true); window.scrollTo({top:0, behavior:"smooth"}); }}>
                   <div className="field full" style={{marginBottom:8}}>
                     <h3 style={{margin:"0 0 6px", letterSpacing:"0.08em"}}>お問い合わせフォーム</h3>
@@ -461,4 +484,66 @@ function ContactPage() {
   );
 }
 
-Object.assign(window, { AboutPage, CasesPage, NewsPage, ContactPage });
+/* FAQ（よくあるご質問）— アコーディオン＋カテゴリタブ。Q&Aは FAQ_DATA で保持。 */
+function FaqPage() {
+  const tabs = ["すべて", ...FAQ_CATS];
+  const [activeTab, setActiveTab] = useState("すべて");
+  const [open, setOpen] = useState({}); // FAQ_DATA のグローバル index をキーに開閉
+  const list = activeTab === "すべて" ? FAQ_DATA : FAQ_DATA.filter(f => f.cat === activeTab);
+  const toggle = (i) => setOpen(o => ({ ...o, [i]: !o[i] }));
+
+  return (
+    <main>
+      <PageHero
+        kicker="FAQ"
+        title="よくあるご質問"
+        lead="育成就労・特定技能の受入をご検討の企業様から多くいただくご質問を、カテゴリ別にまとめました。"
+        photo={PHOTOS.newsHero}
+        crumbs="よくあるご質問"
+      />
+
+      <section className="section">
+        <div className="container" style={{maxWidth:940}}>
+          <FadeUp className="news-filters">
+            {tabs.map(c => (
+              <div key={c} className={`news-filter ${activeTab === c ? "active" : ""}`} onClick={() => setActiveTab(c)}>{c}</div>
+            ))}
+          </FadeUp>
+
+          <div className="faq-list">
+            {list.map((f, i) => {
+              const idx = FAQ_DATA.indexOf(f);
+              const isOpen = !!open[idx];
+              return (
+                <FadeUp key={idx} className={`faq-item ${isOpen ? "open" : ""}`} delay={i * 30}>
+                  <button className="faq-q" onClick={() => toggle(idx)} aria-expanded={isOpen}>
+                    <span className="faq-q-mark">Q</span>
+                    <span className="faq-q-text">{f.q}</span>
+                    <span className="faq-q-icon" aria-hidden="true"><Icon name="arrow" size={16}/></span>
+                  </button>
+                  {isOpen && (
+                    <div className="faq-a">
+                      <span className="faq-a-mark">A</span>
+                      <div className="faq-a-text">
+                        <p>{f.a}</p>
+                        {f.link && (
+                          <p style={{marginTop:12}}>
+                            <a href={f.link.href} target="_blank" rel="noopener noreferrer" className="faq-a-link">{f.link.label} <Icon name="arrow" size={13}/></a>
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </FadeUp>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <CTABand/>
+    </main>
+  );
+}
+
+Object.assign(window, { AboutPage, CasesPage, NewsPage, ContactPage, FaqPage });

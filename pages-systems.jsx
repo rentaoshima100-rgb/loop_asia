@@ -105,12 +105,13 @@ function IkuseiPage() {
               <p style={{fontSize:16, lineHeight:2.05, color:"var(--ink-soft)", marginBottom:0}}>
                 配属前にN5（A1）相当の日本語力と、日本の生活ルール・労働安全の基礎を身につけたうえで、企業様の現場へお引き渡しします。
               </p>
-              {/* TODO(client): 学校の所在地・定員・講師数などの詳細は未確定です。 */}
+              {/* 所在地は確定。定員・講師数は未確定（保留）のため {{TODO}} を残す。 */}
               <div style={{marginTop:32, padding:"24px 28px", background:"#fff", border:"1px solid var(--line)"}}>
                 <div style={{fontSize:11, letterSpacing:"0.25em", color:"var(--accent)", marginBottom:8}}>OUR FACILITY</div>
                 <div className="serif" style={{fontSize:16, letterSpacing:"0.08em", color:"var(--primary)", marginBottom:6}}>ループインターナショナル日本語学校</div>
                 <div style={{fontSize:12.5, color:"var(--ink-soft)", lineHeight:1.9}}>
-                  {`{{TODO: 所在地・定員・講師数}}`}
+                  〒532-0002 大阪府大阪市淀川区東三国2-32-17 ループ大阪<br/>
+                  {`{{TODO: 定員・講師数（組合確定待ち）}}`}
                 </div>
               </div>
             </div>
@@ -159,8 +160,41 @@ function IkuseiPage() {
         </div>
       </section>
 
+      <ReferenceLinks />
       <CTABand/>
     </main>
+  );
+}
+
+/* 制度説明ページの参照公的資料（A-9）。OTIT に加え 出入国在留管理庁・厚生労働省・JITCO を掲載。
+   ※制度説明の文面は公開前に組合の最終チェックに回す前提（C-2）。 */
+function ReferenceLinks() {
+  const refs = [
+    { name: "出入国在留管理庁（ISA）", href: "https://www.moj.go.jp/isa/" },
+    { name: "厚生労働省", href: "https://www.mhlw.go.jp/" },
+    { name: "外国人育成就労機構（旧：外国人技能実習機構／OTIT）", href: "https://www.otit.go.jp/" },
+    { name: "国際人材協力機構（JITCO）", href: "https://www.jitco.or.jp/" },
+  ];
+  return (
+    <section className="section tight">
+      <div className="container" style={{maxWidth:880}}>
+        <FadeUp>
+          <div className="section-num">REFERENCES</div>
+          <h3 className="serif" style={{fontSize:18, letterSpacing:"0.08em", margin:"12px 0 16px"}}>参照公的資料</h3>
+          <div style={{display:"flex", flexWrap:"wrap", gap:"10px 20px"}}>
+            {refs.map((r, i) => (
+              <a key={i} href={r.href} target="_blank" rel="noopener noreferrer"
+                 style={{fontSize:13.5, color:"var(--primary)", textDecoration:"underline", textUnderlineOffset:3}}>
+                {r.name} <Icon name="arrow" size={12}/>
+              </a>
+            ))}
+          </div>
+          <p style={{fontSize:11.5, color:"var(--ink-mute)", marginTop:16, lineHeight:1.8}}>
+            ※本ページの制度に関する記述は、上記公的資料に基づき作成しています。最新の制度内容は各機関の公表資料をご確認ください。
+          </p>
+        </FadeUp>
+      </div>
+    </section>
   );
 }
 
@@ -189,7 +223,7 @@ function TokuteiPage() {
                 特定技能制度は、2019年に新設された在留資格で、深刻な人手不足が認められた特定産業分野で、一定の専門性・技能を持つ外国人材の受入を可能にする制度です。
               </p>
               <p>
-                受入企業様には法定10項目の支援を実施する義務がありますが、これを「登録支援機関」に委託することが可能です。当組合のグループ会社「ループインターナショナル日本語学校」が登録支援機関として、すべての支援業務を引き受けます。
+                受入企業様には法定10項目の支援を実施する義務がありますが、これを「登録支援機関」に委託することが可能です。当組合のグループ会社「株式会社ループ管財」が登録支援機関として、すべての支援業務を引き受けます。
               </p>
             </FadeUp>
           </div>
@@ -303,9 +337,10 @@ function TokuteiPage() {
         </div>
       </section>
 
+      <ReferenceLinks />
       <CTABand/>
     </main>
   );
 }
 
-Object.assign(window, { IkuseiPage, TokuteiPage });
+Object.assign(window, { IkuseiPage, TokuteiPage, ReferenceLinks });

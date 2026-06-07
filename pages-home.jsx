@@ -193,24 +193,30 @@ function HomePage() {
               </div>
             </div>
           </div>
-          {/* TODO(client): 受入実績の累計人数・設立からの年数・受入企業継続率は未確定のため非表示。確定後に数値を反映してください。 */}
           <FadeUp className="stat-row">
             <div className="stat">
               <div className="stat-num">9<span className="unit">カ国</span></div>
               <div className="stat-label">対応送出国</div>
             </div>
             <div className="stat">
-              <div className="stat-num todo">{`{{TODO}}`}</div>
+              <div className="stat-num">1,821<span className="unit">人</span></div>
               <div className="stat-label">累計 受入実績</div>
             </div>
+            {/* 要確認: このタイルは「創業年数」を指す前提。別の数値を意図する場合は差し替え。 */}
             <div className="stat">
-              <div className="stat-num todo">{`{{TODO}}`}</div>
-              <div className="stat-label">設立からの実績</div>
+              <div className="stat-num">創業 17<span className="unit">年</span></div>
+              <div className="stat-label">2009年 設立</div>
             </div>
+            {/* TODO(client): 受入企業 継続率は数値未提供のため保留。組合から数値提供があり次第反映。
+                提供が無ければタイルごと削除を別途判断。 */}
             <div className="stat">
               <div className="stat-num todo">{`{{TODO}}`}</div>
               <div className="stat-label">受入企業 継続率</div>
             </div>
+          </FadeUp>
+          {/* 主な受入分野（農業・製造・建設）をアイコン／イラストで表現 */}
+          <FadeUp>
+            <IndustryIcons />
           </FadeUp>
         </div>
       </section>
@@ -289,7 +295,7 @@ function HomePage() {
           </FadeUp>
           <FadeUp delay={200}>
             <p>
-              育成就労制度（3年）と特定技能1号（5年）を組み合わせれば、通算で最長8年間、同じ人材に活躍いただくことが可能です。
+              育成就労制度（3年）と特定技能1号（5年）を組み合わせれば、通算で最大8年間、同じ人材に活躍いただくことが可能です。
             </p>
             <p>
               当組合では、両制度の橋渡しを「同一グループ内」で完結できるため、本人にとっては心理的な負担が少なく、企業様にとっては引き継ぎロスのない、安定した人材活用が実現します。
