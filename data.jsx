@@ -203,7 +203,8 @@ function blogToNews(b) {
   return {
     id: b.id,
     slug: b.slug,
-    date: fmtNewsDate(b.created_at),
+    // Use the scheduled publish time when present (falls back to created_at).
+    date: fmtNewsDate(b.publish_at || b.created_at),
     cat: b.category || "組合からのお知らせ",
     catClass: newsCatClass(b.category || "組合からのお知らせ"),
     title: b.title,
@@ -214,10 +215,20 @@ function blogToNews(b) {
 async function loadNewsFromSupabase() {
   if (!_supa) return [];
   try {
-    const { data, error } = await _supa
+    // Scheduled posts (publish_at in the future) are hidden server-side by RLS,
+    // so this only ever returns already-published rows. Sort by publish time.
+    let { data, error } = await _supa
       .from("blogs")
-      .select("id,slug,title,excerpt,content,category,created_at")
-      .order("created_at", { ascending: false });
+      .select("id,slug,title,excerpt,content,category,created_at,publish_at")
+      .order("publish_at", { ascending: false });
+    // Resilient: if publish_at doesn't exist yet (007 not run), fall back to the
+    // original created_at query so posts still show.
+    if (error) {
+      ({ data, error } = await _supa
+        .from("blogs")
+        .select("id,slug,title,excerpt,content,category,created_at")
+        .order("created_at", { ascending: false }));
+    }
     if (error || !data) return [];
     return data.map(blogToNews);
   } catch (e) {
@@ -240,10 +251,25 @@ function useNews() {
 // Minimal, XSS-safe Markdown → HTML for news article bodies (escape first).
 function renderNewsHTML(md) {
   const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-  const inline = (s) => esc(s)
-    .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
-    .replace(/\*(.+?)\*/g, "<em>$1</em>")
-    .replace(/`(.+?)`/g, "<code>$1</code>");
+  const inline = (s) => {
+    let out = esc(s);
+    // Images: ![alt](url) → <img>. Escape-first; only allow http(s) URLs and
+    // escape quotes so the URL/alt can't break out of the attributes.
+    out = out.replace(/!\[([^\]]*)\]\(([^)\s]+)\)/g, (_m, alt, url) => {
+      if (!/^https?:\/\//i.test(url)) return "";
+      const safeUrl = url.replace(/"/g, "%22");
+      const safeAlt = String(alt).replace(/"/g, "&quot;");
+      return (
+        '<img src="' + safeUrl + '" alt="' + safeAlt + '" loading="lazy" ' +
+        'style="max-width:100%;height:auto;border-radius:8px;display:block;margin:14px 0" />'
+      );
+    });
+    out = out
+      .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+      .replace(/\*(.+?)\*/g, "<em>$1</em>")
+      .replace(/`(.+?)`/g, "<code>$1</code>");
+    return out;
+  };
   let html = "", inList = false;
   const close = () => { if (inList) { html += "</ul>"; inList = false; } };
   for (const raw of String(md || "").split(/\r?\n/)) {
