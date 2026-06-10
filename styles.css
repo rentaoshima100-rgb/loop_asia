@@ -3964,7 +3964,8 @@ p { margin: 0; }
     [data-screen-label="page: privacy"],
     [data-screen-label="page: regulations"],
     [data-screen-label="page: news-detail"],
-    [data-screen-label="page: case-detail"]) {
+    [data-screen-label="page: case-detail"],
+    [data-screen-label="page: faq"]) {
   --font-serif: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
   --font-display-en: "Inter", "Noto Sans JP", system-ui, sans-serif;
 }
