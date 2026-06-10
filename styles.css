@@ -856,7 +856,14 @@ p { margin: 0; }
   inset: 0;
   background-size: cover;
   background-position: center;
-  opacity: 0.28;
+  opacity: 0.72;
+}
+/* 写真の上に控えめな暗いスクリム（赤被りを抑えつつ白文字の可読性を確保） */
+.cta-band-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.32), rgba(0,0,0,0.48));
 }
 .cta-band-inner { position: relative; text-align: center; }
 .cta-band h2 {
@@ -3985,6 +3992,8 @@ p { margin: 0; }
 :is([data-screen-label="page: news"],[data-screen-label="page: news-detail"]) .news-date { font-size: 13px; }
 [data-screen-label="page: cases"] .case-card h3 { font-size: clamp(16px, 1.5vw, 19px); }
 [data-screen-label="page: cases"] .voice-body { font-size: clamp(14px, 1.2vw, 16px); }
+/* 活躍事例ヒーロー：シェフの顔が上寄りのため、切り抜き位置を上に調整 */
+[data-screen-label="page: cases"] .page-hero-photo { background-position: center 22%; }
 [data-screen-label="page: contact"] .field label { font-size: 15px; }
 [data-screen-label="page: contact"] .field input,
 [data-screen-label="page: contact"] .field select,
