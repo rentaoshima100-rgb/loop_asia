@@ -123,7 +123,7 @@ function HomePage() {
             <div className="hero-kicker">Asia Interchange Cooperative Business Union</div>
             <h1 className="hero-title">
               高い技術と安全性、<br/>
-              <span className="accent">やり遂げる</span>自信があります。
+              <span className="accent">やり遂げる</span><br/>自信があります。
             </h1>
             <p className="hero-sub">
               日本語学校併設の組合だから安心。育成就労制度から特定技能制度まで、<br/>
