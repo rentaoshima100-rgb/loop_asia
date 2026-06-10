@@ -3994,6 +3994,8 @@ p { margin: 0; }
 [data-screen-label="page: cases"] .voice-body { font-size: clamp(14px, 1.2vw, 16px); }
 /* 活躍事例ヒーロー：シェフの顔が上寄りのため、切り抜き位置を上に調整 */
 [data-screen-label="page: cases"] .page-hero-photo { background-position: center 22%; }
+/* FAQヒーロー：女性の頭が切れないよう、切り抜き位置を上に調整 */
+[data-screen-label="page: faq"] .page-hero-photo { background-position: center 15%; }
 [data-screen-label="page: contact"] .field label { font-size: 15px; }
 [data-screen-label="page: contact"] .field input,
 [data-screen-label="page: contact"] .field select,
