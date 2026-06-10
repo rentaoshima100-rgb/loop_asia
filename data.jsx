@@ -21,6 +21,7 @@ const PHOTOS = {
   tokuteiHero: "uploads/1on1.png",
   caseHero:    "uploads/casehero.png",
   newsHero:    "https://images.unsplash.com/photo-1495020689067-958852a7765e?w=2000&q=80&auto=format&fit=crop",
+  faqHero:     "uploads/faqhero.png",
   contactHero: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=2000&q=80&auto=format&fit=crop",
   case1: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1200&q=80&auto=format&fit=crop",
   case2: "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=1200&q=80&auto=format&fit=crop",

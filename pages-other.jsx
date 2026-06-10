@@ -513,7 +513,7 @@ function FaqPage() {
         kicker="FAQ"
         title="よくあるご質問"
         lead="育成就労・特定技能の受入をご検討の企業様から多くいただくご質問を、カテゴリ別にまとめました。"
-        photo={PHOTOS.newsHero}
+        photo={PHOTOS.faqHero}
         crumbs="よくあるご質問"
       />
 
