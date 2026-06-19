@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  本サイトはハッシュルーティング（#ikusei 等）のため、サーバー上の実 URL は「/」のみです。
+  各ページは https://asiakumiai.com/#<page> でアクセスできますが、検索エンジンはフラグメント
+  （#以降）を別 URL として扱わないため、サイトマップにはトップページの実 URL を登録しています。
+  ページ毎に独立した URL でのインデックスが必要な場合は、パスルーティング化（/ikusei/ 等の
+  静的ページ生成）が必要です。
+-->
+<urlset xmlns="http://www.sitemap.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://asiakumiai.com/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>

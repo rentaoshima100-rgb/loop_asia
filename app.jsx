@@ -55,6 +55,43 @@ function parseHex(h) {
   return [parseInt(x.slice(0,2),16), parseInt(x.slice(2,4),16), parseInt(x.slice(4,6),16)];
 }
 
+/* ページ毎の <title> / meta description。ハッシュルーティングでも、JS を実行する
+   クローラー（Google 等）が各ページに応じた title/description を取得できるようにする。 */
+const PAGE_META = {
+  home:        { title: "亜細亜交流事業協同組合 ｜ 育成就労・特定技能の受入を一貫支援（日本語学校併設）",
+                 desc: "監理支援機関として、育成就労・特定技能による外国人材の受入を、入国前の日本語教育から定着まで一貫支援。日本語学校・登録支援機関をグループ内に保有し、アジア9カ国に対応します。" },
+  ikusei:      { title: "育成就労制度 ｜ 亜細亜交流事業協同組合",
+                 desc: "2027年4月開始の育成就労制度を、監理支援機関としてわかりやすくご案内。在留期間・日本語要件・転籍・受入の流れ、入国後講習までを一貫支援します。" },
+  tokutei:     { title: "特定技能制度 ｜ 亜細亜交流事業協同組合",
+                 desc: "特定技能制度による即戦力人材の受入を、グループ内登録支援機関が法定10項目の支援も含めて一貫サポート。16の特定産業分野に対応します。" },
+  about:       { title: "組合案内 ｜ 亜細亜交流事業協同組合",
+                 desc: "代表挨拶・組合概要・グループ法人体系・事業内容・アクセスのご案内。大阪を拠点に、監理支援機関として外国人材の受入を支援する協同組合です。" },
+  cases:       { title: "活躍事例 ｜ 亜細亜交流事業協同組合",
+                 desc: "受入企業の現場で活躍する外国人材の事例と本人の声。対応送出国9カ国、特定産業16分野、累計受入実績1,821人。" },
+  news:        { title: "お知らせ ｜ 亜細亜交流事業協同組合",
+                 desc: "制度改正情報・組合からのお知らせ・セミナー/イベント情報など、外国人材の受入にまつわる最新情報をお届けします。" },
+  faq:         { title: "よくあるご質問 ｜ 亜細亜交流事業協同組合",
+                 desc: "育成就労・特定技能の受入をご検討の企業様から多くいただくご質問を、制度・費用・手続き・サポート等のカテゴリ別にまとめました。" },
+  contact:     { title: "お問い合わせ ｜ 亜細亜交流事業協同組合",
+                 desc: "受入のご検討・ご相談は、お電話・FAX、またはお問い合わせフォームよりお気軽にご連絡ください。資料請求のみのご相談も歓迎です。" },
+  privacy:     { title: "プライバシーポリシー ｜ 亜細亜交流事業協同組合",
+                 desc: "亜細亜交流事業協同組合の個人情報保護方針。個人情報の利用目的・第三者提供・安全管理措置・開示等の請求・お問い合わせ窓口について記載しています。" },
+  regulations: { title: "各種規定 ｜ 亜細亜交流事業協同組合",
+                 desc: "監理支援機関としての各種規定。業務の運営に関する規程の公開、許可番号・許可日のご案内を掲載しています。" },
+};
+
+function applyPageMeta(page) {
+  const m = PAGE_META[page] || PAGE_META.home;
+  document.title = m.title;
+  let tag = document.querySelector('meta[name="description"]');
+  if (!tag) {
+    tag = document.createElement("meta");
+    tag.setAttribute("name", "description");
+    document.head.appendChild(tag);
+  }
+  tag.setAttribute("content", m.desc);
+}
+
 function App() {
   const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
   const hash = useHash();
@@ -63,6 +100,8 @@ function App() {
   useEffect(() => { applyFont(t.headingFont); }, [t.headingFont]);
 
   const page = (hash || "home").split("=")[0];
+
+  useEffect(() => { applyPageMeta(page); }, [page]);
   let PageComp = HomePage;
   if (page === "ikusei") PageComp = IkuseiPage;
   else if (page === "tokutei") PageComp = TokuteiPage;

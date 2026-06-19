@@ -1,0 +1,4 @@
+# 社内向け成果物・ツール（公開サイトには含めない）
+reports/
+_build_pdf/
+_extract/
