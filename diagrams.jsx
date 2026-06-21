@@ -16,7 +16,7 @@ function AssuranceBar() {
             <div className="assurance-label">ASSURANCE / 01</div>
             <div className="assurance-title">
               グループ内に<strong>日本語学校</strong>を保有<br/>
-              <span style={{fontSize:12, color:"var(--ink-soft)", letterSpacing:"0.06em"}}>入国後講習を自社運営、現場で「伝わる」日本語へ</span>
+              <span style={{fontFamily:"var(--font-sans)", fontSize:14, fontWeight:500, color:"var(--ink-soft)", letterSpacing:"0.06em"}}>入国後講習を自社運営、現場で「伝わる」日本語へ</span>
             </div>
           </div>
         </div>
@@ -31,7 +31,7 @@ function AssuranceBar() {
             <div className="assurance-label">ASSURANCE / 02</div>
             <div className="assurance-title">
               グループ内に<strong>登録支援機関</strong>を保有<br/>
-              <span style={{fontSize:12, color:"var(--ink-soft)", letterSpacing:"0.06em"}}>育成就労 → 特定技能の橋渡しも同じ窓口で</span>
+              <span style={{fontFamily:"var(--font-sans)", fontSize:14, fontWeight:500, color:"var(--ink-soft)", letterSpacing:"0.06em"}}>育成就労 → 特定技能の橋渡しも同じ窓口で</span>
             </div>
           </div>
         </div>
@@ -46,7 +46,7 @@ function AssuranceBar() {
             <div className="assurance-label">ASSURANCE / 03</div>
             <div className="assurance-title">
               <strong>対応送出国 9 カ国</strong><br/>
-              <span style={{fontSize:12, color:"var(--ink-soft)", letterSpacing:"0.06em"}}>ベトナム・カンボジア・タイなどアジア9カ国に対応</span>
+              <span style={{fontFamily:"var(--font-sans)", fontSize:14, fontWeight:500, color:"var(--ink-soft)", letterSpacing:"0.06em"}}>ベトナム・カンボジア・タイなどアジア9カ国に対応</span>
             </div>
           </div>
         </div>

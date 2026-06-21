@@ -36,10 +36,6 @@ function NewsDetailPage() {
             </h1>
           </FadeUp>
 
-          <FadeUp delay={80}>
-            <div style={{aspectRatio:"16/9", backgroundSize:"cover", backgroundPosition:"center", backgroundImage:`url(${PHOTOS.classroom})`, marginBottom:48}}></div>
-          </FadeUp>
-
           {/* Article body: rendered from the AI-published post (Supabase), or the
               placeholder while no real article exists yet. */}
           <FadeUp delay={120} className="prose">
