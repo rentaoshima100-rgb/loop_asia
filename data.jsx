@@ -2,7 +2,7 @@
 
 // TODO(client): 写真はすべて仮のストック画像（Unsplash）です。実素材の到着後に差し替えてください。
 const PHOTOS = {
-  hero:        "uploads/construction.jpg",
+  hero:        "uploads/hero-globe.jpg",
   heroAlt:     "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=2000&q=85&auto=format&fit=crop",
   intro:       "https://images.unsplash.com/photo-1565008576549-57569a49371d?w=1600&q=80&auto=format&fit=crop",
   ikuseiCover: "uploads/teaching.jpg",
