@@ -7,7 +7,11 @@ const PHOTOS = {
   intro:       "https://images.unsplash.com/photo-1565008576549-57569a49371d?w=1600&q=80&auto=format&fit=crop",
   ikuseiCover: "uploads/teaching.jpg",
   tokuteiCover:"uploads/1on1.jpg",
-  oneStop:     "uploads/onestop.jpg",
+  /* 修正依頼 p.13：uploads/onestop.jpg は女性が両手に腕時計を着けている生成不整合があるため差し替え。
+     暫定として 1on1.jpg（組合担当者と外国人材の面談シーン）を使用。
+     ★要確認（組合）★ 現場で撮影した実写に差し替え予定。onestop.jpg は使用しないでください。 */
+  oneStop:     "uploads/1on1.jpg",
+  oneStopOld:  "uploads/onestop.jpg",
   classroom:   "uploads/classroom.jpg",
   construction:"https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1600&q=80&auto=format&fit=crop",
   factory:     "https://images.unsplash.com/photo-1565008576549-57569a49371d?w=1600&q=80&auto=format&fit=crop",
@@ -33,8 +37,10 @@ const PHOTOS = {
 
 const NAV = [
   { id: "home",    label: "ホーム",       en: "HOME" },
-  { id: "ikusei",  label: "育成就労",     en: "TRAINING" },
-  { id: "tokutei", label: "特定技能",     en: "SSW" },
+  /* 英語表記：育成就労＝Employment for Skill Development（法務省 日本法令外国語訳DB）、
+     特定技能＝Specified Skilled Worker（出入国在留管理庁）。モバイル用の短縮表記。 */
+  { id: "ikusei",  label: "育成就労",     en: "SKILL DEVELOPMENT" },
+  { id: "tokutei", label: "特定技能",     en: "SPECIFIED SKILLED WORKER" },
   { id: "about",   label: "組合案内",     en: "ABOUT" },
   { id: "cases",   label: "活躍事例",     en: "CASES" },
   { id: "news",    label: "お知らせ",     en: "NEWS" },
@@ -73,6 +79,52 @@ const INDUSTRY_DATA = [
   { name: "製造業",   pct: 60, count: "約 38 万人" },
   { name: "農業",     pct: 55, count: "約 13 万人" },
 ];
+
+/* ── 特定産業分野（特定技能・育成就労の受入れ対象分野）────────────────────────
+   令和8年（2026年）1月23日 閣議決定の分野別運用方針（別紙1〜19）に基づき「19分野」。
+   従来サイト表記の「16分野」は、令和6年3月29日閣議決定時点（16分野）のままでした。
+   令和8年1月23日に リネンサプライ／物流倉庫／資源循環 の3分野が追加され19分野となっています。
+   出典：出入国在留管理庁「特定技能制度に係る制度の運用に関する基本方針・分野別運用方針・運用要領」
+        https://www.moj.go.jp/isa/applications/ssw/nyuukokukanri01_00132.html
+
+   ★要確認（組合）★ ここに並ぶのは「制度上の対象分野」です。当組合が実際に受入対応できる
+   分野がこの一部にとどまる場合は、この配列を絞り込んでください（サイト全体の分野数表示は
+   SSW_FIELD_COUNT を参照しているため、配列を編集するだけで各所の数字が揃います）。
+
+   en は出入国在留管理庁の英語版資料に記載された公式英訳をそのまま使用しています（独自訳ではありません）。
+   出典：出入国在留管理庁「Initiatives to Accept Foreign Nationals and for the Realization of a
+        Society of Harmonious Coexistence」p.8 “Specified Industry Fields (19 Fields)” および p.52-54
+        https://www.moj.go.jp/isa/content/930004452.pdf
+   ※育成就労（Employment for Skill Development）の対象は17分野で、自動車運送業・航空は
+     特定技能のみが対象（同資料 p.36）。サイト上の「特定技能（1号）と原則同一」はこの点を含む表現。
+
+   cat: build=建設・製造／care=介護・サービス／food=農林水産・食品／move=運輸・環境        */
+const SSW_FIELDS = [
+  { name: "建設",           en: "Construction industry",                     cat: "build" },
+  { name: "造船・舶用工業",  en: "Shipbuilding and ship machinery industries", cat: "build" },
+  { name: "自動車整備",      en: "Automobile repair and maintenance",          cat: "build" },
+  { name: "工業製品製造業",  en: "Industrial product manufacturing",           cat: "build" },
+  { name: "介護",           en: "Nursing care",                              cat: "care"  },
+  { name: "ビルクリーニング", en: "Building cleaning management",              cat: "care"  },
+  { name: "リネンサプライ",  en: "Linen supply",                              cat: "care"  },
+  { name: "宿泊",           en: "Accommodation industry",                    cat: "care"  },
+  { name: "外食業",          en: "Food service industry",                     cat: "care"  },
+  { name: "農業",           en: "Agriculture",                               cat: "food"  },
+  { name: "漁業",           en: "Fishery & aquaculture",                     cat: "food"  },
+  { name: "飲食料品製造業",  en: "Manufacture of food and beverages",          cat: "food"  },
+  { name: "林業",           en: "Forestry",                                  cat: "food"  },
+  { name: "木材産業",        en: "Wood industry",                             cat: "food"  },
+  { name: "自動車運送業",    en: "Automobile transportation business",        cat: "move"  },
+  { name: "鉄道",           en: "Railway",                                   cat: "move"  },
+  { name: "航空",           en: "Aviation industry",                         cat: "move"  },
+  { name: "物流倉庫",        en: "Warehousing industry",                      cat: "move"  },
+  { name: "資源循環",        en: "Resource circulation industry",             cat: "move"  },
+];
+const SSW_FIELD_COUNT = SSW_FIELDS.length;
+
+/* 当組合が主力とする分野（ホーム「実績と対応分野」で先頭に強調表示）。
+   ★要確認（組合）★ 実績の多い分野に合わせて並べ替えてください。 */
+const SSW_CORE_FIELDS = ["建設", "工業製品製造業", "農業"];
 
 // 4法人の役割。資本・親子関係・各社の住所などの詳細は別途確認。
 // 要確認：登録支援機関の帰属が資料間で矛盾（Checklist3=ループ管財／Checklist2hanei・現行サイト=日本語学校）。
@@ -115,31 +167,47 @@ const CASES = [];
 
 const IKUSEI_STEPS = [
   { label: "①  ご加入・制度説明（〜1ヶ月）",        body: "受入分野・職種・人数・希望時期を伺い、最適な受入計画をご提案します。" },
-  { label: "②  募集・選抜（1〜3ヶ月）",            body: "提携送出機関より候補者を選定。書類審査・オンライン面接を実施します。" },
+  /* 修正依頼 p.8：面接は「現地またはオンライン」。オンライン面接のみと誤解されない表記に */
+  { label: "②  募集・選抜（1〜3ヶ月）",            body: "提携送出機関より候補者を選定。書類審査と面接（現地またはオンライン）を実施します。" },
   { label: "③  現地での事前教育（約6ヶ月）",       body: "入国前に、現地にて日本語・生活ルールの基礎教育を実施します。", accent: true },
   { label: "④  入国・入国後講習（約1ヶ月）",       body: "入国後、日本語・生活ルール・職種別講習を集中的に実施します。" },
   { label: "⑤  配属・育成就労開始（1年目〜）",     body: "受入企業様への配属。組合担当が初期定着まで継続的にフォローします。" },
-  { label: "⑥  技能検定・継続（3年目以降）",       body: "定期巡回・面談・キャリア相談・技能習得状況の確認を実施します。" },
+  /* 修正依頼 p.8：「定期巡回」→「定期訪問」。企業様サポートの実施を明記 */
+  { label: "⑥  技能検定・継続（3年目以降）",       body: "定期訪問・面談・キャリア相談を実施。技能習得状況の確認に加え、企業様のサポートを実施します。" },
   { label: "⑦  帰国または特定技能1号への移行",     body: "本人の希望とスキルに応じて、登録支援機関がそのまま支援を継続します。" },
 ];
 
-/* 組合によるサポート（Support）— 6項目。番号・タイトルは将来変更の可能性あり。
-   出典：追加コンテンツ.pdf（A-4の用語ルールに従い「実習生」「技能実習」等を修正済み／
-   送出国は9カ国で確定。ネパールは含まない）。 */
+/* 組合によるサポート（Support）— 6項目。
+   修正依頼（第1回）p.12：組合案内ページから育成就労ページへ移設し、「受入から帰国までの
+   7ステップ」と連動させる。steps＝そのサポートが効いてくるステップ番号（7ステップ図と対応）、
+   stepLabel＝表示用ラベル、lead＝ステップとの関係を示す一文。
+   ★要確認（組合）★ 各サポートの担当ステップの割り当ては当社案です。実務に合わせてご調整ください。 */
 const SUPPORT = [
   { num: "01", title: "豊富な実績と信頼", icon: "shield",
+    steps: [1, 2], stepLabel: "STEP 1 – 2",
+    lead: "受入計画のご提案と候補者選定を支えます。",
     body: "設立以来、多数の受入企業様・外国人材（旧制度を含む）をサポートしてきた実績があります。蓄積されたノウハウと信頼ネットワークにより、スムーズな人材受入れを実現します。" },
   { num: "02", title: "入国前〜帰国後まで一貫サポート", icon: "flow",
+    steps: [1, 2, 3, 4, 5, 6, 7], stepLabel: "STEP 1 – 7",
+    lead: "7ステップの全工程を、ひとつの窓口で。",
     body: "ビザ申請・渡航準備・入国後講習・在留資格更新・帰国手続きまで、全プロセスを一括でサポート。企業様の事務負担を大幅に軽減します。" },
   { num: "03", title: "専任担当制による迅速な対応", icon: "phone",
+    steps: [5, 6], stepLabel: "STEP 5 – 6",
+    lead: "配属後の定期訪問と日常のご相談を担います。",
     body: "受入企業様ごとに専任の担当者が付き、日常的な相談から緊急対応まで素早く対処します。育成就労外国人が母国語で相談できる外国人スタッフも在籍しています。些細なトラブルも初動が肝心。安心してお任せください。" },
   { num: "04", title: "日本語教育・試験対策等のサポート", icon: "book",
+    steps: [3, 4, 6], stepLabel: "STEP 3・4・6",
+    lead: "現地事前教育・入国後講習・技能検定対策を担当。",
     /* 原文「技能評価試験」→育成就労ページの表記に合わせ「技能検定」に統一 */
     body: "入国後講習での日本語指導に加え、職場での実践的な日本語・ビジネスマナー教育を継続的にサポート。技能検定関連の対策も実施しています。" },
   { num: "05", title: "コンプライアンス重視の運営", icon: "shield",
+    steps: [1, 2, 3, 4, 5, 6, 7], stepLabel: "STEP 1 – 7",
+    lead: "全ステップを通じて、法令遵守を最優先に。",
     /* 原文「適正な技能実習制度の運営」→A-4に従い修正 */
     body: "法令遵守を最優先に、監理責任のある団体として適正な育成就労制度・特定技能制度の運営を行います。書類管理・定期監査・改善指導まで、法的リスクを低減します。" },
   { num: "06", title: "多様な送り出し国とのネットワーク", icon: "globe",
+    steps: [2, 3], stepLabel: "STEP 2 – 3",
+    lead: "募集・選抜と現地での事前教育を支えます。",
     /* 送出国は9カ国で確定（Checklist2hanei 3-6。ネパールは含まない） */
     body: "ベトナム・カンボジア・タイ・インドネシア・中国・モンゴル・バングラデシュ・スリランカ・ラオスの9カ国と連携。企業様のニーズに合った人材を安定的に供給できるネットワークを有しています。" },
 ];
@@ -290,6 +358,6 @@ function renderNewsHTML(md) {
 
 Object.assign(window, {
   PHOTOS, NAV, STRENGTHS, INDUSTRY_DATA, GROUP, NEWS, NEWS_CATS, newsCatClass, CASES, IKUSEI_STEPS,
-  SUPPORT, FAQ_CATS, FAQ_DATA,
+  SUPPORT, FAQ_CATS, FAQ_DATA, SSW_FIELDS, SSW_FIELD_COUNT, SSW_CORE_FIELDS,
   useNews, renderNewsHTML
 });

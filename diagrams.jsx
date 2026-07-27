@@ -106,7 +106,8 @@ function PathwayDiagram() {
             <h3>特定技能 1 号</h3>
             <p>在留期間：通算 5 年／登録支援機関（グループ会社）による法定 10 項目の支援</p>
           </div>
-          <div className="badge">SSW Type 1</div>
+          {/* 出入国在留管理庁の英語表記に準拠（特定技能1号＝Specified Skilled Worker (i)） */}
+          <div className="badge">Specified Skilled Worker (i)</div>
         </div>
 
         <div className="pathway-next">
@@ -308,8 +309,9 @@ Object.assign(window, { RelationDiagram });
 function TimelineDiagram() {
   return (
     <div className="dgm-card dgm-card-pop">
-      <div className="dgm-title">通算 最大 <span style={{color:"var(--accent)"}}>8 年</span> ＋ α の在留が可能</div>
-      <div className="dgm-sub">— ONE-STOP CAREER PATH: 8+ YEARS IN JAPAN —</div>
+      {/* 修正依頼 p.6：タイトル／英サブを差し替え */}
+      <div className="dgm-title">育成就労から特定技能へ、<span style={{color:"var(--accent)"}}>途切れない長期キャリアパス</span>を構築</div>
+      <div className="dgm-sub">— ONE-STOP CAREER PATH: TOWARDS LONG-TERM EMPLOYMENT IN JAPAN —</div>
 
       <div className="timeline">
         <div className="timeline-track">
@@ -333,17 +335,23 @@ function TimelineDiagram() {
           </div>
         </div>
 
+        {/* 修正依頼 p.6：末尾の「…年／∞年」を「9年目以降｜特定技能2号（更新上限なし）」に集約 */}
         <div className="timeline-years">
-          {[0,1,2,3,4,5,6,7,8,"…","∞"].map((y, i) => (
+          {[0,1,2,3,4,5,6,7,8].map((y, i) => (
             <div key={i} className="timeline-year">{y}年</div>
           ))}
+          <div className="timeline-year timeline-year-tail">
+            <span className="ty-main">9年目以降</span>
+            <span className="ty-sub">特定技能2号（更新上限なし）</span>
+          </div>
         </div>
 
         <div className="timeline-cap">
           <div className="timeline-cap-item p1">
             <div className="num">3<span style={{fontSize:14, marginLeft:4, color:"var(--ink-mute)"}}>年</span></div>
             <div className="lbl">育成就労 期間</div>
-            <div className="desc">監理支援機関（当組合）による監理。N4・特定技能1号水準の技能習得を目標。</div>
+            {/* 修正依頼 p.6：技能・日本語の目標を明文化 */}
+            <div className="desc">監理支援機関（当組合）による監理。特定技能1号水準の技能習得と、日本語試験（N4以上）の合格を目指します。</div>
           </div>
           <div className="timeline-cap-item p2">
             <div className="num">5<span style={{fontSize:14, marginLeft:4, color:"var(--ink-mute)"}}>年</span></div>
@@ -358,8 +366,9 @@ function TimelineDiagram() {
         </div>
 
         <div style={{marginTop:32, padding:"22px 30px", background:"var(--bg-soft)", borderRadius:6, fontSize:16, lineHeight:1.95, color:"var(--ink)", textAlign:"center", letterSpacing:"0.06em"}}>
-          <strong style={{color:"var(--primary)"}}>当組合のワンストップ支援だから、</strong>
-          フェーズが変わっても <strong>同じ顔ぶれ・同じ窓口</strong> で伴走します。
+          {/* 修正依頼 p.6 */}
+          <strong style={{color:"var(--primary)"}}>グループによるワンストップ支援だから、</strong>
+          フェーズが変わっても <strong>一貫した体制</strong> で伴走します。
         </div>
       </div>
     </div>
@@ -405,111 +414,99 @@ Object.assign(window, { FeaturesDiagram });
 
 /* ============================================================
    PROCESS — 7-step JOURNEY (育成就労)
-   Desktop: arc journey (>960px) / Mobile: vertical snaking timeline (<=960px)
+
+   修正依頼（第1回）p.8 対応で全面刷新：
+   ・旧デザインはアーチ状のグラフで、曲線の上下が何も意味しておらず「何のグラフか
+     分からない」状態だった → 左から右へ時間が流れる「時系列レール」に置き換え、
+     上部に3フェーズの帯を置いて、各ステップがどの段階かを明示。
+   ・旧デザインは番号バッジがカードの上／下でバラバラだった → 全ステップで
+     「レール上の番号 → その真下に説明カード」の並びに統一。
+   Desktop: 7列の時系列レール（>1080px）／Mobile: 縦一列のタイムライン（<=1080px）
    ============================================================ */
+const JOURNEY_PHASES = [
+  { cls: "p1", num: "01", title: "入国前",         range: "STEP 1 – 3", note: "ご加入から現地での事前教育まで", span: 3 },
+  { cls: "p2", num: "02", title: "入国・配属",      range: "STEP 4 – 5", note: "入国後講習から受入企業様への配属まで", span: 2 },
+  { cls: "p3", num: "03", title: "育成就労・移行",  range: "STEP 6 – 7", note: "技能検定から帰国または特定技能1号へ", span: 2 },
+];
+
 const JOURNEY_STEPS = [
-  { n: 1, phase: "p1", dur: "〜 1ヶ月",        h: "ご加入・制度説明",       p: "受入分野・職種・人数・希望時期を伺い、最適な受入計画をご提案いたします。", sx: 11, sy: 60, bx: 11, by: 83, delay: ".35s" },
-  { n: 2, phase: "p1", dur: "1 〜 3ヶ月",      h: "募集・選抜",             p: "提携している送出機関より候補者を選定。書類審査・オンライン面接を実施します。", sx: 24, sy: 25, bx: 24, by: 48, delay: ".5s" },
-  { n: 3, phase: "p1", dur: "約 6ヶ月",        h: "現地での事前教育",       p: "入国前に、現地にて日本語・生活ルール・労働安全の基礎教育を実施します。", sx: 37, sy: 65, bx: 37, by: 33, delay: ".65s" },
-  { n: 4, phase: "p2", dur: "約 1ヶ月",        h: "入国・入国後講習",       p: "入国後、日本語・生活ルール・職種別講習を集中的に実施します。", sx: 50, sy: 30, bx: 50, by: 15.5, delay: ".8s" },
-  { n: 5, phase: "p2", dur: "1 年目 〜",       h: "配属・育成就労開始",     p: "受入企業様への配属。初期の定着まで組合担当者が継続的にフォローいたします。", sx: 63, sy: 65, bx: 63, by: 38, delay: ".95s" },
-  { n: 6, phase: "p3", dur: "3 年目以降",      h: "技能検定・継続",         p: "定期巡回・面談・キャリア相談・技能習得状況の確認をワンストップで実施します。", sx: 76, sy: 25, bx: 76, by: 46, delay: "1.1s" },
-  { n: 7, phase: "p3", dur: "修了 — 帰国 / 移行", h: "帰国 または 特定技能 1号へ", p: "本人の希望とスキルに応じて、登録支援機関がそのまま支援を継続します。", sx: 89, sy: 60, bx: 89, by: 83, delay: "1.25s" },
+  { n: 1, phase: "p1", dur: "〜 1ヶ月",             h: "ご加入・制度説明",           p: "受入分野・職種・人数・希望時期を伺い、最適な受入計画をご提案いたします。" },
+  /* 修正依頼 p.8：面接は「現地またはオンライン」。オンライン面接のみと誤解されない表記に */
+  { n: 2, phase: "p1", dur: "1 〜 3ヶ月",           h: "募集・選抜",                 p: "提携している送出機関より候補者を選定。書類審査と面接（現地またはオンライン）を実施します。" },
+  { n: 3, phase: "p1", dur: "約 6ヶ月",            h: "現地での事前教育",           p: "入国前に、現地にて日本語・生活ルール・労働安全の基礎教育を実施します。" },
+  { n: 4, phase: "p2", dur: "約 1ヶ月",            h: "入国・入国後講習",           p: "入国後、日本語・生活ルール・職種別講習を集中的に実施します。" },
+  { n: 5, phase: "p2", dur: "1 年目 〜",           h: "配属・育成就労開始",         p: "受入企業様への配属。初期の定着まで組合担当者が継続的にフォローいたします。" },
+  /* 修正依頼 p.8：「定期巡回」→「定期訪問」。企業様サポートの実施を明記 */
+  { n: 6, phase: "p3", dur: "3 年目以降",          h: "技能検定・継続",             p: "定期訪問・面談・キャリア相談を実施。技能習得状況の確認に加え、企業様のサポートを実施します。" },
+  { n: 7, phase: "p3", dur: "3 年 修了後",        h: "帰国 または 特定技能 1号へ",  p: "本人の希望とスキルに応じて、登録支援機関がそのまま支援を継続します。" },
 ];
 
 function ProcessDiagram() {
-  const arcRef = useRef(null);
-  useEffect(() => {
-    const arc = arcRef.current;
-    if (!arc || typeof arc.getTotalLength !== "function") return;
-    try {
-      const len = arc.getTotalLength();
-      arc.style.strokeDasharray = len;
-      arc.style.strokeDashoffset = len;
-      requestAnimationFrame(() => {
-        arc.style.transition = "stroke-dashoffset 2.2s cubic-bezier(.65,.05,.36,1)";
-        requestAnimationFrame(() => { arc.style.strokeDashoffset = 0; });
-      });
-    } catch (e) { /* getTotalLength unsupported (hidden/headless) — arc stays drawn */ }
-  }, []);
+  const step = (s) => (
+    <div className="j7-card">
+      <span className="j7-duration">{s.dur}</span>
+      <h3>{s.h}</h3>
+      <p>{s.p}</p>
+    </div>
+  );
 
   return (
     <div className="journey7">
-      {/* ===== DESKTOP — arc journey ===== */}
-      <div className="j7-stage">
-        <svg className="j7-path" viewBox="0 0 1600 720" preserveAspectRatio="none">
-          <defs>
-            <linearGradient id="j7grad" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stopColor="#c8102e"/>
-              <stop offset="50%" stopColor="#e25a3a"/>
-              <stop offset="100%" stopColor="#7a0a1b"/>
-            </linearGradient>
-            <pattern id="j7dots" x="0" y="0" width="14" height="14" patternUnits="userSpaceOnUse">
-              <circle cx="2" cy="2" r="1.4" fill="#c8102e" opacity=".25"/>
-            </pattern>
-            <marker id="j7arrow" viewBox="0 0 12 12" refX="6" refY="6" markerWidth="5" markerHeight="5" orient="auto-start-reverse" markerUnits="strokeWidth">
-              <path d="M 0 0 L 12 6 L 0 12 L 3 6 Z" fill="#7a0a1b"/>
-            </marker>
-          </defs>
-          <line x1="0" y1="640" x2="1600" y2="640" stroke="#1a0a0a" strokeWidth="2"/>
-          <line x1="0" y1="648" x2="1600" y2="648" stroke="#c8102e" strokeWidth="1" strokeDasharray="3 6"/>
-          <path d="M 80 600 Q 400 -120 800 120 Q 1200 360 1520 600" fill="url(#j7dots)" stroke="none" opacity=".45" transform="translate(0,-20)"/>
-          <path ref={arcRef} id="j7arc"
-            d="M 80 600 C 260 600, 280 250, 470 240 C 640 232, 660 110, 800 110 C 940 110, 980 250, 1130 280 C 1290 312, 1320 540, 1520 600"
-            fill="none" stroke="url(#j7grad)" strokeWidth="6" strokeLinecap="round" markerEnd="url(#j7arrow)"/>
-          <path d="M 80 612 C 260 612, 280 262, 470 252 C 640 244, 660 122, 800 122 C 940 122, 980 262, 1130 292 C 1290 324, 1310 540, 1490 595"
-            fill="none" stroke="#c8102e" strokeWidth="2" opacity=".18"/>
-        </svg>
-
-        <div className="j7-ground left">
-          <div className="ico">出</div>
-          <div><small>Origin Country</small>現地（送出国）</div>
-        </div>
-        <div className="j7-ground right">
-          <div><small>Return / Transition</small>帰国 ・ 特定技能 1 号</div>
-          <div className="ico">帰</div>
-        </div>
-
-        {JOURNEY_STEPS.map((s) => (
-          <React.Fragment key={s.n}>
-            <div className={`j7-step ${s.phase}`} style={{ left: `${s.sx}%`, top: `${s.sy}%`, "--delay": s.delay }}>
-              <div className="j7-card">
-                <span className="j7-duration">{s.dur}</span>
-                <h3>{s.h}</h3>
-                <p>{s.p}</p>
-              </div>
+      {/* 上部：3フェーズの帯（この図が「時間の流れ」であることを明示する） */}
+      <div className="j7-phases">
+        {JOURNEY_PHASES.map((ph) => (
+          <div key={ph.cls} className={`j7-phase ${ph.cls}`} style={{ "--span": ph.span }}>
+            <div className="j7-phase-top">
+              <span className="j7-phase-num">PHASE {ph.num}</span>
+              <span className="j7-phase-range">{ph.range}</span>
             </div>
-            <div className={`j7-badge ${s.phase}`} style={{ left: `${s.bx}%`, top: `${s.by}%`, "--delay": s.delay }}>
-              <span className="n">{s.n}</span><span className="dot"></span>
-            </div>
-          </React.Fragment>
+            <div className="j7-phase-title">{ph.title}</div>
+            <div className="j7-phase-note">{ph.note}</div>
+          </div>
         ))}
       </div>
 
-      {/* ===== MOBILE — vertical snaking timeline ===== */}
+      {/* 出発地・到着地 */}
+      <div className="j7-ends">
+        <div className="j7-end">
+          <span className="ico">出</span>
+          <span className="txt"><small>Origin Country</small>現地（送出国）</span>
+        </div>
+        <div className="j7-flowlabel">時間の流れ</div>
+        <div className="j7-end right">
+          <span className="txt"><small>Return / Transition</small>帰国 ・ 特定技能 1 号</span>
+          <span className="ico">帰</span>
+        </div>
+      </div>
+
+      {/* ===== DESKTOP — 時系列レール（番号はすべてレール上、説明カードはその真下） ===== */}
+      <div className="j7-rail">
+        <div className="j7-track" aria-hidden="true">
+          {JOURNEY_PHASES.map((ph) => (
+            <span key={ph.cls} className={`j7-track-seg ${ph.cls}`} style={{ flex: ph.span }}></span>
+          ))}
+          <span className="j7-track-arrow"></span>
+        </div>
+        <div className="j7-grid">
+          {JOURNEY_STEPS.map((s) => (
+            <div key={s.n} className={`j7-col ${s.phase}`}>
+              <div className="j7-node"><span className="n">{s.n}</span></div>
+              {step(s)}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* ===== MOBILE — 縦一列のタイムライン（番号は常に左、説明カードは常に右） ===== */}
       <div className="j7-stage-m">
         <div className="j7-chip">
           <div className="ico">出</div>
           <div><small>Origin Country</small>現地（送出国）</div>
         </div>
         <ol className="j7-journey">
-          <svg className="j7-spine" viewBox="0 0 56 980" preserveAspectRatio="none" aria-hidden="true">
-            <defs>
-              <linearGradient id="j7gradM" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#c8102e"/>
-                <stop offset="55%" stopColor="#e25a3a"/>
-                <stop offset="100%" stopColor="#7a0a1b"/>
-              </linearGradient>
-              <marker id="j7arrowM" viewBox="0 0 12 12" refX="6" refY="6" markerWidth="5" markerHeight="5" orient="auto-start-reverse" markerUnits="strokeWidth">
-                <path d="M 0 0 L 12 6 L 0 12 L 3 6 Z" fill="#7a0a1b"/>
-              </marker>
-            </defs>
-            <path d="M 28 10 C 50 80, 6 140, 28 210 C 50 280, 6 340, 28 410 C 50 480, 6 540, 28 610 C 50 680, 6 740, 28 810 C 50 880, 28 940, 28 970"
-              fill="none" stroke="url(#j7gradM)" strokeWidth="4" strokeLinecap="round" markerEnd="url(#j7arrowM)"/>
-          </svg>
           {JOURNEY_STEPS.map((s) => (
             <li key={s.n} className={`j7-step-m ${s.phase}`}>
-              <div className="j7-badge-m"><span className="n">{s.n}</span><span className="dot"></span></div>
+              <div className="j7-badge-m"><span className="n">{s.n}</span></div>
               <div className="j7-card-m">
                 <span className="j7-duration">{s.dur}</span>
                 <h3>{s.h}</h3>
@@ -526,7 +523,7 @@ function ProcessDiagram() {
     </div>
   );
 }
-Object.assign(window, { ProcessDiagram, JOURNEY_STEPS });
+Object.assign(window, { ProcessDiagram, JOURNEY_STEPS, JOURNEY_PHASES });
 
 /* ============================================================
    SUPPORT — 10項目 in 2 PHASE COLUMNS (特定技能)
@@ -588,80 +585,86 @@ Object.assign(window, { SupportDiagram });
 /* ============================================================
    FIELDS — 16 fields in 4 CATEGORY ZONES (特定技能)
    ============================================================ */
+const SP_ICON = { fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round", strokeLinejoin: "round" };
+
+/* 分野名 → アイコン。SSW_FIELDS（data.jsx）の name をキーにする。
+   分野を増減する場合は data.jsx の SSW_FIELDS を編集し、ここに対応アイコンを足すだけでよい。 */
+const FIELD_ICONS = {
+  "建設": (<svg viewBox="0 0 40 40" {...SP_ICON}><path d="M8 34V12l24 6"/><path d="M8 12 32 12"/><path d="M14 34V20l8 2v12"/><path d="M22 34V25"/><path d="M8 18l6 0M8 24l6 0M8 30l6 0"/><circle cx="32" cy="13" r="1.4" fill="currentColor"/><path d="M32 14v6l-4 4"/></svg>),
+  "造船・舶用工業": (<svg viewBox="0 0 40 40" {...SP_ICON}><path d="M4 26h32l-3 6H7l-3-6Z" fill="currentColor" fillOpacity="0.15"/><path d="M8 26V18h22v8"/><path d="M14 18v-4h4M20 14h4v4"/><path d="M14 22h6M22 22h6"/><path d="M19 10v8"/><path d="M19 10l5 2"/><path d="M4 32c3 2 5 0 8 0s5 2 8 0 5-2 8 0 5 0 8 0"/></svg>),
+  "自動車整備": (<svg viewBox="0 0 40 40" {...SP_ICON}><path d="M6 26v-4l3-1 3-6h16l3 6 3 1v4"/><path d="M6 26h28v3H6z"/><circle cx="12" cy="29" r="3" fill="#fff" stroke="currentColor"/><circle cx="28" cy="29" r="3" fill="#fff" stroke="currentColor"/><path d="M12 15h16"/><path d="M22 8l3 3-2 2 3 3-3 3-3-3-2 2-3-3 7-7Z" fill="currentColor" fillOpacity="0.25"/></svg>),
+  "工業製品製造業": (<svg viewBox="0 0 40 40" {...SP_ICON}><circle cx="15" cy="17" r="6"/><path d="M15 9v-3M15 28v-3M7 17H4M26 17h-3M9.3 11.3 7.2 9.2M22.8 22.8l-2.1-2.1M9.3 22.8l-2.1 2.1M22.8 11.3 24.9 9.2"/><circle cx="15" cy="17" r="2" fill="currentColor"/><circle cx="28" cy="28" r="4"/><path d="M28 22v-2M28 36v-2M22 28h-2M36 28h-2"/></svg>),
+  "介護": (<svg viewBox="0 0 40 40" {...SP_ICON}><path d="M4 28c2-4 6-6 10-6h12c4 0 6 2 8 4" fill="currentColor" fillOpacity="0.18"/><circle cx="20" cy="11" r="4"/><path d="M14 22c0-3 3-5 6-5s6 2 6 5"/><path d="M30 14c1.5-1.5 4-1 4 1.2 0 2-4 4-4 4s-4-2-4-4c0-2.2 2.5-2.7 4-1.2Z" fill="currentColor"/></svg>),
+  "ビルクリーニング": (<svg viewBox="0 0 40 40" {...SP_ICON}><path d="M10 34V8h14v26"/><path d="M24 34V16h6v18"/><path d="M13 12h2M19 12h2M13 17h2M19 17h2M13 22h2M19 22h2M13 27h2M19 27h2M27 20h.01M27 25h.01M27 30h.01"/><path d="M32 8l1 2 2 1-2 1-1 2-1-2-2-1 2-1 1-2Z" fill="currentColor"/><path d="M6 16l.6 1.4L8 18l-1.4.6L6 20l-.6-1.4L4 18l1.4-.6L6 16Z" fill="currentColor"/></svg>),
+  /* リネンサプライ：たたんだリネン＋洗濯タグ */
+  "リネンサプライ": (<svg viewBox="0 0 40 40" {...SP_ICON}><rect x="6" y="9" width="22" height="7" rx="2" fill="currentColor" fillOpacity="0.18"/><rect x="6" y="9" width="22" height="7" rx="2"/><rect x="6" y="18" width="22" height="7" rx="2"/><rect x="6" y="27" width="22" height="7" rx="2"/><path d="M11 12.5h4M11 21.5h4M11 30.5h4"/><path d="M33 8v9l3 3-3 3v9"/></svg>),
+  "宿泊": (<svg viewBox="0 0 40 40" {...SP_ICON}><path d="M5 34V14l15-7 15 7v20"/><path d="M5 34h30"/><path d="M12 28v-4h16v4" fill="currentColor" fillOpacity="0.25"/><path d="M10 28h20v3H10z"/><circle cx="15" cy="22" r="2"/><path d="M19 24h9v-3a2 2 0 0 0-2-2h-7"/><path d="M20 11l.9 1.9 2.1.3-1.5 1.5.4 2.1L20 16l-1.9 1 .4-2.1-1.5-1.5 2.1-.3L20 11Z" fill="currentColor"/></svg>),
+  "外食業": (<svg viewBox="0 0 40 40" {...SP_ICON}><path d="M12 18c-3 0-5-2-5-5s3-5 6-4c1-3 5-4 7-4s6 1 7 4c3-1 6 1 6 4s-2 5-5 5v6H12v-6Z" fill="currentColor" fillOpacity="0.15"/><path d="M12 24h16v3H12z"/><path d="M9 30v4M9 30c-1 0-2-1-2-2v-3h4v3c0 1-1 2-2 2Z"/><path d="M31 30v4M31 25v5M29 25v3M33 25v3"/></svg>),
+  "農業": (<svg viewBox="0 0 40 40" {...SP_ICON}><path d="M6 28V18h10l2-5h6v8" fill="currentColor" fillOpacity="0.15"/><path d="M6 28V18h10l2-5h6v8h6v7"/><path d="M6 28h24"/><circle cx="13" cy="30" r="4" fill="#fff" stroke="currentColor"/><circle cx="13" cy="30" r="1.5" fill="currentColor"/><circle cx="28" cy="31" r="2.5" fill="#fff" stroke="currentColor"/><path d="M34 10c-2 0-3 2-3 3 2 0 3-1 3-3ZM34 10c2 0 3 2 3 3-2 0-3-1-3-3ZM34 13v3"/></svg>),
+  "漁業": (<svg viewBox="0 0 40 40" {...SP_ICON}><path d="M6 20c4-6 10-6 14-3l4-2-1 5 1 5-4-2c-4 3-10 3-14-3Z" fill="currentColor" fillOpacity="0.2"/><circle cx="11" cy="19" r="1" fill="currentColor"/><path d="M16 20h2M19 17h-1M19 23h-1"/><path d="M4 30c2-2 4-2 6 0s4 2 6 0 4-2 6 0 4 2 6 0 4-2 6 0"/><path d="M30 6v6c0 2-2 3-3 1"/></svg>),
+  "飲食料品製造業": (<svg viewBox="0 0 40 40" {...SP_ICON}><path d="M12 6h6v4l2 3v19h-10V13l2-3V6Z" fill="currentColor" fillOpacity="0.18"/><path d="M11 16h8"/><path d="M13 6h4"/><ellipse cx="28" cy="14" rx="5" ry="2"/><path d="M23 14v16c0 1 2 2 5 2s5-1 5-2V14"/><path d="M23 20c0 1 2 2 5 2s5-1 5-2"/><path d="M23 26c0 1 2 2 5 2s5-1 5-2"/></svg>),
+  "林業": (<svg viewBox="0 0 40 40" {...SP_ICON}><path d="M16 6l-7 10h4l-5 8h5l-5 8h16l-5-8h5l-5-8h4l-7-10Z" fill="currentColor" fillOpacity="0.22"/><path d="M16 6l-7 10h4l-5 8h5l-5 8h16l-5-8h5l-5-8h4l-7-10Z"/><path d="M16 32v4"/><path d="M30 10l4-2 2 4-4 2-2-4Z" fill="currentColor"/><path d="M30 10l-6 12"/></svg>),
+  "木材産業": (<svg viewBox="0 0 40 40" {...SP_ICON}><circle cx="16" cy="20" r="10" fill="currentColor" fillOpacity="0.12"/><circle cx="16" cy="20" r="10"/><circle cx="16" cy="20" r="6.5"/><circle cx="16" cy="20" r="3"/><path d="M28 14h6M28 20h6M28 26h6"/><path d="M33 9l3 2-2 3"/></svg>),
+  "自動車運送業": (<svg viewBox="0 0 40 40" {...SP_ICON}><path d="M3 27V12h18v15" fill="currentColor" fillOpacity="0.15"/><path d="M21 17h7l4 5v5H21z"/><path d="M3 27h32"/><circle cx="11" cy="29" r="3" fill="#fff" stroke="currentColor"/><circle cx="27" cy="29" r="3" fill="#fff" stroke="currentColor"/><path d="M8 16h8M8 20h8"/></svg>),
+  "鉄道": (<svg viewBox="0 0 40 40" {...SP_ICON}><path d="M10 6h20a4 4 0 0 1 4 4v18a4 4 0 0 1-4 4H10a4 4 0 0 1-4-4V10a4 4 0 0 1 4-4Z" fill="currentColor" fillOpacity="0.15"/><path d="M10 12h20v8H10z"/><circle cx="13" cy="26" r="1.5" fill="currentColor"/><circle cx="27" cy="26" r="1.5" fill="currentColor"/><path d="M14 16h12"/><path d="M8 34l-2 4M32 34l2 4M14 36h12"/></svg>),
+  "航空": (<svg viewBox="0 0 40 40" {...SP_ICON}><path d="M4 24l30-14-4 16-10-3-4 8-3-5-9-2Z" fill="currentColor" fillOpacity="0.22"/><path d="M4 24l30-14-4 16-10-3-4 8-3-5-9-2Z"/><path d="M20 23l5-10"/><path d="M6 32c4 0 6-2 10-2"/></svg>),
+  /* 物流倉庫：ラック＋段ボール */
+  "物流倉庫": (<svg viewBox="0 0 40 40" {...SP_ICON}><path d="M5 15 20 7l15 8"/><path d="M7 15v19h26V15"/><rect x="12" y="20" width="7" height="6" fill="currentColor" fillOpacity="0.2"/><rect x="21" y="20" width="7" height="6"/><rect x="16" y="28" width="8" height="6" fill="currentColor" fillOpacity="0.2"/><path d="M15.5 20v6M24.5 20v6M20 28v6"/></svg>),
+  /* 資源循環：リサイクルの三角循環 */
+  "資源循環": (<svg viewBox="0 0 40 40" {...SP_ICON}><path d="M20 6l5 9h-10l5-9Z" fill="currentColor" fillOpacity="0.22"/><path d="M20 6l5 9h-10l5-9Z"/><path d="M8 32l5-9 5 3-4.5 8L8 32Z"/><path d="M32 32l-5-9-5 3 4.5 8L32 32Z"/><path d="M12 33h16"/><path d="M26 31l2 2-2 2"/></svg>),
+};
+
+const FIELD_CATS = [
+  { key: "build", cls: "c1", num: "01", eyebrow: "Build & Manufacturing", title: "建設・製造業界",
+    badge: (<svg viewBox="0 0 32 32" {...SP_ICON}><path d="M4 27V14l7 4V14l7 4V9l10 6v12H4Z"/><path d="M8 22h2M14 22h2M20 22h2M26 22h.01"/></svg>) },
+  { key: "care", cls: "c2", num: "02", eyebrow: "Care & Service", title: "介護・サービス業界",
+    badge: (<svg viewBox="0 0 32 32" {...SP_ICON}><path d="M16 26S6 20 6 13a5 5 0 0 1 10-2 5 5 0 0 1 10 2c0 7-10 13-10 13Z" fill="currentColor" fillOpacity="0.2"/></svg>) },
+  { key: "food", cls: "c3", num: "03", eyebrow: "Food, Agriculture & Forestry", title: "農林水産・食品業界",
+    badge: (<svg viewBox="0 0 32 32" {...SP_ICON}><path d="M16 28V8"/><path d="M16 12c-3 0-5-2-5-5 3 0 5 2 5 5ZM16 12c3 0 5-2 5-5-3 0-5 2-5 5Z"/><path d="M16 18c-3 0-5-2-5-5 3 0 5 2 5 5ZM16 18c3 0 5-2 5-5-3 0-5 2-5 5Z"/><path d="M16 24c-3 0-5-2-5-5 3 0 5 2 5 5ZM16 24c3 0 5-2 5-5-3 0-5 2-5 5Z"/></svg>) },
+  { key: "move", cls: "c4", num: "04", eyebrow: "Transport & Environment", title: "運輸・環境関連業界",
+    badge: (<svg viewBox="0 0 32 32" {...SP_ICON}><path d="M4 22c4 0 4-12 8-12s4 12 8 12 4-12 8-12"/><circle cx="6" cy="22" r="2" fill="currentColor"/><circle cx="26" cy="10" r="2" fill="currentColor"/></svg>) },
+];
+
 function FieldsDiagram() {
-  const sp = { fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round", strokeLinejoin: "round" };
-  const cats = [
-    {
-      cls: "c1", num: "01", eyebrow: "Build & Manufacturing", title: "建設・製造業界",
-      badge: (<svg viewBox="0 0 32 32" {...sp}><path d="M4 27V14l7 4V14l7 4V9l10 6v12H4Z"/><path d="M8 22h2M14 22h2M20 22h2M26 22h.01"/></svg>),
-      items: [
-        { name: "建設", en: "Construction", icon: (<svg viewBox="0 0 40 40" {...sp}><path d="M8 34V12l24 6"/><path d="M8 12 32 12"/><path d="M14 34V20l8 2v12"/><path d="M22 34V25"/><path d="M8 18l6 0M8 24l6 0M8 30l6 0"/><circle cx="32" cy="13" r="1.4" fill="currentColor"/><path d="M32 14v6l-4 4"/></svg>) },
-        { name: "造船・舶用工業", en: "Shipbuilding", icon: (<svg viewBox="0 0 40 40" {...sp}><path d="M4 26h32l-3 6H7l-3-6Z" fill="currentColor" fillOpacity="0.15"/><path d="M8 26V18h22v8"/><path d="M14 18v-4h4M20 14h4v4"/><path d="M14 22h6M22 22h6"/><path d="M19 10v8"/><path d="M19 10l5 2"/><path d="M4 32c3 2 5 0 8 0s5 2 8 0 5-2 8 0 5 0 8 0"/></svg>) },
-        { name: "自動車整備", en: "Auto Repair", icon: (<svg viewBox="0 0 40 40" {...sp}><path d="M6 26v-4l3-1 3-6h16l3 6 3 1v4"/><path d="M6 26h28v3H6z"/><circle cx="12" cy="29" r="3" fill="#fff" stroke="currentColor"/><circle cx="28" cy="29" r="3" fill="#fff" stroke="currentColor"/><path d="M12 15h16"/><path d="M22 8l3 3-2 2 3 3-3 3-3-3-2 2-3-3 7-7Z" fill="currentColor" fillOpacity="0.25"/></svg>) },
-        { name: "工業製品製造業", en: "Industrial Mfg.", icon: (<svg viewBox="0 0 40 40" {...sp}><circle cx="15" cy="17" r="6"/><path d="M15 9v-3M15 28v-3M7 17H4M26 17h-3M9.3 11.3 7.2 9.2M22.8 22.8l-2.1-2.1M9.3 22.8l-2.1 2.1M22.8 11.3 24.9 9.2"/><circle cx="15" cy="17" r="2" fill="currentColor"/><circle cx="28" cy="28" r="4"/><path d="M28 22v-2M28 36v-2M22 28h-2M36 28h-2"/></svg>) },
-      ]
-    },
-    {
-      cls: "c2", num: "02", eyebrow: "Care & Service", title: "介護・サービス業界",
-      badge: (<svg viewBox="0 0 32 32" {...sp}><path d="M16 26S6 20 6 13a5 5 0 0 1 10-2 5 5 0 0 1 10 2c0 7-10 13-10 13Z" fill="currentColor" fillOpacity="0.2"/></svg>),
-      items: [
-        { name: "介護", en: "Caregiving", icon: (<svg viewBox="0 0 40 40" {...sp}><path d="M4 28c2-4 6-6 10-6h12c4 0 6 2 8 4" fill="currentColor" fillOpacity="0.18"/><circle cx="20" cy="11" r="4"/><path d="M14 22c0-3 3-5 6-5s6 2 6 5"/><path d="M30 14c1.5-1.5 4-1 4 1.2 0 2-4 4-4 4s-4-2-4-4c0-2.2 2.5-2.7 4-1.2Z" fill="currentColor"/></svg>) },
-        { name: "ビルクリーニング", en: "Building Cleaning", icon: (<svg viewBox="0 0 40 40" {...sp}><path d="M10 34V8h14v26"/><path d="M24 34V16h6v18"/><path d="M13 12h2M19 12h2M13 17h2M19 17h2M13 22h2M19 22h2M13 27h2M19 27h2M27 20h.01M27 25h.01M27 30h.01"/><path d="M32 8l1 2 2 1-2 1-1 2-1-2-2-1 2-1 1-2Z" fill="currentColor"/><path d="M6 16l.6 1.4L8 18l-1.4.6L6 20l-.6-1.4L4 18l1.4-.6L6 16Z" fill="currentColor"/></svg>) },
-        { name: "宿泊", en: "Lodging", icon: (<svg viewBox="0 0 40 40" {...sp}><path d="M5 34V14l15-7 15 7v20"/><path d="M5 34h30"/><path d="M12 28v-4h16v4" fill="currentColor" fillOpacity="0.25"/><path d="M10 28h20v3H10z"/><circle cx="15" cy="22" r="2"/><path d="M19 24h9v-3a2 2 0 0 0-2-2h-7"/><path d="M20 11l.9 1.9 2.1.3-1.5 1.5.4 2.1L20 16l-1.9 1 .4-2.1-1.5-1.5 2.1-.3L20 11Z" fill="currentColor"/></svg>) },
-        { name: "外食業", en: "Food Service", icon: (<svg viewBox="0 0 40 40" {...sp}><path d="M12 18c-3 0-5-2-5-5s3-5 6-4c1-3 5-4 7-4s6 1 7 4c3-1 6 1 6 4s-2 5-5 5v6H12v-6Z" fill="currentColor" fillOpacity="0.15"/><path d="M12 24h16v3H12z"/><path d="M9 30v4M9 30c-1 0-2-1-2-2v-3h4v3c0 1-1 2-2 2Z"/><path d="M31 30v4M31 25v5M29 25v3M33 25v3"/></svg>) },
-      ]
-    },
-    {
-      cls: "c3", num: "03", eyebrow: "Food & Agriculture", title: "農林水産・食品業界",
-      badge: (<svg viewBox="0 0 32 32" {...sp}><path d="M16 28V8"/><path d="M16 12c-3 0-5-2-5-5 3 0 5 2 5 5ZM16 12c3 0 5-2 5-5-3 0-5 2-5 5Z"/><path d="M16 18c-3 0-5-2-5-5 3 0 5 2 5 5ZM16 18c3 0 5-2 5-5-3 0-5 2-5 5Z"/><path d="M16 24c-3 0-5-2-5-5 3 0 5 2 5 5ZM16 24c3 0 5-2 5-5-3 0-5 2-5 5Z"/></svg>),
-      items: [
-        { name: "農業", en: "Agriculture", icon: (<svg viewBox="0 0 40 40" {...sp}><path d="M6 28V18h10l2-5h6v8" fill="currentColor" fillOpacity="0.15"/><path d="M6 28V18h10l2-5h6v8h6v7"/><path d="M6 28h24"/><circle cx="13" cy="30" r="4" fill="#fff" stroke="currentColor"/><circle cx="13" cy="30" r="1.5" fill="currentColor"/><circle cx="28" cy="31" r="2.5" fill="#fff" stroke="currentColor"/><path d="M34 10c-2 0-3 2-3 3 2 0 3-1 3-3ZM34 10c2 0 3 2 3 3-2 0-3-1-3-3ZM34 13v3"/></svg>) },
-        { name: "漁業", en: "Fishery", icon: (<svg viewBox="0 0 40 40" {...sp}><path d="M6 20c4-6 10-6 14-3l4-2-1 5 1 5-4-2c-4 3-10 3-14-3Z" fill="currentColor" fillOpacity="0.2"/><circle cx="11" cy="19" r="1" fill="currentColor"/><path d="M16 20h2M19 17h-1M19 23h-1"/><path d="M4 30c2-2 4-2 6 0s4 2 6 0 4-2 6 0 4 2 6 0 4-2 6 0"/><path d="M30 6v6c0 2-2 3-3 1"/></svg>) },
-        { name: "飲食料品製造業", en: "Food & Beverage", icon: (<svg viewBox="0 0 40 40" {...sp}><path d="M12 6h6v4l2 3v19h-10V13l2-3V6Z" fill="currentColor" fillOpacity="0.18"/><path d="M11 16h8"/><path d="M13 6h4"/><ellipse cx="28" cy="14" rx="5" ry="2"/><path d="M23 14v16c0 1 2 2 5 2s5-1 5-2V14"/><path d="M23 20c0 1 2 2 5 2s5-1 5-2"/><path d="M23 26c0 1 2 2 5 2s5-1 5-2"/></svg>) },
-        { name: "木材産業", en: "Wood Industry", icon: (<svg viewBox="0 0 40 40" {...sp}><circle cx="16" cy="20" r="10" fill="currentColor" fillOpacity="0.12"/><circle cx="16" cy="20" r="10"/><circle cx="16" cy="20" r="6.5"/><circle cx="16" cy="20" r="3"/><path d="M28 14h6M28 20h6M28 26h6"/><path d="M33 9l3 2-2 3"/></svg>) },
-      ]
-    },
-    {
-      cls: "c4", num: "04", eyebrow: "Transport & Move", title: "運輸・移動関連業界",
-      badge: (<svg viewBox="0 0 32 32" {...sp}><path d="M4 22c4 0 4-12 8-12s4 12 8 12 4-12 8-12"/><circle cx="6" cy="22" r="2" fill="currentColor"/><circle cx="26" cy="10" r="2" fill="currentColor"/></svg>),
-      items: [
-        { name: "自動車運送業", en: "Trucking", icon: (<svg viewBox="0 0 40 40" {...sp}><path d="M3 27V12h18v15" fill="currentColor" fillOpacity="0.15"/><path d="M21 17h7l4 5v5H21z"/><path d="M3 27h32"/><circle cx="11" cy="29" r="3" fill="#fff" stroke="currentColor"/><circle cx="27" cy="29" r="3" fill="#fff" stroke="currentColor"/><path d="M8 16h8M8 20h8"/></svg>) },
-        { name: "鉄道", en: "Railway", icon: (<svg viewBox="0 0 40 40" {...sp}><path d="M10 6h20a4 4 0 0 1 4 4v18a4 4 0 0 1-4 4H10a4 4 0 0 1-4-4V10a4 4 0 0 1 4-4Z" fill="currentColor" fillOpacity="0.15"/><path d="M10 12h20v8H10z"/><circle cx="13" cy="26" r="1.5" fill="currentColor"/><circle cx="27" cy="26" r="1.5" fill="currentColor"/><path d="M14 16h12"/><path d="M8 34l-2 4M32 34l2 4M14 36h12"/></svg>) },
-        { name: "航空", en: "Aviation", icon: (<svg viewBox="0 0 40 40" {...sp}><path d="M4 24l30-14-4 16-10-3-4 8-3-5-9-2Z" fill="currentColor" fillOpacity="0.22"/><path d="M4 24l30-14-4 16-10-3-4 8-3-5-9-2Z"/><path d="M20 23l5-10"/><path d="M6 32c4 0 6-2 10-2"/></svg>) },
-        { name: "林業", en: "Forestry", icon: (<svg viewBox="0 0 40 40" {...sp}><path d="M16 6l-7 10h4l-5 8h5l-5 8h16l-5-8h5l-5-8h4l-7-10Z" fill="currentColor" fillOpacity="0.22"/><path d="M16 6l-7 10h4l-5 8h5l-5 8h16l-5-8h5l-5-8h4l-7-10Z"/><path d="M16 32v4"/><path d="M30 10l4-2 2 4-4 2-2-4Z" fill="currentColor"/><path d="M30 10l-6 12"/></svg>) },
-      ]
-    }
-  ];
   return (
     <div className="ind16">
       <div className="ind16-grid">
-        {cats.map((c, i) => (
-          <section key={i} className={`ind-cat ${c.cls}`}>
-            <div className="ind-cat-num">{c.num}</div>
-            <div className="ind-cat-head">
-              <div className="ind-cat-badge">{c.badge}</div>
-              <div className="ind-cat-text">
-                <div className="ind-eyebrow">{c.eyebrow}</div>
-                <div className="ind-cat-title">{c.title}</div>
-              </div>
-            </div>
-            <div className="ind-subs">
-              {c.items.map((it, j) => (
-                <div key={j} className="ind-sub">
-                  <div className="ind-sub-icon">{it.icon}</div>
-                  <span className="ind-sub-en">{it.en}</span>
-                  <span className="ind-sub-name">{it.name}</span>
+        {FIELD_CATS.map((c, i) => {
+          const items = SSW_FIELDS.filter(f => f.cat === c.key);
+          if (!items.length) return null;
+          return (
+            <section key={i} className={`ind-cat ${c.cls}`}>
+              {/* 帯レイアウトでは連番を見出しの中に流し込む（背面の巨大数字だと文字と重なるため） */}
+              <div className="ind-cat-head">
+                <div className="ind-cat-badge">{c.badge}</div>
+                <div className="ind-cat-text">
+                  <div className="ind-cat-num">{c.num}</div>
+                  <div className="ind-eyebrow">{c.eyebrow}</div>
+                  <div className="ind-cat-title">{c.title}</div>
                 </div>
-              ))}
-            </div>
-          </section>
-        ))}
+              </div>
+              {/* --cols にその分野数を渡し、カードが常に横幅いっぱいに並ぶようにする。
+                  カテゴリごとの分野数（4/5/5/5）の違いで余白が生じないための措置。 */}
+              <div className="ind-subs" style={{ "--cols": items.length }}>
+                {items.map((it, j) => (
+                  <div key={j} className="ind-sub">
+                    <div className="ind-sub-icon">{FIELD_ICONS[it.name] || null}</div>
+                    <span className="ind-sub-en">{it.en}</span>
+                    <span className="ind-sub-name">{it.name}</span>
+                  </div>
+                ))}
+              </div>
+            </section>
+          );
+        })}
       </div>
-      <div className="ind16-note">※現時点で16分野。将来の制度改正により、分野の追加・名称変更の可能性があります。</div>
+      <div className="ind16-note">
+        ※令和8年1月23日 閣議決定の分野別運用方針に基づく{SSW_FIELD_COUNT}分野。将来の制度改正により、分野の追加・名称変更の可能性があります。
+      </div>
     </div>
   );
 }
-Object.assign(window, { FieldsDiagram });
+Object.assign(window, { FieldsDiagram, FIELD_ICONS, FIELD_CATS });
 
 /* ============================================================
    INDUSTRY ICONS — 主な受入分野（農業・製造・建設）をイラストで表現
@@ -717,7 +720,7 @@ function IndustryIcons() {
           </div>
         ))}
       </div>
-      <div className="ind-icons-note">建設・製造・農業をはじめ、特定産業16分野に対応しています。<br/>※具体的な数値データは出典確認後に掲載します。</div>
+      <div className="ind-icons-note">建設・製造・農業をはじめ、特定産業{SSW_FIELD_COUNT}分野に対応しています。<br/>※分野は令和8年1月23日 閣議決定の分野別運用方針に基づきます。</div>
     </div>
   );
 }

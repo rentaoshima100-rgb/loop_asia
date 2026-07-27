@@ -70,20 +70,24 @@ function StatsSection() {
         </div>
         <div className="sv-stat">
           <div className="sv-tick">EXPERIENCE</div>
-          <div className="sv-num"><span className="sv-pre">創業</span><CountUp to={17} run={run}/><span className="sv-unit">年</span></div>
+          {/* 修正依頼 p.5：組合に「創業」はなじまないため「設立から」に変更 */}
+          <div className="sv-num"><span className="sv-pre">設立から</span><CountUp to={17} run={run}/><span className="sv-unit">年</span></div>
           <div className="sv-label">2009年 設立</div>
         </div>
       </div>
 
+      {/* 修正依頼 p.5：「N分野に対応」と言いながら3分野しか出ていなかったため、
+          ①主な受入分野（3枠）と ②対応可能な全分野一覧（カテゴリ別）の2段構成に変更。
+          全分野をカードで並べると煩雑になるため、下段はカテゴリ別のテキスト一覧で整理している。 */}
       <div className="sv-band">
         <div className="sv-intro">
           <div className="sv-kicker">Industries</div>
-          <div className="sv-intro-big">特定産業<br/>16分野に対応</div>
-          <span className="sv-chip">16 FIELDS</span>
+          <div className="sv-intro-big">特定産業<br/>{SSW_FIELD_COUNT}分野に対応</div>
+          <span className="sv-chip">{SSW_FIELD_COUNT} FIELDS</span>
         </div>
         {sectors.map((s, i) => (
           <div key={i} className="sv-sector">
-            <div className="sv-idx">{s.idx}</div>
+            <div className="sv-idx">MAIN {s.idx}</div>
             <div className="sv-icon">{s.icon}</div>
             <div className="sv-name">{s.name}</div>
             <div className="sv-en">{s.en}</div>
@@ -91,9 +95,37 @@ function StatsSection() {
         ))}
       </div>
 
+      <div className="sv-fields">
+        <div className="sv-fields-head">
+          <div className="sv-fields-title">
+            <span className="sv-fields-en">All Fields</span>
+            対応可能な全 {SSW_FIELD_COUNT} 分野
+          </div>
+          <a className="sv-fields-link" onClick={() => navigate("tokutei")}>
+            分野の詳細を見る <Icon name="arrow" size={13}/>
+          </a>
+        </div>
+        <div className="sv-fields-grid">
+          {FIELD_CATS.map((c) => {
+            const items = SSW_FIELDS.filter(f => f.cat === c.key);
+            if (!items.length) return null;
+            return (
+              <div key={c.key} className="sv-fcat">
+                <div className="sv-fcat-name">{c.title.replace("業界", "")}</div>
+                <ul className="sv-fcat-list">
+                  {items.map((f) => (
+                    <li key={f.name} className={SSW_CORE_FIELDS.includes(f.name) ? "is-core" : ""}>{f.name}</li>
+                  ))}
+                </ul>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
       <div className="sv-note">
-        <div className="sv-note-main"><b>建設・製造・農業</b>をはじめ、特定産業16分野に対応しています。</div>
-        <div className="sv-note-sub">※具体的な数値データは出典確認後に掲載します。</div>
+        <div className="sv-note-main"><b>建設・製造・農業</b>をはじめ、特定産業{SSW_FIELD_COUNT}分野に対応しています。</div>
+        <div className="sv-note-sub">※分野は令和8年1月23日 閣議決定の分野別運用方針に基づきます。</div>
       </div>
     </div>
   );
@@ -121,9 +153,10 @@ function HomePage() {
         <div className="hero-inner">
           <div className="hero-content">
             <div className="hero-kicker">Asia Interchange Cooperative Business Union</div>
+            {/* 修正依頼（第1回）p.2：メインタイトル差し替え。サブタイトルは原文のまま */}
             <h1 className="hero-title">
-              高い技術と安全性、<br/>
-              <span className="accent">やり遂げる</span><br/>自信があります。
+              実績に裏付けられた<br/>
+              <span className="accent">安心の支援体制</span>、<br/>確かなサポートを提供
             </h1>
             <p className="hero-sub">
               日本語学校併設の組合だから安心。育成就労制度から特定技能制度まで、<br/>
@@ -184,17 +217,18 @@ function HomePage() {
                 Stop<span className="accent">.</span>
               </div>
             </div>
+            {/* 修正依頼（第1回）p.3：見出し・第1段落・第3段落を差し替え。第2段落は原文のまま */}
             <FadeUp className="intro-body">
-              <h2>「人」を真ん中に置いた、<br/>誠実なご縁づくりを。</h2>
+              <h2>「人と人」の誠実なご縁を、<br/>安心のワンストップ体制で。</h2>
               <p>
-                亜細亜交流事業協同組合は、ベトナム・カンボジア・タイ・インドネシア・中国・モンゴル・バングラデシュ・スリランカ・ラオスの9カ国から、若く意欲ある人材を、日本の中小企業様にお繋ぎしてまいりました。
+                亜細亜交流事業協同組合は、<strong>2009年の設立以来、累計1,800人以上の受け入れ実績</strong>を積み重ねてまいりました。これまで、ベトナム・カンボジア・タイ・インドネシア・中国・モンゴル・バングラデシュ・スリランカ・ラオスの9カ国から、若く意欲ある人材を、日本の中小企業様へ誠実にお繋ぎしています。
               </p>
               <p>
                 単なる「人材紹介」ではなく、入国前の日本語教育から、入国後の生活立ち上げ、配属先での定着支援、そしてキャリア形成までを、グループ法人４社で一貫してご支援する「ワンストップ体制」が、私たちの強みです。
               </p>
               <p>
-                {/* 「実習生」はA-4の用語ルールに従い「育成就労外国人」に正規化。送出し機関は§4-1の要確認→「運営」で確定 */}
-                当組合は、グループ内で日本語学校（認定日本語教育機関）、送出し機関（ベトナム、インドネシア）を運営。育成就労外国人・特定技能制度のプロフェッショナルとして、企業様と育成就労外国人の双方に寄り添ったサポートを提供しています。長年の実績と専門知識をもとに、受入から帰国まで一貫してお支えします。
+                {/* 依頼書の「グループ内で･････････を運営」は省略表記のため、原文の運営対象（日本語学校・送出し機関）を維持 */}
+                当組合は、グループ内で日本語学校（認定日本語教育機関）、送出し機関（ベトナム、インドネシア）を運営。すべての工程で徹底したコンプライアンス（法令遵守）を追求しています。新制度（育成就労・特定技能）への確実な法適合はもちろん、現場での急な課題やご相談にも、迅速なフットワークで対応いたします。受入から帰国まで、企業様と外国人材の双方が安心して一歩を踏み出せるよう、プロフェッショナルとして一貫してお支えします。
               </p>
             </FadeUp>
           </div>
@@ -293,6 +327,34 @@ function HomePage() {
               </div>
             </div>
           </div>
+          {/* 修正依頼（第1回）p.4：育成就労制度への移行で新たに対象となった分野への訴求ブロック。
+              切り口＝「対象拡大（自社も対象かもしれない）」＋「経営課題の解決」。
+              他の切り口の候補文面は docs/design-revision-01.md に併記しています。 */}
+          <FadeUp className="newfield">
+            <div className="nf-side">
+              <div className="nf-badge">NEW FIELDS</div>
+              <div className="nf-side-note">育成就労制度への移行にともなう<br/>対象分野の拡大</div>
+            </div>
+            <div className="nf-body">
+              <h3>その仕事、もう「対象」かもしれません。</h3>
+              <p>
+                従来の技能実習では対象外だった業務区分が、育成就労制度への移行にともない新たに加わりました。当組合では
+                <strong>「電線・ケーブル製造」「電気電子機械組立て」</strong>にも対応しています。
+              </p>
+              <p>
+                増産の相談が来ても受けきれない。ベテランの技術が次に渡らない。——人手不足は、すでに設備投資や受注判断を左右する経営課題です。「うちの業種では対象外だろう」と受入をあきらめていた企業様こそ、一度ご確認ください。
+              </p>
+              <div className="nf-chips">
+                <span className="is-new">電線・ケーブル製造</span>
+                <span className="is-new">電気電子機械組立て</span>
+                <span>ほか 特定産業 {SSW_FIELD_COUNT} 分野</span>
+              </div>
+              <button className="btn btn-primary nf-cta" onClick={() => navigate("contact")}>
+                自社が対象か相談する <span className="arrow"><Icon name="arrow" size={16}/></span>
+              </button>
+            </div>
+          </FadeUp>
+
           {/* 実績と対応分野（NORTIQ Stats Section v2 デザイン）。
               ※「受入企業 継続率」タイルは本デザインでは非掲載（数値未提供＝保留のため割愛）。
                 数値が確定したら sv-stats に4枠目として復活可能。 */}
@@ -308,7 +370,9 @@ function HomePage() {
           <FadeUp className="section-head center">
             <div className="section-num">SUPPORT PROGRAMS</div>
             <h2 className="section-title">取り扱う 2 つの制度</h2>
-            <div className="section-en">TRAINING & SPECIFIED SKILLED WORKER</div>
+            {/* 英語表記：法務省 日本法令外国語訳DB「育成就労＝Employment for Skill Development」／
+                出入国在留管理庁「特定技能＝Specified Skilled Worker」に準拠 */}
+            <div className="section-en">EMPLOYMENT FOR SKILL DEVELOPMENT & SPECIFIED SKILLED WORKER</div>
           </FadeUp>
           <div className="two-systems">
             <FadeUp className="sys-card" onClick={() => navigate("ikusei")}>
@@ -316,12 +380,13 @@ function HomePage() {
                 <div className="sys-tag">PROGRAM 01</div>
               </div>
               <div className="sys-body">
-                <div className="en-sub">TRAINING ＆ EMPLOYMENT</div>
+                <div className="en-sub">EMPLOYMENT FOR SKILL DEVELOPMENT</div>
                 <h3>育成就労制度</h3>
                 <p>2027年4月から開始される新制度。「人材育成」と「人材確保」を目的とし、3年間で特定技能1号水準の技能習得を目指します。</p>
                 <div className="sys-meta">
                   <div className="sys-meta-item"><span className="k">在留期間</span><span className="v">最大 3 年</span></div>
-                  <div className="sys-meta-item"><span className="k">対応分野</span><span className="v">特定技能と同一</span></div>
+                  {/* 修正依頼 p.7：「特定技能と同一」→「特定技能（1号）と原則同一」 */}
+                  <div className="sys-meta-item"><span className="k">対応分野</span><span className="v">特定技能（1号）と原則同一</span></div>
                 </div>
                 <a className="sys-link">制度の詳細を見る <span className="arrow"><Icon name="arrow" size={14}/></span></a>
               </div>
@@ -331,12 +396,14 @@ function HomePage() {
                 <div className="sys-tag">PROGRAM 02</div>
               </div>
               <div className="sys-body">
-                <div className="en-sub">SPECIFIED SKILLED WORKER</div>
-                <h3>特定技能制度</h3>
+                {/* 修正依頼 p.7：カードは1号を説明しているため「特定技能（1号）制度」に統一。
+                    英語表記は出入国在留管理庁の "Specified Skilled Worker (i)" に準拠 */}
+                <div className="en-sub">SPECIFIED SKILLED WORKER (i)</div>
+                <h3>特定技能（1号）制度</h3>
                 <p>即戦力となる外国人材を受け入れる制度。グループ内に登録支援機関を保有し、法定10項目の支援を一貫してご提供します。</p>
                 <div className="sys-meta">
-                  <div className="sys-meta-item"><span className="k">在留期間</span><span className="v">1号 最大5年</span></div>
-                  <div className="sys-meta-item"><span className="k">対応分野</span><span className="v">16 特定産業分野</span></div>
+                  <div className="sys-meta-item"><span className="k">在留期間</span><span className="v">特定技能（1号）最大 5 年</span></div>
+                  <div className="sys-meta-item"><span className="k">対応分野</span><span className="v">{SSW_FIELD_COUNT} 特定産業分野</span></div>
                 </div>
                 <a className="sys-link">制度の詳細を見る <span className="arrow"><Icon name="arrow" size={14}/></span></a>
               </div>
@@ -371,8 +438,11 @@ function HomePage() {
           <FadeUp>
             <div className="section-num">ONE-STOP SUPPORT</div>
           </FadeUp>
+          {/* 修正依頼 p.13：見出しだけを取り出した「通算 最大8年」は制度上の上限と誤解されうるため、
+              対象制度（特定技能1号まで）を明示する文面に変更。年数の根拠は本文で説明する。
+              他の候補文面は docs/design-revision-01.md を参照。 */}
           <FadeUp delay={100}>
-            <h2>通算 最大 8 年。<br/>育成就労から特定技能まで、<br/>切れ目のないご支援を。</h2>
+            <h2>育成就労から<br/>特定技能1号へ。<br/>切れ目のないご支援を。</h2>
           </FadeUp>
           <FadeUp delay={200}>
             <p>

@@ -3,8 +3,9 @@
 function IkuseiPage() {
   return (
     <main>
+      {/* 英語表記：法務省 日本法令外国語訳DB「育成就労＝Employment for Skill Development」に準拠 */}
       <PageHero
-        kicker="TRAINING & EMPLOYMENT PROGRAM"
+        kicker="EMPLOYMENT FOR SKILL DEVELOPMENT PROGRAM"
         title="育成就労制度"
         lead="2027年4月から開始される新しい外国人材受入制度。「人材育成」と「人材確保」の2つを目的に再設計された制度です。"
         photo={PHOTOS.ikuseiHero}
@@ -86,6 +87,11 @@ function IkuseiPage() {
         </div>
       </section>
 
+      {/* 7ステップを支えるサポート体制
+          修正依頼（第1回）p.12：組合案内ページの「組合によるサポート」をここへ移設し、
+          各サポートが7ステップのどこで効いてくるのかを示す形に再構成。 */}
+      <SupportBySteps />
+
       {/* 入国後講習のご案内 */}
       <section className="section section-soft">
         <div className="container">
@@ -100,8 +106,9 @@ function IkuseiPage() {
               <h3 className="serif" style={{fontSize:"clamp(22px, 2.8vw, 30px)", lineHeight:1.7, marginBottom:24, letterSpacing:"0.08em"}}>
                 約 1 ヶ月の<br/>体系的な入国後講習
               </h3>
+              {/* 修正依頼 p.9：「グループ内日本語学校が直接運営」→「グループ傘下の日本語学校との連携」 */}
               <p style={{fontSize:16, lineHeight:2.05, color:"var(--ink-soft)", marginBottom:20}}>
-                グループ内日本語学校「ループインターナショナル日本語学校」にて、入国直後の約1ヶ月間、外国人材を専属的にお預かりし、日本語・生活・職種別の集中講習を実施いたします。
+                グループ傘下の日本語学校「ループインターナショナル日本語学校」との連携により、入国直後の約1ヶ月間、日本語・生活・職業別の集中講習を実施いたします。
               </p>
               <p style={{fontSize:16, lineHeight:2.05, color:"var(--ink-soft)", marginBottom:0}}>
                 配属前にN5（A1）相当の日本語力と、日本の生活ルール・労働安全の基礎を身につけたうえで、企業様の現場へお引き渡しします。
@@ -109,7 +116,11 @@ function IkuseiPage() {
               {/* 所在地は確定。定員・講師数は未確定（保留）のため {{TODO}} を残す。 */}
               <div style={{marginTop:32, padding:"24px 28px", background:"#fff", border:"1px solid var(--line)"}}>
                 <div style={{fontSize:11, letterSpacing:"0.25em", color:"var(--accent)", marginBottom:8}}>OUR FACILITY</div>
-                <div className="serif" style={{fontSize:16, letterSpacing:"0.08em", color:"var(--primary)", marginBottom:6}}>ループインターナショナル日本語学校</div>
+                {/* 修正依頼 p.9：施設名に（庄本入国後講習センター）を併記 */}
+                <div className="serif" style={{fontSize:16, letterSpacing:"0.08em", color:"var(--primary)", marginBottom:6}}>
+                  ループインターナショナル日本語学校<br/>
+                  <span style={{fontSize:14}}>（庄本入国後講習センター）</span>
+                </div>
                 <div style={{fontSize:12.5, color:"var(--ink-soft)", lineHeight:1.9}}>
                   〒532-0002 大阪府大阪市淀川区東三国2-32-17 ループ大阪<br/>
                   {`{{TODO: 定員・講師数（組合確定待ち）}}`}
@@ -144,15 +155,18 @@ function IkuseiPage() {
           <FadeUp>
             <div className="section-num">OUR ADVANTAGE</div>
           </FadeUp>
+          {/* 修正依頼 p.10：見出し・本文を差し替え */}
           <FadeUp delay={100}>
-            <h2>入国後講習を、<br/>グループ内日本語学校が直接運営。</h2>
+            {/* 文字数が多い見出しのため usp-h2-long で1段小さいサイズに（意図した改行位置を保つ） */}
+            <h2 className="usp-h2-long">入国後講習は、グループ傘下の<br/>日本語学校との連携により、<br/>万全の体制で運営。</h2>
           </FadeUp>
           <FadeUp delay={200}>
             <p>
-              新制度で重要視される「日本語能力」。当組合では、グループ内日本語学校「ループインターナショナル日本語学校」が入国後講習を直接運営しているため、講習内容と現場のニーズを密に連動させることができます。
+              新制度で重要視される「日本語能力」。当組合では、グループ傘下の日本語学校「ループインターナショナル日本語学校」との連携による万全の態勢で、質の高いカリキュラムによる講習を提供しています。
             </p>
+            {/* 依頼書原文の「背後供御の即戦力化」は誤変換とみて「配属後の即戦力化」と解釈。要確認 */}
             <p>
-              N4取得を見据えた段階的なカリキュラム、業種別の専門語彙、そして生活適応支援まで、外部委託では実現できない一貫した教育品質をお届けします。
+              N4取得を見据えた日本語教育に加え、きめ細かなメンタル面のサポートや生活習慣の指導、法的講習までフォロー。外部委託では実現できない一貫した教育品質により、配属後の即戦力化を牽引します。
             </p>
             <button className="btn btn-outline" style={{marginTop:24}} onClick={() => navigate("about")}>
               グループ法人について <span className="arrow"><Icon name="arrow" size={14}/></span>
@@ -164,6 +178,47 @@ function IkuseiPage() {
       <ReferenceLinks />
       <CTABand/>
     </main>
+  );
+}
+
+/* 組合によるサポート × 受入から帰国までの7ステップ（修正依頼 p.12）
+   各カードの下部に 1〜7 のステップインジケータを置き、そのサポートが
+   どの段階で力を発揮するのかを、直上の7ステップ図と対応づけて示す。 */
+function SupportBySteps() {
+  return (
+    <section className="section section-soft">
+      <div className="container">
+        <FadeUp className="section-head center">
+          <div className="section-num">SUPPORT</div>
+          <h2 className="section-title">7 ステップを支える、組合のサポート</h2>
+          <div className="section-en">HOW WE SUPPORT EACH STEP</div>
+        </FadeUp>
+        <FadeUp className="spt-intro">
+          上の「受入から帰国までの 7 ステップ」の各段階を、当組合の 6 つのサポート体制がお支えします。
+          カード下部の数字は、そのサポートが力を発揮するステップを表しています。
+        </FadeUp>
+        <div className="spt-grid">
+          {SUPPORT.map((s, i) => (
+            <FadeUp key={i} className="spt-card" delay={(i % 3) * 80}>
+              <div className="spt-card-head">
+                <span className="spt-num">SUPPORT / {s.num}</span>
+                <span className="spt-steps">{s.stepLabel}</span>
+              </div>
+              <div className="spt-icon"><Icon name={s.icon} size={24}/></div>
+              <h3 className="spt-title">{s.title}</h3>
+              <p className="spt-lead">{s.lead}</p>
+              <p className="spt-body">{s.body}</p>
+              <div className="spt-dots" aria-label={`対応ステップ：${s.stepLabel}`}>
+                <span className="spt-dots-label">STEP</span>
+                {[1, 2, 3, 4, 5, 6, 7].map((n) => (
+                  <span key={n} className={`spt-dot ${s.steps.includes(n) ? "on" : ""}`} aria-hidden="true">{n}</span>
+                ))}
+              </div>
+            </FadeUp>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -220,8 +275,9 @@ function TokuteiPage() {
               </h2>
             </FadeUp>
             <FadeUp delay={100} className="prose">
+              {/* 修正依頼 p.11：「…で、…で」の重複を解消 */}
               <p>
-                特定技能制度は、2019年に新設された在留資格で、深刻な人手不足が認められた特定産業分野で、一定の専門性・技能を持つ外国人材の受入を可能にする制度です。
+                特定技能制度は、2019年に新設された在留資格です。深刻な人手不足が認められた特定産業分野において、一定の専門性・技能を持つ外国人材の受入を可能にします。
               </p>
               <p>
                 {/* 要確認: 登録支援機関の帰属法人は資料間で矛盾のため法人名を断定しない（凍結） */}
@@ -310,7 +366,7 @@ function TokuteiPage() {
           <FadeUp className="section-head">
             <div>
               <div className="section-num">FIELDS</div>
-              <h2 className="section-title">対応する 16 特定産業分野</h2>
+              <h2 className="section-title">対応する {SSW_FIELD_COUNT} 特定産業分野</h2>
             </div>
           </FadeUp>
           <FadeUp>
@@ -345,4 +401,4 @@ function TokuteiPage() {
   );
 }
 
-Object.assign(window, { IkuseiPage, TokuteiPage, ReferenceLinks });
+Object.assign(window, { IkuseiPage, TokuteiPage, ReferenceLinks, SupportBySteps });

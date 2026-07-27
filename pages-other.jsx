@@ -139,24 +139,25 @@ function AboutPage() {
         </div>
       </section>
 
-      {/* 組合によるサポート（Support）— 6項目。番号・タイトルは将来変更の可能性あり。 */}
-      <section className="section">
+      {/* 修正依頼（第1回）p.12：「組合によるサポート」は育成就労制度ページへ移設し、
+          「受入から帰国までの7ステップ」と連動させる形で再構成しました（pages-systems.jsx / IkuseiPage）。
+          こちらのページからは、代わりに育成就労ページへの導線のみを置いています。 */}
+      <section className="section tight">
         <div className="container">
-          <FadeUp className="section-head center">
-            <div className="section-num">SUPPORT</div>
-            <h2 className="section-title">組合によるサポート</h2>
-            <div className="section-en">SIX WAYS WE SUPPORT YOU</div>
+          <FadeUp className="case-link-block">
+            <div>
+              <div className="section-num" style={{marginBottom:12}}>SUPPORT</div>
+              <h3 className="serif" style={{fontSize:"clamp(22px, 2.8vw, 30px)", letterSpacing:"0.08em", lineHeight:1.6, marginBottom:14}}>
+                受入の7ステップを、6つのサポート体制でお支えします。
+              </h3>
+              <p style={{fontSize:14, lineHeight:2, color:"var(--ink-soft)", margin:0}}>
+                どの段階で、どのサポートが力を発揮するのか。育成就労制度のページで、7ステップとあわせてご紹介しています。
+              </p>
+            </div>
+            <button className="btn btn-ghost" onClick={() => navigate("ikusei")}>
+              サポート体制を見る <span className="arrow"><Icon name="arrow" size={14}/></span>
+            </button>
           </FadeUp>
-          <div className="strengths support-grid">
-            {SUPPORT.map((s, i) => (
-              <FadeUp key={i} className="strength" delay={(i % 3) * 80}>
-                <div className="strength-num">SUPPORT / {s.num}</div>
-                <div className="strength-icon"><Icon name={s.icon} size={26}/></div>
-                <h3 className="strength-title">{s.title}</h3>
-                <p className="strength-body">{s.body}</p>
-              </FadeUp>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -271,7 +272,7 @@ function CasesPage() {
               <div className="stat-label">対応送出国</div>
             </div>
             <div className="stat">
-              <div className="stat-num">16<span className="unit">分野</span></div>
+              <div className="stat-num">{SSW_FIELD_COUNT}<span className="unit">分野</span></div>
               <div className="stat-label">特定産業分野</div>
             </div>
             <div className="stat">
