@@ -181,21 +181,21 @@ function IkuseiPage() {
   );
 }
 
-/* 組合によるサポート × 受入から帰国までの7ステップ（修正依頼 p.12）
-   各カードの下部に 1〜7 のステップインジケータを置き、そのサポートが
-   どの段階で力を発揮するのかを、直上の7ステップ図と対応づけて示す。 */
+/* 組合によるサポート × 受入から帰国までの7ステップ（修正依頼 p.12 / 修正対応報告書 2-6）
+   各カードの上部に 1〜7 のステップインジケータを置き、そのサポートが
+   どの段階を支えるのかを、直上の7ステップ図と対応づけて示す。 */
 function SupportBySteps() {
   return (
     <section className="section section-soft">
       <div className="container">
         <FadeUp className="section-head center">
-          <div className="section-num">SUPPORT</div>
-          <h2 className="section-title">7 ステップを支える、組合のサポート</h2>
+          <div className="section-num">SUPPORT / 01 — 06</div>
+          <h2 className="section-title">7 ステップを支える、組合のサポート体制</h2>
           <div className="section-en">HOW WE SUPPORT EACH STEP</div>
         </FadeUp>
         <FadeUp className="spt-intro">
           上の「受入から帰国までの 7 ステップ」の各段階を、当組合の 6 つのサポート体制がお支えします。
-          カード下部の数字は、そのサポートが力を発揮するステップを表しています。
+          カード上部の数字は、そのサポートが力を発揮するステップを表しています。
         </FadeUp>
         <div className="spt-grid">
           {SUPPORT.map((s, i) => (
@@ -204,16 +204,15 @@ function SupportBySteps() {
                 <span className="spt-num">SUPPORT / {s.num}</span>
                 <span className="spt-steps">{s.stepLabel}</span>
               </div>
-              <div className="spt-icon"><Icon name={s.icon} size={24}/></div>
-              <h3 className="spt-title">{s.title}</h3>
-              <p className="spt-lead">{s.lead}</p>
-              <p className="spt-body">{s.body}</p>
               <div className="spt-dots" aria-label={`対応ステップ：${s.stepLabel}`}>
                 <span className="spt-dots-label">STEP</span>
                 {[1, 2, 3, 4, 5, 6, 7].map((n) => (
                   <span key={n} className={`spt-dot ${s.steps.includes(n) ? "on" : ""}`} aria-hidden="true">{n}</span>
                 ))}
               </div>
+              <div className="spt-icon"><Icon name={s.icon} size={24}/></div>
+              <h3 className="spt-title">{s.title}</h3>
+              <p className="spt-body">{s.body}</p>
             </FadeUp>
           ))}
         </div>

@@ -413,117 +413,179 @@ function FeaturesDiagram() {
 Object.assign(window, { FeaturesDiagram });
 
 /* ============================================================
-   PROCESS — 7-step JOURNEY (育成就労)
+   PROCESS — 受入れ・キャリア形成フロー（育成就労／全7ステップ）
 
-   修正依頼（第1回）p.8 対応で全面刷新：
-   ・旧デザインはアーチ状のグラフで、曲線の上下が何も意味しておらず「何のグラフか
-     分からない」状態だった → 左から右へ時間が流れる「時系列レール」に置き換え、
-     上部に3フェーズの帯を置いて、各ステップがどの段階かを明示。
-   ・旧デザインは番号バッジがカードの上／下でバラバラだった → 全ステップで
-     「レール上の番号 → その真下に説明カード」の並びに統一。
-   Desktop: 7列の時系列レール（>1080px）／Mobile: 縦一列のタイムライン（<=1080px）
+   修正依頼（第1回）p.8 → 修正対応報告書 2-5 で再設計：
+   ・「グラフに見えるが何のグラフか分からない」マトリクス／アーチ図を廃止。
+   ・フェーズ／期間の目安／実施内容／拠点／支援体制の 5 段構成の表形式に置き換え、
+     番号と説明が必ず縦一列で対応する構造に統一した。
+   ・拠点・支援体制の行は、ステップをまたぐ結合セル（JOURNEY_SEGMENTS）で表現する。
+   Desktop（>1000px）: 126px のラベル列 ＋ 7 ステップ列のグリッド表
+   Mobile（<=1000px）: 拠点セグメントごとにまとめた縦積み
    ============================================================ */
+
+/* 上段のフェーズ帯。span = 束ねるステップ数（3 / 3 / 1 の計7） */
 const JOURNEY_PHASES = [
-  { cls: "p1", num: "01", title: "入国前",         range: "STEP 1 – 3", note: "ご加入から現地での事前教育まで", span: 3 },
-  { cls: "p2", num: "02", title: "入国・配属",      range: "STEP 4 – 5", note: "入国後講習から受入企業様への配属まで", span: 2 },
-  { cls: "p3", num: "03", title: "育成就労・移行",  range: "STEP 6 – 7", note: "技能検定から帰国または特定技能1号へ", span: 2 },
+  { cls: "p1", label: "《 入国前 ─ 現地／手続き 》",           span: 3 },
+  { cls: "p2", label: "《 入国後 ─ 日本での講習・就労 》",      span: 3 },
+  { cls: "p3", label: "《 修了 》",                            span: 1 },
 ];
 
+/* 「拠点」「支援体制」行の結合セル。span = 束ねるステップ数（1 / 2 / 3 / 1 の計7）
+   phase は、その区間が属するフェーズ（モバイル表示のラベルに使用） */
+const JOURNEY_SEGMENTS = [
+  { cls: "g1", phase: "p1", span: 1, place: "日本（組合・受入企業）",
+    support: "受入計画のご提案" },
+  { cls: "g2", phase: "p1", span: 2, place: "現地（送出国・送出機関）",
+    support: "送出機関との連携 ─ 選抜・事前教育の管理" },
+  { cls: "g3", phase: "p2", span: 3, place: "日本（受入企業での就労）",
+    support: "組合担当者による定期訪問・面談・キャリア相談・技能習得状況の確認と企業様サポート" },
+  { cls: "g4", phase: "p3", span: 1, place: "帰国 / 移行",
+    support: "登録支援機関が継続" },
+];
+
+/* tone は 1〜7 の濃淡（入国前＝ダーク／入国後＝レッド／修了＝白抜き）。styles.css の .t1〜.t7 に対応 */
 const JOURNEY_STEPS = [
-  { n: 1, phase: "p1", dur: "〜 1ヶ月",             h: "ご加入・制度説明",           p: "受入分野・職種・人数・希望時期を伺い、最適な受入計画をご提案いたします。" },
+  { n: 1, phase: "p1", seg: "g1", tone: 1, dur: "〜 1ヶ月",   h: "ご加入・制度説明",
+    p: "受入分野・職種・人数・希望時期を伺い、最適な受入計画をご提案いたします。" },
   /* 修正依頼 p.8：面接は「現地またはオンライン」。オンライン面接のみと誤解されない表記に */
-  { n: 2, phase: "p1", dur: "1 〜 3ヶ月",           h: "募集・選抜",                 p: "提携している送出機関より候補者を選定。書類審査と面接（現地またはオンライン）を実施します。" },
-  { n: 3, phase: "p1", dur: "約 6ヶ月",            h: "現地での事前教育",           p: "入国前に、現地にて日本語・生活ルール・労働安全の基礎教育を実施します。" },
-  { n: 4, phase: "p2", dur: "約 1ヶ月",            h: "入国・入国後講習",           p: "入国後、日本語・生活ルール・職種別講習を集中的に実施します。" },
-  { n: 5, phase: "p2", dur: "1 年目 〜",           h: "配属・育成就労開始",         p: "受入企業様への配属。初期の定着まで組合担当者が継続的にフォローいたします。" },
-  /* 修正依頼 p.8：「定期巡回」→「定期訪問」。企業様サポートの実施を明記 */
-  { n: 6, phase: "p3", dur: "3 年目以降",          h: "技能検定・継続",             p: "定期訪問・面談・キャリア相談を実施。技能習得状況の確認に加え、企業様のサポートを実施します。" },
-  { n: 7, phase: "p3", dur: "3 年 修了後",        h: "帰国 または 特定技能 1号へ",  p: "本人の希望とスキルに応じて、登録支援機関がそのまま支援を継続します。" },
+  { n: 2, phase: "p1", seg: "g2", tone: 2, dur: "1 〜 3ヶ月", h: "募集・選抜",
+    p: "提携している送出機関より候補者を選定。書類審査と、現地またはオンラインでの面接を実施します。" },
+  { n: 3, phase: "p1", seg: "g2", tone: 3, dur: "約 6ヶ月",   h: "現地での事前教育",
+    p: "入国前に、現地にて日本語・生活ルール・労働安全の基礎教育を実施します。" },
+  { n: 4, phase: "p2", seg: "g3", tone: 4, dur: "約 1ヶ月",   h: "入国・入国後講習",
+    p: "入国後、日本語・生活ルール・職種別講習を集中的に実施します。" },
+  { n: 5, phase: "p2", seg: "g3", tone: 5, dur: "1年目 〜",   h: "配属・育成就労開始",
+    p: "受入企業様への配属。初期の定着まで組合担当者が継続的にフォローいたします。" },
+  /* 修正依頼 p.8：「定期巡回」→「定期訪問」。技能習得状況の確認に加え企業様サポートを明記 */
+  { n: 6, phase: "p2", seg: "g3", tone: 6, dur: "3年目以降",  h: "技能検定・継続フォロー",
+    p: "定期訪問・面談・キャリア相談・技能習得状況の確認に加え、企業様のサポートを実施します。" },
+  { n: 7, phase: "p3", seg: "g4", tone: 7, dur: "修了時",     h: "帰国 または 特定技能1号へ",
+    p: "本人の希望とスキルに応じて、登録支援機関がそのまま支援を継続します。" },
+];
+
+const JOURNEY_LEGEND = [
+  { cls: "p1", text: "入国前 ─ 現地・選抜／事前教育" },
+  { cls: "p2", text: "入国後 ─ 日本での講習・就労" },
+  { cls: "p3", text: "修了 ─ 帰国／特定技能1号へ" },
 ];
 
 function ProcessDiagram() {
-  const step = (s) => (
-    <div className="j7-card">
-      <span className="j7-duration">{s.dur}</span>
-      <h3>{s.h}</h3>
-      <p>{s.p}</p>
-    </div>
-  );
+  const phaseLabel = (cls) => (JOURNEY_PHASES.find((p) => p.cls === cls) || {}).label || "";
+  const stepsOf = (segCls) => JOURNEY_STEPS.filter((s) => s.seg === segCls);
 
   return (
     <div className="journey7">
-      {/* 上部：3フェーズの帯（この図が「時間の流れ」であることを明示する） */}
-      <div className="j7-phases">
+      {/* 図のヘッダー（セクション見出しと重複しないよう、図版ラベルとして小さく置く） */}
+      <div className="j7-bar">
+        <div className="j7-bar-title">育成就労 ─ 受入れ・キャリア形成フロー</div>
+        <div className="j7-bar-badge">全 7 ステップ</div>
+      </div>
+      <div className="j7-rule" aria-hidden="true"></div>
+
+      {/* 要約 ＋ 凡例 */}
+      <div className="j7-head">
+        <ul className="j7-lede">
+          <li>候補者の選定から入国後講習、配属後のフォローまでを一気通貫で支援</li>
+          <li>修了後は「帰国」または「特定技能1号への移行」を選択（登録支援機関が支援を継続）</li>
+        </ul>
+        <div className="j7-legend">
+          <span className="j7-legend-ttl">凡例</span>
+          <ul>
+            {JOURNEY_LEGEND.map((l) => (
+              <li key={l.cls}><i className={`j7-sw ${l.cls}`} aria-hidden="true"></i>{l.text}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      {/* ===== DESKTOP — 5段の表（ラベル列 ＋ 7ステップ列） ===== */}
+      <div className="j7-matrix">
+        {/* PHASE */}
+        <div className="j7-rowlabel plain">PHASE</div>
         {JOURNEY_PHASES.map((ph) => (
-          <div key={ph.cls} className={`j7-phase ${ph.cls}`} style={{ "--span": ph.span }}>
-            <div className="j7-phase-top">
-              <span className="j7-phase-num">PHASE {ph.num}</span>
-              <span className="j7-phase-range">{ph.range}</span>
-            </div>
-            <div className="j7-phase-title">{ph.title}</div>
-            <div className="j7-phase-note">{ph.note}</div>
+          <div key={ph.cls} className={`j7-phase ${ph.cls}`} style={{ gridColumn: `span ${ph.span}` }}>{ph.label}</div>
+        ))}
+
+        {/* ステップの流れ */}
+        <div className="j7-rowlabel">ステップ<br/>の流れ</div>
+        {JOURNEY_STEPS.map((s) => (
+          <div key={s.n} className={`j7-step t${s.tone}`} style={{ "--i": s.n }}>
+            <span className="j7-step-n">{s.n}</span>
+            <span className="j7-step-h">{s.h}</span>
           </div>
+        ))}
+
+        {/* 期間の目安 */}
+        <div className="j7-rowlabel">期間の<br/>目安</div>
+        {JOURNEY_STEPS.map((s) => (
+          <div key={s.n} className={`j7-dur ${s.phase === "p3" ? "is-end" : ""}`}>{s.dur}</div>
+        ))}
+
+        {/* 実施内容 */}
+        <div className="j7-rowlabel">実施内容</div>
+        {JOURNEY_STEPS.map((s) => (
+          <div key={s.n} className={`j7-desc ${s.phase}`}>{s.p}</div>
+        ))}
+
+        {/* 拠点（結合セル） */}
+        <div className="j7-rowlabel">拠点</div>
+        {JOURNEY_SEGMENTS.map((g) => (
+          <div key={g.cls} className={`j7-place ${g.cls}`} style={{ gridColumn: `span ${g.span}` }}>{g.place}</div>
+        ))}
+
+        {/* 支援体制（結合セル） */}
+        <div className="j7-rowlabel">支援体制</div>
+        {JOURNEY_SEGMENTS.map((g) => (
+          <div key={g.cls} className="j7-support" style={{ gridColumn: `span ${g.span}` }}>{g.support}</div>
         ))}
       </div>
 
-      {/* 出発地・到着地 */}
-      <div className="j7-ends">
-        <div className="j7-end">
+      {/* ===== MOBILE — 拠点セグメント単位で縦積み（番号は常に左、説明はその下） ===== */}
+      <div className="j7-stack">
+        {JOURNEY_SEGMENTS.map((g) => (
+          <section key={g.cls} className={`j7-mseg ${g.phase}`}>
+            <div className="j7-mseg-top">
+              <span className="j7-mseg-phase">{phaseLabel(g.phase)}</span>
+              <span className="j7-mseg-place"><b>拠点</b>{g.place}</span>
+            </div>
+            <ol className="j7-msteps">
+              {stepsOf(g.cls).map((s) => (
+                <li key={s.n} className={`j7-mstep t${s.tone}`}>
+                  <div className="j7-mstep-top">
+                    <span className="j7-mstep-n">{s.n}</span>
+                    <h3>{s.h}</h3>
+                  </div>
+                  <span className="j7-mdur">{s.dur}</span>
+                  <p>{s.p}</p>
+                </li>
+              ))}
+            </ol>
+            <div className="j7-mseg-support"><b>支援体制</b>{g.support}</div>
+          </section>
+        ))}
+      </div>
+
+      {/* 出発地 → 到着地 */}
+      <div className="j7-foot">
+        <div className="j7-foot-end">
           <span className="ico">出</span>
-          <span className="txt"><small>Origin Country</small>現地（送出国）</span>
+          <span className="txt"><small>ORIGIN COUNTRY</small>現地（送出国）</span>
         </div>
-        <div className="j7-flowlabel">時間の流れ</div>
-        <div className="j7-end right">
-          <span className="txt"><small>Return / Transition</small>帰国 ・ 特定技能 1 号</span>
+        <span className="j7-foot-dash" aria-hidden="true"></span>
+        <div className="j7-foot-end right">
+          <span className="txt"><small>RETURN / TRANSITION</small>帰国・特定技能1号</span>
           <span className="ico">帰</span>
         </div>
       </div>
 
-      {/* ===== DESKTOP — 時系列レール（番号はすべてレール上、説明カードはその真下） ===== */}
-      <div className="j7-rail">
-        <div className="j7-track" aria-hidden="true">
-          {JOURNEY_PHASES.map((ph) => (
-            <span key={ph.cls} className={`j7-track-seg ${ph.cls}`} style={{ flex: ph.span }}></span>
-          ))}
-          <span className="j7-track-arrow"></span>
-        </div>
-        <div className="j7-grid">
-          {JOURNEY_STEPS.map((s) => (
-            <div key={s.n} className={`j7-col ${s.phase}`}>
-              <div className="j7-node"><span className="n">{s.n}</span></div>
-              {step(s)}
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* ===== MOBILE — 縦一列のタイムライン（番号は常に左、説明カードは常に右） ===== */}
-      <div className="j7-stage-m">
-        <div className="j7-chip">
-          <div className="ico">出</div>
-          <div><small>Origin Country</small>現地（送出国）</div>
-        </div>
-        <ol className="j7-journey">
-          {JOURNEY_STEPS.map((s) => (
-            <li key={s.n} className={`j7-step-m ${s.phase}`}>
-              <div className="j7-badge-m"><span className="n">{s.n}</span></div>
-              <div className="j7-card-m">
-                <span className="j7-duration">{s.dur}</span>
-                <h3>{s.h}</h3>
-                <p>{s.p}</p>
-              </div>
-            </li>
-          ))}
-        </ol>
-        <div className="j7-chip">
-          <div className="ico">帰</div>
-          <div><small>Return / Transition</small>帰国 ・ 特定技能 1 号</div>
-        </div>
-      </div>
+      <p className="j7-note">
+        （※）記載の期間はいずれも標準的な目安です。職種・送出国・受入時期により、手続きや期間が前後する場合があります。
+      </p>
     </div>
   );
 }
-Object.assign(window, { ProcessDiagram, JOURNEY_STEPS, JOURNEY_PHASES });
+Object.assign(window, { ProcessDiagram, JOURNEY_STEPS, JOURNEY_PHASES, JOURNEY_SEGMENTS });
 
 /* ============================================================
    SUPPORT — 10項目 in 2 PHASE COLUMNS (特定技能)
@@ -658,8 +720,10 @@ function FieldsDiagram() {
           );
         })}
       </div>
+      {/* 修正対応報告書 6-1：育成就労の対象は17分野（自動車運送業・航空は特定技能のみ）。
+          サイト各所の「特定技能（1号）と原則同一」は、この例外を含む表現。 */}
       <div className="ind16-note">
-        ※令和8年1月23日 閣議決定の分野別運用方針に基づく{SSW_FIELD_COUNT}分野。将来の制度改正により、分野の追加・名称変更の可能性があります。
+        ※令和8年1月23日 閣議決定の分野別運用方針に基づく{SSW_FIELD_COUNT}分野。うち育成就労の対象は17分野です（自動車運送業・航空は特定技能のみが対象）。将来の制度改正により、分野の追加・名称変更の可能性があります。
       </div>
     </div>
   );
