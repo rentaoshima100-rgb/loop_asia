@@ -224,7 +224,7 @@ p { margin: 0; }
   align-items: flex-end;
   padding-bottom: 88px;
 }
-.hero-content { max-width: 880px; color: #fff; width: 100%; min-width: 0; word-break: break-word; overflow-wrap: anywhere; }
+.hero-content { max-width: 1040px; color: #fff; width: 100%; min-width: 0; word-break: break-word; overflow-wrap: anywhere; }
 .hero-kicker {
   display: flex;
   align-items: center;
@@ -243,7 +243,7 @@ p { margin: 0; }
 }
 .hero-title {
   font-family: var(--font-serif);
-  font-size: clamp(36px, 5.5vw, 76px);
+  font-size: clamp(40px, 6.4vw, 92px);
   font-weight: 600;
   line-height: 1.4;
   letter-spacing: 0.06em;
@@ -3972,6 +3972,9 @@ p { margin: 0; }
 .home-main .intro-body p    { font-size: clamp(16px, 1.35vw, 19px); }
 .home-main .entry-title     { font-size: clamp(20px, 1.8vw, 25px); }
 .home-main .entry-desc      { font-size: clamp(15px, 1.2vw, 17px); }
+/* 3つの安心（ASSURANCE）— 他セクションの拡大に合わせて未調整だったため引き上げ */
+.home-main .assurance-title { font-size: clamp(15px, 1.55vw, 22px); }
+.home-main .assurance-title strong { font-size: inherit; }
 .home-main .strength-title  { font-size: clamp(21px, 2.1vw, 29px); }
 .home-main .strength-body   { font-size: clamp(15.5px, 1.25vw, 18px); }
 .home-main .data-intro h3   { font-size: clamp(27px, 3.6vw, 46px); font-weight: 800; }

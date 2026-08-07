@@ -302,21 +302,6 @@ function TokuteiPage() {
         </div>
       </section>
 
-      {/* RELATION DIAGRAM — 登録支援機関の役割 */}
-      <section className="section">
-        <div className="container">
-          <FadeUp className="section-head">
-            <div>
-              <div className="section-num">ROLE</div>
-              <h2 className="section-title">登録支援機関の役割</h2>
-            </div>
-          </FadeUp>
-          <FadeUp>
-            <RelationDiagram />
-          </FadeUp>
-        </div>
-      </section>
-
       {/* 受入の流れ */}
       <section className="section section-soft">
         <div className="container">
