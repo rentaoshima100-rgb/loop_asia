@@ -19,7 +19,7 @@ function useHash() {
 }
 
 /* IntersectionObserver fade-up */
-function FadeUp({ children, delay = 0, as: Tag = "div", className = "", ...rest }) {
+function FadeUp({ children, delay = 0, as: Tag = "div", className = "", style, ...rest }) {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
   useEffect(() => {
@@ -34,7 +34,7 @@ function FadeUp({ children, delay = 0, as: Tag = "div", className = "", ...rest 
     <Tag
       ref={ref}
       className={`fade-up ${visible ? "visible" : ""} ${className}`}
-      style={{ transitionDelay: `${delay}ms` }}
+      style={{ transitionDelay: `${delay}ms`, ...style }}
       {...rest}
     >
       {children}
@@ -76,7 +76,7 @@ function Header() {
     <header className="topbar">
       <div className="topbar-inner">
         <div className="brand" onClick={() => go("home")}>
-          <div className="brand-mark">亜</div>
+          <img className="brand-mark brand-mark-img" src={PHOTOS.logo} alt="LOOP" width="38" height="38" />
           <div className="brand-name">
             亜細亜交流事業協同組合
             <span className="small">Asia Interchange Cooperative Business Union</span>
@@ -177,7 +177,7 @@ function Footer() {
         <div className="footer-grid">
           <div className="footer-brand">
             <div className="brand">
-              <div className="brand-mark">亜</div>
+              <img className="brand-mark brand-mark-img" src={PHOTOS.logo} alt="LOOP" width="38" height="38" />
               <div className="brand-name" style={{color:"#fff"}}>
                 亜細亜交流事業協同組合
                 <span className="small" style={{color:"rgba(255,255,255,0.5)"}}>Asia Interchange Cooperative Business Union</span>

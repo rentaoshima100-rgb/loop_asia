@@ -136,6 +136,24 @@ p { margin: 0; }
   border-radius: 50%;
   opacity: 0.35;
 }
+/* ブランドマークをロゴ画像に差し替え。ロゴ自体が白地の円なので、白い円形チップとして見せる
+   （濃色のフッターでも自然に載る）。contain でロゴ本体を欠けさせない。
+   .brand-mark 単体（0,2,0 未満）の各メディアクエリ指定に勝つよう2クラス指定にしている。
+   38px ではロゴ内の "LOOP co.,ltd" が潰れて読めないため 52px まで拡大 */
+.brand-mark.brand-mark-img {
+  width: 52px;
+  height: 52px;
+  background: #fff;
+  object-fit: contain;
+  /* 円形マスクの内側にロゴを収め、外周リングと下部の "co.,ltd" が欠けないようにする */
+  box-sizing: border-box;
+  padding: 4px;
+  flex-shrink: 0;
+}
+@media (max-width: 640px) {
+  .brand-mark.brand-mark-img { width: 42px; height: 42px; }
+}
+.footer-brand .brand-mark.brand-mark-img { background: #fff; }
 .brand-name {
   font-family: var(--font-serif);
   font-size: 19px;

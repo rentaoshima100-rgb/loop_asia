@@ -35,16 +35,7 @@ function AboutPage() {
                 <div className="nm">貝塚 亜起良</div>
               </div>
             </FadeUp>
-            {/* TODO(client): 代表写真は未支給のためプレースホルダです。画像が用意でき次第、
-                PHOTOS.portrait に設定し、下記を <div className="message-portrait" style={{backgroundImage:`url(${PHOTOS.portrait})`}}></div> へ差し替えてください。 */}
-            <FadeUp delay={60} className="message-portrait-ph">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <circle cx="12" cy="8" r="4"/>
-                <path d="M4 21v-1a7 7 0 0 1 16 0v1"/>
-              </svg>
-              <div className="mp-label">代表写真</div>
-              <div className="mp-todo">{`{{TODO: 代表の写真}}`}</div>
-            </FadeUp>
+            <FadeUp delay={60} className="message-portrait" style={{backgroundImage:`url(${PHOTOS.portrait})`}} role="img" aria-label="代表理事 貝塚 亜起良"></FadeUp>
           </div>
         </div>
       </section>
