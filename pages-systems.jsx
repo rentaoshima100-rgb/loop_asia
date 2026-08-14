@@ -61,7 +61,7 @@ function IkuseiPage() {
             <table className="info-table">
               <tbody>
                 <tr><th style={{width:"28%"}}>目的</th><td>「人材確保」と「人材育成」の2軸</td></tr>
-                <tr><th>在留期間</th><td>原則3年。修了後、特定技能1号へ移行すれば通算最大8年の就労が可能</td></tr>
+                <tr><th>在留期間</th><td>原則3年。修了後、特定技能1号へ移行すれば通算原則8年の就労が可能</td></tr>
                 <tr><th>入国時の日本語要件</th><td>A1相当（日本語能力試験 N5レベル）を新たに要件化</td></tr>
                 <tr><th>転籍</th><td>一定条件下で、同一業種内・本人意向による転籍が可能</td></tr>
                 <tr><th>監理体制</th><td>監理支援機関（要件・監督が強化）</td></tr>
