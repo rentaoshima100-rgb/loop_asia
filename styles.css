@@ -3990,8 +3990,12 @@ p { margin: 0; }
 .home-main .intro-vlabel    { font-size: 19px; }
 .home-main .intro-body h2   { font-size: clamp(28px, 3.9vw, 48px); font-weight: 800; }
 .home-main .intro-body p    { font-size: clamp(16px, 1.35vw, 19px); }
-.home-main .entry-title     { font-size: clamp(20px, 1.8vw, 25px); }
-.home-main .entry-desc      { font-size: clamp(15px, 1.2vw, 17px); }
+/* 依頼 #26：エントリーカードの文字を拡大（強みカードと同スケール）、余白も追従 */
+.home-main .entry-title     { font-size: clamp(21px, 2.1vw, 29px); }
+.home-main .entry-desc      { font-size: clamp(15.5px, 1.25vw, 18px); }
+.home-main .entry-card      { padding: 44px 36px 40px; gap: 16px; }
+.home-main .entry-num       { font-size: 14px; }
+.home-main .entry-arrow     { font-size: 13px; }
 /* 3つの安心（ASSURANCE）— 他セクションの拡大に合わせて未調整だったため引き上げ */
 .home-main .assurance-title { font-size: clamp(15px, 1.55vw, 22px); }
 .home-main .assurance-title strong { font-size: inherit; }

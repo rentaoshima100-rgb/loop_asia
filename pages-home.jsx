@@ -240,16 +240,17 @@ function HomePage() {
           <div className="entries">
             {[
               { num: "01", title: "初めて外国人材の\n受入をご検討の方", desc: "", to: "ikusei" },
-              { num: "02", title: "新制度（育成就労）\nへの対応を相談したい", desc: "2027年施行の育成就労制度のポイントと、受入に向けた準備をご説明します。", to: "ikusei" },
-              { num: "03", title: "特定技能で\n即戦力を採用したい", desc: "登録支援機関による法定10項目の支援内容と、受入の流れをご案内します。", to: "tokutei" },
-              { num: "04", title: "活躍事例を\n見てみたい", desc: "業種別・国別の受入事例と、現場で働く外国人材ご本人の声をご紹介。", to: "cases" },
+              // 依頼 #24/#25/#27：02〜04 の説明文は削除
+              { num: "02", title: "新制度（育成就労）\nへの対応を相談したい", desc: "", to: "ikusei", descFix: "24" },
+              { num: "03", title: "特定技能で\n即戦力を採用したい", desc: "", to: "tokutei", descFix: "25" },
+              { num: "04", title: "活躍事例を\n見てみたい", desc: "", to: "cases", descFix: "27" },
               { num: "05", title: "資料請求・\n無料相談を希望", desc: "業種・人数・希望時期を伺い、最適な受入プランをご提案いたします。", to: "contact" },
               { num: "06", title: "組合の体制を\n知りたい", desc: "代表挨拶・グループ法人体系・沿革など、組合の全体像をご確認いただけます。", to: "about" },
             ].map((e, i) => (
-              <FadeUp key={i} delay={i * 40} className="entry-card" onClick={() => navigate(e.to)}>
+              <FadeUp key={i} delay={i * 40} className="entry-card" data-nq-fix={i === 0 ? "26" : undefined} onClick={() => navigate(e.to)}>
                 <div className="entry-num">FOR / {e.num}</div>
                 <div className="entry-title">{e.title.split("\n").map((l, j) => <span key={j}>{l}<br/></span>)}</div>
-                <div className="entry-desc">{e.desc}</div>
+                <div className="entry-desc" data-nq-fix={e.descFix}>{e.desc}</div>
                 <div className="entry-arrow">
                   READ MORE <Icon name="arrow" size={14}/>
                 </div>
@@ -272,7 +273,7 @@ function HomePage() {
               <FadeUp key={i} className="strength" delay={i * 100}>
                 <div className="strength-num">STRENGTH / {s.num}</div>
                 <div className="strength-icon"><Icon name={s.icon} size={26}/></div>
-                <h3 className="strength-title">{s.title.split("\n").map((l, j) => <span key={j}>{l}<br/></span>)}</h3>
+                <h3 className="strength-title" data-nq-fix={i === 0 ? "28" : undefined}>{s.title.split("\n").map((l, j) => <span key={j}>{l}<br/></span>)}</h3>
                 <p className="strength-body">{s.body}</p>
               </FadeUp>
             ))}
@@ -378,7 +379,8 @@ function HomePage() {
                 <h3>育成就労制度</h3>
                 <p>2027年4月から開始される新制度。「人材育成」と「人材確保」を目的とし、3年間で特定技能1号水準の技能習得を目指します。</p>
                 <div className="sys-meta">
-                  <div className="sys-meta-item"><span className="k">在留期間</span><span className="v">最大 3 年</span></div>
+                  {/* 依頼 #29：在留期間の表記は「原則3年」に統一 */}
+                  <div className="sys-meta-item"><span className="k">在留期間</span><span className="v" data-nq-fix="29">原則3年</span></div>
                   {/* 修正依頼 p.7：「特定技能と同一」→「特定技能（1号）と原則同一」 */}
                   <div className="sys-meta-item"><span className="k">対応分野</span><span className="v">特定技能（1号）と原則同一</span></div>
                 </div>
