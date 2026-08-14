@@ -244,8 +244,8 @@ function HomePage() {
               { num: "02", title: "新制度（育成就労）\nへの対応を相談したい", desc: "", to: "ikusei", descFix: "24" },
               { num: "03", title: "特定技能で\n即戦力を採用したい", desc: "", to: "tokutei", descFix: "25" },
               { num: "04", title: "活躍事例を\n見てみたい", desc: "", to: "cases", descFix: "27" },
-              { num: "05", title: "資料請求・\n無料相談を希望", desc: "業種・人数・希望時期を伺い、最適な受入プランをご提案いたします。", to: "contact" },
-              { num: "06", title: "組合の体制を\n知りたい", desc: "代表挨拶・グループ法人体系・沿革など、組合の全体像をご確認いただけます。", to: "about" },
+              { num: "05", title: "資料請求・\n無料相談を希望", desc: "", to: "contact" },
+              { num: "06", title: "組合の体制を\n知りたい", desc: "", to: "about" },
             ].map((e, i) => (
               <FadeUp key={i} delay={i * 40} className="entry-card" data-nq-fix={i === 0 ? "26" : undefined} onClick={() => navigate(e.to)}>
                 <div className="entry-num">FOR / {e.num}</div>
