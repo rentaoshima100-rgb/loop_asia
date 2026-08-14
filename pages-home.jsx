@@ -398,7 +398,7 @@ function HomePage() {
                 <h3>特定技能（1号）制度</h3>
                 <p>即戦力となる外国人材を受け入れる制度。グループ内に登録支援機関を保有し、法定10項目の支援を一貫してご提供します。</p>
                 <div className="sys-meta">
-                  <div className="sys-meta-item"><span className="k">在留期間</span><span className="v">特定技能（1号）最大 5 年</span></div>
+                  <div className="sys-meta-item"><span className="k">在留期間</span><span className="v">特定技能（1号）原則5年</span></div>
                   <div className="sys-meta-item"><span className="k">対応分野</span><span className="v">{SSW_FIELD_COUNT} 特定産業分野</span></div>
                 </div>
                 <a className="sys-link">制度の詳細を見る <span className="arrow"><Icon name="arrow" size={14}/></span></a>
@@ -442,7 +442,7 @@ function HomePage() {
           </FadeUp>
           <FadeUp delay={200}>
             <p>
-              育成就労制度（3年）と特定技能1号（5年）を組み合わせれば、通算で最大8年間、同じ人材に活躍いただくことが可能です。
+              育成就労制度（3年）と特定技能1号（5年）を組み合わせれば、通算で原則8年間、同じ人材に活躍いただくことが可能です。
             </p>
             <p>
               当組合では、両制度の橋渡しを「同一グループ内」で完結できるため、本人にとっては心理的な負担が少なく、企業様にとっては引き継ぎロスのない、安定した人材活用が実現します。
