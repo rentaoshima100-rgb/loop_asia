@@ -208,6 +208,18 @@ const SUPPORT = [
     body: "ベトナム・カンボジア・タイ・インドネシア・中国・モンゴル・バングラデシュ・スリランカ・ラオスの9カ国と連携。STEP2・3の募集・選抜と事前教育を安定的に支えます。" },
 ];
 
+/* TOPページ「サポート内容」（TOP構成 01-06）。
+   受入れから就労・生活までの支援メニューを、アイコン付きの一覧で提示する。
+   各支援の詳細（SUPPORT 01〜06）は育成就労ページに掲載しているため、リンク先はそこに向ける。 */
+const HOME_SUPPORT = [
+  { title: "人材募集・採用支援",   icon: "search" },
+  { title: "入国・在留手続き",     icon: "doc"    },
+  { title: "入国後講習",           icon: "book"   },
+  { title: "生活支援",             icon: "home"   },
+  { title: "日本語学習支援",       icon: "chat"   },
+  { title: "定期訪問・相談対応",   icon: "phone"  },
+];
+
 /* FAQ（よくあるご質問）— カテゴリ別。Q&Aはこの配列で保持し、差し替えを容易に。
    依頼書7問＋追加2問を、A-4の用語ルール・事実に合わせて修正済み。
    要確認メモは各項目の note（実装時 <!-- --> 相当のコメント）に残す。 */
@@ -354,6 +366,6 @@ function renderNewsHTML(md) {
 
 Object.assign(window, {
   PHOTOS, NAV, STRENGTHS, INDUSTRY_DATA, GROUP, NEWS, NEWS_CATS, newsCatClass, CASES, IKUSEI_STEPS,
-  SUPPORT, FAQ_CATS, FAQ_DATA, SSW_FIELDS, SSW_FIELD_COUNT, SSW_CORE_FIELDS,
+  SUPPORT, HOME_SUPPORT, FAQ_CATS, FAQ_DATA, SSW_FIELDS, SSW_FIELD_COUNT, SSW_CORE_FIELDS,
   useNews, renderNewsHTML
 });

@@ -305,26 +305,32 @@ function TimelineDiagram() {
     <div className="dgm-card dgm-card-pop">
       {/* 修正依頼 p.6：タイトル／英サブを差し替え */}
       <div className="dgm-title">育成就労から特定技能へ、<span style={{color:"var(--accent)"}}>途切れない長期キャリアパス</span>を構築</div>
-      <div className="dgm-sub">— ONE-STOP CAREER PATH: TOWARDS LONG-TERM EMPLOYMENT IN JAPAN —</div>
+      {/* 依頼 #30：英語表記を削除し日本語表記に変更 */}
+      <div className="dgm-sub">— ワンストップのキャリアパス｜日本での長期就労へ —</div>
 
-      <div className="timeline">
+      {/* 依頼 #30：時間の流れを矢印で明示し、帯内の年数表記を日本語に変更 */}
+      <div className="timeline" data-nq-fix="30">
+        <div className="timeline-flow">
+          <span className="tf-label">時間の流れ</span>
+          <span className="tf-arrow"></span>
+        </div>
         <div className="timeline-track">
           <div className="timeline-phase p1">
             <div>
               <div className="ph-label">育成就労</div>
-              <div className="ph-years">3 YEARS</div>
+              <div className="ph-years">原則3年</div>
             </div>
           </div>
           <div className="timeline-phase p2">
             <div>
               <div className="ph-label">特定技能 1 号</div>
-              <div className="ph-years">UP TO 5 YEARS</div>
+              <div className="ph-years">原則5年</div>
             </div>
           </div>
           <div className="timeline-phase p3">
             <div>
               <div className="ph-label">特定技能 2 号</div>
-              <div className="ph-years">RENEWABLE</div>
+              <div className="ph-years">更新可能</div>
             </div>
           </div>
         </div>
@@ -477,26 +483,18 @@ function ProcessDiagram() {
       </div>
       <div className="j7-rule" aria-hidden="true"></div>
 
-      {/* 要約 ＋ 凡例 */}
+      {/* 要約（凡例は「段階」の行に同じ色分けと語句が出るため省略） */}
       <div className="j7-head">
         <ul className="j7-lede">
           <li>候補者の選定から入国後講習、配属後のフォローまでを一気通貫で支援</li>
           <li>修了後は「帰国」または「特定技能1号への移行」を選択（登録支援機関が支援を継続）</li>
         </ul>
-        <div className="j7-legend">
-          <span className="j7-legend-ttl">凡例</span>
-          <ul>
-            {JOURNEY_LEGEND.map((l) => (
-              <li key={l.cls}><i className={`j7-sw ${l.cls}`} aria-hidden="true"></i>{l.text}</li>
-            ))}
-          </ul>
-        </div>
       </div>
 
       {/* ===== DESKTOP — 5段の表（ラベル列 ＋ 7ステップ列） ===== */}
       <div className="j7-matrix">
-        {/* PHASE */}
-        <div className="j7-rowlabel plain">PHASE</div>
+        {/* 段階 */}
+        <div className="j7-rowlabel plain">段階</div>
         {JOURNEY_PHASES.map((ph) => (
           <div key={ph.cls} className={`j7-phase ${ph.cls}`} style={{ gridColumn: `span ${ph.span}` }}>{ph.label}</div>
         ))}
@@ -558,19 +556,6 @@ function ProcessDiagram() {
             <div className="j7-mseg-support"><b>支援体制</b>{g.support}</div>
           </section>
         ))}
-      </div>
-
-      {/* 出発地 → 到着地 */}
-      <div className="j7-foot">
-        <div className="j7-foot-end">
-          <span className="ico">出</span>
-          <span className="txt"><small>ORIGIN COUNTRY</small>現地（送出国）</span>
-        </div>
-        <span className="j7-foot-dash" aria-hidden="true"></span>
-        <div className="j7-foot-end right">
-          <span className="txt"><small>RETURN / TRANSITION</small>帰国・特定技能1号</span>
-          <span className="ico">帰</span>
-        </div>
       </div>
 
       <p className="j7-note">

@@ -132,18 +132,7 @@ function StatsSection() {
 }
 
 function HomePage() {
-  /* animate bars when in view */
-  const barsRef = useRef(null);
-  const [barsVisible, setBarsVisible] = useState(false);
   const news = useNews();
-  useEffect(() => {
-    if (!barsRef.current) return;
-    const obs = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting) { setBarsVisible(true); obs.disconnect(); }
-    }, { threshold: 0.3 });
-    obs.observe(barsRef.current);
-    return () => obs.disconnect();
-  }, []);
 
   return (
     <main className="home-main">
@@ -172,9 +161,6 @@ function HomePage() {
           ASIA 9 COUNTRIES
         </div>
       </section>
-
-      {/* 3 ASSURANCES — overlapping below hero */}
-      <AssuranceBar />
 
       {/* NEWS — お知らせを最上部（One.Stop. 導入＝ワンストップ訴求より上）に配置 */}
       <section className="section section-soft tight">
@@ -229,37 +215,6 @@ function HomePage() {
         </div>
       </section>
 
-      {/* SITUATION ENTRIES — 6 cards */}
-      <section className="section tight">
-        <div className="container">
-          <FadeUp className="section-head center">
-            <div className="section-num">QUICK GUIDE</div>
-            <h2 className="section-title">お探しの情報はこちらから</h2>
-            <div className="section-en">FIND WHAT YOU NEED</div>
-          </FadeUp>
-          <div className="entries">
-            {[
-              { num: "01", title: "初めて外国人材の\n受入をご検討の方", desc: "", to: "ikusei" },
-              // 依頼 #24/#25/#27：02〜04 の説明文は削除
-              { num: "02", title: "新制度（育成就労）\nへの対応を相談したい", desc: "", to: "ikusei", descFix: "24" },
-              { num: "03", title: "特定技能で\n即戦力を採用したい", desc: "", to: "tokutei", descFix: "25" },
-              { num: "04", title: "活躍事例を\n見てみたい", desc: "", to: "cases", descFix: "27" },
-              { num: "05", title: "資料請求・\n無料相談を希望", desc: "", to: "contact" },
-              { num: "06", title: "組合の体制を\n知りたい", desc: "", to: "about" },
-            ].map((e, i) => (
-              <FadeUp key={i} delay={i * 40} className="entry-card" data-nq-fix={i === 0 ? "26" : undefined} onClick={() => navigate(e.to)}>
-                <div className="entry-num">FOR / {e.num}</div>
-                <div className="entry-title">{e.title.split("\n").map((l, j) => <span key={j}>{l}<br/></span>)}</div>
-                <div className="entry-desc" data-nq-fix={e.descFix}>{e.desc}</div>
-                <div className="entry-arrow">
-                  READ MORE <Icon name="arrow" size={14}/>
-                </div>
-              </FadeUp>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* STRENGTHS */}
       <section className="section section-soft">
         <div className="container">
@@ -281,86 +236,8 @@ function HomePage() {
         </div>
       </section>
 
-      {/* DATA section */}
-      <section className="section">
-        <div className="container">
-          <FadeUp className="section-head">
-            <div>
-              <div className="section-num">DATA</div>
-              <h2 className="section-title">業界別 人手不足の現状</h2>
-            </div>
-          </FadeUp>
-          <div className="data-grid">
-            <FadeUp className="data-intro">
-              <h3>2030年、日本の労働力は<br/>644万人不足するといわれています。</h3>
-              <p>
-                少子高齢化を背景に、中小企業の人手不足は深刻さを増しています。特に建設・介護・製造・農業分野では、外国人材の活躍が事業継続のために欠かせません。
-              </p>
-              <p style={{color:"var(--ink-mute)", fontSize:12, marginTop:24}}>
-                出典：パーソル総合研究所・中央大学「労働市場の未来推計2030」、厚生労働省 雇用動向調査ほか（推計値）
-              </p>
-            </FadeUp>
-            <div ref={barsRef}>
-              <div className="bar-chart">
-                {INDUSTRY_DATA.map((d, i) => (
-                  <div className="bar-row" key={i}>
-                    <div className="bar-label">{d.name}</div>
-                    <div className="bar-track">
-                      <div
-                        className={`bar-fill ${i === 0 ? "accent" : ""}`}
-                        style={{ width: barsVisible ? `${d.pct}%` : "0%", transitionDelay: `${i * 120}ms` }}
-                      ></div>
-                    </div>
-                    <div className={`bar-value ${i === 0 ? "accent" : ""}`}>
-                      {d.pct}<span className="pct">%</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <div style={{fontSize:11, color:"var(--ink-mute)", letterSpacing:"0.15em", marginTop:24}}>
-                ＊ 各業界 採用予定企業のうち「人手不足」と回答した割合
-              </div>
-            </div>
-          </div>
-          {/* 修正依頼（第1回）p.4：育成就労制度への移行で新たに対象となった分野への訴求ブロック。
-              切り口＝「対象拡大（自社も対象かもしれない）」＋「経営課題の解決」。
-              他の切り口の候補文面は docs/design-revision-01.md に併記しています。 */}
-          <FadeUp className="newfield">
-            <div className="nf-side">
-              <div className="nf-badge">NEW FIELDS</div>
-              <div className="nf-side-note">育成就労制度への移行にともなう<br/>対象分野の拡大</div>
-            </div>
-            <div className="nf-body">
-              <h3>その仕事、もう「対象」かもしれません。</h3>
-              <p>
-                従来の技能実習では対象外だった業務区分が、育成就労制度への移行にともない新たに加わりました。当組合では
-                <strong>「電線・ケーブル製造」「電気電子機械組立て」</strong>にも対応しています。
-              </p>
-              <p>
-                増産の相談が来ても受けきれない。ベテランの技術が次に渡らない。——人手不足は、すでに設備投資や受注判断を左右する経営課題です。「うちの業種では対象外だろう」と受入をあきらめていた企業様こそ、一度ご確認ください。
-              </p>
-              <div className="nf-chips">
-                <span className="is-new">電線・ケーブル製造</span>
-                <span className="is-new">電気電子機械組立て</span>
-                <span>ほか 特定産業 {SSW_FIELD_COUNT} 分野</span>
-              </div>
-              <button className="btn btn-primary nf-cta" onClick={() => navigate("contact")}>
-                自社が対象か相談する <span className="arrow"><Icon name="arrow" size={16}/></span>
-              </button>
-            </div>
-          </FadeUp>
-
-          {/* 実績と対応分野（NORTIQ Stats Section v2 デザイン）。
-              ※「受入企業 継続率」タイルは本デザインでは非掲載（数値未提供＝保留のため割愛）。
-                数値が確定したら sv-stats に4枠目として復活可能。 */}
-          <FadeUp>
-            <StatsSection />
-          </FadeUp>
-        </div>
-      </section>
-
       {/* TWO SYSTEMS */}
-      <section className="section section-soft">
+      <section className="section">
         <div className="container">
           <FadeUp className="section-head center">
             <div className="section-num">SUPPORT PROGRAMS</div>
@@ -408,58 +285,35 @@ function HomePage() {
         </div>
       </section>
 
-      {/* GROUP */}
-      <section className="section">
+      {/* SUPPORT — サポート内容（TOP構成 01-06） */}
+      <section className="section section-soft">
         <div className="container">
           <FadeUp className="section-head center">
-            <div className="section-num">GROUP STRUCTURE</div>
-            <h2 className="section-title">グループ法人体系</h2>
-            <div className="section-en">4 COMPANIES — ONE MISSION</div>
+            <div className="section-num">SUPPORT</div>
+            {/* 見出しが長く nowrap では収まらないため、この見出しのみ折り返しを許可 */}
+            <h2 className="section-title" style={{whiteSpace:"normal"}}>受入れから就労・生活まで、きめ細かくサポート</h2>
           </FadeUp>
-          <FadeUp className="group-chart">
-            {GROUP.map((g, i) => (
-              <div key={i} className={`group-card ${i === 0 ? "parent" : ""}`}>
-                <div className="role">{g.role}</div>
-                <div className="name">{g.name}</div>
-                <div className="desc">{g.desc}</div>
-              </div>
+          <div className="home-support">
+            {HOME_SUPPORT.map((s, i) => (
+              <FadeUp key={i} className="hspt-item" delay={i * 60}>
+                <div className="hspt-icon"><Icon name={s.icon} size={26}/></div>
+                <div className="hspt-title">{s.title}</div>
+              </FadeUp>
             ))}
-          </FadeUp>
-        </div>
-      </section>
-
-      {/* USP: One-stop flow — moved to lower area (お知らせ上部 / ワンストップ下部) */}
-      <section className="usp-block">
-        <div className="usp-text">
-          <FadeUp>
-            <div className="section-num">ONE-STOP SUPPORT</div>
-          </FadeUp>
-          {/* 修正依頼 p.13：見出しだけを取り出した「通算 最大8年」は制度上の上限と誤解されうるため、
-              対象制度（特定技能1号まで）を明示する文面に変更。年数の根拠は本文で説明する。
-              他の候補文面は docs/design-revision-01.md を参照。 */}
-          <FadeUp delay={100}>
-            <h2>育成就労から<br/>特定技能1号へ。<br/>切れ目のないご支援を。</h2>
-          </FadeUp>
-          <FadeUp delay={200}>
-            <p>
-              育成就労制度（3年）と特定技能1号（5年）を組み合わせれば、通算で原則8年間、同じ人材に活躍いただくことが可能です。
-            </p>
-            <p>
-              当組合では、両制度の橋渡しを「同一グループ内」で完結できるため、本人にとっては心理的な負担が少なく、企業様にとっては引き継ぎロスのない、安定した人材活用が実現します。
-            </p>
-            <button className="btn btn-outline" style={{marginTop:24}} onClick={() => navigate("ikusei")}>
-              制度の詳細を見る <span className="arrow"><Icon name="arrow" size={14}/></span>
+          </div>
+          <FadeUp className="hspt-more">
+            <button className="btn btn-outline" onClick={() => navigate("ikusei")}>
+              サポート内容を見る <span className="arrow"><Icon name="arrow" size={14}/></span>
             </button>
           </FadeUp>
         </div>
-        <div className="usp-image" style={{backgroundImage:`url(${PHOTOS.oneStop})`}}></div>
       </section>
 
-      {/* TIMELINE DIAGRAM — 8 years */}
-      <section className="section tight">
+      {/* 実績と対応分野（TOP構成 01-07） */}
+      <section className="section">
         <div className="container">
           <FadeUp>
-            <TimelineDiagram />
+            <StatsSection />
           </FadeUp>
         </div>
       </section>
