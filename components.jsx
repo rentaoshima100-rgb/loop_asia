@@ -53,6 +53,11 @@ function Icon({ name, size = 22 }) {
     case "phone":  return (<svg viewBox="0 0 24 24" {...s}><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>);
     case "mail":   return (<svg viewBox="0 0 24 24" {...s}><path d="M4 4h16v16H4z"/><path d="M4 6l8 6 8-6"/></svg>);
     case "globe":  return (<svg viewBox="0 0 24 24" {...s}><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>);
+    /* TOP「サポート内容」用。既存アイコンと線幅・角丸の作りを合わせている */
+    case "search": return (<svg viewBox="0 0 24 24" {...s}><circle cx="11" cy="11" r="6"/><path d="M15.5 15.5L21 21"/></svg>);
+    case "doc":    return (<svg viewBox="0 0 24 24" {...s}><path d="M14 3H7a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V7l-4-4z"/><path d="M14 3v4h4"/><path d="M9 13h6M9 17h4"/></svg>);
+    case "home":   return (<svg viewBox="0 0 24 24" {...s}><path d="M4 10.5L12 4l8 6.5"/><path d="M6 9.5V20h12V9.5"/><path d="M10 20v-5h4v5"/></svg>);
+    case "chat":   return (<svg viewBox="0 0 24 24" {...s}><path d="M20 4H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3v4l5-4h8a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1z"/><path d="M8 9h8M8 12h5"/></svg>);
     default: return null;
   }
 }

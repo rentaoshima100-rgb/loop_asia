@@ -449,6 +449,55 @@ p { margin: 0; }
 /* =========================================================
    Strengths grid
    ========================================================= */
+/* =========================================================
+   TOP「サポート内容」（TOP構成 01-06）
+   強みセクションと同じ罫線グリッド／円形アイコンの作りに揃える
+   ========================================================= */
+.home-support {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+.hspt-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 32px 28px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: var(--bg);
+  transition: background .3s;
+}
+.hspt-item:hover { background: var(--bg-cream); }
+.hspt-icon {
+  flex: 0 0 auto;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 1.5px solid var(--primary);
+  display: grid;
+  place-items: center;
+  color: var(--primary);
+}
+.hspt-title {
+  font-size: 17px;
+  line-height: 1.6;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+}
+.hspt-more { margin-top: 32px; text-align: center; }
+
+@media (max-width: 900px) {
+  .home-support { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .home-support { grid-template-columns: 1fr; }
+  .hspt-item { padding: 22px 20px; gap: 16px; }
+  .hspt-icon { width: 46px; height: 46px; }
+}
+
 .strengths {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -2371,6 +2420,49 @@ p { margin: 0; }
 .timeline-phase.p1 { background: var(--primary); flex: 3; }
 .timeline-phase.p2 { background: var(--accent); flex: 5; }
 .timeline-phase.p3 { background: var(--gold); flex: 2; }
+/* 依頼 #30：フェーズの継ぎ目に矢印を出し、左から右への時間の流れを示す */
+.timeline-phase.p1::after,
+.timeline-phase.p2::after {
+  content: "";
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  width: 11px;
+  height: 11px;
+  border-top: 2px solid rgba(255,255,255,0.9);
+  border-right: 2px solid rgba(255,255,255,0.9);
+  transform: translateY(-50%) rotate(45deg);
+}
+/* 依頼 #30：帯の上に「時間の流れ →」を明示 */
+.timeline-flow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.timeline-flow .tf-label {
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  color: var(--ink-mute);
+  white-space: nowrap;
+}
+.timeline-flow .tf-arrow {
+  position: relative;
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(199,93,62,0.18), var(--primary));
+}
+.timeline-flow .tf-arrow::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-top: 1.5px solid var(--primary);
+  border-right: 1.5px solid var(--primary);
+  transform: translateY(-50%) rotate(45deg);
+}
 .timeline-phase .ph-label {
   font-family: var(--font-serif);
   font-size: 19px;
@@ -2493,6 +2585,14 @@ p { margin: 0; }
   .timeline-cap { grid-template-columns: 1fr; }
   .timeline-track { flex-direction: column; height: auto; }
   .timeline-phase { padding: 16px 20px; }
+  /* 依頼 #30：縦積み時は矢印も下向きに */
+  .timeline-phase.p1::after,
+  .timeline-phase.p2::after {
+    right: 50%;
+    top: auto;
+    bottom: 6px;
+    transform: translateX(50%) rotate(135deg);
+  }
   .timeline-years { display: none; }
 }
 
@@ -4002,6 +4102,7 @@ p { margin: 0; }
 .home-main .assurance-title strong { font-size: inherit; }
 .home-main .strength-title  { font-size: clamp(21px, 2.1vw, 29px); }
 .home-main .strength-body   { font-size: clamp(15.5px, 1.25vw, 18px); }
+.home-main .hspt-title      { font-size: clamp(16px, 1.35vw, 20px); }
 .home-main .data-intro h3   { font-size: clamp(27px, 3.6vw, 46px); font-weight: 800; }
 .home-main .data-intro p    { font-size: clamp(16px, 1.3vw, 18.5px); }
 .home-main .sys-body h3     { font-size: clamp(24px, 2.9vw, 34px); }

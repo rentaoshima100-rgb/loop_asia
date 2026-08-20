@@ -175,6 +175,16 @@ function IkuseiPage() {
         </div>
       </section>
 
+      {/* 8年キャリアパス図。TOPページの構成見直し（TOP構成 01-01〜01-07）で
+          トップから外れたため、制度の文脈が近い本ページへ移設。 */}
+      <section className="section tight">
+        <div className="container">
+          <FadeUp>
+            <TimelineDiagram />
+          </FadeUp>
+        </div>
+      </section>
+
       <ReferenceLinks />
       <CTABand/>
     </main>
