@@ -418,15 +418,16 @@ Object.assign(window, { FeaturesDiagram });
    修正依頼（第1回）p.8 → 修正対応報告書 2-5 で再設計：
    ・「グラフに見えるが何のグラフか分からない」マトリクス／アーチ図を廃止。
    ・番号と説明が必ず縦一列で対応する表形式に統一した。
-   簡素化（2026-08 口頭依頼「もうちょいシンプルにわかりやすく」）：
+   簡素化（2026-08 口頭依頼「もうちょいシンプルにわかりやすく」→「もうちょいSimpleに」）：
    ・「期間の目安」の行を廃止し、期間は各ステップの矢羽内のチップに統合。
-   ・「支援体制」の行を廃止（内容が実施内容の各ステップとほぼ重複していたため。
-     JOURNEY_SEGMENTS の support は復活できるようデータのみ残置）。
+   ・「支援体制」の行を廃止（内容が実施内容の各ステップとほぼ重複していたため）。
+   ・「拠点」の行を廃止（上の「段階」帯の《現地》《日本》とほぼ重複していたため。
+     JOURNEY_SEGMENTS は復活できるようデータのみ残置）。
+   ・左のラベル列（「ステップの流れ」等）と冒頭の要約2行も削除。
    ・実施内容の文章を体言止めの短文に整理。
-   → 現在は 段階／ステップの流れ／実施内容／拠点 の 4 段構成。
-   ・拠点の行は、ステップをまたぐ結合セル（JOURNEY_SEGMENTS）で表現する。
-   Desktop（>1000px）: 126px のラベル列 ＋ 7 ステップ列のグリッド表
-   Mobile（<=1000px）: 拠点セグメントごとにまとめた縦積み
+   → 現在は 段階帯／ステップ（期間チップ入り）／実施内容 の 3 段構成。
+   Desktop（>1000px）: 7 ステップ列のグリッド表
+   Mobile（<=1000px）: フェーズ（段階）ごとにまとめた縦積み
    ============================================================ */
 
 /* 上段のフェーズ帯。span = 束ねるステップ数（3 / 3 / 1 の計7） */
@@ -436,9 +437,8 @@ const JOURNEY_PHASES = [
   { cls: "p3", label: "《 修了 》",                            span: 1 },
 ];
 
-/* 「拠点」行の結合セル。span = 束ねるステップ数（1 / 2 / 3 / 1 の計7）
-   phase は、その区間が属するフェーズ（モバイル表示のラベルに使用）。
-   support は簡素化で非表示（実施内容と重複のため）。復活できるようデータは残置 */
+/* 拠点・支援体制の結合セル定義。簡素化でどちらの行も非表示
+   （拠点は「段階」帯と、支援体制は「実施内容」と重複のため）。復活できるようデータは残置 */
 const JOURNEY_SEGMENTS = [
   { cls: "g1", phase: "p1", span: 1, place: "日本（組合・受入企業）",
     support: "受入計画のご提案" },
@@ -481,9 +481,6 @@ const JOURNEY_LEGEND = [
 ];
 
 function ProcessDiagram() {
-  const phaseLabel = (cls) => (JOURNEY_PHASES.find((p) => p.cls === cls) || {}).label || "";
-  const stepsOf = (segCls) => JOURNEY_STEPS.filter((s) => s.seg === segCls);
-
   return (
     <div className="journey7">
       {/* 図のヘッダー（セクション見出しと重複しないよう、図版ラベルとして小さく置く） */}
@@ -493,24 +490,14 @@ function ProcessDiagram() {
       </div>
       <div className="j7-rule" aria-hidden="true"></div>
 
-      {/* 要約（凡例は「段階」の行に同じ色分けと語句が出るため省略） */}
-      <div className="j7-head">
-        <ul className="j7-lede">
-          <li>候補者の選定から入国後講習、配属後のフォローまでを一気通貫で支援</li>
-          <li>修了後は「帰国」または「特定技能1号への移行」を選択（登録支援機関が支援を継続）</li>
-        </ul>
-      </div>
-
-      {/* ===== DESKTOP — 4段の表（ラベル列 ＋ 7ステップ列）。期間は矢羽内のチップに統合 ===== */}
+      {/* ===== DESKTOP — 3段（段階帯／ステップ＋期間チップ／実施内容）。ラベル列なし ===== */}
       <div className="j7-matrix">
         {/* 段階 */}
-        <div className="j7-rowlabel plain">段階</div>
         {JOURNEY_PHASES.map((ph) => (
           <div key={ph.cls} className={`j7-phase ${ph.cls}`} style={{ gridColumn: `span ${ph.span}` }}>{ph.label}</div>
         ))}
 
         {/* ステップの流れ（期間の目安を含む） */}
-        <div className="j7-rowlabel">ステップ<br/>の流れ</div>
         {JOURNEY_STEPS.map((s) => (
           <div key={s.n} className={`j7-step t${s.tone}`} style={{ "--i": s.n }}>
             <span className="j7-step-n">{s.n}</span>
@@ -526,28 +513,20 @@ function ProcessDiagram() {
         ))}
 
         {/* 実施内容 */}
-        <div className="j7-rowlabel">実施内容</div>
         {JOURNEY_STEPS.map((s) => (
           <div key={s.n} className={`j7-desc ${s.phase}`}>{s.p}</div>
         ))}
-
-        {/* 拠点（結合セル） */}
-        <div className="j7-rowlabel">拠点</div>
-        {JOURNEY_SEGMENTS.map((g) => (
-          <div key={g.cls} className={`j7-place ${g.cls}`} style={{ gridColumn: `span ${g.span}` }}>{g.place}</div>
-        ))}
       </div>
 
-      {/* ===== MOBILE — 拠点セグメント単位で縦積み（番号は常に左、説明はその下） ===== */}
+      {/* ===== MOBILE — フェーズ（段階）単位で縦積み（番号は常に左、説明はその下） ===== */}
       <div className="j7-stack">
-        {JOURNEY_SEGMENTS.map((g) => (
-          <section key={g.cls} className={`j7-mseg ${g.phase}`}>
+        {JOURNEY_PHASES.map((ph) => (
+          <section key={ph.cls} className={`j7-mseg ${ph.cls}`}>
             <div className="j7-mseg-top">
-              <span className="j7-mseg-phase">{phaseLabel(g.phase)}</span>
-              <span className="j7-mseg-place"><b>拠点</b>{g.place}</span>
+              <span className="j7-mseg-phase">{ph.label}</span>
             </div>
             <ol className="j7-msteps">
-              {stepsOf(g.cls).map((s) => (
+              {JOURNEY_STEPS.filter((s) => s.phase === ph.cls).map((s) => (
                 <li key={s.n} className={`j7-mstep t${s.tone}`}>
                   <div className="j7-mstep-top">
                     <span className="j7-mstep-n">{s.n}</span>
@@ -558,7 +537,6 @@ function ProcessDiagram() {
                 </li>
               ))}
             </ol>
-            {/* 支援体制の行は簡素化で非表示（実施内容と重複のため。データは JOURNEY_SEGMENTS.support に残置） */}
           </section>
         ))}
       </div>

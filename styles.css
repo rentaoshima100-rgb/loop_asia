@@ -2987,10 +2987,11 @@ p { margin: 0; }
 /* ============================================================
    JOURNEY (受入れ・キャリア形成フロー／全7ステップ) — .journey7 名前空間
    修正対応報告書 2-5 で表形式化 → 簡素化（2026-08）で
-   段階／ステップの流れ（期間チップ入り）／実施内容／拠点 の 4 段構成に。
-   ラベル列 126px ＋ 7 ステップ列の CSS Grid で、
-   結合セル（拠点）まで列位置がぴったり揃うようにしている。
-   Desktop = マトリクス（>1000px） / Mobile = 拠点セグメント単位の縦積み（<=1000px）
+   段階帯／ステップ（期間チップ入り）／実施内容 の 3 段構成に。
+   7 ステップ列の CSS Grid（ラベル列なし）。
+   Desktop = マトリクス（>1000px） / Mobile = フェーズ単位の縦積み（<=1000px）
+   未使用スタイル（.j7-head/.j7-lede/.j7-rowlabel/.j7-dur/.j7-place/.j7-support 等）は
+   復活できるよう残置。
    ============================================================ */
 .journey7 {
   --j-ink:#1a0a0a; --j-paper:#fbf5ee; --j-red:#c8102e; --j-red-deep:#8e0b20;
@@ -3056,13 +3057,13 @@ p { margin: 0; }
 .journey7 .j7-sw.p2 { background:var(--j-red); }
 .journey7 .j7-sw.p3 { background:#fff; border:2px solid var(--j-red); }
 
-/* ---- Desktop マトリクス ---- */
+/* ---- Desktop マトリクス（簡素化でラベル列を廃止し 7 列のみに） ---- */
 .journey7 .j7-matrix {
   display:grid;
-  grid-template-columns: var(--j-labelw) repeat(7, minmax(0, 1fr));
+  grid-template-columns: repeat(7, minmax(0, 1fr));
   column-gap: var(--j-gap); row-gap:12px;
   align-items:stretch;
-  margin-top:18px;
+  margin-top:16px;
 }
 .journey7 .j7-rowlabel {
   display:flex; align-items:center; justify-content:center; text-align:center;
