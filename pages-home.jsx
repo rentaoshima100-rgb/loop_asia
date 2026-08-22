@@ -303,7 +303,9 @@ function HomePage() {
             ))}
           </div>
           <FadeUp className="hspt-more">
-            <button className="btn btn-outline" onClick={() => navigate("ikusei")}>
+            {/* btn-outline（暗背景用の白）は section-soft の薄ピンク上では読めないため、
+                明背景用の btn-ghost（赤枠・赤文字）を使用 */}
+            <button className="btn btn-ghost" onClick={() => navigate("ikusei")}>
               サポート内容を見る <span className="arrow"><Icon name="arrow" size={14}/></span>
             </button>
           </FadeUp>
