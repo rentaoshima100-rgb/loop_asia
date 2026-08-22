@@ -417,9 +417,14 @@ Object.assign(window, { FeaturesDiagram });
 
    修正依頼（第1回）p.8 → 修正対応報告書 2-5 で再設計：
    ・「グラフに見えるが何のグラフか分からない」マトリクス／アーチ図を廃止。
-   ・フェーズ／期間の目安／実施内容／拠点／支援体制の 5 段構成の表形式に置き換え、
-     番号と説明が必ず縦一列で対応する構造に統一した。
-   ・拠点・支援体制の行は、ステップをまたぐ結合セル（JOURNEY_SEGMENTS）で表現する。
+   ・番号と説明が必ず縦一列で対応する表形式に統一した。
+   簡素化（2026-08 口頭依頼「もうちょいシンプルにわかりやすく」）：
+   ・「期間の目安」の行を廃止し、期間は各ステップの矢羽内のチップに統合。
+   ・「支援体制」の行を廃止（内容が実施内容の各ステップとほぼ重複していたため。
+     JOURNEY_SEGMENTS の support は復活できるようデータのみ残置）。
+   ・実施内容の文章を体言止めの短文に整理。
+   → 現在は 段階／ステップの流れ／実施内容／拠点 の 4 段構成。
+   ・拠点の行は、ステップをまたぐ結合セル（JOURNEY_SEGMENTS）で表現する。
    Desktop（>1000px）: 126px のラベル列 ＋ 7 ステップ列のグリッド表
    Mobile（<=1000px）: 拠点セグメントごとにまとめた縦積み
    ============================================================ */
@@ -431,8 +436,9 @@ const JOURNEY_PHASES = [
   { cls: "p3", label: "《 修了 》",                            span: 1 },
 ];
 
-/* 「拠点」「支援体制」行の結合セル。span = 束ねるステップ数（1 / 2 / 3 / 1 の計7）
-   phase は、その区間が属するフェーズ（モバイル表示のラベルに使用） */
+/* 「拠点」行の結合セル。span = 束ねるステップ数（1 / 2 / 3 / 1 の計7）
+   phase は、その区間が属するフェーズ（モバイル表示のラベルに使用）。
+   support は簡素化で非表示（実施内容と重複のため）。復活できるようデータは残置 */
 const JOURNEY_SEGMENTS = [
   { cls: "g1", phase: "p1", span: 1, place: "日本（組合・受入企業）",
     support: "受入計画のご提案" },
@@ -445,23 +451,27 @@ const JOURNEY_SEGMENTS = [
 ];
 
 /* tone は 1〜7 の濃淡（入国前＝ダーク／入国後＝レッド／修了＝白抜き）。styles.css の .t1〜.t7 に対応 */
+/* p は体言止めの短文（簡素化）。丁寧語の定型文はセルの行数が嵩むため使わない */
 const JOURNEY_STEPS = [
   { n: 1, phase: "p1", seg: "g1", tone: 1, dur: "〜 1ヶ月",   h: "ご加入・制度説明",
-    p: "受入分野・職種・人数・希望時期を伺い、最適な受入計画をご提案いたします。" },
+    p: "受入分野・職種・人数・希望時期を伺い、受入計画をご提案。" },
   /* 修正依頼 p.8：面接は「現地またはオンライン」。オンライン面接のみと誤解されない表記に */
   { n: 2, phase: "p1", seg: "g2", tone: 2, dur: "1 〜 3ヶ月", h: "募集・選抜",
-    p: "提携している送出機関より候補者を選定。書類審査と、現地またはオンラインでの面接を実施します。" },
+    p: "送出機関より候補者を選定。書類審査と、現地またはオンラインでの面接。" },
   { n: 3, phase: "p1", seg: "g2", tone: 3, dur: "約 6ヶ月",   h: "現地での事前教育",
-    p: "入国前に、現地にて日本語・生活ルール・労働安全の基礎教育を実施します。" },
+    p: "現地にて日本語・生活ルール・労働安全の基礎教育。" },
   { n: 4, phase: "p2", seg: "g3", tone: 4, dur: "約 1ヶ月",   h: "入国・入国後講習",
-    p: "入国後、日本語・生活ルール・職種別講習を集中的に実施します。" },
-  { n: 5, phase: "p2", seg: "g3", tone: 5, dur: "1年目 〜",   h: "配属・育成就労開始",
-    p: "受入企業様への配属。初期の定着まで組合担当者が継続的にフォローいたします。" },
+    p: "日本語・生活ルール・職種別講習を集中的に実施。" },
+  /* h の \n は矢羽内の改行位置指定（「開／始」「フォロ／ー」の1文字はみ出しを防ぐ）。モバイルでは無視。
+     簡素化で見出しも短縮（配属・育成就労開始→配属・就労開始／技能検定・継続フォロー→技能検定・フォロー。
+     詳細は実施内容セルに記載） */
+  { n: 5, phase: "p2", seg: "g3", tone: 5, dur: "1年目 〜",   h: "配属・\n就労開始",
+    p: "受入企業様へ配属。初期の定着まで組合担当者がフォロー。" },
   /* 修正依頼 p.8：「定期巡回」→「定期訪問」。技能習得状況の確認に加え企業様サポートを明記 */
-  { n: 6, phase: "p2", seg: "g3", tone: 6, dur: "3年目以降",  h: "技能検定・継続フォロー",
-    p: "定期訪問・面談・キャリア相談・技能習得状況の確認に加え、企業様のサポートを実施します。" },
+  { n: 6, phase: "p2", seg: "g3", tone: 6, dur: "3年目以降",  h: "技能検定・\nフォロー",
+    p: "定期訪問・面談・キャリア相談・技能習得状況の確認と、企業様のサポート。" },
   { n: 7, phase: "p3", seg: "g4", tone: 7, dur: "修了時",     h: "帰国 または 特定技能1号へ",
-    p: "本人の希望とスキルに応じて、登録支援機関がそのまま支援を継続します。" },
+    p: "本人の希望とスキルに応じて、登録支援機関がそのまま支援を継続。" },
 ];
 
 const JOURNEY_LEGEND = [
@@ -491,7 +501,7 @@ function ProcessDiagram() {
         </ul>
       </div>
 
-      {/* ===== DESKTOP — 5段の表（ラベル列 ＋ 7ステップ列） ===== */}
+      {/* ===== DESKTOP — 4段の表（ラベル列 ＋ 7ステップ列）。期間は矢羽内のチップに統合 ===== */}
       <div className="j7-matrix">
         {/* 段階 */}
         <div className="j7-rowlabel plain">段階</div>
@@ -499,19 +509,20 @@ function ProcessDiagram() {
           <div key={ph.cls} className={`j7-phase ${ph.cls}`} style={{ gridColumn: `span ${ph.span}` }}>{ph.label}</div>
         ))}
 
-        {/* ステップの流れ */}
+        {/* ステップの流れ（期間の目安を含む） */}
         <div className="j7-rowlabel">ステップ<br/>の流れ</div>
         {JOURNEY_STEPS.map((s) => (
           <div key={s.n} className={`j7-step t${s.tone}`} style={{ "--i": s.n }}>
             <span className="j7-step-n">{s.n}</span>
-            <span className="j7-step-h">{s.h}</span>
+            <span className="j7-step-txt">
+              <span className="j7-step-h">
+                {s.h.split("\n").map((l, i, a) => (
+                  <React.Fragment key={i}>{l}{i < a.length - 1 && <br/>}</React.Fragment>
+                ))}
+              </span>
+              <span className="j7-step-dur">{s.dur}</span>
+            </span>
           </div>
-        ))}
-
-        {/* 期間の目安 */}
-        <div className="j7-rowlabel">期間の<br/>目安</div>
-        {JOURNEY_STEPS.map((s) => (
-          <div key={s.n} className={`j7-dur ${s.phase === "p3" ? "is-end" : ""}`}>{s.dur}</div>
         ))}
 
         {/* 実施内容 */}
@@ -524,12 +535,6 @@ function ProcessDiagram() {
         <div className="j7-rowlabel">拠点</div>
         {JOURNEY_SEGMENTS.map((g) => (
           <div key={g.cls} className={`j7-place ${g.cls}`} style={{ gridColumn: `span ${g.span}` }}>{g.place}</div>
-        ))}
-
-        {/* 支援体制（結合セル） */}
-        <div className="j7-rowlabel">支援体制</div>
-        {JOURNEY_SEGMENTS.map((g) => (
-          <div key={g.cls} className="j7-support" style={{ gridColumn: `span ${g.span}` }}>{g.support}</div>
         ))}
       </div>
 
@@ -546,14 +551,14 @@ function ProcessDiagram() {
                 <li key={s.n} className={`j7-mstep t${s.tone}`}>
                   <div className="j7-mstep-top">
                     <span className="j7-mstep-n">{s.n}</span>
-                    <h3>{s.h}</h3>
+                    <h3>{s.h.replace(/\n/g, "")}</h3>
                   </div>
                   <span className="j7-mdur">{s.dur}</span>
                   <p>{s.p}</p>
                 </li>
               ))}
             </ol>
-            <div className="j7-mseg-support"><b>支援体制</b>{g.support}</div>
+            {/* 支援体制の行は簡素化で非表示（実施内容と重複のため。データは JOURNEY_SEGMENTS.support に残置） */}
           </section>
         ))}
       </div>
