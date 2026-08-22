@@ -243,11 +243,13 @@ function Footer() {
   );
 }
 
-/* Inner page hero */
-function PageHero({ kicker, title, lead, photo, crumbs }) {
+/* Inner page hero
+   fixId：修正依頼番号の目印（data-nq-fix）を呼び出し側から任意で付けるためのプロップ。
+   共通コンポーネントに直接書くと全ページに同じ番号が付くため、対象ページからのみ渡す。 */
+function PageHero({ kicker, title, lead, photo, crumbs, fixId }) {
   return (
     <section className="page-hero">
-      <div className="page-hero-photo" style={{backgroundImage:`url(${photo})`}}></div>
+      <div className="page-hero-photo" data-nq-fix={fixId} style={{backgroundImage:`url(${photo})`}}></div>
       <div className="page-hero-inner">
         {crumbs && (
           <div className="crumbs">

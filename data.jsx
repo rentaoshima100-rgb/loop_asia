@@ -2,11 +2,14 @@
 
 // TODO(client): 写真はすべて仮のストック画像（Unsplash）です。実素材の到着後に差し替えてください。
 const PHOTOS = {
-  hero:        "uploads/hero-globe.jpg",
+  /* 修正依頼 #31：ヒーローを支給画像（日の丸＋3業種の人材、左側が白の余白）に差し替え */
+  hero:        "uploads/hero-asia.jpg",
   heroAlt:     "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=2000&q=85&auto=format&fit=crop",
   intro:       "https://images.unsplash.com/photo-1565008576549-57569a49371d?w=1600&q=80&auto=format&fit=crop",
-  ikuseiCover: "uploads/teaching.jpg",
-  tokuteiCover:"uploads/1on1.jpg",
+  /* 修正依頼 #32：現地選抜（作業テスト）の支給画像に差し替え */
+  ikuseiCover: "uploads/selection.jpg",
+  /* 修正依頼 #33：建設現場の技術者の支給画像に差し替え（tokuteiHero・oneStop の 1on1.jpg は依頼外のため変更しない） */
+  tokuteiCover:"uploads/site-engineer.jpg",
   /* 修正依頼 p.13：uploads/onestop.jpg は女性が両手に腕時計を着けている生成不整合があるため差し替え。
      暫定として 1on1.jpg（組合担当者と外国人材の面談シーン）を使用。
      ★要確認（組合）★ 現場で撮影した実写に差し替え予定。onestop.jpg は使用しないでください。 */
@@ -22,7 +25,8 @@ const PHOTOS = {
   portrait:    "uploads/portrait.jpg",
   logo:        "uploads/logo-loop.jpg",
   aboutHero:   "uploads/classroom.jpg",
-  ikuseiHero:  "uploads/teaching.jpg",
+  /* 修正依頼 #34：育成就労ページのヒーローを支給画像（工場での技能指導）に差し替え */
+  ikuseiHero:  "uploads/factory-training.jpg",
   tokuteiHero: "uploads/1on1.jpg",
   caseHero:    "uploads/casehero.jpg",
   newsHero:    "https://images.unsplash.com/photo-1495020689067-958852a7765e?w=2000&q=80&auto=format&fit=crop",

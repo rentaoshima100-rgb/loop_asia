@@ -10,6 +10,7 @@ function IkuseiPage() {
         lead="2027年4月から開始される新しい外国人材受入制度。「人材育成」と「人材確保」の2つを目的に再設計された制度です。"
         photo={PHOTOS.ikuseiHero}
         crumbs="育成就労制度"
+        fixId="34"
       />
 
       <section className="section">
