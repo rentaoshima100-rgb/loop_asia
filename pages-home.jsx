@@ -139,7 +139,8 @@ function HomePage() {
       {/* HERO */}
       <section className="hero">
         <div className="hero-photo" style={{backgroundImage:`url(${PHOTOS.hero})`}}></div>
-        <div className="hero-inner">
+        {/* 修正依頼 #31：新ヒーロー画像は左側が白のため、スローガンは濃色文字で左の余白に配置（styles.css の Hero 参照） */}
+        <div className="hero-inner" data-nq-fix="31">
           <div className="hero-content">
             <div className="hero-kicker">Asia Interchange Cooperative Business Union</div>
             {/* 修正依頼（第1回）p.2：メインタイトル差し替え。サブタイトルは原文のまま */}
@@ -248,7 +249,7 @@ function HomePage() {
           </FadeUp>
           <div className="two-systems">
             <FadeUp className="sys-card" onClick={() => navigate("ikusei")}>
-              <div className="sys-cover" style={{backgroundImage:`url(${PHOTOS.ikuseiCover})`}}>
+              <div className="sys-cover" data-nq-fix="32" style={{backgroundImage:`url(${PHOTOS.ikuseiCover})`}}>
                 <div className="sys-tag">PROGRAM 01</div>
               </div>
               <div className="sys-body">
@@ -265,7 +266,7 @@ function HomePage() {
               </div>
             </FadeUp>
             <FadeUp delay={100} className="sys-card" onClick={() => navigate("tokutei")}>
-              <div className="sys-cover" style={{backgroundImage:`url(${PHOTOS.tokuteiCover})`}}>
+              <div className="sys-cover" data-nq-fix="33" style={{backgroundImage:`url(${PHOTOS.tokuteiCover})`}}>
                 <div className="sys-tag">PROGRAM 02</div>
               </div>
               <div className="sys-body">
@@ -302,7 +303,9 @@ function HomePage() {
             ))}
           </div>
           <FadeUp className="hspt-more">
-            <button className="btn btn-outline" onClick={() => navigate("ikusei")}>
+            {/* btn-outline（暗背景用の白）は section-soft の薄ピンク上では読めないため、
+                明背景用の btn-ghost（赤枠・赤文字）を使用 */}
+            <button className="btn btn-ghost" onClick={() => navigate("ikusei")}>
               サポート内容を見る <span className="arrow"><Icon name="arrow" size={14}/></span>
             </button>
           </FadeUp>
