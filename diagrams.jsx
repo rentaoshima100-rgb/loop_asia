@@ -58,7 +58,7 @@ function PathwayDiagram() {
   return (
     <div className="dgm-card dgm-card-pop">
       <div className="dgm-title">特定技能外国人になるための 2 つのルート</div>
-      <div className="dgm-sub">— TWO PATHS TO BECOME A SPECIFIED SKILLED WORKER —</div>
+      <div className="dgm-sub">TWO PATHS TO BECOME A SPECIFIED SKILLED WORKER</div>
 
       <div className="pathway">
         <div className="pathway-route">
@@ -122,7 +122,7 @@ function RelationDiagram() {
   return (
     <div className="dgm-card dgm-card-pop">
       <div className="dgm-title">登録支援機関の役割</div>
-      <div className="dgm-sub">— RELATIONSHIP & SUPPORT STRUCTURE —</div>
+      <div className="dgm-sub">RELATIONSHIP & SUPPORT STRUCTURE</div>
 
       <svg className="relation-svg" viewBox="0 0 1000 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="登録支援機関と関係機関の関係図">
         <defs>
@@ -306,7 +306,7 @@ function TimelineDiagram() {
       {/* 修正依頼 p.6：タイトル／英サブを差し替え */}
       <div className="dgm-title">育成就労から特定技能へ、<span style={{color:"var(--accent)"}}>途切れない長期キャリアパス</span>を構築</div>
       {/* 依頼 #30：英語表記を削除し日本語表記に変更 */}
-      <div className="dgm-sub">— ワンストップのキャリアパス｜日本での長期就労へ —</div>
+      <div className="dgm-sub">ワンストップのキャリアパス｜日本での長期就労へ</div>
 
       {/* 依頼 #30：時間の流れを矢印で明示し、帯内の年数表記を日本語に変更 */}
       <div className="timeline" data-nq-fix="30">
@@ -383,8 +383,9 @@ function FeaturesDiagram() {
   const items = [
     {
       cls: "c1", num: "01", tag: "BOTH AT ONCE",
-      h: "「人材育成」と「人材確保」の両立",
-      p: "これまで明確に区別されてきた「育成」と「就労」を統合。日本側にとっても、本人にとってもメリットのある、新しい受入制度として再設計された制度です。"
+      /* h の \n は改行位置の指定（#36の拡大で「人材確／保」と語中で折れるのを防ぐ） */
+      h: "「人材育成」と\n「人材確保」の両立",
+      /* 修正依頼 #35：01 の説明文を削除（クリック指定は 01 のみ。02・03 の説明文は依頼外のため残置） */
     },
     {
       cls: "c2", num: "02", tag: "SKILL & LANGUAGE",
@@ -398,13 +399,18 @@ function FeaturesDiagram() {
     }
   ];
   return (
-    <div className="features-bold">
+    /* data-nq-fix="36"：見出し .feat-h の拡大（CSSのみの変更）。パネルはループ描画のため代表して親に付与 */
+    <div className="features-bold" data-nq-fix="36">
       {items.map((it, i) => (
         <div key={i} className={`feat-panel ${it.cls}`}>
           <div className="feat-bignum">{it.num}</div>
           <div className="feat-tag">{it.tag}</div>
-          <div className="feat-h">{it.h}</div>
-          <div className="feat-p">{it.p}</div>
+          <div className="feat-h">
+            {it.h.split("\n").map((l, j, a) => (
+              <React.Fragment key={j}>{l}{j < a.length - 1 && <br/>}</React.Fragment>
+            ))}
+          </div>
+          {it.p && <div className="feat-p">{it.p}</div>}
         </div>
       ))}
     </div>

@@ -390,11 +390,8 @@ p { margin: 0; }
   letter-spacing: 0.25em;
   font-weight: 600;
 }
-.section-num::before {
-  content: "—";
-  margin-right: 12px;
-  color: var(--accent);
-}
+/* セクションラベル先頭の「—」は施主指示（2026-08-26）で全廃。
+   .section-num::before { content:"—" } を削除（全ページの SUPPORT / OVERVIEW 等に効いていた） */
 .section-title {
   font-size: clamp(28px, 3.5vw, 44px);
   line-height: 1.4;
@@ -4099,11 +4096,13 @@ p { margin: 0; }
 [data-screen-label="page: ikusei"] .prose h3 { font-size: clamp(19px, 1.8vw, 23px); }
 [data-screen-label="page: ikusei"] .prose p,
 [data-screen-label="page: ikusei"] .prose li { font-size: clamp(15.5px, 1.3vw, 17.5px); }
+/* 修正依頼 #37：制度の要点の表の文字を拡大 */
 [data-screen-label="page: ikusei"] .info-table th,
-[data-screen-label="page: ikusei"] .info-table td { font-size: clamp(15px, 1.2vw, 16.5px); }
+[data-screen-label="page: ikusei"] .info-table td { font-size: clamp(16px, 1.4vw, 19px); }
 [data-screen-label="page: ikusei"] .curriculum .ttl { font-size: 17.5px; }
 [data-screen-label="page: ikusei"] .curriculum .body { font-size: 14.5px; }
-[data-screen-label="page: ikusei"] .feat-h { font-size: clamp(20px, 2.2vw, 25px); }
+/* 修正依頼 #36：3つの特徴の見出しを拡大（01〜03共通） */
+[data-screen-label="page: ikusei"] .feat-h { font-size: clamp(22px, 2.6vw, 30px); }
 [data-screen-label="page: ikusei"] .feat-p { font-size: clamp(14px, 1.2vw, 16px); }
 [data-screen-label="page: ikusei"] .usp-text h2 { font-size: clamp(26px, 3.4vw, 42px); }
 /* 文字数の多い見出し（入国後講習の OUR ADVANTAGE）— 意図した改行位置を保てるサイズに */

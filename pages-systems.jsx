@@ -18,14 +18,14 @@ function IkuseiPage() {
           <div className="data-grid">
             <FadeUp>
               <div className="section-num">OVERVIEW</div>
-              <h2 className="section-title" style={{marginTop:16, fontSize:"clamp(28px, 3.6vw, 44px)"}}>
-                「育成」と「就労」を、<br/>同じ場所で両立する制度。
+              {/* 修正依頼 #39：見出しを差し替え。文字数が増えたため1段小さいサイズにし、改行位置を明示
+                  （usp-h2-long と同じ「長い見出しはサイズを1段下げて改行位置を保つ」運用） */}
+              <h2 className="section-title" data-nq-fix="39" style={{marginTop:16, fontSize:"clamp(26px, 3vw, 38px)"}}>
+                外国人材の「育成」と<br/>「長期定着」を両立する<br/>新採用ルート。
               </h2>
             </FadeUp>
             <FadeUp delay={100} className="prose">
-              <p>
-                育成就労制度は、2027年4月の施行に向けて準備が進められている、新しい外国人材受入制度です。本制度では、「人材育成」と「人材確保」の2軸を目的に掲げ、原則3年間の在留期間の中で、特定技能1号水準の技能習得を目指します。
-              </p>
+              {/* 修正依頼 #40：第1段落（育成就労制度は、2027年4月の施行に向けて〜）を削除 */}
               <p>
                 当組合は、監理支援機関として、受入企業様および外国人材ご本人の双方を、入国前のマッチングから3年後のキャリア選択まで、ワンストップでご支援いたします。
               </p>
@@ -59,7 +59,8 @@ function IkuseiPage() {
             </div>
           </FadeUp>
           <FadeUp>
-            <table className="info-table">
+            {/* data-nq-fix="37"：表の文字拡大（CSSのみの変更） */}
+            <table className="info-table" data-nq-fix="37">
               <tbody>
                 <tr><th style={{width:"28%"}}>目的</th><td>「人材確保」と「人材育成」の2軸</td></tr>
                 <tr><th>在留期間</th><td>原則3年。修了後、特定技能1号へ移行すれば通算原則8年の就労が可能</td></tr>
@@ -270,7 +271,7 @@ function TokuteiPage() {
       <PageHero
         kicker="SPECIFIED SKILLED WORKER PROGRAM"
         title="特定技能制度"
-        lead="即戦力となる外国人材を受け入れる在留資格。当組合では、グループ内に登録支援機関を保有し、法定10項目の支援を一貫してご提供しています。"
+        lead="即戦力となる外国人材を受け入れる在留資格。当組合では、グループ内で登録支援機関を運営し、法定10項目の支援を一貫してご提供しています。"
         photo={PHOTOS.tokuteiHero}
         crumbs="特定技能制度"
       />

@@ -113,7 +113,7 @@ function CaseDetailPage() {
             <span>/</span>
             <span style={{color:"#fff"}}>事例詳細</span>
           </div>
-          <div className="kicker">— {item.country} ／ {item.industry}</div>
+          <div className="kicker">{item.country} ／ {item.industry}</div>
           <h1 className="serif">{item.title}</h1>
           <p className="lead">{item.company}</p>
         </div>

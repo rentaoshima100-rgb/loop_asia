@@ -145,7 +145,8 @@ function CTABand() {
       <div className="cta-band-photo" style={{backgroundImage:`url(${PHOTOS.ctaBg})`}}></div>
       <div className="container cta-band-inner">
         <FadeUp>
-          <div className="section-num" style={{color:"var(--accent-soft)"}}>—  CONTACT</div>
+          {/* 先頭の「—」は施主指示で全廃（テキスト直書き分も削除） */}
+          <div className="section-num" style={{color:"var(--accent-soft)"}}>CONTACT</div>
         </FadeUp>
         <FadeUp delay={100}>
           <h2>受入のご検討・ご相談、<br/>まずはお気軽にお問い合わせください。</h2>
@@ -258,7 +259,7 @@ function PageHero({ kicker, title, lead, photo, crumbs, fixId }) {
             <span style={{color:"#fff"}}>{crumbs}</span>
           </div>
         )}
-        <div className="kicker">— {kicker}</div>
+        <div className="kicker">{kicker}</div>
         <h1 className="serif">{title}</h1>
         {lead && <p className="lead">{lead}</p>}
       </div>

@@ -229,7 +229,7 @@ function HomePage() {
               <FadeUp key={i} className="strength" delay={i * 100}>
                 <div className="strength-num">STRENGTH / {s.num}</div>
                 <div className="strength-icon"><Icon name={s.icon} size={26}/></div>
-                <h3 className="strength-title" data-nq-fix={i === 0 ? "28" : undefined}>{s.title.split("\n").map((l, j) => <span key={j}>{l}<br/></span>)}</h3>
+                <h3 className="strength-title" data-nq-fix={i === 0 ? "28" : i === 1 ? "38" : undefined}>{s.title.split("\n").map((l, j) => <span key={j}>{l}<br/></span>)}</h3>
                 <p className="strength-body">{s.body}</p>
               </FadeUp>
             ))}
@@ -274,7 +274,8 @@ function HomePage() {
                     英語表記は出入国在留管理庁の "Specified Skilled Worker (i)" に準拠 */}
                 <div className="en-sub">SPECIFIED SKILLED WORKER (i)</div>
                 <h3>特定技能（1号）制度</h3>
-                <p>即戦力となる外国人材を受け入れる制度。グループ内に登録支援機関を保有し、法定10項目の支援を一貫してご提供します。</p>
+                {/* 修正依頼 #38：「保有」表現を廃止（→運営） */}
+                <p>即戦力となる外国人材を受け入れる制度。グループ内で登録支援機関を運営し、法定10項目の支援を一貫してご提供します。</p>
                 <div className="sys-meta">
                   <div className="sys-meta-item"><span className="k">在留期間</span><span className="v">特定技能（1号）原則5年</span></div>
                   <div className="sys-meta-item"><span className="k">対応分野</span><span className="v">{SSW_FIELD_COUNT} 特定産業分野</span></div>
