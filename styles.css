@@ -390,11 +390,8 @@ p { margin: 0; }
   letter-spacing: 0.25em;
   font-weight: 600;
 }
-.section-num::before {
-  content: "—";
-  margin-right: 12px;
-  color: var(--accent);
-}
+/* セクションラベル先頭の「—」は施主指示（2026-08-26）で全廃。
+   .section-num::before { content:"—" } を削除（全ページの SUPPORT / OVERVIEW 等に効いていた） */
 .section-title {
   font-size: clamp(28px, 3.5vw, 44px);
   line-height: 1.4;

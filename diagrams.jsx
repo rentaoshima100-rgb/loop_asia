@@ -58,7 +58,7 @@ function PathwayDiagram() {
   return (
     <div className="dgm-card dgm-card-pop">
       <div className="dgm-title">特定技能外国人になるための 2 つのルート</div>
-      <div className="dgm-sub">— TWO PATHS TO BECOME A SPECIFIED SKILLED WORKER —</div>
+      <div className="dgm-sub">TWO PATHS TO BECOME A SPECIFIED SKILLED WORKER</div>
 
       <div className="pathway">
         <div className="pathway-route">
@@ -122,7 +122,7 @@ function RelationDiagram() {
   return (
     <div className="dgm-card dgm-card-pop">
       <div className="dgm-title">登録支援機関の役割</div>
-      <div className="dgm-sub">— RELATIONSHIP & SUPPORT STRUCTURE —</div>
+      <div className="dgm-sub">RELATIONSHIP & SUPPORT STRUCTURE</div>
 
       <svg className="relation-svg" viewBox="0 0 1000 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="登録支援機関と関係機関の関係図">
         <defs>
@@ -306,7 +306,7 @@ function TimelineDiagram() {
       {/* 修正依頼 p.6：タイトル／英サブを差し替え */}
       <div className="dgm-title">育成就労から特定技能へ、<span style={{color:"var(--accent)"}}>途切れない長期キャリアパス</span>を構築</div>
       {/* 依頼 #30：英語表記を削除し日本語表記に変更 */}
-      <div className="dgm-sub">— ワンストップのキャリアパス｜日本での長期就労へ —</div>
+      <div className="dgm-sub">ワンストップのキャリアパス｜日本での長期就労へ</div>
 
       {/* 依頼 #30：時間の流れを矢印で明示し、帯内の年数表記を日本語に変更 */}
       <div className="timeline" data-nq-fix="30">
