@@ -383,8 +383,9 @@ function FeaturesDiagram() {
   const items = [
     {
       cls: "c1", num: "01", tag: "BOTH AT ONCE",
-      h: "「人材育成」と「人材確保」の両立",
-      p: "これまで明確に区別されてきた「育成」と「就労」を統合。日本側にとっても、本人にとってもメリットのある、新しい受入制度として再設計された制度です。"
+      /* h の \n は改行位置の指定（#36の拡大で「人材確／保」と語中で折れるのを防ぐ） */
+      h: "「人材育成」と\n「人材確保」の両立",
+      /* 修正依頼 #35：01 の説明文を削除（クリック指定は 01 のみ。02・03 の説明文は依頼外のため残置） */
     },
     {
       cls: "c2", num: "02", tag: "SKILL & LANGUAGE",
@@ -398,13 +399,18 @@ function FeaturesDiagram() {
     }
   ];
   return (
-    <div className="features-bold">
+    /* data-nq-fix="36"：見出し .feat-h の拡大（CSSのみの変更）。パネルはループ描画のため代表して親に付与 */
+    <div className="features-bold" data-nq-fix="36">
       {items.map((it, i) => (
         <div key={i} className={`feat-panel ${it.cls}`}>
           <div className="feat-bignum">{it.num}</div>
           <div className="feat-tag">{it.tag}</div>
-          <div className="feat-h">{it.h}</div>
-          <div className="feat-p">{it.p}</div>
+          <div className="feat-h">
+            {it.h.split("\n").map((l, j, a) => (
+              <React.Fragment key={j}>{l}{j < a.length - 1 && <br/>}</React.Fragment>
+            ))}
+          </div>
+          {it.p && <div className="feat-p">{it.p}</div>}
         </div>
       ))}
     </div>
