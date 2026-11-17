@@ -191,11 +191,12 @@ function Footer() {
             </div>
             <div className="footer-addr">
               <strong style={{color:"rgba(255,255,255,0.85)"}}>本部</strong><br/>
-              〒532-0002 大阪府大阪市淀川区東三国2丁目32-17 ループ大阪<br/>
-              TEL 06-6394-7770 ／ FAX 06-6394-7772<br/><br/>
+              {/* 住所は区切りの位置でだけ折り返す（番地や建物名の途中で改行しない） */}
+              <span style={{display:"inline-block"}}>〒532-0002</span> <span style={{display:"inline-block"}}>大阪府大阪市淀川区</span><span style={{display:"inline-block"}}>東三国2丁目32-17</span> <span style={{display:"inline-block"}}>ループ大阪</span><br/>
+              <span style={{display:"inline-block"}}>TEL 06-6394-7770</span> ／ <span style={{display:"inline-block"}}>FAX 06-6394-7772</span><br/><br/>
               <strong style={{color:"rgba(255,255,255,0.85)"}}>江坂事務所</strong><br/>
-              〒564-0063 大阪府吹田市江坂町1丁目6-3 ループ江坂<br/>
-              TEL 06-6879-1790 ／ FAX 06-6879-1791<br/>
+              <span style={{display:"inline-block"}}>〒564-0063</span> <span style={{display:"inline-block"}}>大阪府吹田市</span><span style={{display:"inline-block"}}>江坂町1丁目6-3</span> <span style={{display:"inline-block"}}>ループ江坂</span><br/>
+              <span style={{display:"inline-block"}}>TEL 06-6879-1790</span> ／ <span style={{display:"inline-block"}}>FAX 06-6879-1791</span><br/>
               <span style={{color:"rgba(255,255,255,0.55)"}}>※ご来所は江坂事務所までお願いいたします</span>
             </div>
           </div>
