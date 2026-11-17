@@ -33,7 +33,7 @@ function RxCTA() {
     <section className="rx-cta-sec" data-screen-label="CTA">
       <img src="uploads/redesign/cta-room.jpg" alt="" />
       <div className="rx-wrap">
-        <h2>外国人材の受入、<br />まずはご相談ください。</h2>
+        <h2>{rxPh("外国人材の|受入、\nまずは|ご相談ください。")}</h2>
         <div className="rx-cta-box">
           <a href="#contact" onClick={rxGo("contact")}>お問い合わせ <span aria-hidden="true">→</span></a>
           <div className="rx-tel"><small>TEL</small><span className="rx-num">06-6394-7770</span><small>9:00–18:00</small></div>
@@ -53,20 +53,28 @@ const RX_SLIDES = [
 
 function RxHero() {
   const [cur, setCur] = useState(0);
-  const timer = useRef(null);
-  const restart = () => {
-    clearInterval(timer.current);
-    timer.current = setInterval(() => setCur((s) => (s + 1) % RX_SLIDES.length), 5000);
-  };
-  useEffect(() => { restart(); return () => clearInterval(timer.current); }, []);
-  const go = (n) => { setCur((n + RX_SLIDES.length) % RX_SLIDES.length); restart(); };
-  const chev = (pts) => (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points={pts}></polyline></svg>
+  /* 自動で切り替わるスライドには一時停止ボタンを付ける（WCAG 2.2.2）。
+     「視差効果を減らす」設定の端末では最初から止めておく。 */
+  const reduce = typeof window.matchMedia === "function" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const [playing, setPlaying] = useState(!reduce);
+  const [hold, setHold] = useState(false);   // マウスを載せている・キーボード操作中は止める
+  useEffect(() => {
+    if (!playing || hold) return undefined;
+    const t = setInterval(() => setCur((s) => (s + 1) % RX_SLIDES.length), 5000);
+    return () => clearInterval(t);
+  }, [playing, hold, cur]);
+  const go = (n) => setCur((n + RX_SLIDES.length) % RX_SLIDES.length);
+  const icon = (d) => (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{d}</svg>
   );
   return (
-    <section className="rx-hero" data-screen-label="Hero">
+    <section className="rx-hero" data-screen-label="Hero" aria-roledescription="carousel" aria-label="トップの写真"
+      onMouseEnter={() => setHold(true)} onMouseLeave={() => setHold(false)}
+      onFocus={() => setHold(true)} onBlur={(e) => { if (!e.currentTarget.contains(e.relatedTarget)) setHold(false); }}>
       {RX_SLIDES.map((s, k) => (
-        <img key={k} className="rx-hero-img" src={s.img} alt={s.alt} style={{ objectPosition: s.pos, opacity: k === cur ? 1 : 0 }} />
+        <img key={k} className="rx-hero-img" src={s.img} alt={k === cur ? s.alt : ""} aria-hidden={k === cur ? undefined : "true"}
+          fetchpriority={k === 0 ? "high" : undefined} decoding="async"
+          style={{ objectPosition: s.pos, opacity: k === cur ? 1 : 0 }} />
       ))}
       <div className="rx-hero-veil"></div>
       <svg className="rx-hero-curve" viewBox="0 0 1600 110" preserveAspectRatio="none" aria-hidden="true">
@@ -82,12 +90,20 @@ function RxHero() {
           <a href="#about" className="rx-hbtn rx-hbtn-o" onClick={rxGo("about")}>組合案内 <span aria-hidden="true">→</span></a>
         </div>
       </div>
-      <button type="button" className="rx-hero-arw rx-l" aria-label="前の写真" onClick={() => go(cur - 1)}>{chev("15 6 9 12 15 18")}</button>
-      <button type="button" className="rx-hero-arw rx-r" aria-label="次の写真" onClick={() => go(cur + 1)}>{chev("9 6 15 12 9 18")}</button>
-      <div className="rx-hero-dots">
-        {RX_SLIDES.map((s, k) => (
-          <button type="button" key={k} aria-label={(k + 1) + "枚目の写真"} aria-current={k === cur ? "true" : "false"} onClick={() => go(k)}></button>
-        ))}
+      <button type="button" className="rx-hero-arw rx-l" aria-label="前の写真" onClick={() => go(cur - 1)}>{icon(<polyline points="15 6 9 12 15 18"></polyline>)}</button>
+      <button type="button" className="rx-hero-arw rx-r" aria-label="次の写真" onClick={() => go(cur + 1)}>{icon(<polyline points="9 6 15 12 9 18"></polyline>)}</button>
+      <div className="rx-hero-ctrl">
+        <button type="button" className="rx-hero-play" onClick={() => setPlaying((v) => !v)}
+          aria-label={playing ? "スライドを一時停止" : "スライドを再生"}>
+          {playing
+            ? icon(<g><line x1="9" y1="6" x2="9" y2="18"></line><line x1="15" y1="6" x2="15" y2="18"></line></g>)
+            : icon(<polygon points="8 5 19 12 8 19 8 5" fill="currentColor"></polygon>)}
+        </button>
+        <div className="rx-hero-dots">
+          {RX_SLIDES.map((s, k) => (
+            <button type="button" key={k} aria-label={(k + 1) + "枚目の写真を表示"} aria-current={k === cur ? "true" : "false"} onClick={() => go(k)}></button>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -98,7 +114,7 @@ const RX_FOUNDATION = [
     catch: "現地との|強い連携で、|信頼できる|人材を確保",
     body: "長年培ってきた|ネットワークを活かした|人材の募集・選考" },
   { name: "講習センター", img: "uploads/redesign/fnd-kosyu.jpg",
-    catch: "充実した|教育環境で、|円滑な受入れを|支援",
+    catch: "充実した|教育環境で、|円滑な|受入れを支援",
     body: "自社運営の|講習施設による、|安心の教育体制" },
   { name: "日本語学校", group: true, img: "uploads/redesign/fnd-jyugyo.jpg",
     catch: "日本語教育の|専門性を活かした、|充実の支援体制",
@@ -130,7 +146,7 @@ function RxHomePage() {
         <div className="rx-wrap">
           <div className="rx-news-head">
             <div className="rx-head"><div className="rx-eyebrow">NEWS</div><h2 className="rx-h2m">お知らせ</h2></div>
-            <a href="#news" className="rx-more" onClick={rxGo("news")}>一覧へ →</a>
+            <a href="#news" className="rx-more" onClick={rxGo("news")}>お知らせ一覧へ <span aria-hidden="true">→</span></a>
           </div>
           <div className="rx-news-list">
             {news.slice(0, 3).map((n, i) => (
@@ -147,7 +163,7 @@ function RxHomePage() {
 
       <section className="rx-fnd" data-screen-label="Foundation">
         <div className="rx-wrap">
-          <div className="rx-fnd-head"><h2>企業、外国人を支える<br />確かな基礎</h2></div>
+          <div className="rx-fnd-head"><h2>{rxPh("企業、|外国人を支える\n確かな基礎")}</h2></div>
           <div>
             <div className="rx-fnd-grid">
               {RX_FOUNDATION.map((s) => (

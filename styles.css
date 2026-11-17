@@ -4595,3 +4595,56 @@ body { font-weight: 600; }
   .sv-stat:first-child { border-top: none; }
   .sv-head { flex-direction: column; align-items: flex-start; gap: 16px; }
 }
+
+/* =========================================================
+   2026-11 端末幅の基準対応（全ページ共通のヘッダー・フッター）
+   対象幅：スマホ 320〜430px／iPad 744〜1366px／PC 1280〜2560px
+   - ナビの文字が途中で2行に折れないようにする
+   - タップ領域は 44px 以上（Apple HIG・WCAG 2.5.5）
+   - 本文の文字は 12px 以上（Lighthouse の判読可能なフォントサイズ）
+   ========================================================= */
+.nav-link, .nav-cta, .brand-name, .brand-name .small { white-space: nowrap; }
+
+/* iPad 横（1180px）・iPad Pro 縦（1024px）ではナビが入りきらないので、
+   スマホと同じメニューボタンに切り替える */
+@media (max-width: 1199px) {
+  .nav { display: none; }
+  .menu-btn { display: block; }
+}
+/* 1200〜1365px（小さめのノートPC）はナビの字送りと余白を詰めて1行に収める */
+@media (min-width: 1200px) and (max-width: 1365px) {
+  .topbar-inner { padding-left: 28px; padding-right: 28px; }
+  .brand { gap: 10px; }
+  .brand-name .small { letter-spacing: 0.12em; }
+  .nav { gap: 16px; }
+  .nav-link { font-size: 14px; letter-spacing: 0.04em; }
+  .nav-cta { padding: 12px 18px; letter-spacing: 0.06em; }
+}
+@media (max-width: 480px) {
+  .brand-name .small { display: none; }
+}
+
+/* タップ領域 */
+.menu-btn,
+.menu-btn[class] { width: 44px; height: 44px; }
+.menu-btn span { width: 20px; margin-left: -10px; }
+.menu-btn span:nth-child(1) { top: 15px; }
+.menu-btn span:nth-child(2) { top: 21px; }
+.menu-btn span:nth-child(3) { top: 27px; }
+.menu-btn.open span:nth-child(1), .menu-btn.open span:nth-child(3) { top: 21px; }
+.footer-sns .sns-link { width: 44px; height: 44px; }
+.mobile-cta .btn { min-height: 48px; }
+
+.nav-link { display: inline-flex; align-items: center; min-height: 44px; padding-top: 0; padding-bottom: 0; }
+.nav-link.active::after { bottom: 6px; }
+.footer-links a { white-space: nowrap; }
+
+/* 文字サイズ（12px 以上） */
+.brand-name .small, .footer-brand .brand-name .small { font-size: 12px; letter-spacing: 0.1em; }
+@media (min-width: 1200px) and (max-width: 1365px) {
+  .brand-name .small { letter-spacing: 0.06em; }
+}
+@media (max-width: 380px) {
+  .brand-name { font-size: 12px; }
+  .footer-bottom { font-size: 12px; letter-spacing: 0.06em; }
+}

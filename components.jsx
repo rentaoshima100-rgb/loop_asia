@@ -80,7 +80,8 @@ function Header() {
     <>
     <header className="topbar">
       <div className="topbar-inner">
-        <div className="brand" onClick={() => go("home")}>
+        <div className="brand" role="link" tabIndex={0} aria-label="亜細亜交流事業協同組合 トップへ" onClick={() => go("home")}
+          onKeyDown={(e) => { if (e.key === "Enter") go("home"); }}>
           <img className="brand-mark brand-mark-img" src={PHOTOS.logo} alt="LOOP" width="38" height="38" />
           <div className="brand-name">
             亜細亜交流事業協同組合
@@ -91,15 +92,18 @@ function Header() {
           {NAV.slice(0, NAV.length - 1).map(n => (
             <a
               key={n.id}
+              href={"#" + n.id}
               className={`nav-link ${hash === n.id ? "active" : ""}`}
-              onClick={() => go(n.id)}
+              aria-current={hash === n.id ? "page" : undefined}
+              onClick={(e) => { e.preventDefault(); go(n.id); }}
             >{n.label}</a>
           ))}
-          <a className="nav-cta" onClick={() => go("contact")}>お問い合わせ</a>
+          <a className="nav-cta" href="#contact" onClick={(e) => { e.preventDefault(); go("contact"); }}>お問い合わせ</a>
         </nav>
         <button
           className={`menu-btn ${menuOpen ? "open" : ""}`}
           aria-label="メニュー"
+          aria-expanded={menuOpen}
           onClick={() => setMenuOpen(o => !o)}
         >
           <span></span><span></span><span></span>
@@ -112,8 +116,10 @@ function Header() {
             {NAV.slice(0, NAV.length - 1).map((n, i) => (
               <a
                 key={n.id}
+                href={"#" + n.id}
                 className={`mobile-nav-link ${hash === n.id ? "active" : ""}`}
-                onClick={() => go(n.id)}
+                aria-current={hash === n.id ? "page" : undefined}
+                onClick={(e) => { e.preventDefault(); go(n.id); }}
                 style={{transitionDelay: menuOpen ? `${i * 50 + 100}ms` : "0ms"}}
               >
                 <span className="mn-en">{n.en}</span>
