@@ -196,7 +196,6 @@
 }
 
 .rx-eyebrow{display:flex;align-items:center;gap:12px;font-size:12px;letter-spacing:.22em;color:#4A4E57}
-.rx-eyebrow::before{content:"";width:28px;height:2px;background:#9E1B2A}
 .rx-h2m{font-weight:700;font-size:clamp(26px,3vw,38px);letter-spacing:.04em;line-height:1.45}
 
 .rx-hero{position:relative;height:clamp(560px,52vw,780px);overflow:hidden;background:#D6D6D2}
@@ -205,7 +204,6 @@
 .rx-hero-curve{position:absolute;left:0;bottom:0;width:100%;height:clamp(56px,7vw,110px);display:block}
 .rx-hero-txt{position:relative;height:100%;max-width:1376px;margin:0 auto;padding:0 80px clamp(80px,8vw,114px);display:flex;flex-direction:column;justify-content:flex-end;gap:14px}
 .rx-hero-kicker{display:flex;align-items:center;gap:12px;font-size:clamp(13px,1.1vw,16px);font-weight:500;letter-spacing:.04em;color:#3A3D44}
-.rx-hero-kicker::before{content:"";flex:none;width:4px;height:22px;background:#9E1B2A}
 .rx-hero h1{font-weight:700;font-size:clamp(32px,3.6vw,56px);line-height:1.3;letter-spacing:.02em;color:#9E1B2A}
 .rx-hero-lead{font-size:clamp(15px,1.3vw,20px);font-weight:500;line-height:1.8}
 .rx-hero-btns{display:flex;gap:16px;flex-wrap:wrap;margin-top:6px}
@@ -245,7 +243,6 @@
 .rx-fnd{background:#EFEFED}
 .rx-fnd .rx-wrap{padding-top:110px;padding-bottom:100px;display:flex;flex-direction:column;gap:44px}
 .rx-fnd-head{display:flex;flex-direction:column;gap:20px}
-.rx-fnd-head::before{content:"";width:28px;height:2px;background:#9E1B2A}
 .rx-fnd-head h2{font-weight:700;font-size:clamp(30px,3.4vw,44px);line-height:1.5;letter-spacing:.04em}
 .rx-fnd-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
 .rx-fnd-card{background:#fff;display:flex;flex-direction:column}
