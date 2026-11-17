@@ -103,8 +103,10 @@ function App() {
   const page = (hash || "home").split("=")[0];
 
   useEffect(() => { applyPageMeta(page); }, [page]);
-  let PageComp = HomePage;
-  if (page === "ikusei") PageComp = IkuseiPage;
+  /* 2026-11 デザイン刷新：トップと育成就労制度は新デザイン（pages-redesign.jsx）。
+     旧デザインに戻すときは RxHomePage → HomePage、RxIkuseiPage → IkuseiPage にする。 */
+  let PageComp = RxHomePage;
+  if (page === "ikusei") PageComp = RxIkuseiPage;
   else if (page === "tokutei") PageComp = TokuteiPage;
   else if (page === "about") PageComp = AboutPage;
   else if (page === "cases") PageComp = CasesPage;
