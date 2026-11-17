@@ -217,9 +217,16 @@
 .rx-hero-arw{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;border:0;padding:0;background:#fff;color:#17191E;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(23,25,30,.16)}
 .rx-hero-arw.rx-l{left:16px}
 .rx-hero-arw.rx-r{right:16px}
-.rx-hero-dots{position:absolute;left:0;right:0;bottom:clamp(18px,2.4vw,36px);display:flex;justify-content:center;align-items:center;gap:12px}
-.rx-hero-dots button{width:12px;height:12px;border-radius:6px;border:0;padding:0;cursor:pointer;background:#C9CBD0;transition:background .3s,width .3s}
-.rx-hero-dots button[aria-current="true"]{width:28px;background:#9E1B2A}
+.rx-hero-ctrl{position:absolute;left:0;right:0;bottom:clamp(6px,1.6vw,24px);display:flex;justify-content:center;align-items:center;gap:4px}
+.rx-hero-play{width:44px;height:44px;border:0;padding:0;border-radius:50%;background:transparent;color:#3A3D44;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.rx-hero-play svg{width:16px;height:16px}
+.rx-hero-dots{display:flex;align-items:center}
+.rx-hero-dots button{position:relative;width:28px;height:44px;border:0;padding:0;background:transparent;cursor:pointer}
+.rx-hero-dots button::before{content:"";position:absolute;left:50%;top:50%;width:12px;height:12px;border-radius:6px;transform:translate(-50%,-50%);background:#C9CBD0;transition:background .3s,width .3s}
+.rx-hero-dots button[aria-current="true"]{width:44px}
+.rx-hero-dots button[aria-current="true"]::before{width:28px;background:#9E1B2A}
+.rx-hero button:focus-visible,.rx a:focus-visible{outline:3px solid #17191E;outline-offset:2px}
+@media (prefers-reduced-motion:reduce){.rx-hero-img{transition:none}}
 
 .rx-news{background:#fff}
 .rx-news .rx-wrap{padding-top:88px;padding-bottom:96px;display:flex;flex-direction:column;gap:36px}
@@ -232,7 +239,7 @@
 .rx-news-row:hover{background:#F5F5F3}
 .rx-news-date{font-size:16px;letter-spacing:.04em}
 .rx-news-cat{justify-self:start;background:#9E1B2A;color:#fff;font-size:12px;font-weight:500;letter-spacing:.04em;padding:6px 14px;border-radius:999px;white-space:nowrap}
-.rx-news-title{font-size:16px;font-weight:500;line-height:1.8}
+.rx-news-title{font-size:16px;font-weight:500;line-height:1.8;word-break:auto-phrase}
 .rx-news-arw{color:#8A8D94}
 
 .rx-fnd{background:#EFEFED}
@@ -248,7 +255,7 @@
 .rx-fnd-tx{padding:22px 22px 28px;display:flex;flex-direction:column;gap:12px}
 .rx-fnd-name{display:flex;align-items:center;gap:8px 10px;flex-wrap:wrap}
 .rx-fnd-name b{font-weight:700;font-size:22px;letter-spacing:.04em}
-.rx-fnd-name small{font-size:11px;font-weight:500;letter-spacing:.04em;color:#4A4E57;border:1px solid #C9CBD0;padding:3px 8px;white-space:nowrap}
+.rx-fnd-name small{font-size:12px;font-weight:500;letter-spacing:.04em;color:#4A4E57;border:1px solid #C9CBD0;padding:3px 8px;white-space:nowrap}
 .rx-fnd-catch{font-size:15px;font-weight:700;line-height:1.7;color:#9E1B2A}
 .rx-fnd-body{font-size:13px;line-height:1.9;color:#4A4E57}
 .rx-fnd-band{margin-top:16px;display:flex;gap:20px 40px;align-items:center;padding:28px 40px;background:#9E1B2A;color:#fff;flex-wrap:wrap}
@@ -266,7 +273,7 @@
 .rx-prg-pic{aspect-ratio:16/9;overflow:hidden;background:#E4E4E2}
 .rx-prg-pic img{width:100%;height:100%;object-fit:cover;display:block}
 .rx-prg-tx{padding:32px 36px 36px;display:flex;flex-direction:column;gap:14px;flex:1}
-.rx-prg-en{font-size:11px;letter-spacing:.2em;color:#6B6E76}
+.rx-prg-en{font-size:12px;letter-spacing:.16em;color:#6B6E76}
 .rx-prg-name{font-weight:700;font-size:28px;letter-spacing:.04em}
 .rx-prg-catch{font-size:16px;font-weight:700;line-height:1.7;color:#9E1B2A}
 .rx-prg-body{font-size:14px;line-height:1.9;color:#4A4E57}
@@ -296,8 +303,8 @@
 .rx-hero-img{bottom:auto;height:66.6vw}
 .rx-hero-veil{display:none}
 .rx-hero-txt{height:auto;padding:28px 20px 92px}
-.rx-hero-arw{top:33.3vw;width:40px;height:40px}
-.rx-hero-dots{justify-content:flex-start;padding-left:20px;bottom:22px}
+.rx-hero-arw{top:calc(var(--rx-hh)/2);width:44px;height:44px}
+.rx-hero-ctrl{justify-content:flex-start;padding-left:8px;bottom:8px}
 .rx-hbtn{min-width:0;flex:1 1 200px}
 .rx-news .rx-wrap{padding-top:64px;padding-bottom:64px}
 .rx-news-row{grid-template-columns:auto minmax(0,1fr);gap:8px 14px;padding:18px 4px}
@@ -316,4 +323,60 @@
 .rx-fnd-grid{grid-template-columns:minmax(0,1fr)}
 .rx-fnd-pic{aspect-ratio:16/10}
 .rx-res-row{grid-template-columns:minmax(0,1fr)}
+}
+
+/* ===== 端末幅の基準対応（2026-11）=====
+   スマホ 320〜430px／タブレット 600〜1023px（iPad mini〜Pro11 の縦）／iPad Pro13 縦・横 1024〜1366px／PC 1280〜2560px
+   ・横スクロールを出さない ・文節の途中で改行しない ・タップ領域 44px 以上 ・本文 12px 以上 */
+.rx-more{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 2px}
+.rx-crumb a{display:inline-flex;align-items:center;min-height:44px;padding:0 6px;margin:-12px -6px;text-decoration:underline;text-underline-offset:3px;text-decoration-color:#C9CBD0}
+.rx-hero-img,.rx-ttl-img{-webkit-user-drag:none}
+
+/* 横長の大画面：ヒーローの高さに上限があるため、人物の顔が切れないよう縦の余白を少し増やす */
+@media screen and (min-width:1600px){
+.rx-hero{height:clamp(800px,48vw,1180px)}
+}
+
+/* タブレット縦（600〜900px）：1列だと写真が大きくなりすぎるので2列に戻す */
+@media screen and (min-width:600px) and (max-width:900px){
+.rx-prg-grid,.rx-sup-grid,.rx-jsup-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.rx-feat-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:0 32px}
+.rx-res-pic{aspect-ratio:16/9}
+.rx-fnd-pic{aspect-ratio:4/3}
+.rx-wrap{padding-left:32px;padding-right:32px}
+.rx-hero-txt{padding-left:32px;padding-right:32px}
+.rx-hero-ctrl{padding-left:20px}
+.rx-hero-btns .rx-hbtn{flex:0 1 260px}
+}
+
+/* iPad 縦（720〜900px）：制度の概要3項目は横並びのまま見せる */
+@media screen and (min-width:720px) and (max-width:900px){
+.rx-facts{grid-template-columns:repeat(3,minmax(0,1fr))}
+.rx-facts>div{padding:18px 20px 20px}
+.rx-facts>div+div{border-top:0;border-left:1px solid #E4E4E2}
+}
+
+/* スマホ・タブレット縦：写真の高さは画面の高さを超えないようにする（スマホ横向き対策） */
+@media screen and (max-width:900px){
+.rx-hero{--rx-hh:min(66.6vw,70vh);--rx-hh:min(66.6vw,70svh);padding-top:var(--rx-hh)}
+.rx-hero-img{height:var(--rx-hh)}
+.rx-ttl-img{height:min(64vw,70vh);height:min(64vw,70svh)}
+}
+
+@media screen and (max-width:560px){
+.rx-cta-box{min-width:0;width:100%}
+}
+
+/* 小さいスマホ（〜379px：iPhone SE 初代・小型 Android） */
+@media screen and (max-width:379px){
+.rx-cta-sec h2{font-size:24px}
+.rx-hero-kicker{font-size:12px;letter-spacing:0}
+.rx-ph{grid-template-columns:30px 8px minmax(0,1fr);gap:0 8px}
+.rx-ph-per{writing-mode:vertical-rl;text-orientation:upright;justify-content:center;align-items:center;font-size:17px;letter-spacing:.06em;white-space:nowrap}
+.rx-arr{padding-left:35px}
+.rx-step{padding:18px 16px}
+.rx-step p{font-size:14px}
+.rx-card .rx-tx{padding:20px 20px 24px}
+.rx-jcard .rx-tx{padding:20px 20px 24px}
+.rx-hbtn{padding:16px 20px}
 }
